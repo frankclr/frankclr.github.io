@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            JavaScript之一基本类型和结构语句 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/">JavaScript之一基本类型和结构语句</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=JavaScript之一基本类型和结构语句&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=JavaScript之一基本类型和结构语句&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/&title=JavaScript之一基本类型和结构语句" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=JavaScript之一基本类型和结构语句&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/&text=JavaScript之一基本类型和结构语句" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <br />
+  
+<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1022910821149312">廖雪峰老师—-JavaScript教程</a>，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</h2><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ol>
+<li><p><code>Number</code><br>JavaScript不区分整数和浮点数，统一用<code>Number</code>表示  </p>
+</li>
+<li><p>字符串<br>符串是以单引号<code>&#39;</code>或双引号<code>&quot;</code>括起来的任意文本。请注意，<code>&#39;&#39;</code>或<code>&quot;&quot;</code>本身只是一种表示方式，不是字符串的一部分。<br>由于多行字符串用<code>\n</code>写起来比较费事，所以最新的ES6标准新增了一种多行字符串的表示方法，用反引号<code>...</code>表示<br>要把多个字符串连接起来，可以用<code>+</code>号连接：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var name = &#x27;小明&#x27;;</span><br><span class="line">var age = 20;</span><br><span class="line">var message = `你好, $&#123;name&#125;, 你今年$&#123;age&#125;岁了!`;</span><br></pre></td></tr></table></figure>
+<p>要获取字符串某个指定位置的字符，使用类似<code>Array</code>的下标操作，索引号从<code>0</code>开始<br>需要特别注意的是，字符串是不可变的，如果对字符串的某个索引赋值，不会有任何错误，但是，也没有任何效果<br>常用方法:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">length</span><br><span class="line">toUpperCase</span><br><span class="line">toLowerCase</span><br><span class="line">indexOf</span><br><span class="line">substring</span><br><span class="line">s.trim(); // 注意：IE9以下的版本没有trim()方法  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>布尔值<br>布尔值和布尔代数的表示完全一致，一个布尔值只有<code>true</code>、<code>false</code>两种值<br>JavaScript把<code>null</code>、<code>undefined</code>、<code>0</code>、<code>NaN</code>和空字符串<code>&#39;&#39;</code>视为<code>false</code>，其他值一概视为<code>true</code>,允许对任意数据类型做比较：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">false == 0; // true</span><br><span class="line">false === 0; // false</span><br></pre></td></tr></table></figure>
+<p>要特别注意相等运算符<code>==</code>。JavaScript在设计时，有两种比较运算符：<br>a. 第一种是<code>==</code>比较，它会自动转换数据类型再比较，很多时候，会得到非常诡异的结果；<br>b. 第二种是<code>===</code>比较，它不会自动转换数据类型，如果数据类型不一致，返回<code>false</code>，如果一致，再比较。<br>由于JavaScript这个设计缺陷，不要使用<code>==</code>比较，始终坚持使用<code>===</code>比较。<br>另一个例外是<code>NaN</code>这个特殊的<code>Number</code>与所有其他值都不相等，包括它自己：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NaN === NaN; // false</span><br></pre></td></tr></table></figure>
+<p>唯一能判断<code>NaN</code>的方法是通过<code>isNaN()</code>函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isNaN(NaN); // true</span><br></pre></td></tr></table></figure>
+<p>最后要注意浮点数的相等比较：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 / 3 === (1 - 2 / 3); // false</span><br></pre></td></tr></table></figure>
+<p>这不是JavaScript的设计缺陷。浮点数在运算过程中会产生误差，因为计算机无法精确表示无限循环小数。</p>
+</li>
+<li><p><code>null</code>和<code>undefined</code><br><code>null</code>表示一个<code>“空”</code>的值，它和<code>0</code>以及空字符串<code>&#39;&#39;</code>不同，<code>0</code>是一个数值，<code>&#39;&#39;</code>表示长度为<code>0</code>的字符串，而<code>null</code>表示<code>“空”</code>。<br>在其他语言中，也有类似JavaScript的<code>null</code>的表示，例如Java也用<code>null</code>，Swift用<code>nil</code>，Python用<code>None</code>表示。但是，在JavaScript中，还有一个和<code>null</code>类似的<code>undefined</code>，它表示<code>“未定义”</code>。<br>JavaScript的设计者希望用<code>null</code>表示一个<code>空</code>的值，而<code>undefined</code>表示值<code>未定义</code>。事实证明，这并没有什么卵用，区分两者的意义不大。大多数情况下，我们都应该用<code>null</code>。<code>undefined</code>仅仅在判断函数参数是否传递的情况下有用。  </p>
+</li>
+<li><p>数组  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3.14, &#x27;Hello&#x27;, null, true];</span><br><span class="line">new Array(1, 2, 3); // 创建了数组[1, 2, 3]</span><br></pre></td></tr></table></figure>
+<p>然而，出于代码的可读性考虑，强烈建议直接使用<code>[]</code>。<br>数组的元素可以通过<code>索引</code>来访问。请注意，索引的起始值为<code>0</code>。多维数组<br>常用属性或方法:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">length    //请注意: 1. 直接给Array的length赋一个新的值会导致Array大小的变化; 2. 如果通过索引赋值时，索引超过了范围，同样会引起Array大小的变化：</span><br><span class="line">indexOf  </span><br><span class="line">slice    //slice()就是对应String的substring()版本，它截取Array的部分元素，然后返回一个新的Array。注意到slice()的起止参数包括开始索引，不包括结束索引。如果不给slice()传递任何参数，它就会从头到尾截取所有元素</span><br><span class="line">push()      //向Array的末尾添加若干元素，pop()则把Array的最后一个元素删除掉：</span><br><span class="line">unshift()  //方法，往Array的头部添加若干元素，shift()方法则把Array的第一个元素删掉</span><br><span class="line">sort()</span><br><span class="line">reverse()  </span><br><span class="line">splice()  // 从指定的索引开始删除若干元素，然后再从该位置添加若干元素</span><br><span class="line">concat()  // 请注意，concat()方法并没有修改当前Array，而是返回了一个新的Array。实际上，concat()方法可以接收任意个元素和Array，并且自动把Array拆开，然后全部添加到新的Array里</span><br><span class="line">var arr = [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;];</span><br><span class="line">arr.concat(1, 2, [3, 4]); // [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, 1, 2, 3, 4]</span><br><span class="line">join(&#x27;-&#x27;)        //如果Array的元素不是字符串，将自动转换为字符串后再连接。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象<br>JavaScript的对象是一组由键-值组成的无序集合。用一个{…}表示一个对象，键值对以<code>xxx: xxx</code>形式申明，用<code>,</code>隔开。注意，最后一个键值对不需要在末尾加,，如果加了，有的浏览器（如低版本的IE）将报错。<br>访问属性是通过<code>.</code>操作符完成的，但这要求属性名必须是一个有效的变量名。如果属性名包含特殊字符，就必须用<code>&#39;&#39;</code>括起来；访问这个属性也无法使用<code>.</code>操作符，必须用<code>[&#39;xxx&#39;]</code>来访问<br>给一个对象添加或删除属性：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaoming.age = 18; // 新增一个age属性</span><br><span class="line">delete xiaoming.age; // 删除age属性</span><br></pre></td></tr></table></figure>
+<p><code>in</code>检测是否拥有某一属性。要小心，如果<code>in</code>判断一个属性存在，这个属性不一定是对象自身拥有的，它可能是对象继承得到的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x27;toString&#x27; in xiaoming; // true,但tostring是继承自object的</span><br><span class="line">hasOwnProperty()    //判断一个属性是否是xiaoming自身拥有的，而不是继承得到的</span><br></pre></td></tr></table></figure></li>
+<li><p>变量<br>变量的概念基本上和初中代数的方程变量是一致的，只是在计算机程序中，变量不仅可以是数字，还可以是任意数据类型。<br>变量在JavaScript中就是用一个变量名表示，变量名是<code>大小写英文</code>、<code>数字</code>、<code>$</code>和<code>_</code>的组合，且不能用数字开头。变量名也不能是JavaScript的关键字<br>这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。</p>
+</li>
+<li><p>strict模式<br>JavaScript在设计之初，为了方便初学者学习，并不强制要求用<code>var</code>申明变量。这个设计错误带来了严重的后果：如果一个变量没有通过<code>var</code>申明就被使用，那么该变量就自动被申明为全局变量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i = 10; // i现在是全局变量</span><br></pre></td></tr></table></figure>
+<p>在同一个页面的不同的JavaScript文件中，如果都不用<code>var</code>申明，恰好都使用了变量<code>i</code>，将造成变量<code>i</code>互相影响，产生难以调试的错误结果。<br>使用<code>var</code>申明的变量则不是全局变量，它的范围被限制在该变量被申明的函数体内（函数的概念将稍后讲解），同名变量在不同的函数体内互不冲突。</p>
+</li>
+</ol>
+<p>为了修补JavaScript这一严重设计缺陷，ECMA在后续规范中推出了<code>strict</code>模式，在<code>strict</code>模式下运行的JavaScript代码，强制通过<code>var</code>申明变量，未使用<code>var</code>申明变量就使用的，将导致运行错误。<br>启用<code>strict</code>模式的方法是在JavaScript代码的第一行写上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br></pre></td></tr></table></figure>
+<p>这是一个字符串，不支持<code>strict</code>模式的浏览器会把它当做一个字符串语句执行，支持<code>strict</code>模式的浏览器将开启<code>strict</code>模式运行JavaScript。</p>
+<ol start="9">
+<li><p><code>for</code>循环最常用的地方是利用索引来遍历数组<br><code>for ... in</code>把一个对象的所有属性依次循环出来<br>由于<code>Array</code>也是对象，而它的每个元素的索引被视为对象的属性，因此，<code>for ... in</code>循环可以直接循环出<code>Array</code>的索引。请注意，<code>for ... in</code>对Array的循环得到的是<code>String</code>而不是<code>Number</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">while (n &gt; 0) &#123;&#125;</span><br><span class="line">do &#123; &#125; while (n &lt; 100);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Map</code>和<code>Set</code><br>JavaScript的默认对象表示方式<code>&#123;&#125;</code>可以视为其他语言中的<code>Map</code>或<code>Dictionary</code>的数据结构，即一组键值对。<br>但是JavaScript的对象有个小问题，就是键必须是字符串。但实际上<code>Number</code>或者其他数据类型作为键也是非常合理的。<br>为了解决这个问题，最新的ES6规范引入了新的数据类型<code>Map</code></p>
+</li>
+</ol>
+<p><code>Map</code> 一组键值对的结构，具有极快的查找速度<br>初始化<code>Map</code>需要一个二维数组，或者直接初始化一个空<code>Map</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var m = new Map([[&#x27;Michael&#x27;, 95], [&#x27;Bob&#x27;, 75], [&#x27;Tracy&#x27;, 85]]);</span><br><span class="line">m.set(&#x27;Adam&#x27;, 67); // 添加新的key-value</span><br><span class="line">m.set(&#x27;Bob&#x27;, 59);</span><br><span class="line">m.has(&#x27;Adam&#x27;); // 是否存在key &#x27;Adam&#x27;: true</span><br><span class="line">m.get(&#x27;Adam&#x27;); // 67</span><br><span class="line">m.delete(&#x27;Adam&#x27;); // 删除key &#x27;Adam&#x27;</span><br></pre></td></tr></table></figure>
+<p>由于一个<code>key</code>只能对应一个<code>value</code>，所以，多次对一个<code>key</code>放入<code>value</code>，后面的值会把前面的值冲掉</p>
+<p><code>Set</code>和<code>Map</code>类似，也是一组<code>key</code>的集合，但不存储<code>value</code>。由于<code>key</code>不能重复，所以，在<code>Set</code>中，没有重复的<code>key</code><br>创建一个<code>Set</code>，需要提供一个<code>Array</code>作为输入，或者直接创建一个空<code>Set</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var s1 = new Set(); // 空Set</span><br><span class="line">var s2 = new Set([1, 2, 3]); // 含1, 2, 3</span><br><span class="line">s.add(4);</span><br><span class="line">s.delete(3);</span><br></pre></td></tr></table></figure>
+
+<ol start="11">
+<li>iterable<br>遍历<code>Array</code>可以采用下标循环，遍历<code>Map</code>和<code>Set</code>就无法使用下标。为了统一集合类型，ES6标准引入了新的<code>iterable</code>类型，<code>Array</code>、<code>Map</code>和<code>Set</code>都属于<code>iterable</code>类型。<br>具有<code>iterable</code>类型的集合可以通过新的<code>for ... of</code>循环来遍历。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (var x of s) &#123; &#125; // 遍历</span><br></pre></td></tr></table></figure>
+<code>for ... in</code>循环由于历史遗留问题，它遍历的实际上是对象的属性名称。<br>一个<code>Array</code>数组实际上也是一个对象，它的每个元素的索引被视为一个属性。<code>for ... in</code>循环将把额外给<code>Array</code>添加的属性包括在内，但<code>Array</code>的<code>length</code>属性却不包括在内<br><code>for ... of</code>循环则完全修复了这些问题，它只循环集合本身的元素<br><code>iterable</code>内置的<code>forEach</code>方法，它接收一个函数，每次迭代就自动回调该函数<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">var a = [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;];</span><br><span class="line">a.forEach(function (element, index, array) &#123;</span><br><span class="line">    // element: 指向当前元素的值</span><br><span class="line">    // index: 指向当前索引</span><br><span class="line">    // array: 指向Array对象本身</span><br><span class="line">    console.log(element + &#x27;, index = &#x27; + index);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<code>forEach()</code>方法是ES5.1标准引入的<br><code>Set</code>没有索引，因此回调函数的前两个参数都是元素本身<br><code>Map</code>的回调函数参数依次为value、key和map本身<br>如果对某些参数不感兴趣，由于JavaScript的函数调用不要求参数必须一致，因此可以忽略它们</li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>JavaScript之二函数</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/Java%E8%AF%BB%E5%8F%96Properties/">
+        <span>Java读取Properties</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%8C%E8%AF%A5%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%E6%9D%A5%E8%87%AA%E5%BB%96%E9%9B%AA%E5%B3%B0%E8%80%81%E5%B8%88%E2%80%94-JavaScript%E6%95%99%E7%A8%8B%EF%BC%8C%E6%AC%A2%E8%BF%8E%E8%AE%BF%E9%97%AE%E5%8E%9F%E5%88%9B%E8%80%85%E7%BD%91%E7%AB%99%EF%BC%8C%E6%9C%AC%E5%A4%84%E4%BB%85%E4%BB%85%E4%BD%9C%E4%B8%BA%E9%98%B2%E6%AD%A2%E8%87%AA%E5%B7%B1%E9%81%97%E5%BF%98%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">数据类型</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

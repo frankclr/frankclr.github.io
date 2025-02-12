@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            JavaScript之二函数 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/">JavaScript之二函数</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=JavaScript之二函数&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=JavaScript之二函数&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/&title=JavaScript之二函数" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=JavaScript之二函数&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/&text=JavaScript之二函数" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <br />
+  
+<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1022910821149312">廖雪峰老师—-JavaScript教程</a>，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</h2><br />
+<br />
+<br />
+  
+<ol>
+<li><p>函数定义和调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function abs(x) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有<code>return</code>语句，函数执行完毕后也会返回结果，只是结果为<code>undefined</code>。<br>由于JavaScript的函数也是一个对象，上述定义的<code>abs()</code>函数实际上是一个函数对象，而函数名<code>abs</code>可以视为指向该函数的变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var abs = function (x) &#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>在这种方式下，<code>function (x) &#123; ... &#125;</code>是一个匿名函数，它没有函数名。但是，这个匿名函数赋值给了变量<code>abs</code>，所以，通过变量<code>abs</code>就可以调用该函数<br>上述两种定义完全等价，注意第二种方式按照完整语法需要在函数体末尾加一个<code>;</code>，表示赋值语句结束。<br>由于JavaScript允许传入任意个参数而不影响调用，因此传入的参数比定义的参数多也没有问题，虽然函数内部并不需要这些参数;传入的参数比定义的少也没有问题：<br>要避免收到<code>undefined</code>，可以对参数进行检查：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function abs(x) &#123;</span><br><span class="line">    if (typeof x !== &#x27;number&#x27;) &#123;</span><br><span class="line">        throw &#x27;Not a number&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>arguments</code><br>只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。<code>arguments</code>类似Array但它不是一个Array。常用于判断传入参数的个数</p>
+</li>
+<li><p><code>rest</code>参数<br>ES6标准引入了<code>rest</code>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function foo(a, b, ...rest) &#123;</span><br><span class="line">    console.log(&#x27;a = &#x27; + a);</span><br><span class="line">    console.log(&#x27;b = &#x27; + b);</span><br><span class="line">    console.log(rest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>rest</code>参数只能写在最后，前面用<code>...</code>标识，从运行结果可知，传入的参数先绑定<code>a</code>、<code>b</code>，多余的参数以数组形式交给变量<code>rest</code><br>如果传入的参数连正常定义的参数都没填满，也不要紧，<code>rest</code>参数会接收一个空数组（注意不是<code>undefined</code>）</p>
+</li>
+</ol>
+<p>小心你的<code>return</code>语句<br>JavaScript引擎有一个在行末自动添加分号的机制<br>如果把<code>return</code>语句拆成两行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">    return</span><br><span class="line">        &#123; name: &#x27;foo&#x27; &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); // undefined</span><br></pre></td></tr></table></figure>
+<p>上面的代码实际上变成了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">    return; // 自动添加了分号，相当于return undefined;</span><br><span class="line">        &#123; name: &#x27;foo&#x27; &#125;; // 这行语句已经没法执行到了</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>变量作用域与解构赋值<br>在JavaScript中，用<code>var</code>申明的变量实际上是有作用域的。<br>如果一个变量在函数体内部申明，则该变量的作用域为整个函数体，在函数体外不可引用该变量：<br>如果两个不同的函数各自申明了同一个变量，那么该变量只在各自的函数体内起作用。换句话说，不同函数内部的同名变量互相独立，互不影响<br>由于JavaScript的函数可以嵌套，此时，内部函数可以访问外部函数定义的变量，反过来则不行<br>JavaScript的函数在查找变量时从自身函数定义开始，从“内”向“外”查找。如果内部函数定义了与外部函数重名的变量，则内部函数的变量将“屏蔽”外部函数的变量</p>
+</li>
+<li><p>变量提升<br>JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部，但不会提升变量的赋值<br>由于JavaScript的这一怪异的“特性”，我们在函数内部定义变量时，请严格遵守“在函数内部首先申明所有变量”这一规则。最常见的做法是用一个var申明函数内部用到的所有变量。</p>
+</li>
+<li><p>全局作用域<br>不在任何函数内定义的变量就具有全局作用域。实际上，JavaScript默认有一个全局对象<code>window</code>，全局作用域的变量实际上被绑定到<code>window</code>的一个属性<br>以变量方式<code>var foo = function () &#123;&#125;</code>定义的函数实际上也是一个全局变量，因此，顶层函数的定义也被视为一个全局变量，并绑定到<code>window</code>对象<br><code>alert()</code>函数其实也是<code>window</code>的一个变量<br>JavaScript实际上只有一个全局作用域。任何变量（函数也视为变量），如果没有在当前函数作用域中找到，就会继续往上查找，最后如果在全局作用域中也没有找到，则报<code>ReferenceError</code>错误。</p>
+</li>
+<li><p>名字空间<br>全局变量会绑定到<code>window</code>上，不同的JavaScript文件如果使用了相同的全局变量，或者定义了相同名字的顶层函数，都会造成命名冲突，并且很难被发现。<br>减少冲突的一个方法是把自己的所有变量和函数全部绑定到一个全局变量中。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var MYAPP = &#123;&#125;;  // 唯一的全局变量MYAPP</span><br><span class="line">MYAPP.name = &#x27;myapp&#x27;;  // 其他变量</span><br><span class="line">MYAPP.version = 1.0;</span><br><span class="line">// 其他函数</span><br><span class="line">MYAPP.foo = function () &#123;</span><br><span class="line">    return &#x27;foo&#x27;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>把自己的代码全部放入唯一的名字空间<code>MYAPP</code>中，会大大减少全局变量冲突的可能。许多著名的JavaScript库都是这么干的：<code>jQuery</code>，<code>YUI</code>，<code>underscore</code>等等。</p>
+</li>
+<li><p>局部作用域<br>由于JavaScript的变量作用域实际上是函数内部，我们在<code>for</code>循环等语句块中是无法定义具有局部作用域的变量的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">    for (var i=0; i&lt;100; i++) &#123;</span><br><span class="line">        //</span><br><span class="line">    &#125;</span><br><span class="line">    i += 100; // 仍然可以引用变量i</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了解决块级作用域，ES6引入了新的关键字<code>let</code>，用<code>let</code>替代<code>var</code>可以申明一个块级作用域的变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">function foo() &#123;</span><br><span class="line">    var sum = 0;</span><br><span class="line">    for (let i=0; i&lt;100; i++) &#123;</span><br><span class="line">        sum += i;</span><br><span class="line">    &#125;</span><br><span class="line">    // SyntaxError:</span><br><span class="line">    i += 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常量<br>由于<code>var</code>和<code>let</code>申明的是变量，如果要申明一个常量，在ES6之前是不行的，我们通常用全部大写的变量来表示“这是一个常量，不要修改它的值”：<br>ES6标准引入了新的关键字<code>const</code>来定义常量，<code>const</code>与<code>let</code>都具有块级作用域：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">const PI = 3.14;</span><br><span class="line">PI = 3; // 某些浏览器不报错，但是无效果！</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解构赋值<br>从ES6开始，JavaScript引入了解构赋值，可以同时对一组变量进行赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 如果浏览器支持解构赋值就不会报错:</span><br><span class="line">var [x, y, z] = [&#x27;hello&#x27;, &#x27;JavaScript&#x27;, &#x27;ES6&#x27;];</span><br></pre></td></tr></table></figure>
+<p>注意，对数组元素进行解构赋值时，多个变量要用<code>[...]</code>括起来。<br>如果数组本身还有嵌套，也可以通过下面的形式进行解构赋值，注意嵌套层次和位置要保持一致</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let [x, [y, z]] = [&#x27;hello&#x27;, [&#x27;JavaScript&#x27;, &#x27;ES6&#x27;]];</span><br></pre></td></tr></table></figure>
+<p>解构赋值还可以忽略某些元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let [, , z] = [&#x27;hello&#x27;, &#x27;JavaScript&#x27;, &#x27;ES6&#x27;]; // 忽略前两个元素，只对z赋值第三个元素</span><br></pre></td></tr></table></figure>
+<p>如果需要从一个对象中取出若干属性，也可以使用解构赋值，便于快速获取对象的指定属性：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    age: 20,</span><br><span class="line">    gender: &#x27;male&#x27;,</span><br><span class="line">    passport: &#x27;G-12345678&#x27;,</span><br><span class="line">    school: &#x27;No.4 middle school&#x27;</span><br><span class="line">&#125;;</span><br><span class="line">var &#123;name, age, passport&#125; = person;</span><br></pre></td></tr></table></figure>
+<p>对一个对象进行解构赋值时，同样可以直接对嵌套的对象属性进行赋值，只要保证对应的层次是一致的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    age: 20,</span><br><span class="line">    gender: &#x27;male&#x27;,</span><br><span class="line">    passport: &#x27;G-12345678&#x27;,</span><br><span class="line">    school: &#x27;No.4 middle school&#x27;,</span><br><span class="line">    address: &#123;</span><br><span class="line">        city: &#x27;Beijing&#x27;,</span><br><span class="line">        street: &#x27;No.1 Road&#x27;,</span><br><span class="line">        zipcode: &#x27;100001&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var &#123;name, address: &#123;city, zip&#125;&#125; = person;</span><br></pre></td></tr></table></figure>
+<p>使用解构赋值对对象属性进行赋值时，如果对应的属性不存在，变量将被赋值为<code>undefined</code>，这和引用一个不存在的属性获得<code>undefined</code>是一致的。如果要使用的变量名和属性名不一致，可以用下面的语法获取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    age: 20,</span><br><span class="line">    gender: &#x27;male&#x27;,</span><br><span class="line">    passport: &#x27;G-12345678&#x27;,</span><br><span class="line">    school: &#x27;No.4 middle school&#x27;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let &#123;name, passport:id&#125; = person;  // 注意: passport不是变量，而是为了让变量id获得passport属性</span><br><span class="line">name; // &#x27;小明&#x27;</span><br><span class="line">id; // &#x27;G-12345678&#x27;</span><br><span class="line">passport; // Uncaught ReferenceError: passport is not defined</span><br></pre></td></tr></table></figure>
+<p>解构赋值还可以使用默认值，这样就避免了不存在的属性返回<code>undefined</code>的问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    age: 20,</span><br><span class="line">    gender: &#x27;male&#x27;,</span><br><span class="line">    passport: &#x27;G-12345678&#x27;</span><br><span class="line">&#125;;</span><br><span class="line">// 如果person对象没有single属性，默认赋值为true:</span><br><span class="line">var &#123;name, single=true&#125; = person;</span><br><span class="line">name; // &#x27;小明&#x27;</span><br><span class="line">single; // true</span><br></pre></td></tr></table></figure>
+<p>有些时候，如果变量已经被声明了，再次赋值的时候，正确的写法也会报语法错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var x, y;  // 声明变量</span><br><span class="line">&#123;x, y&#125; = &#123; name: &#x27;小明&#x27;, x: 100, y: 200&#125;;  // 解构赋值,会报语法错误: Uncaught SyntaxError: Unexpected token =</span><br></pre></td></tr></table></figure>
+<p>这是因为JavaScript引擎把<code>&#123;</code>开头的语句当作了块处理，于是<code>=</code>不再合法。解决方法是用小括号括起来：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&#123;x, y&#125; = &#123; name: &#x27;小明&#x27;, x: 100, y: 200&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法<br>在一个对象中绑定函数，称为这个对象的方法。<br>绑定到对象上的函数称为方法，它在内部使用了一个<code>this</code>关键字，其始终指向当前对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    birth: 1990,</span><br><span class="line">    age: function () &#123;</span><br><span class="line">        var y = new Date().getFullYear();</span><br><span class="line">        return y - this.birth;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>拆开写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function getAge() &#123;</span><br><span class="line">    var y = new Date().getFullYear();</span><br><span class="line">    return y - this.birth;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    birth: 1990,</span><br><span class="line">    age: getAge</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.age(); // 25, 正常结果</span><br><span class="line">getAge(); // NaN</span><br></pre></td></tr></table></figure>
+<p>如果以对象的方法形式调用，比如<code>xiaoming.age()</code>，该函数的<code>this</code>指向被调用的对象，也就是<code>xiaoming</code>，这是符合我们预期的。<br>如果单独调用函数，比如<code>getAge()</code>，此时，该函数的<code>this</code>指向全局对象，也就是<code>window</code>。<br>如果这么写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var fn = xiaoming.age; // 先拿到xiaoming的age函数</span><br><span class="line">fn(); // NaN</span><br></pre></td></tr></table></figure>
+<p>也是不行的！要保证<code>this</code>指向正确，必须用<code>obj.xxx()</code>的形式调用！<br>由于这是一个巨大的设计错误。ECMA决定，在<code>strict</code>模式下让函数的<code>this</code>指向<code>undefined</code>，因此，在<code>strict</code>模式下，你会得到一个错误。这个决定只是让错误及时暴露出来，并没有解决<code>this</code>应该指向的正确位置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    birth: 1990,</span><br><span class="line">    age: function () &#123;</span><br><span class="line">        function getAgeFromBirth() &#123;</span><br><span class="line">            var y = new Date().getFullYear();</span><br><span class="line">            return y - this.birth;</span><br><span class="line">        &#125;</span><br><span class="line">        return getAgeFromBirth();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.age(); // Uncaught TypeError: Cannot read property &#x27;birth&#x27; of undefined</span><br></pre></td></tr></table></figure>
+<p>结果又报错了！原因是<code>this</code>指针只在<code>age</code>方法的函数内指向<code>xiaoming</code>，在函数内部定义的函数，<code>this</code>又指向<code>undefined</code>了！（在非<code>strict</code>模式下，它重新指向全局对象<code>window</code>！）<br>修复的办法也不是没有，我们用一个<code>that</code>变量首先捕获<code>this</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    birth: 1990,</span><br><span class="line">    age: function () &#123;</span><br><span class="line">        var that = this; // 在方法内部一开始就捕获this</span><br><span class="line">        function getAgeFromBirth() &#123;</span><br><span class="line">            var y = new Date().getFullYear();</span><br><span class="line">            return y - that.birth; // 用that而不是this</span><br><span class="line">        &#125;</span><br><span class="line">        return getAgeFromBirth();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.age(); // 25</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>apply()</code>和<code>call()</code><br>指定函数的<code>this</code>指向哪个对象，可以用函数本身的<code>apply</code>方法，它接收两个参数，第一个参数就是需要绑定的<code>this</code>变量，第二个参数是<code>Array</code>，表示函数本身的参数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function getAge() &#123;</span><br><span class="line">    var y = new Date().getFullYear();</span><br><span class="line">    return y - this.birth;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    birth: 1990,</span><br><span class="line">    age: getAge</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.age(); // 25</span><br><span class="line">getAge.apply(xiaoming, []); // 25, this指向xiaoming, 参数为空</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><code>apply()</code>把参数打包成<code>Array</code>再传入；<br><code>call()</code>把参数按顺序传入<br>对普通函数调用，我们通常把this绑定为null。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.max.apply(null, [3, 5, 4]); // 5</span><br><span class="line">Math.max.call(null, 3, 5, 4); // 5</span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li><p>装饰器<br>JavaScript的所有对象都是动态的，即使内置的函数，我们也可以重新指向新的函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">var count = 0;</span><br><span class="line">var oldParseInt = parseInt; // 保存原函数</span><br><span class="line"></span><br><span class="line">window.parseInt = function () &#123;</span><br><span class="line">    count += 1;</span><br><span class="line">    return oldParseInt.apply(null, arguments); // 调用原函数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>高阶函数<br>JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。</p>
+</li>
+</ol>
+<p>14.1 Array中的map和reduce</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.map(String);  // 把Array的所有数字转为字符串</span><br></pre></td></tr></table></figure>
+
+<p><code>reduce()</code>把一个函数作用在这个<code>Array</code>的<code>[x1, x2, x3...]</code>上，这个函数必须接收两个参数，<code>reduce()</code>把结果继续和序列的下一个元素做累积计算，其效果就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt) // While one might expect [1, 2, 3], the actual result is [1, NaN, NaN].</span><br></pre></td></tr></table></figure>
+
+<p>说明:parseInt is often used with one argument, but takes two. The first is an expression and the second is the radix to the callback function, Array.prototype.map passes 3 arguments:</p>
+<ul>
+<li>the element</li>
+<li>the index</li>
+<li>the array<br>The third argument is ignored by parseInt—but not the second one! This is the source of possible confusion.<br>Here is a concise example of the iteration steps:</li>
+<li>parseInt(string, radix) -&gt; map(parseInt(value, index))</li>
+<li>first iteration  (index is 0):  <code>parseInt(&quot;1&quot;, 0)</code>  &#x3D;&gt; 1</li>
+<li>second iteration (index is 1):  <code>parseInt(&quot;2&quot;, 1)</code>  &#x3D;&gt; NaN</li>
+<li>third iteration  (index is 2):  <code>parseInt(&quot;3&quot;, 2)</code>  &#x3D;&gt; NaN<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parseInt(string)</span><br><span class="line">parseInt(string, radix)</span><br></pre></td></tr></table></figure>
+<code>radix</code>可选。表示要解析的数字的基数。该值介于 2 ~ 36 之间。<br>如果省略该参数或其值为 0，则数字将以 10 为基础来解析。<br>如果该参数小于 2 或者大于 36，则 <code>parseInt()</code> 将返回 <code>NaN</code>。如果<code>string</code>不在<code>radix</code>进制的范围内，也返回<code>NaN</code>,如<code>parseInt(&quot;3&quot;, 2)</code>  &#x3D;&gt; NaN</li>
+</ul>
+<p>14.2 <code>filter()</code><br>用于把<code>Array</code>的某些元素过滤掉，然后返回剩下的元素。<code>filter()</code>把传入的函数依次作用于每个元素，然后根据返回值是<code>true</code>还是<code>false</code>决定保留还是丢弃该元素。<br>回调函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var r = arr.filter(function (element, index, self) &#123;</span><br><span class="line">    console.log(element); // 依次打印&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;</span><br><span class="line">    console.log(index); // 依次打印0, 1, 2</span><br><span class="line">    console.log(self); // self就是变量arr</span><br><span class="line">    return true;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>去除Array的重复元素：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r = arr.filter(function (element, index, self) &#123;</span><br><span class="line">    return self.indexOf(element) === index;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>14.3 <code>sort()</code><br>对字符串排序，是按照<code>ASCII</code>的大小比较的<br><code>Array</code>的<code>sort()</code>方法默认把所有元素先转换为<code>String</code>再排序<br>自定义的排序:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">arr.sort(function (x, y) &#123;</span><br><span class="line">    if (x &lt; y) &#123;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    if (x &gt; y) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>sort()</code>方法会直接对<code>Array</code>进行修改，它返回的结果仍是当前<code>Array</code></p>
+<p>14.4 其他方法<br><code>every()</code>方法可以判断数组的所有元素是否满足测试条件<br><code>find()</code>方法用于查找符合条件的第一个元素，如果找到了，返回这个元素，否则，返回<code>undefined</code><br><code>findIndex()</code>和<code>find()</code>类似，也是查找符合条件的第一个元素，不同之处在于<code>findIndex()</code>会返回这个元素的索引，如果没有找到，返回<code>-1</code><br><code>forEach()</code>和<code>map()</code>类似，它也把每个元素依次作用于传入的函数，但不会返回新的数组。<code>forEach()</code>常用于遍历数组，因此，传入的函数不需要返回值</p>
+<ol start="15">
+<li><p>闭包<br>高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function lazy_sum(arr) &#123;</span><br><span class="line">    var sum = function () &#123;</span><br><span class="line">        return arr.reduce(function (x, y) &#123;</span><br><span class="line">            return x + y;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们调用<code>lazy_sum()</code>时，返回的并不是求和结果，而是求和函数<code>sum</code><br>在函数<code>lazy_sum</code>中又定义了函数<code>sum</code>，并且，内部函数<code>sum</code>可以引用外部函数<code>lazy_sum</code>的参数和局部变量，当<code>lazy_sum</code>返回函数<code>sum</code>时，相关参数和变量都保存在返回的函数中，这种程序结构称为“闭包（Closure）”<br>注意，当我们调用<code>lazy_sum()</code>时，每次调用都会返回一个新的函数，即使传入相同的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr=[1, 2, 3, 4, 5]</span><br><span class="line">var f1 = lazy_sum(arr);</span><br><span class="line">var f2 = lazy_sum(arr);</span><br><span class="line">f1==f2   //false</span><br><span class="line">f1 === f2; // false</span><br></pre></td></tr></table></figure>
+<p>返回的函数并没有立刻执行，而是直到调用了<code>f()</code>才执行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function count() &#123;</span><br><span class="line">    var arr = [];</span><br><span class="line">    for (var i=1; i&lt;=3; i++) &#123;</span><br><span class="line">        arr.push(function () &#123;</span><br><span class="line">            return i * i;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var results = count();</span><br><span class="line">var f1 = results[0];</span><br><span class="line">var f2 = results[1];</span><br><span class="line">var f3 = results[2];</span><br></pre></td></tr></table></figure>
+<p>很可能认为调用<code>f1()</code>，<code>f2()</code>和<code>f3()</code>结果应该是<code>1</code>，<code>4</code>，<code>9</code>，但实际结果是：都是<code>16</code>。原因就在于返回的函数引用了变量<code>i</code>，但它并非立刻执行。等到3个函数都返回时，它们所引用的变量<code>i</code>已经变成了<code>4</code>，因此最终结果为<code>16</code>。<br>返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。<br>如果一定要引用循环变量怎么办？方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function count() &#123;</span><br><span class="line">    var arr = [];</span><br><span class="line">    for (var i=1; i&lt;=3; i++) &#123;</span><br><span class="line">        arr.push((function (n) &#123;</span><br><span class="line">            return function () &#123;</span><br><span class="line">                return n * n;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)(i));</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>“创建一个匿名函数并立刻执行”的语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(function (x) &#123;</span><br><span class="line">    return x * x;</span><br><span class="line">&#125;)(3); // 9</span><br></pre></td></tr></table></figure>
+<p>理论上讲，创建一个匿名函数并立刻执行可以这么写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function (x) &#123; return x * x &#125; (3);</span><br></pre></td></tr></table></figure>
+<p>但是由于JavaScript语法解析的问题，会报<code>SyntaxError</code>错误，因此需要用括号把整个函数定义括起来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(function (x) &#123; return x * x &#125;) (3);</span><br></pre></td></tr></table></figure>
+<p>通常，一个立即执行的匿名函数可以把函数体拆开，一般这么写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(function (x) &#123;</span><br><span class="line">    return x * x;</span><br><span class="line">&#125;)(3);</span><br></pre></td></tr></table></figure>
+<p>在没有<code>class</code>机制，只有函数的语言里，借助闭包，同样可以封装一个私有变量。我们用JavaScript创建一个计数器：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">function create_counter(initial) &#123;</span><br><span class="line">    var x = initial || 0;</span><br><span class="line">    return &#123;</span><br><span class="line">        inc: function () &#123;</span><br><span class="line">            x += 1;</span><br><span class="line">            return x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>换句话说，闭包就是携带状态的函数，并且它的状态可以完全对外隐藏起来。<br>闭包还可以把多参数的函数变成单参数的函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">function make_pow(n) &#123;</span><br><span class="line">    return function (x) &#123;</span><br><span class="line">        return Math.pow(x, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var pow2 = make_pow(2);</span><br><span class="line">var pow3 = make_pow(3);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数<br>ES6标准新增了一种新的函数：Arrow Function（箭头函数）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x =&gt; x * x</span><br></pre></td></tr></table></figure>
+<p>相当于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function (x) &#123;</span><br><span class="line">    return x * x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>箭头函数相当于匿名函数，并且简化了函数定义。箭头函数有两种格式，一种像上面的，只包含一个表达式，连<code>&#123; ... &#125;</code>和<code>return</code>都省略掉了。还有一种可以包含多条语句，这时候就不能省略<code>&#123; ... &#125;</code>和<code>return</code><br>如果参数不是一个，就需要用括号<code>()</code>括起来<br>如果要返回一个对象，就要注意，如果是单表达式，这么写的话会报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x =&gt; &#123; foo: x &#125;  // SyntaxError</span><br></pre></td></tr></table></figure>
+<p>因为和函数体的<code>&#123; ... &#125;</code>有语法冲突，所以要改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x =&gt; (&#123; foo: x &#125;)  // ok</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>this<br>箭头函数看上去是匿名函数的一种简写，但实际上，箭头函数和匿名函数有个明显的区别：箭头函数内部的<code>this</code>是词法作用域，由上下文确定。<br>回顾前面的例子，由于JavaScript函数对<code>this</code>绑定的错误处理，下面的例子无法得到预期结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    birth: 1990,</span><br><span class="line">    getAge: function () &#123;</span><br><span class="line">        var b = this.birth; // 1990</span><br><span class="line">        console.log(b);</span><br><span class="line">        var fn = function () &#123;</span><br><span class="line">            return new Date().getFullYear() - this.birth; // this指向window或undefined</span><br><span class="line">        &#125;;</span><br><span class="line">        return fn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>现在，箭头函数完全修复了<code>this</code>的指向，<code>this</code>总是指向词法作用域，也就是外层调用者<code>obj</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    birth: 1990,</span><br><span class="line">    getAge: function () &#123;</span><br><span class="line">        var b = this.birth; // 1990</span><br><span class="line">        var fn = () =&gt; new Date().getFullYear() - this.birth; // this指向obj对象</span><br><span class="line">        return fn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.getAge(); // 25</span><br></pre></td></tr></table></figure>
+<p>如果使用箭头函数，以前的那种hack写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var that = this;</span><br></pre></td></tr></table></figure>
+<p>就不再需要了。</p>
+</li>
+</ol>
+<p>由于<code>this</code>在箭头函数中已经按照词法作用域绑定了，所以，用<code>call()</code>或者<code>apply()</code>调用箭头函数时，无法对<code>this</code>进行绑定，即传入的第一个参数被忽略：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    birth: 1990,</span><br><span class="line">    getAge: function (year) &#123;</span><br><span class="line">        var b = this.birth; // 1990</span><br><span class="line">        var fn = (y) =&gt; y - this.birth; // this.birth仍是1990</span><br><span class="line">        return fn.call(&#123;birth:2000&#125;, year);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.getAge(2015); // 25</span><br></pre></td></tr></table></figure>
+
+<ol start="18">
+<li><code>generator</code><br><code>generator</code>（生成器）是ES6标准引入的新的数据类型。一个<code>generator</code>看上去像一个函数，但可以返回多次。<br>定义如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function* foo(x) &#123;</span><br><span class="line">    yield x + 1;</span><br><span class="line">    yield x + 2;</span><br><span class="line">    return x + 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<code>generator</code>由<code>function*</code>定义（注意多出的<code>*</code>号），并且，除了<code>return</code>语句，还可以用<code>yield</code>返回多次。<br>常规斐波那数列<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function fib(max) &#123;</span><br><span class="line">    var</span><br><span class="line">        t,</span><br><span class="line">        a = 0,</span><br><span class="line">        b = 1,</span><br><span class="line">        arr = [0, 1];</span><br><span class="line">    while (arr.length &lt; max) &#123;</span><br><span class="line">        [a, b] = [b, a + b];</span><br><span class="line">        arr.push(b);</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+使用<code>generator</code>：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function* fib(max) &#123;</span><br><span class="line">    var</span><br><span class="line">        t,</span><br><span class="line">        a = 0,</span><br><span class="line">        b = 1,</span><br><span class="line">        n = 0;</span><br><span class="line">    while (n &lt; max) &#123;</span><br><span class="line">        yield a;</span><br><span class="line">        [a, b] = [b, a + b];</span><br><span class="line">        n ++;</span><br><span class="line">    &#125;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+直接调用<code>generator fib(5)</code>，仅仅是创建了一个<code>generator</code>对象，还没有去执行它<br>调用<code>generator</code>对象有两个方法，一是不断地调用<code>generator</code>对象的<code>next()</code>方法<br><code>next()</code>方法会执行<code>generator</code>的代码，然后，每次遇到<code>yield x;</code>就返回一个对象<code>&#123;value: x, done: true/false&#125;</code>，然后“暂停”。返回的<code>value</code>就是<code>yield</code>的返回值，<code>done</code>表示这个<code>generator</code>是否已经执行结束了。如果<code>done</code>为<code>true</code>，则<code>value</code>就是<code>return</code>的返回值。当执行到<code>done</code>为<code>true</code>时，这个<code>generator</code>对象就已经全部执行完毕，不要再继续调用<code>next()</code>了。<br>第二个方法是直接用<code>for ... of</code>循环迭代<code>generator</code>对象，这种方式不需要我们自己判断<code>done</code>：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (var x of fib(10)) &#123;</span><br><span class="line">    console.log(x); // 依次输出0, 1, 1, 2, 3, ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+因为<code>generator</code>可以在执行过程中多次返回，所以它看上去就像一个可以记住执行状态的函数，利用这一点，写一个<code>generator</code>就可以实现需要用面向对象才能实现的功能。<br>用一个对象来保存状态，得这么写：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var fib = &#123;</span><br><span class="line">    a: 0,</span><br><span class="line">    b: 1,</span><br><span class="line">    n: 0,</span><br><span class="line">    max: 5,</span><br><span class="line">    next: function () &#123;</span><br><span class="line">        var</span><br><span class="line">            r = this.a,</span><br><span class="line">            t = this.a + this.b;</span><br><span class="line">        this.a = this.b;</span><br><span class="line">        this.b = t;</span><br><span class="line">        if (this.n &lt; this.max) &#123;</span><br><span class="line">            this.n ++;</span><br><span class="line">            return r;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return undefined;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<code>generator</code>还有另一个巨大的好处，就是把异步回调代码变成“同步”代码。<code>AJAX</code>会用到。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">function* next_id() &#123;</span><br><span class="line">    var i=0;</span><br><span class="line">    while(true)&#123;</span><br><span class="line">        yield ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%89%E6%A0%87%E5%87%86%E5%AF%B9%E8%B1%A1/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>JavaScript之三标准对象</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%80%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E7%BB%93%E6%9E%84%E8%AF%AD%E5%8F%A5/">
+        <span>JavaScript之一基本类型和结构语句</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/JavaScript%E4%B9%8B%E4%BA%8C%E5%87%BD%E6%95%B0/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%8C%E8%AF%A5%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%E6%9D%A5%E8%87%AA%E5%BB%96%E9%9B%AA%E5%B3%B0%E8%80%81%E5%B8%88%E2%80%94-JavaScript%E6%95%99%E7%A8%8B%EF%BC%8C%E6%AC%A2%E8%BF%8E%E8%AE%BF%E9%97%AE%E5%8E%9F%E5%88%9B%E8%80%85%E7%BD%91%E7%AB%99%EF%BC%8C%E6%9C%AC%E5%A4%84%E4%BB%85%E4%BB%85%E4%BD%9C%E4%B8%BA%E9%98%B2%E6%AD%A2%E8%87%AA%E5%B7%B1%E9%81%97%E5%BF%98%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

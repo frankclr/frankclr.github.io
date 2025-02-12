@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            NuGet相关 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/">NuGet相关</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=NuGet相关&url=https://frankbsd.github.io/frankbsd/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=NuGet相关&url=https://frankbsd.github.io/frankbsd/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/&title=NuGet相关" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=NuGet相关&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/&text=NuGet相关" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="一、-NuGet常规设置"><a href="#一、-NuGet常规设置" class="headerlink" title="一、 NuGet常规设置"></a>一、 NuGet常规设置</h2><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>NuGet.Config file location</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Solution</td>
+<td>Current folder (aka Solution folder) or any folder up to the drive root.</td>
+<td>In a solution folder, settings apply to all projects in subfolders. Note that if a config file is placed in a project folder, it has no effect on that project.</td>
+</tr>
+<tr>
+<td>User</td>
+<td>Windows:<br> <code>%appdata%\NuGet\NuGet.Config</code><br> Mac&#x2F;Linux:<br> <code>~/.config/NuGet/NuGet.Config</code> or<br> <code>~/.nuget/NuGet/NuGet.Config</code> (varies by OS distribution)</td>
+<td>Settings apply to all operations, but are overridden by any project-level settings.</td>
+</tr>
+<tr>
+<td>Computer</td>
+<td>Windows: <code>%ProgramFiles(x86)%\NuGet\Config</code><br>Mac&#x2F;Linux: <code>$XDG_DATA_HOME</code>.<br> If <code>$XDG_DATA_HOME</code> is <code>null</code> or <code>empty</code>, <code>~/.local/share</code> or <code>/usr/local/share</code> will be used (varies by OS distribution)</td>
+<td>Settings apply to all operations on the computer, but are overridden by any user- or project-level settings.</td>
+</tr>
+</tbody></table>
+<br>
+
+<blockquote>
+<p>Notes for earlier versions of NuGet:</p>
+<ul>
+<li>NuGet 3.3 and earlier used a <code>.nuget</code> folder for solution-wide settings. This folder is not used in NuGet 3.4+.</li>
+<li>For NuGet 2.6 to 3.x, the computer-level config file on Windows was located in <code>%ProgramData%\NuGet\Config[\&#123;IDE&#125;[\&#123;Version&#125;[\&#123;SKU&#125;]]]\NuGet.Config</code>, where <code>&#123;IDE&#125;</code> can be VisualStudio, <code>&#123;Version&#125;</code> was the Visual Studio version such as 14.0, and <code>&#123;SKU&#125;</code> is either Community, Pro, or Enterprise. To migrate settings to NuGet 4.0+, simply copy the config file to <code>%ProgramFiles(x86)%\NuGet\Config</code>. On Linux, this previous location was <code>/etc/opt</code>, and on Mac, <code>/Library/Application Support</code>.</li>
+</ul>
+</blockquote>
+<br>
+
+<h3 id="Changing-config-settings"><a href="#Changing-config-settings" class="headerlink" title="Changing config settings"></a>Changing config settings</h3><p>A NuGet.Config file is a simple XML text file containing key&#x2F;value pairs as described in the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/nuget/reference/nuget-config-file">NuGet Configuration Settings</a> topic.</p>
+<p>Settings are managed using the NuGet CLI config command:</p>
+<ul>
+<li>By default, changes are made to the user-level config file.</li>
+<li>To change settings in a different file, use the -configFile switch. In this case files can use any filename.</li>
+<li><em>Keys are always case sensitive</em>.</li>
+<li>Elevation is required to change settings in the computer-level settings file.</li>
+</ul>
+<h2 id="二、-NuGet保存位置设置"><a href="#二、-NuGet保存位置设置" class="headerlink" title="二、 NuGet保存位置设置"></a>二、 NuGet保存位置设置</h2><h3 id="1-设定global‑packages"><a href="#1-设定global‑packages" class="headerlink" title="1. 设定global‑packages"></a>1. 设定<code>global‑packages</code></h3><p>环境变量<code>NUGET_PACKAGES</code>设为<code>D:\PackagesRepository\CSharp\NuGet</code></p>
+<p>默认情况下：</p>
+<ul>
+<li>Windows: <code>%userprofile%\.nuget\packages</code></li>
+<li>Mac&#x2F;Linux: <code>~/.nuget/packages</code></li>
+</ul>
+<h3 id="2-设定http‑cache"><a href="#2-设定http‑cache" class="headerlink" title="2. 设定http‑cache"></a>2. 设定<code>http‑cache</code></h3><p>环境变量<code>NUGET_HTTP_CACHE_PATH </code>设为<code>D:\PackagesRepository\CSharp\NuGetHttpCache</code></p>
+<p>默认情况下:</p>
+<ul>
+<li>Windows: <code>%localappdata%\NuGet\v3-cache</code></li>
+<li>Mac&#x2F;Linux: <code>~/.local/share/NuGet/v3-cache</code></li>
+</ul>
+<h3 id="3-设定temp-NuGet操作临时文件夹"><a href="#3-设定temp-NuGet操作临时文件夹" class="headerlink" title="3. 设定temp,NuGet操作临时文件夹"></a>3. 设定<code>temp</code>,NuGet操作临时文件夹</h3><ul>
+<li>Windows: <code>%temp%\NuGetScratch</code></li>
+<li>Mac&#x2F;Linux: <code>/tmp/NuGetScratch</code></li>
+</ul>
+<h3 id="4-设定plugins-cache-4-8-NuGet操作结果缓存"><a href="#4-设定plugins-cache-4-8-NuGet操作结果缓存" class="headerlink" title="4. 设定plugins-cache(4.8+),NuGet操作结果缓存"></a>4. 设定<code>plugins-cache</code>(4.8+),NuGet操作结果缓存</h3><p><code>NUGET_PLUGINS_CACHE_PATH</code>设定为<code>D:\PackagesRepository\CSharp\NuGetPluginsCache</code></p>
+<p>默认情况下:</p>
+<ul>
+<li>Windows: <code>%localappdata%\NuGet\plugins-cache</code></li>
+<li>Mac&#x2F;Linux: <code>~/.local/share/NuGet/plugins-cache</code></li>
+</ul>
+<blockquote>
+<p>Note<br>NuGet 3.5 and earlier uses <code>packages-cache</code> instead of the <code>http-cache</code>, which is located in <code>%localappdata%\NuGet\Cache</code>.</p>
+</blockquote>
+<p>By using the cache and global-packages folders, NuGet generally avoids downloading packages that already exist on the computer, improving the performance of install, update, and restore operations. When using PackageReference, the global-packages folder also avoids keeping downloaded packages inside project folders, where they might be inadvertently added to source control, and reduces NuGet’s overall impact on computer storage.</p>
+<p>When asked to retrieve a package, NuGet first looks in the global-packages folder. If the exact version of package is not there, then NuGet checks all non-HTTP package sources. If the package is still not found, NuGet looks for the package in the http-cache unless you specify –no-cache with dotnet.exe commands or -NoCache with nuget.exe commands. If the package is not in the cache, or the cache isn’t used, NuGet then retrieves the package over HTTP .</p>
+<p>For more information, see <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/nuget/concepts/package-installation-process">What happens when a package is installed?</a>.</p>
+<h3 id="5-命令"><a href="#5-命令" class="headerlink" title="5. 命令"></a>5. 命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nuget locals all -list</span><br><span class="line">dotnet nuget locals all --list</span><br><span class="line">nuget local -h</span><br></pre></td></tr></table></figure>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/Node-js%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Node.js开发环境</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/Python%E4%B9%8Bjson%E5%BA%8F%E5%88%97%E5%8C%96/">
+        <span>Python之json序列化</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/NuGet%E7%9B%B8%E5%85%B3/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-NuGet%E5%B8%B8%E8%A7%84%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">一、 NuGet常规设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Changing-config-settings"><span class="toc-number">1.1.</span> <span class="toc-text">Changing config settings</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-NuGet%E4%BF%9D%E5%AD%98%E4%BD%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">二、 NuGet保存位置设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%BE%E5%AE%9Aglobal%E2%80%91packages"><span class="toc-number">2.1.</span> <span class="toc-text">1. 设定global‑packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%AE%BE%E5%AE%9Ahttp%E2%80%91cache"><span class="toc-number">2.2.</span> <span class="toc-text">2. 设定http‑cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%AE%BE%E5%AE%9Atemp-NuGet%E6%93%8D%E4%BD%9C%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.3.</span> <span class="toc-text">3. 设定temp,NuGet操作临时文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AE%BE%E5%AE%9Aplugins-cache-4-8-NuGet%E6%93%8D%E4%BD%9C%E7%BB%93%E6%9E%9C%E7%BC%93%E5%AD%98"><span class="toc-number">2.4.</span> <span class="toc-text">4. 设定plugins-cache(4.8+),NuGet操作结果缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%91%BD%E4%BB%A4"><span class="toc-number">2.5.</span> <span class="toc-text">5. 命令</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

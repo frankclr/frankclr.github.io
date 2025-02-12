@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Java官方文档使用 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/">Java官方文档使用</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-08-01
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-17
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Java官方文档使用&url=https://frankbsd.github.io/frankbsd/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Java官方文档使用&url=https://frankbsd.github.io/frankbsd/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/&title=Java官方文档使用" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=Java官方文档使用&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/&text=Java官方文档使用" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>进入<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/21/index.html">Oracal Help Center</a>选择对应 JDK 版本，然后分类选择。<br>如查询 <code>java</code> 命令选项，进入<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/21/docs/specs/man/index.html">JDK Tool Specifications</a>，<br>再进入<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html">java</a>信息页面。</p>
+<p>如查看系统环境</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> D:\Temp\Java&gt; java <span class="literal">-XshowSettings</span></span><br><span class="line">VM settings:</span><br><span class="line">    Max. Heap Size (Estimated): <span class="number">7.96</span>G</span><br><span class="line">    <span class="keyword">Using</span> VM: OpenJDK 64-Bit Server VM</span><br><span class="line"></span><br><span class="line">Property settings:</span><br><span class="line">    file.encoding = UTF<span class="literal">-8</span></span><br><span class="line">    file.separator = \</span><br><span class="line">    java.class.path =</span><br><span class="line">    java.class.version = <span class="number">65.0</span></span><br><span class="line">    java.home = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span></span><br><span class="line">    java.io.tmpdir = C:\Users\FRANK\AppData\Local\Temp\</span><br><span class="line">    java.library.path = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line">        C:\Windows\Sun\Java\bin</span><br><span class="line">        C:\Windows\system32</span><br><span class="line">        C:\Windows</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\MSBuild\Current\bin\Roslyn</span><br><span class="line">        C:\Program Files (x86)\Microsoft SDKs\Windows\v10.<span class="number">0</span>A\bin\NETFX <span class="number">4.8</span> Tools\x64\</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Team Tools\DiagnosticsHub\Collector</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\\MSBuild\Current\Bin\amd64</span><br><span class="line">        C:\Windows\Microsoft.NET\Framework64\v4.<span class="number">0.30319</span></span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\Tools\</span><br><span class="line">        C:\Windows\system32</span><br><span class="line">        D:\ProgramFiles\Utils</span><br><span class="line">        D:\ProgramFiles\nvm<span class="literal">-noinstall</span></span><br><span class="line">        D:\ProgramFiles\nvm<span class="literal">-noinstall</span>\Node.js</span><br><span class="line">        C:\Program Files (x86)\Windows Kits\<span class="number">10</span>\Windows Performance Toolkit\</span><br><span class="line">        D:\ProgramFiles\Git\bin</span><br><span class="line">        C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\<span class="number">170</span>\Tools\Binn\</span><br><span class="line">        C:\Program Files\Microsoft SQL Server\<span class="number">150</span>\Tools\Binn\</span><br><span class="line">        C:\Program Files\dotnet\</span><br><span class="line">        C:\Program Files\TortoiseGit\bin</span><br><span class="line">        C:\Windows\System32\WindowsPowerShell\v1.<span class="number">0</span></span><br><span class="line">        C:\Windows\System32\OpenSSH</span><br><span class="line">        C:\Users\FRANK\.cargo\bin</span><br><span class="line">        C:\Users\FRANK\AppData\Local\Microsoft\WindowsApps</span><br><span class="line">        C:\Users\FRANK\.dotnet\tools</span><br><span class="line">        D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line"></span><br><span class="line">        .</span><br><span class="line">    java.runtime.name = OpenJDK Runtime Environment</span><br><span class="line">    java.runtime.version = <span class="number">21.0</span>.<span class="number">3</span>+<span class="number">12</span><span class="literal">-LTS</span></span><br><span class="line">    java.specification.name = Java Platform API Specification</span><br><span class="line">    java.specification.vendor = Oracle Corporation</span><br><span class="line">    java.specification.version = <span class="number">21</span></span><br><span class="line">    java.vendor = BellSoft</span><br><span class="line">    java.vendor.url = https://bell<span class="literal">-sw</span>.com/</span><br><span class="line">    java.vendor.url.bug = https://bell<span class="literal">-sw</span>.com/support</span><br><span class="line">    java.version = <span class="number">21.0</span>.<span class="number">3</span></span><br><span class="line">    java.version.date = <span class="number">2024</span><span class="literal">-04-16</span></span><br><span class="line">    java.vm.compressedOopsMode = Zero based</span><br><span class="line">    java.vm.info = mixed mode, sharing</span><br><span class="line">    java.vm.name = OpenJDK <span class="number">64</span><span class="literal">-Bit</span> Server VM</span><br><span class="line">    java.vm.specification.name = Java Virtual Machine Specification</span><br><span class="line">    java.vm.specification.vendor = Oracle Corporation</span><br><span class="line">    java.vm.specification.version = <span class="number">21</span></span><br><span class="line">    java.vm.vendor = BellSoft</span><br><span class="line">    java.vm.version = <span class="number">21.0</span>.<span class="number">3</span>+<span class="number">12</span><span class="literal">-LTS</span></span><br><span class="line">    jdk.debug = release</span><br><span class="line">    line.separator = \r \n</span><br><span class="line">    native.encoding = GBK</span><br><span class="line">    os.arch = amd64</span><br><span class="line">    os.name = Windows <span class="number">11</span></span><br><span class="line">    os.version = <span class="number">10.0</span></span><br><span class="line">    path.separator = ;</span><br><span class="line">    stderr.encoding = ms936</span><br><span class="line">    stdout.encoding = ms936</span><br><span class="line">    sun.arch.data.model = <span class="number">64</span></span><br><span class="line">    sun.boot.library.path = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line">    sun.cpu.endian = little</span><br><span class="line">    sun.cpu.isalist = amd64</span><br><span class="line">    sun.io.unicode.encoding = UnicodeLittle</span><br><span class="line">    sun.java.launcher = SUN_STANDARD</span><br><span class="line">    sun.jnu.encoding = GBK</span><br><span class="line">    sun.management.compiler = HotSpot <span class="number">64</span><span class="literal">-Bit</span> Tiered Compilers</span><br><span class="line">    sun.os.patch.level =</span><br><span class="line">    user.country = CN</span><br><span class="line">    user.dir = D:\Temp\Java</span><br><span class="line">    user.home = C:\Users\FRANK</span><br><span class="line">    user.language = zh</span><br><span class="line">    user.name = FRANK</span><br><span class="line">    user.script =</span><br><span class="line">    user.variant =</span><br><span class="line"></span><br><span class="line">Locale settings:</span><br><span class="line">    default locale = 中文 (中国)</span><br><span class="line">    default display locale = 中文 (中国)</span><br><span class="line">    default format locale = 中文 (中国)</span><br><span class="line">    tzdata version = <span class="number">2024</span>a</span><br><span class="line">    available locales = , af, af_NA, af_ZA, af_ZA_<span class="comment">#Latn, agq, agq_CM, agq_CM_#Latn,</span></span><br><span class="line">        ak, ak_GH, ak_GH_<span class="comment">#Latn, am, am_ET, am_ET_#Ethi, ann, ann_NG,</span></span><br><span class="line">        ann_NG_<span class="comment">#Latn, ar, ar_001, ar_AE, ar_BH, ar_DJ, ar_DZ, ar_EG,</span></span><br><span class="line">        ar_EG_<span class="comment">#Arab, ar_EH, ar_ER, ar_IL, ar_IQ, ar_JO, ar_KM, ar_KW,</span></span><br><span class="line">        ar_LB, ar_LY, ar_MA, ar_MR, ar_OM, ar_PS, ar_QA, ar_SA,</span><br><span class="line">        ar_SD, ar_SO, ar_SS, ar_SY, ar_TD, ar_TN, ar_YE, as,</span><br><span class="line">        as_IN, as_IN_<span class="comment">#Beng, asa, asa_TZ, asa_TZ_#Latn, ast, ast_ES, ast_ES_#Latn,</span></span><br><span class="line">        az, az_AZ, az_AZ_<span class="comment">#Cyrl, az_AZ_#Latn, az__#Cyrl, az__#Latn, bas, bas_CM,</span></span><br><span class="line">        bas_CM_<span class="comment">#Latn, be, be_BY, be_BY_#Cyrl, be__TARASK, bem, bem_ZM, bem_ZM_#Latn,</span></span><br><span class="line">        bez, bez_TZ, bez_TZ_<span class="comment">#Latn, bg, bg_BG, bg_BG_#Cyrl, bgc, bgc_IN,</span></span><br><span class="line">        bgc_IN_<span class="comment">#Deva, bho, bho_IN, bho_IN_#Deva, bm, bm_ML, bm_ML_#Latn, bn,</span></span><br><span class="line">        bn_BD, bn_BD_<span class="comment">#Beng, bn_IN, bo, bo_CN, bo_CN_#Tibt, bo_IN, br,</span></span><br><span class="line">        br_FR, br_FR_<span class="comment">#Latn, brx, brx_IN, brx_IN_#Deva, bs, bs_BA, bs_BA_#Cyrl,</span></span><br><span class="line">        bs_BA_<span class="comment">#Latn, bs__#Cyrl, bs__#Latn, ca, ca_AD, ca_ES, ca_ES_#Latn, ca_ES_VALENCIA,</span></span><br><span class="line">        ca_FR, ca_IT, ccp, ccp_BD, ccp_BD_<span class="comment">#Cakm, ccp_IN, ce, ce_RU,</span></span><br><span class="line">        ce_RU_<span class="comment">#Cyrl, ceb, ceb_PH, ceb_PH_#Latn, cgg, cgg_UG, cgg_UG_#Latn, chr,</span></span><br><span class="line">        chr_US, chr_US_<span class="comment">#Cher, ckb, ckb_IQ, ckb_IQ_#Arab, ckb_IR, cs, cs_CZ,</span></span><br><span class="line">        cs_CZ_<span class="comment">#Latn, cv, cv_RU, cv_RU_#Cyrl, cy, cy_GB, cy_GB_#Latn, da,</span></span><br><span class="line">        da_DK, da_DK_<span class="comment">#Latn, da_GL, dav, dav_KE, dav_KE_#Latn, de, de_AT,</span></span><br><span class="line">        de_BE, de_CH, de_DE, de_DE_<span class="comment">#Latn, de_IT, de_LI, de_LU, dje,</span></span><br><span class="line">        dje_NE, dje_NE_<span class="comment">#Latn, doi, doi_IN, doi_IN_#Deva, dsb, dsb_DE, dsb_DE_#Latn,</span></span><br><span class="line">        dua, dua_CM, dua_CM_<span class="comment">#Latn, dyo, dyo_SN, dyo_SN_#Latn, dz, dz_BT,</span></span><br><span class="line">        dz_BT_<span class="comment">#Tibt, ebu, ebu_KE, ebu_KE_#Latn, ee, ee_GH, ee_GH_#Latn, ee_TG,</span></span><br><span class="line">        el, el_CY, el_GR, el_GR_<span class="comment">#Grek, el__POLYTON, en, en_001, en_150,</span></span><br><span class="line">        en_AE, en_AG, en_AI, en_AS, en_AT, en_AU, en_BB, en_BE,</span><br><span class="line">        en_BI, en_BM, en_BS, en_BW, en_BZ, en_CA, en_CC, en_CH,</span><br><span class="line">        en_CK, en_CM, en_CX, en_CY, en_DE, en_DG, en_DK, en_DM,</span><br><span class="line">        en_ER, en_FI, en_FJ, en_FK, en_FM, en_GB, en_GD, en_GG,</span><br><span class="line">        en_GH, en_GI, en_GM, en_GU, en_GY, en_HK, en_IE, en_IL,</span><br><span class="line">        en_IM, en_IN, en_IO, en_JE, en_JM, en_KE, en_KI, en_KN,</span><br><span class="line">        en_KY, en_LC, en_LR, en_LS, en_MG, en_MH, en_MO, en_MP,</span><br><span class="line">        en_MS, en_MT, en_MU, en_MV, en_MW, en_MY, en_NA, en_NF,</span><br><span class="line">        en_NG, en_NL, en_NR, en_NU, en_NZ, en_PG, en_PH, en_PK,</span><br><span class="line">        en_PN, en_PR, en_PW, en_RW, en_SB, en_SC, en_SD, en_SE,</span><br><span class="line">        en_SG, en_SH, en_SI, en_SL, en_SS, en_SX, en_SZ, en_TC,</span><br><span class="line">        en_TK, en_TO, en_TT, en_TV, en_TZ, en_UG, en_UM, en_US,</span><br><span class="line">        en_US_<span class="comment">#Latn, en_US_POSIX, en_VC, en_VG, en_VI, en_VU, en_WS, en_ZA,</span></span><br><span class="line">        en_ZM, en_ZW, eo, eo_001, eo_001_<span class="comment">#Latn, es, es_419, es_AR,</span></span><br><span class="line">        es_BO, es_BR, es_BZ, es_CL, es_CO, es_CR, es_CU, es_DO,</span><br><span class="line">        es_EA, es_EC, es_ES, es_ES_<span class="comment">#Latn, es_GQ, es_GT, es_HN, es_IC,</span></span><br><span class="line">        es_MX, es_NI, es_PA, es_PE, es_PH, es_PR, es_PY, es_SV,</span><br><span class="line">        es_US, es_UY, es_VE, et, et_EE, et_EE_<span class="comment">#Latn, eu, eu_ES,</span></span><br><span class="line">        eu_ES_<span class="comment">#Latn, ewo, ewo_CM, ewo_CM_#Latn, fa, fa_AF, fa_IR, fa_IR_#Arab,</span></span><br><span class="line">        ff, ff_BF_<span class="comment">#Adlm, ff_BF_#Latn, ff_CM_#Adlm, ff_CM_#Latn, ff_GH_#Adlm, ff_GH_#Latn, ff_GM_#Adlm,</span></span><br><span class="line">        ff_GM_<span class="comment">#Latn, ff_GN, ff_GN_#Adlm, ff_GN_#Latn, ff_GW_#Adlm, ff_GW_#Latn, ff_LR_#Adlm, ff_LR_#Latn,</span></span><br><span class="line">        ff_MR_<span class="comment">#Adlm, ff_MR_#Latn, ff_NE_#Adlm, ff_NE_#Latn, ff_NG_#Adlm, ff_NG_#Latn, ff_SL_#Adlm, ff_SL_#Latn,</span></span><br><span class="line">        ff_SN, ff_SN_<span class="comment">#Adlm, ff_SN_#Latn, ff__#Adlm, ff__#Latn, fi, fi_FI, fi_FI_#Latn,</span></span><br><span class="line">        fil, fil_PH, fil_PH_<span class="comment">#Latn, fo, fo_DK, fo_FO, fo_FO_#Latn, fr,</span></span><br><span class="line">        fr_BE, fr_BF, fr_BI, fr_BJ, fr_BL, fr_CA, fr_CD, fr_CF,</span><br><span class="line">        fr_CG, fr_CH, fr_CI, fr_CM, fr_DJ, fr_DZ, fr_FR, fr_FR_<span class="comment">#Latn,</span></span><br><span class="line">        fr_GA, fr_GF, fr_GN, fr_GP, fr_GQ, fr_HT, fr_KM, fr_LU,</span><br><span class="line">        fr_MA, fr_MC, fr_MF, fr_MG, fr_ML, fr_MQ, fr_MR, fr_MU,</span><br><span class="line">        fr_NC, fr_NE, fr_PF, fr_PM, fr_RE, fr_RW, fr_SC, fr_SN,</span><br><span class="line">        fr_SY, fr_TD, fr_TG, fr_TN, fr_VU, fr_WF, fr_YT, frr,</span><br><span class="line">        frr_DE, frr_DE_<span class="comment">#Latn, fur, fur_IT, fur_IT_#Latn, fy, fy_NL, fy_NL_#Latn,</span></span><br><span class="line">        ga, ga_GB, ga_IE, ga_IE_<span class="comment">#Latn, gd, gd_GB, gd_GB_#Latn, gl,</span></span><br><span class="line">        gl_ES, gl_ES_<span class="comment">#Latn, gsw, gsw_CH, gsw_CH_#Latn, gsw_FR, gsw_LI, gu,</span></span><br><span class="line">        gu_IN, gu_IN_<span class="comment">#Gujr, guz, guz_KE, guz_KE_#Latn, gv, gv_IM, gv_IM_#Latn,</span></span><br><span class="line">        ha, ha_GH, ha_NE, ha_NG, ha_NG_<span class="comment">#Latn, haw, haw_US, haw_US_#Latn,</span></span><br><span class="line">        he, he_IL, he_IL_<span class="comment">#Hebr, hi, hi_IN, hi_IN_#Deva, hi_IN_#Latn, hi__#Latn,</span></span><br><span class="line">        hr, hr_BA, hr_HR, hr_HR_<span class="comment">#Latn, hsb, hsb_DE, hsb_DE_#Latn, hu,</span></span><br><span class="line">        hu_HU, hu_HU_<span class="comment">#Latn, hy, hy_AM, hy_AM_#Armn, ia, ia_001, ia_001_#Latn,</span></span><br><span class="line">        id, id_ID, id_ID_<span class="comment">#Latn, ig, ig_NG, ig_NG_#Latn, ii, ii_CN,</span></span><br><span class="line">        ii_CN_<span class="comment">#Yiii, is, is_IS, is_IS_#Latn, it, it_CH, it_IT, it_IT_#Latn,</span></span><br><span class="line">        it_SM, it_VA, ja, ja_JP, ja_JP_<span class="comment">#Jpan, ja_JP_JP_#u-ca-japanese, jgo, jgo_CM,</span></span><br><span class="line">        jgo_CM_<span class="comment">#Latn, jmc, jmc_TZ, jmc_TZ_#Latn, jv, jv_ID, jv_ID_#Latn, ka,</span></span><br><span class="line">        ka_GE, ka_GE_<span class="comment">#Geor, kab, kab_DZ, kab_DZ_#Latn, kam, kam_KE, kam_KE_#Latn,</span></span><br><span class="line">        kde, kde_TZ, kde_TZ_<span class="comment">#Latn, kea, kea_CV, kea_CV_#Latn, kgp, kgp_BR,</span></span><br><span class="line">        kgp_BR_<span class="comment">#Latn, khq, khq_ML, khq_ML_#Latn, ki, ki_KE, ki_KE_#Latn, kk,</span></span><br><span class="line">        kk_KZ, kk_KZ_<span class="comment">#Cyrl, kkj, kkj_CM, kkj_CM_#Latn, kl, kl_GL, kl_GL_#Latn,</span></span><br><span class="line">        kln, kln_KE, kln_KE_<span class="comment">#Latn, km, km_KH, km_KH_#Khmr, kn, kn_IN,</span></span><br><span class="line">        kn_IN_<span class="comment">#Knda, ko, ko_KP, ko_KR, ko_KR_#Kore, kok, kok_IN, kok_IN_#Deva,</span></span><br><span class="line">        ks, ks_IN, ks_IN_<span class="comment">#Arab, ks_IN_#Deva, ks__#Arab, ks__#Deva, ksb, ksb_TZ,</span></span><br><span class="line">        ksb_TZ_<span class="comment">#Latn, ksf, ksf_CM, ksf_CM_#Latn, ksh, ksh_DE, ksh_DE_#Latn, ku,</span></span><br><span class="line">        ku_TR, ku_TR_<span class="comment">#Latn, kw, kw_GB, kw_GB_#Latn, ky, ky_KG, ky_KG_#Cyrl,</span></span><br><span class="line">        lag, lag_TZ, lag_TZ_<span class="comment">#Latn, lb, lb_LU, lb_LU_#Latn, lg, lg_UG,</span></span><br><span class="line">        lg_UG_<span class="comment">#Latn, lkt, lkt_US, lkt_US_#Latn, ln, ln_AO, ln_CD, ln_CD_#Latn,</span></span><br><span class="line">        ln_CF, ln_CG, lo, lo_LA, lo_LA_<span class="comment">#Laoo, lrc, lrc_IQ, lrc_IR,</span></span><br><span class="line">        lrc_IR_<span class="comment">#Arab, lt, lt_LT, lt_LT_#Latn, lu, lu_CD, lu_CD_#Latn, luo,</span></span><br><span class="line">        luo_KE, luo_KE_<span class="comment">#Latn, luy, luy_KE, luy_KE_#Latn, lv, lv_LV, lv_LV_#Latn,</span></span><br><span class="line">        mai, mai_IN, mai_IN_<span class="comment">#Deva, mas, mas_KE, mas_KE_#Latn, mas_TZ, mdf,</span></span><br><span class="line">        mdf_RU, mdf_RU_<span class="comment">#Cyrl, mer, mer_KE, mer_KE_#Latn, mfe, mfe_MU, mfe_MU_#Latn,</span></span><br><span class="line">        mg, mg_MG, mg_MG_<span class="comment">#Latn, mgh, mgh_MZ, mgh_MZ_#Latn, mgo, mgo_CM,</span></span><br><span class="line">        mgo_CM_<span class="comment">#Latn, mi, mi_NZ, mi_NZ_#Latn, mk, mk_MK, mk_MK_#Cyrl, ml,</span></span><br><span class="line">        ml_IN, ml_IN_<span class="comment">#Mlym, mn, mn_MN, mn_MN_#Cyrl, mni, mni_IN, mni_IN_#Beng,</span></span><br><span class="line">        mni__<span class="comment">#Beng, mr, mr_IN, mr_IN_#Deva, ms, ms_BN, ms_ID, ms_MY,</span></span><br><span class="line">        ms_MY_<span class="comment">#Latn, ms_SG, mt, mt_MT, mt_MT_#Latn, mua, mua_CM, mua_CM_#Latn,</span></span><br><span class="line">        my, my_MM, my_MM_<span class="comment">#Mymr, mzn, mzn_IR, mzn_IR_#Arab, naq, naq_NA,</span></span><br><span class="line">        naq_NA_<span class="comment">#Latn, nb, nb_NO, nb_NO_#Latn, nb_SJ, nd, nd_ZW, nd_ZW_#Latn,</span></span><br><span class="line">        nds, nds_DE, nds_DE_<span class="comment">#Latn, nds_NL, ne, ne_IN, ne_NP, ne_NP_#Deva,</span></span><br><span class="line">        nl, nl_AW, nl_BE, nl_BQ, nl_CW, nl_NL, nl_NL_<span class="comment">#Latn, nl_SR,</span></span><br><span class="line">        nl_SX, nmg, nmg_CM, nmg_CM_<span class="comment">#Latn, nn, nn_NO, nn_NO_#Latn, nnh,</span></span><br><span class="line">        nnh_CM, nnh_CM_<span class="comment">#Latn, no, no_NO, no_NO_#Latn, no_NO_NY, nus, nus_SS,</span></span><br><span class="line">        nus_SS_<span class="comment">#Latn, nyn, nyn_UG, nyn_UG_#Latn, oc, oc_ES, oc_FR, oc_FR_#Latn,</span></span><br><span class="line">        om, om_ET, om_ET_<span class="comment">#Latn, om_KE, or, or_IN, or_IN_#Orya, os,</span></span><br><span class="line">        os_GE, os_GE_<span class="comment">#Cyrl, os_RU, pa, pa_IN, pa_IN_#Guru, pa_PK, pa_PK_#Arab,</span></span><br><span class="line">        pa__<span class="comment">#Arab, pa__#Guru, pcm, pcm_NG, pcm_NG_#Latn, pis, pis_SB, pis_SB_#Latn,</span></span><br><span class="line">        pl, pl_PL, pl_PL_<span class="comment">#Latn, ps, ps_AF, ps_AF_#Arab, ps_PK, pt,</span></span><br><span class="line">        pt_AO, pt_BR, pt_BR_<span class="comment">#Latn, pt_CH, pt_CV, pt_GQ, pt_GW, pt_LU,</span></span><br><span class="line">        pt_MO, pt_MZ, pt_PT, pt_ST, pt_TL, qu, qu_BO, qu_EC,</span><br><span class="line">        qu_PE, qu_PE_<span class="comment">#Latn, raj, raj_IN, raj_IN_#Deva, rm, rm_CH, rm_CH_#Latn,</span></span><br><span class="line">        rn, rn_BI, rn_BI_<span class="comment">#Latn, ro, ro_MD, ro_RO, ro_RO_#Latn, rof,</span></span><br><span class="line">        rof_TZ, rof_TZ_<span class="comment">#Latn, ru, ru_BY, ru_KG, ru_KZ, ru_MD, ru_RU,</span></span><br><span class="line">        ru_RU_<span class="comment">#Cyrl, ru_UA, rw, rw_RW, rw_RW_#Latn, rwk, rwk_TZ, rwk_TZ_#Latn,</span></span><br><span class="line">        sa, sa_IN, sa_IN_<span class="comment">#Deva, sah, sah_RU, sah_RU_#Cyrl, saq, saq_KE,</span></span><br><span class="line">        saq_KE_<span class="comment">#Latn, sat, sat_IN, sat_IN_#Olck, sat__#Olck, sbp, sbp_TZ, sbp_TZ_#Latn,</span></span><br><span class="line">        <span class="built_in">sc</span>, sc_IT, sc_IT_<span class="comment">#Latn, sd, sd_IN, sd_IN_#Deva, sd_PK, sd_PK_#Arab,</span></span><br><span class="line">        sd__<span class="comment">#Arab, sd__#Deva, se, se_FI, se_NO, se_NO_#Latn, se_SE, seh,</span></span><br><span class="line">        seh_MZ, seh_MZ_<span class="comment">#Latn, ses, ses_ML, ses_ML_#Latn, sg, sg_CF, sg_CF_#Latn,</span></span><br><span class="line">        shi, shi_MA, shi_MA_<span class="comment">#Latn, shi_MA_#Tfng, shi__#Latn, shi__#Tfng, si, si_LK,</span></span><br><span class="line">        si_LK_<span class="comment">#Sinh, sk, sk_SK, sk_SK_#Latn, sl, sl_SI, sl_SI_#Latn, smn,</span></span><br><span class="line">        smn_FI, smn_FI_<span class="comment">#Latn, sms, sms_FI, sms_FI_#Latn, sn, sn_ZW, sn_ZW_#Latn,</span></span><br><span class="line">        so, so_DJ, so_ET, so_KE, so_SO, so_SO_<span class="comment">#Latn, sq, sq_AL,</span></span><br><span class="line">        sq_AL_<span class="comment">#Latn, sq_MK, sq_XK, sr, sr_BA, sr_BA_#Cyrl, sr_BA_#Latn, sr_CS,</span></span><br><span class="line">        sr_ME, sr_ME_<span class="comment">#Cyrl, sr_ME_#Latn, sr_RS, sr_RS_#Cyrl, sr_RS_#Latn, sr_XK_#Cyrl, sr_XK_#Latn,</span></span><br><span class="line">        sr__<span class="comment">#Cyrl, sr__#Latn, su, su_ID, su_ID_#Latn, su__#Latn, sv, sv_AX,</span></span><br><span class="line">        sv_FI, sv_SE, sv_SE_<span class="comment">#Latn, sw, sw_CD, sw_KE, sw_TZ, sw_TZ_#Latn,</span></span><br><span class="line">        sw_UG, ta, ta_IN, ta_IN_<span class="comment">#Taml, ta_LK, ta_MY, ta_SG, te,</span></span><br><span class="line">        te_IN, te_IN_<span class="comment">#Telu, teo, teo_KE, teo_UG, teo_UG_#Latn, tg, tg_TJ,</span></span><br><span class="line">        tg_TJ_<span class="comment">#Cyrl, th, th_TH, th_TH_#Thai, th_TH_TH_#u-nu-thai, ti, ti_ER, ti_ET,</span></span><br><span class="line">        ti_ET_<span class="comment">#Ethi, tk, tk_TM, tk_TM_#Latn, to, to_TO, to_TO_#Latn, tok,</span></span><br><span class="line">        tok_001, tok_001_<span class="comment">#Latn, tr, tr_CY, tr_TR, tr_TR_#Latn, tt, tt_RU,</span></span><br><span class="line">        tt_RU_<span class="comment">#Cyrl, twq, twq_NE, twq_NE_#Latn, tzm, tzm_MA, tzm_MA_#Latn, ug,</span></span><br><span class="line">        ug_CN, ug_CN_<span class="comment">#Arab, uk, uk_UA, uk_UA_#Cyrl, ur, ur_IN, ur_PK,</span></span><br><span class="line">        ur_PK_<span class="comment">#Arab, uz, uz_AF, uz_AF_#Arab, uz_UZ, uz_UZ_#Cyrl, uz_UZ_#Latn, uz__#Arab,</span></span><br><span class="line">        uz__<span class="comment">#Cyrl, uz__#Latn, vai, vai_LR, vai_LR_#Latn, vai_LR_#Vaii, vai__#Latn, vai__#Vaii,</span></span><br><span class="line">        vi, vi_VN, vi_VN_<span class="comment">#Latn, vun, vun_TZ, vun_TZ_#Latn, wae, wae_CH,</span></span><br><span class="line">        wae_CH_<span class="comment">#Latn, wo, wo_SN, wo_SN_#Latn, xh, xh_ZA, xh_ZA_#Latn, xog,</span></span><br><span class="line">        xog_UG, xog_UG_<span class="comment">#Latn, yav, yav_CM, yav_CM_#Latn, yi, yi_001, yi_001_#Hebr,</span></span><br><span class="line">        yo, yo_BJ, yo_NG, yo_NG_<span class="comment">#Latn, yrl, yrl_BR, yrl_BR_#Latn, yrl_CO,</span></span><br><span class="line">        yrl_VE, yue, yue_CN, yue_CN_<span class="comment">#Hans, yue_HK, yue_HK_#Hant, yue__#Hans, yue__#Hant,</span></span><br><span class="line">        zgh, zgh_MA, zgh_MA_<span class="comment">#Tfng, zh, zh_CN, zh_CN_#Hans, zh_HK, zh_HK_#Hans,</span></span><br><span class="line">        zh_HK_<span class="comment">#Hant, zh_MO, zh_MO_#Hans, zh_MO_#Hant, zh_SG, zh_SG_#Hans, zh_TW, zh_TW_#Hant,</span></span><br><span class="line">        zh__<span class="comment">#Hans, zh__#Hant, zu, zu_ZA, zu_ZA_#Latn</span></span><br><span class="line">用法：java [<span class="type">options</span>] &lt;主类&gt; [<span class="type">args...</span>]</span><br><span class="line">           （执行类）</span><br><span class="line">   或  java [<span class="type">options</span>] <span class="literal">-jar</span> &lt;jar 文件&gt; [<span class="type">args...</span>]</span><br><span class="line">           （执行 jar 文件）</span><br><span class="line">   或  java [<span class="type">options</span>] <span class="literal">-m</span> &lt;模块&gt;[/&lt;主类&gt;] [<span class="type">args...</span>]</span><br><span class="line">       java [<span class="type">options</span>] <span class="literal">--module</span> &lt;模块&gt;[/&lt;主类&gt;] [<span class="type">args...</span>]</span><br><span class="line">           （执行模块中的主类）</span><br><span class="line">   或  java [<span class="type">options</span>] &lt;源文件&gt; [<span class="type">args</span>]</span><br><span class="line">           （执行单个源文件程序）</span><br><span class="line"></span><br><span class="line"> 将主类、源文件、<span class="literal">-jar</span> &lt;jar 文件&gt;、<span class="literal">-m</span> 或</span><br><span class="line"> <span class="literal">--module</span> &lt;模块&gt;/&lt;主类&gt; 后的参数作为参数</span><br><span class="line"> 传递到主类。</span><br><span class="line"></span><br><span class="line"> 其中，选项包括：</span><br><span class="line"></span><br><span class="line">    <span class="literal">-client</span>       选择 <span class="string">&quot;client&quot;</span> VM</span><br><span class="line">    <span class="literal">-cp</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">    <span class="literal">-classpath</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">    <span class="literal">--class-path</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">                  使用 ; 分隔的, 用于搜索类文件的目录, JAR 档案</span><br><span class="line">                  和 ZIP 档案列表。</span><br><span class="line">    <span class="literal">-p</span> &lt;模块路径&gt;</span><br><span class="line">    <span class="literal">--module-path</span> &lt;模块路径&gt;...</span><br><span class="line">                  ; 分隔的元素列表，每个元素都是</span><br><span class="line">                  模块或包含模块的目录的文件路径。每个模块都是</span><br><span class="line">                  模块化 JAR 或展开的模块目录。</span><br><span class="line">    <span class="literal">--upgrade-module-path</span> &lt;模块路径&gt;...</span><br><span class="line">                  ; 分隔的元素列表，每个元素都是</span><br><span class="line">                  模块或包含模块（用于替换运行时映像中的</span><br><span class="line">                  可升级模块）的目录的文件路径。每个模块都是</span><br><span class="line">                  模块化 JAR 或展开的模块目录。</span><br><span class="line">    <span class="literal">--add-modules</span> &lt;模块名称&gt;[,&lt;模块名称&gt;<span class="type">...</span>]</span><br><span class="line">                  除了初始模块之外要解析的根模块。</span><br><span class="line">                  &lt;模块名称&gt; 还可以为 ALL<span class="literal">-DEFAULT</span>, ALL<span class="literal">-SYSTEM</span>,</span><br><span class="line">                  ALL<span class="literal">-MODULE-PATH</span>.</span><br><span class="line">    <span class="literal">--enable-native-access</span> &lt;module name&gt;[,&lt;<span class="type">module</span> <span class="type">name</span>&gt;<span class="type">...</span>]</span><br><span class="line">                  允许执行受限本机操作的模块。</span><br><span class="line">                  &lt;module name&gt; 还可以为 ALL<span class="literal">-UNNAMED</span>。</span><br><span class="line">    <span class="literal">--list-modules</span></span><br><span class="line">                  列出可观察模块并退出</span><br><span class="line">    <span class="literal">-d</span> &lt;module name&gt;</span><br><span class="line">    <span class="literal">--describe-module</span> &lt;模块名称&gt;</span><br><span class="line">                  描述模块并退出</span><br><span class="line">    <span class="literal">--dry-run</span>     创建 VM 并加载主类, 但不执行 main 方法。</span><br><span class="line">                  此 <span class="literal">--dry-run</span> 选项对于验证诸如</span><br><span class="line">                  模块系统配置这样的命令行选项可能非常有用。</span><br><span class="line">    <span class="literal">--validate-modules</span></span><br><span class="line">                  验证所有模块并退出</span><br><span class="line">                  <span class="literal">--validate-modules</span> 选项对于查找</span><br><span class="line">                  模块路径中模块的冲突及其他错误可能非常有用。</span><br><span class="line">    <span class="literal">-D</span>&lt;名称&gt;=&lt;值&gt;</span><br><span class="line">                  设置系统属性</span><br><span class="line">    <span class="literal">-verbose</span>:[<span class="type">class</span>|<span class="type">module</span>|<span class="type">gc</span>|<span class="type">jni</span>]</span><br><span class="line">                  为给定子系统启用详细输出</span><br><span class="line">    <span class="literal">-version</span>      将产品版本输出到错误流并退出</span><br><span class="line">    <span class="literal">--version</span>     将产品版本输出到输出流并退出</span><br><span class="line">    <span class="literal">-showversion</span>  将产品版本输出到错误流并继续</span><br><span class="line">    <span class="literal">--show-version</span></span><br><span class="line">                  将产品版本输出到输出流并继续</span><br><span class="line">    <span class="literal">--show-module-resolution</span></span><br><span class="line">                  在启动过程中显示模块解析输出</span><br><span class="line">    -? <span class="literal">-h</span> <span class="literal">-help</span></span><br><span class="line">                  将此帮助消息输出到错误流</span><br><span class="line">    <span class="literal">--help</span>        将此帮助消息输出到输出流</span><br><span class="line">    <span class="literal">-X</span>            将额外选项的帮助输出到错误流</span><br><span class="line">    <span class="literal">--help-extra</span>  将额外选项的帮助输出到输出流</span><br><span class="line">    <span class="literal">-ea</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">    <span class="literal">-enableassertions</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">                  按指定的粒度启用断言</span><br><span class="line">    <span class="literal">-da</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">    <span class="literal">-disableassertions</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">                  按指定的粒度禁用断言</span><br><span class="line">    <span class="literal">-esa</span> | <span class="literal">-enablesystemassertions</span></span><br><span class="line">                  启用系统断言</span><br><span class="line">    <span class="literal">-dsa</span> | <span class="literal">-disablesystemassertions</span></span><br><span class="line">                  禁用系统断言</span><br><span class="line">    <span class="literal">-agentlib</span>:&lt;库名&gt;[=&lt;选项&gt;]</span><br><span class="line">                  加载本机代理库 &lt;库名&gt;, 例如 <span class="literal">-agentlib</span>:jdwp</span><br><span class="line">                  另请参阅 <span class="literal">-agentlib</span>:jdwp=help</span><br><span class="line">    <span class="literal">-agentpath</span>:&lt;路径名&gt;[=&lt;选项&gt;]</span><br><span class="line">                  按完整路径名加载本机代理库</span><br><span class="line">    <span class="literal">-javaagent</span>:&lt;jar 路径&gt;[=&lt;选项&gt;]</span><br><span class="line">                  加载 Java 编程语言代理, 请参阅 java.lang.instrument</span><br><span class="line">    <span class="literal">-splash</span>:&lt;图像路径&gt;</span><br><span class="line">                  使用指定的图像显示启动屏幕</span><br><span class="line">                  自动支持和使用 HiDPI 缩放图像</span><br><span class="line">                  (如果可用)。应始终将未缩放的图像文件名 (例如, image.ext)</span><br><span class="line">                  作为参数传递给 <span class="literal">-splash</span> 选项。</span><br><span class="line">                  将自动选取提供的最合适的缩放</span><br><span class="line">                  图像。</span><br><span class="line">                  有关详细信息, 请参阅 SplashScreen API 文档</span><br><span class="line">    @argument 文件</span><br><span class="line">                  一个或多个包含选项的参数文件</span><br><span class="line">    <span class="literal">--disable-</span>@files</span><br><span class="line">                  阻止进一步扩展参数文件</span><br><span class="line">    <span class="literal">--enable-preview</span></span><br><span class="line">                  允许类依赖于此发行版的预览功能</span><br><span class="line">要为长选项指定参数, 可以使用 <span class="literal">--</span>&lt;名称&gt;=&lt;值&gt; 或</span><br><span class="line"><span class="literal">--</span>&lt;名称&gt; &lt;值&gt;。</span><br><span class="line"></span><br><span class="line"><span class="built_in">PS</span> D:\Temp\Java&gt;</span><br></pre></td></tr></table></figure>
+
+<p>目前只找到 Oracle 官网有此文档，其他发布版本，不一定有。</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>关于 Gradle 在 Powershell终端 乱码的问题</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/08/01/nginx-403-%E6%8E%92%E6%9F%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E9%93%BE%E6%8E%A5/">
+        <span>nginx 403 排查及相关知识链接</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

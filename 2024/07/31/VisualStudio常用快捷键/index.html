@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            VisualStudio常用快捷键 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">VisualStudio常用快捷键</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=VisualStudio常用快捷键&url=https://frankbsd.github.io/frankbsd/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=VisualStudio常用快捷键&url=https://frankbsd.github.io/frankbsd/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/&title=VisualStudio常用快捷键" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=VisualStudio常用快捷键&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/&text=VisualStudio常用快捷键" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/VisualStudio/ >VisualStudio</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h3 id="项目相关的快捷键"><a href="#项目相关的快捷键" class="headerlink" title="项目相关的快捷键"></a>项目相关的快捷键</h3><p><code>Ctrl + Shift + B</code> &#x3D;  生成项目(可能与Sougou拼音冲突)</p>
+<p><code>Ctrl + Shift + N</code> &#x3D; 新建解决方案&#x2F;项目</p>
+<p><code>Ctrl + Shift + O</code> &#x3D; 打开解决方案&#x2F;项目</p>
+<p><code>Ctrl + Shift + A</code> &#x2F; <code>Shift + Alt+ C</code> &#x3D; 添加新项</p>
+<p><code>Ctrl + N</code> &#x3D; 新建文件（如xml、txt、位图等）</p>
+<p><code>Ctrl + Alt + L</code> &#x3D; 显示<code>Solution Explorer</code> 可能与<code>TIM</code>快捷键冲突</p>
+<p><code>Shift + Alt + A</code> &#x3D; 添加现有项</p>
+<h3 id="编辑相关的键盘快捷键"><a href="#编辑相关的键盘快捷键" class="headerlink" title="编辑相关的键盘快捷键"></a>编辑相关的键盘快捷键</h3><p><code>Ctrl + Enter</code> &#x3D; 在当前行插入空行</p>
+<p><code>Ctrl + Shift + Enter</code> &#x3D; 在当前行下方插入空行</p>
+<p><code>Ctrl + Delete</code> &#x3D; 删除至词尾</p>
+<p><code>Ctrl + Backspace</code> &#x3D; 删除至词头</p>
+<p><code>Shift + Delete</code> &#x2F; <code>Ctrl + L</code> &#x3D; 删除当前行</p>
+<p><code>Ctrl + X</code> &#x3D; 剪切当前行</p>
+<p><code>Ctrl + C, Ctrl + V</code> &#x3D; 在当前行的下一行复制当前行内容（不用选中当前行），即复制当前行并粘贴到下一行，在两行内容差不多时很有用，可以先复制再改</p>
+<p><code>Ctrl + U</code> &#x3D; 转小写</p>
+<p><code>CTRL + SHIFT + U</code> &#x3D; 转大写</p>
+<p><code>Ctrl + Z</code> &#x3D; 撤销操作</p>
+<p><code>Ctrl + Y</code> &#x3D; 反撤销操作</p>
+<p><code>Tab + Tab</code> &#x3D; 自动补全</p>
+<p><code>Ctrl + K + S</code> &#x3D; 插入外侧代码</p>
+<p><code>Ctrl + K + X</code> &#x3D; 插入代码段</p>
+<p><code>Ctrl + Space</code> &#x2F; <code>Ctrl + J</code> &#x2F; <code>Alt + →</code> &#x3D; 使用<code>IntelliSense</code>自动完成</p>
+<p><code>Ctrl + K，Ctrl + C</code> &#x3D; 注释选定行 记忆方法：Ctrl + C &#x3D; Comment selected text</p>
+<p><code>Ctrl + K，Ctrl + U</code> &#x3D; 取消选定行的注释 记忆方法：Ctrl + U &#x3D; Uncomment selected text</p>
+<p><code>Ctrl + K，Ctrl + D</code> &#x3D; 格式化全部文档</p>
+<p><code>Ctrl + K，Ctrl + F</code> &#x3D; 只格式化你选中的部分</p>
+<p><code>Ctrl + Shift + S</code> &#x3D; 保存所有文件和项目</p>
+<p><code>Ctrl + .[dot]</code> &#x2F; <code>Ctrl + Shift + F10</code> &#x3D; 自动添加Using命名空间(实际<code>Shift + F10</code>可调出右键属性)</p>
+<p><code>Shift + End</code> &#x3D; 选中从光标起到行尾间的代码</p>
+<p><code>Shift + Home</code> &#x3D; 选中从光标起到行首间的代码</p>
+<p><code>Shift + Alt + 方向键(或鼠标)</code> &#x2F; <code>Alt + 鼠标</code> &#x3D; 框式选择 批量删除某些代码很方便</p>
+<p><code>Ctrl + Shift + &#125;</code> &#x3D; 选择在匹配的大括号、括号内文本</p>
+<p><code>Shift + Alt + Enter</code> &#x3D; 全屏显示&#x2F;退出全屏显示</p>
+<h3 id="导航相关的键盘快捷键"><a href="#导航相关的键盘快捷键" class="headerlink" title="导航相关的键盘快捷键"></a>导航相关的键盘快捷键</h3><p><code>Ctrl + Up/Down</code> &#x3D; 滚动窗口但不移动光标</p>
+<p><code>Ctrl + -</code> &#x3D; 让光标移动到它先前的位置</p>
+<p><code>Ctrl + +</code> &#x3D; 让光标移动到下一个位置</p>
+<p><code>Ctrl + G</code> &#x2F; <code>双击状态栏中的行号/列/字符</code> &#x3D; 跳转到指定的某一行</p>
+<p><code>Home</code> &#x3D; 定位到当前行的行首</p>
+<p><code>End</code> &#x3D; 定位到当前行的行尾</p>
+<p><code>Ctrl + Home</code> &#x3D; 文档首</p>
+<p><code>Ctrl + End</code> &#x3D; 文档尾</p>
+<p><code>Ctrl + Tab</code> &#x3D; 快速切换窗口</p>
+<p><code>Ctrl + ]</code> &#x3D; 匹配大括号、括号</p>
+<p><code>Ctrl + M, Ctrl + O</code> &#x3D; 折叠所有方法</p>
+<p><code>Ctro + M, Ctrl + L</code> &#x3D; 展开所有方法</p>
+<p><code>Ctro + M, Ctrl + L</code> &#x3D; 折叠或者展开当前文件</p>
+<p><code>Ctrl + M, M</code> &#x3D; 快速隐藏或显示当前代码段</p>
+<p><code>Ctrl + M, L</code> &#x3D; 快速隐藏或显示全部代码段</p>
+<p><code>CTRL + F4</code> &#x3D; 关闭当前文档窗口</p>
+<h3 id="调试相关的键盘快捷键"><a href="#调试相关的键盘快捷键" class="headerlink" title="调试相关的键盘快捷键"></a>调试相关的键盘快捷键</h3><p><code>F5</code> &#x3D; 开始调试</p>
+<p><code>Shift + F5</code> &#x3D; 停止调试</p>
+<p><code>Ctrl + F5</code> &#x3D; 调试(开始执行不调试)</p>
+<p><code>Ctrl + Shift + F5</code>  &#x3D;调试(重新启动)</p>
+<p><code>F9</code> &#x3D; 设置或删除断点</p>
+<p><code>Ctrl + Shift + F9</code>  &#x3D; 取消所有断点</p>
+<p><code>F10</code> &#x3D; 调试(逐过程)</p>
+<p><code>F11</code> &#x3D; 调试(逐语句)</p>
+<p><code>F12</code> &#x3D; 转到定义</p>
+<p><code>Shift + F12</code> &#x3D; 查找所有引用</p>
+<p><code>Ctrl+K, Ctrl+P</code> &#x3D; 查看函数参数  记忆方法：  Ctrl+P   &#x3D;  Parameter</p>
+<p><code>Ctrl + Alt + P</code> &#x3D; 附加到进程</p>
+<p><code>Ctrl + Alt + Q</code> &#x3D; 添加快捷匹配</p>
+<h3 id="搜索相关的键盘快捷键"><a href="#搜索相关的键盘快捷键" class="headerlink" title="搜索相关的键盘快捷键"></a>搜索相关的键盘快捷键</h3><p><code>F3</code> &#x3D; 查找下一个</p>
+<p><code>Shift+F3</code> &#x3D; 查找上一个</p>
+<p><code>Ctrl + F3</code> &#x3D; 为当前选中的部分进行搜索（不需要再输入要搜索的内容）</p>
+<p><code>Ctrl + Shift + F</code> &#x3D; 查找所选条目在整个解决方案中的引用</p>
+<p><code>Ctrl + F</code> &#x3D; 显示查找对话框</p>
+<p><code>Ctrl + H</code> &#x3D; 显示替换对话框</p>
+<p><code>Ctrl + I</code> &#x3D; 递增搜索，与 <code>Ctrl + F</code> 不同的是搜索期间不显示搜索对话框，且 <code>Ctrl + F</code> 搜索下一个直接按 <code>Enter</code> 即可，而 <code>Ctrl + I</code> 搜索下一个按 <code>Ctrl + I</code> 或 <code>F3</code> ，<code>Escape</code> 退出，连续按两次 <code>Ctrl  + I</code> 重复上次搜索</p>
+<p><code>Ctrl + K, Ctrl + K</code> &#x3D; 将当前行添加书签</p>
+<p><code>Ctrl + K, Ctrl + N</code> &#x3D; 导航至下一个书签</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/return%E8%AF%AD%E5%8F%A5%E4%B8%8D%E5%BD%B1%E5%93%8Dusing%E9%87%8A%E6%94%BE%E5%AF%B9%E8%B1%A1/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>return语句不影响using释放对象</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/VSCode%E8%AE%BE%E7%BD%AE/">
+        <span>VSCode设置</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9B%B8%E5%85%B3%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">1.</span> <span class="toc-text">项目相关的快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E7%9B%B8%E5%85%B3%E7%9A%84%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">2.</span> <span class="toc-text">编辑相关的键盘快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E7%9B%B8%E5%85%B3%E7%9A%84%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">3.</span> <span class="toc-text">导航相关的键盘快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E7%9B%B8%E5%85%B3%E7%9A%84%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">4.</span> <span class="toc-text">调试相关的键盘快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%9B%B8%E5%85%B3%E7%9A%84%E9%94%AE%E7%9B%98%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">5.</span> <span class="toc-text">搜索相关的键盘快捷键</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

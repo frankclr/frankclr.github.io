@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            JavaScript之五浏览器 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/">JavaScript之五浏览器</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=JavaScript之五浏览器&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=JavaScript之五浏览器&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/&title=JavaScript之五浏览器" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=JavaScript之五浏览器&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/&text=JavaScript之五浏览器" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <br />
+  
+<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1022910821149312">廖雪峰老师—-JavaScript教程</a>，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</h2><br />
+<br />
+<br />
+  
+<p>JavaScript的出现就是为了能在浏览器中运行</p>
+<p>目前主流的浏览器分这么几种：</p>
+<ul>
+<li><p>IE 6~11：国内用得最多的IE浏览器，历来对W3C标准支持差。从IE10开始支持ES6标准；</p>
+</li>
+<li><p>Chrome：Google出品的基于Webkit内核浏览器，内置了非常强悍的JavaScript引擎——V8。由于Chrome一经安装就时刻保持自升级，所以不用管它的版本，最新版早就支持ES6了；</p>
+</li>
+<li><p>Safari：Apple的Mac系统自带的基于Webkit内核的浏览器，从OS X 10.7 Lion自带的6.1版本开始支持ES6，目前最新的OS X 10.11 El Capitan自带的Safari版本是9.x，早已支持ES6；</p>
+</li>
+<li><p>Firefox：Mozilla自己研制的Gecko内核和JavaScript引擎OdinMonkey。早期的Firefox按版本发布，后来终于聪明地学习Chrome的做法进行自升级，时刻保持最新；</p>
+</li>
+<li><p>移动设备上目前iOS和Android两大阵营分别主要使用Apple的Safari和Google的Chrome，由于两者都是Webkit核心，结果HTML5首先在手机上全面普及（桌面绝对是Microsoft拖了后腿），对JavaScript的标准支持也很好，最新版本均支持ES6。</p>
+</li>
+<li><p>其他浏览器如Opera等由于市场份额太小就被自动忽略了。</p>
+</li>
+</ul>
+<p>另外还要注意识别各种国产浏览器，如某某安全浏览器，某某旋风浏览器，它们只是做了一个壳，其核心调用的是IE，也有号称同时支持IE和Webkit的“双核”浏览器。</p>
+<p>不同的浏览器对JavaScript支持的差异主要是，有些API的接口不一样，比如AJAX，File接口。对于ES6标准，不同的浏览器对各个特性支持也不一样。</p>
+<p>在编写JavaScript的时候，就要充分考虑到浏览器的差异，尽量让同一份JavaScript代码能运行在不同的浏览器中。</p>
+<p>浏览器对象</p>
+<p>JavaScript可以获取浏览器提供的很多对象，并进行操作。</p>
+<p><code>window</code><br>充当全局作用域，而且表示浏览器窗口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">innerWidth</span><br><span class="line">innerHeight</span><br><span class="line">outerWidth</span><br><span class="line">outerHeight</span><br></pre></td></tr></table></figure>
+
+<p><code>navigator</code><br>表示浏览器的信息，最常用的属性包括：</p>
+<ul>
+<li>navigator.appName：浏览器名称；</li>
+<li>navigator.appVersion：浏览器版本；</li>
+<li>navigator.language：浏览器设置的语言；</li>
+<li>navigator.platform：操作系统类型；</li>
+<li>navigator.userAgent：浏览器设定的<code>User-Agent</code>字符串。<br><strong>请注意</strong>，navigator的信息可以很容易地被用户修改，所以JavaScript读取的值不一定是正确的。<br>充分利用JavaScript对不存在属性返回undefined的特性，直接用短路运算符||计算<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var width = window.innerWidth || document.body.clientWidth;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><code>screen</code></p>
+<ul>
+<li>screen.width：屏幕宽度，以像素为单位；</li>
+<li>screen.height：屏幕高度，以像素为单位；</li>
+<li>screen.colorDepth：返回颜色位数，如8、16、24。</li>
+</ul>
+<p><code>location</code><br>表示当前页面的URL信息<br>location.protocol; &#x2F;&#x2F; ‘http’<br>location.host; &#x2F;&#x2F; ‘<a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a>‘<br>location.port; &#x2F;&#x2F; ‘8080’<br>location.pathname; &#x2F;&#x2F; ‘&#x2F;path&#x2F;index.html’<br>location.search; &#x2F;&#x2F; ‘?a&#x3D;1&amp;b&#x3D;2’<br>location.hash; &#x2F;&#x2F; ‘TOP’</p>
+<p><code>document</code><br><code>document</code>对象表示当前页面。由于HTML在浏览器中以DOM形式表示为树形结构，<code>document</code>对象就是整个DOM树的根节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">title</span><br><span class="line">// Cookie是由服务器发送的key-value标示符。</span><br><span class="line">// 因为HTTP协议是无状态的，但是服务器要区分到底是哪个用户发过来的请求，就可以用Cookie来区分。</span><br><span class="line">// 当一个用户成功登录后，服务器发送一个Cookie给浏览器，例如user=ABC123XYZ(加密的字符串)...，此后，浏览器访问该网站时，会在请求头附上这个Cookie，服务器根据Cookie即可区分出用户。</span><br><span class="line">// Cookie还可以存储网站的一些设置，例如，页面显示的语言等等。</span><br><span class="line">cookie  </span><br><span class="line">getElementById()</span><br><span class="line">getElementsByTagName()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>由于JavaScript能读取到页面的Cookie，而用户的登录信息通常也存在Cookie中，这就造成了巨大的安全隐患，这是因为在HTML页面中引入第三方的JavaScript代码是允许的。如果引入的第三方的JavaScript中存在恶意代码，则<a target="_blank" rel="noopener" href="http://www.foo.com网站将直接获取到www.example.com网站的用户登录信息./">www.foo.com网站将直接获取到www.example.com网站的用户登录信息。</a><br>为了解决这个问题，服务器在设置Cookie时可以使用httpOnly，设定了httpOnly的Cookie将不能被JavaScript读取。这个行为由浏览器实现，主流浏览器均支持httpOnly选项，IE从IE6 SP1开始支持。<br><em><strong>为了确保安全，服务器端在设置Cookie时，应该始终坚持使用httpOnly</strong></em>。</p>
+<p><code>history</code><br><em><strong>任何情况，你都不应该使用history这个对象了</strong></em>。对于现代Web页面来说，由于大量使用AJAX和页面交互，简单粗暴地调用history.back()可能会让用户感到非常愤怒。</p>
+<h3 id="操作DOM"><a href="#操作DOM" class="headerlink" title="操作DOM"></a>操作DOM</h3><p>DOM是一个树形结构。操作一个DOM节点实际上就是这么几个操作：</p>
+<ul>
+<li>更新：更新该DOM节点的内容，相当于更新了该DOM节点表示的HTML的内容；</li>
+<li>遍历：遍历该DOM节点下的子节点，以便进行进一步操作；</li>
+<li>添加：在该DOM节点下新增一个子节点，相当于动态增加了一个HTML节点；</li>
+<li>删除：将该节点从HTML中删除，相当于删掉了该DOM节点的内容以及它包含的所有子节点。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById()</span><br><span class="line">document.getElementsByTagName()</span><br><span class="line">document.getElementsByClassName()  //CSS选择器,先定位父节点，再从父节点开始选择，以缩小范围</span><br><span class="line">querySelector()  //低版本的IE&lt;8不支持querySelector和querySelectorAll。IE8仅有限支持</span><br><span class="line">querySelectorAll()</span><br><span class="line">children</span><br><span class="line">firstElementChild</span><br><span class="line">lastElementChild</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>严格地讲，我们这里的DOM节点是指<code>Element</code>，但是DOM节点实际上是<code>Node</code>，在HTML中，<code>Node</code>包括<code>Element</code>、<code>Comment</code>、<code>CDATA_SECTION</code>等很多种，以及根节点<code>Document</code>类型，但是，绝大多数时候我们只关心<code>Element</code>，也就是实际控制页面结构的<code>Node</code>，其他类型的<code>Node</code>忽略即可。根节点<code>Document</code>已经自动绑定为全局变量<code>document</code></p>
+<h4 id="更新DOM"><a href="#更新DOM" class="headerlink" title="更新DOM"></a>更新DOM</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 不但可以修改一个DOM节点的文本内容，还可以直接通过HTML片段修改DOM节点内部的子树</span><br><span class="line">// 用innerHTML时要注意，是否需要写入HTML。如果写入的字符串是通过网络拿到的，要注意对字符编码来避免XSS攻击</span><br><span class="line">innerHTML  </span><br><span class="line">// innerText或textContent属性,自动对字符串进行HTML编码，保证无法设置任何HTML标签</span><br><span class="line">// 区别在于：innerText不返回隐藏元素的文本，而textContent返回所有文本</span><br><span class="line">innerText  </span><br><span class="line">textContent      </span><br></pre></td></tr></table></figure>
+
+<h4 id="插入DOM"><a href="#插入DOM" class="headerlink" title="插入DOM"></a>插入DOM</h4><ul>
+<li>如果这个DOM节点是空的，例如，<code>&lt;div&gt;&lt;/div&gt;</code>，那么，直接使用<code>innerHTML = &#39;&lt;span&gt;child&lt;/span&gt;&#39;</code>就可以修改DOM节点的内容，相当于“插入”了新的DOM节点<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list.appendChild(js);  // 把一个子节点添加到父节点的最后一个子节点</span><br><span class="line">document.createElement(&#x27;p&#x27;)</span><br><span class="line">// 使用insertBefore重点是要拿到一个“参考子节点”的引用。很多时候，需要循环一个父节点的所有子节点，可以通过迭代children属性实现</span><br><span class="line">parentElement.insertBefore(newElement, referenceElement);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="删除DOM"><a href="#删除DOM" class="headerlink" title="删除DOM"></a>删除DOM</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var removed = parent.removeChild(self);</span><br></pre></td></tr></table></figure>
+<p>当遍历一个父节点的子节点并进行删除操作时，要注意，<code>children</code>属性是一个只读属性，并且它在子节点变化时会实时更新。</p>
+<h4 id="操作表单"><a href="#操作表单" class="headerlink" title="操作表单"></a>操作表单</h4><p>用JavaScript操作表单和操作DOM是类似的，因为表单本身也是DOM树。<br>HTML表单的输入控件主要有以下几种：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">文本框，对应的&lt;input type=&quot;text&quot;&gt;，用于输入文本；</span><br><span class="line">口令框，对应的&lt;input type=&quot;password&quot;&gt;，用于输入口令；</span><br><span class="line">单选框，对应的&lt;input type=&quot;radio&quot;&gt;，用于选择一项；</span><br><span class="line">复选框，对应的&lt;input type=&quot;checkbox&quot;&gt;，用于选择多项；</span><br><span class="line">下拉框，对应的&lt;select&gt;，用于选择一项；</span><br><span class="line">隐藏文本，对应的&lt;input type=&quot;hidden&quot;&gt;，用户不可见，但表单提交时会把隐藏文本发送到服务器。</span><br></pre></td></tr></table></figure>
+
+<p><code>input</code>,<code>text</code>、<code>password</code>、<code>hidden</code>以及<code>select</code>可以直接通过<code>value</code>获取值。。但是，对于单选框和复选框，<code>value</code>属性返回的永远是<code>HTML预设的值</code>，而我们需要获得的实际是用户是否“勾上了”选项，所以应该用<code>checked</code>判断</p>
+<p><code>input</code>,<code>text</code>、<code>password</code>、<code>hidden</code>以及<code>select</code>可以直接设置<code>value</code>；对于单选框和复选框，设置<code>checked</code>为<code>true</code>或<code>false</code>即可。</p>
+<p>HTML5新增了大量标准控件，常用的包括<code>date</code>、<code>datetime</code>、<code>datetime-local</code>、<code>color</code>等，它们都使用<code>&lt;input&gt;</code>标签<br>不支持HTML5的浏览器无法识别新的控件，会把它们当做<code>type=&quot;text&quot;</code>来显示。支持HTML5的浏览器将获得格式化的字符串。例如，<code>type=&quot;date&quot;</code>类型的<code>input</code>的<code>value</code>将保证是一个有效的<code>YYYY-MM-DD</code>格式的日期，或者空字符串。</p>
+<p>提交表单<br>方式一是通过<code>&lt;form&gt;</code>元素的<code>submit()</code>方法提交一个表单,缺点是扰乱了浏览器对form的正常提交</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">&lt;form id=&quot;test-form&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;test&quot;&gt;</span><br><span class="line">    &lt;button type=&quot;button&quot; onclick=&quot;doSubmitForm()&quot;&gt;Submit&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">function doSubmitForm() &#123;</span><br><span class="line">    var form = document.getElementById(&#x27;test-form&#x27;);</span><br><span class="line">    // 可以在此修改form的input...</span><br><span class="line">    // 提交form:</span><br><span class="line">    form.submit();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>浏览器默认点击<code>&lt;button type=&quot;submit&quot;&gt;</code>时提交表单，或者用户在最后一个输入框按回车键.。因此，第二种方式是响应<code>&lt;form&gt;</code>本身的<code>onsubmit</code>事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">&lt;form id=&quot;test-form&quot; onsubmit=&quot;return checkForm()&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;test&quot;&gt;</span><br><span class="line">    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">function checkForm() &#123;</span><br><span class="line">    var form = document.getElementById(&#x27;test-form&#x27;);</span><br><span class="line">    // 可以在此修改form的input...</span><br><span class="line">    // 继续下一步:</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意要return true来告诉浏览器继续提交，如果return false，浏览器将不会继续提交form，这种情况通常对应用户输入有误，提示用户错误信息后终止提交form。</p>
+<p>要想不改变用户的输入，可以利用<code>&lt;input type=&quot;hidden&quot;&gt;</code>实现。没有name属性的<code>&lt;input&gt;</code>的数据不会被提交</p>
+<h4 id="操作文件"><a href="#操作文件" class="headerlink" title="操作文件"></a>操作文件</h4><p>在HTML表单中，可以上传文件的唯一控件就是<code>&lt;input type=&quot;file&quot;&gt;</code>。</p>
+<p><strong>注意：</strong> 当一个表单包含<code>&lt;input type=&quot;file&quot;&gt;</code>时，表单的<code>enctype</code>必须指定为<code>multipart/form-data</code>，<code>method</code>必须指定为<code>post</code>，浏览器才能正确编码并以<code>multipart/form-data</code>格式发送表单的数据。</p>
+<p>出于安全考虑，浏览器只允许用户点击<code>&lt;input type=&quot;file&quot;&gt;</code>来选择本地文件，用JavaScript对<code>&lt;input type=&quot;file&quot;&gt;</code>的<code>value</code>赋值是没有任何效果的。当用户选择了上传某个文件后，JavaScript也无法获得该文件的真实路径</p>
+<p>由于JavaScript对用户上传的文件操作非常有限，尤其是无法读取文件内容，使得很多需要操作文件的网页不得不用Flash这样的第三方插件来实现。<br>HTML5的File API提供了<code>File</code>和<code>FileReader</code>两个主要对象，可以获得文件信息并读取文件。</p>
+<p>回调<br>上面的代码还演示了JavaScript的一个重要的特性就是单线程执行模式。在JavaScript中，浏览器的JavaScript执行引擎在执行JavaScript代码时，总是以单线程模式执行，也就是说，任何时候，JavaScript代码都不可能同时有多于1个线程在执行。</p>
+<h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><p>AJAX不是JavaScript的规范，它只是一个哥们“发明”的缩写：Asynchronous JavaScript and XML，意思就是用JavaScript执行异步网络请求。<br>AJAX请求是异步执行的，也就是说，要通过回调函数获得响应。在现代浏览器上写AJAX主要依靠<code>XMLHttpRequest</code>对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">function success(text) &#123;</span><br><span class="line">    var textarea = document.getElementById(&#x27;test-response-text&#x27;);</span><br><span class="line">    textarea.value = text;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fail(code) &#123;</span><br><span class="line">    var textarea = document.getElementById(&#x27;test-response-text&#x27;);</span><br><span class="line">    textarea.value = &#x27;Error code: &#x27; + code;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象</span><br><span class="line"></span><br><span class="line">request.onreadystatechange = function () &#123; // 状态发生变化时，函数被回调</span><br><span class="line">    if (request.readyState === 4) &#123; // 成功完成</span><br><span class="line">        // 判断响应结果:</span><br><span class="line">        if (request.status === 200) &#123;</span><br><span class="line">            // 成功，通过responseText拿到响应的文本:</span><br><span class="line">            return success(request.responseText);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 失败，根据响应码判断失败原因:</span><br><span class="line">            return fail(request.status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // HTTP请求还在继续...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 发送请求:</span><br><span class="line">request.open(&#x27;GET&#x27;, &#x27;/api/categories&#x27;);</span><br><span class="line">request.send();</span><br><span class="line"></span><br><span class="line">alert(&#x27;请求已发送，请等待响应...&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var request;</span><br><span class="line">if (window.XMLHttpRequest) &#123;</span><br><span class="line">    request = new XMLHttpRequest();</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    request = new ActiveXObject(&#x27;Microsoft.XMLHTTP&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过检测<code>window</code>对象是否有<code>XMLHttpRequest</code>属性来确定浏览器是否支持标准的<code>XMLHttpRequest</code>。<strong>注意</strong>，不要根据浏览器的<code>navigator.userAgent</code>来检测浏览器是否支持某个JavaScript特性，一是因为这个字符串本身可以伪造，二是通过IE版本判断JavaScript特性将非常复杂</p>
+<p><code>XMLHttpRequest</code>对象的<code>open()</code>方法有3个参数，第一个参数指定是<code>GET</code>还是<code>POST</code>，第二个参数指定<code>URL</code>地址，第三个参数指定是否使用异步，默认是<code>true</code>，所以不用写。</p>
+<p><strong>注意</strong>，千万不要把第三个参数指定为<code>false</code>，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。</p>
+<p>最后调用<code>send()</code>方法才真正发送请求。<code>GET</code>请求不需要参数，<code>POST</code>请求需要把<code>body</code>部分以字符串或者<code>FormData</code>对象传进去</p>
+<p>安全限制<br>上面代码的URL使用的是相对路径。如果你把它改为<code>&#39;http://www.sina.com.cn/&#39;</code>，再运行，肯定报错。在Chrome的控制台里，还可以看到错误信息。</p>
+<p>这是因为浏览器的<code>同源策略</code>导致的。<code>默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致</code>。</p>
+<p>完全一致的意思是，<code>域名要相同（www.example.com和example.com不同），协议要相同（http和https不同），端口号要相同（默认是:80端口，它和:8080就不同）</code>。有的浏览器口子松一点，允许端口不同，大多数浏览器都会严格遵守这个限制。</p>
+<p>JavaScript请求外域（就是其他网站）的URL:</p>
+<ul>
+<li>一是通过Flash插件发送HTTP请求，这种方式可以绕过浏览器的安全限制，但必须安装Flash，并且跟Flash交互。</li>
+<li>二是通过在同源域名下架设一个代理服务器来转发，JavaScript负责把请求发送到代理服务器,代理服务器再把结果返回，这样就遵守了浏览器的同源策略。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;/proxy?url=http://www.sina.com.cn&#x27;</span><br></pre></td></tr></table></figure></li>
+<li>第三种方式称为JSONP，它有个限制，只能用GET请求，并且要求返回JavaScript。这种方式跨域实际上是利用了浏览器允许跨域引用JavaScript资源</li>
+</ul>
+<h4 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h4><p>如果浏览器支持HTML5，那么就可以一劳永逸地使用新的跨域策略：CORS了。<br>CORS全称Cross-Origin Resource Sharing，是HTML5规范定义的如何跨域访问资源。<br><code>Origin</code>表示本域，也就是浏览器当前页面的域。当JavaScript向外域（如sina.com）发起请求后，浏览器收到响应后，首先检查<code>Access-Control-Allow-Origin</code>是否包含本域，如果是，则此次跨域请求成功，如果不是，则请求失败，JavaScript将无法获取到响应的任何数据。跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的<code>Access-Control-Allow-Origin</code>，决定权始终在对方手中<br>简单请求包括<code>GET</code>、<code>HEAD</code>和<code>POST</code>（<code>POST</code>的<code>Content-Type</code>类型 仅限<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>和<code>text/plain</code>），并且不能出现任何自定义头（例如，<code>X-Custom: 12345</code>），通常能满足90%的需求。</p>
+<p>对于<code>PUT</code>、<code>DELETE</code>以及其他类型如<code>application/json</code>的<code>POST</code>请求，在发送AJAX请求之前，浏览器会先发送一个<code>OPTIONS</code>请求（称为<code>preflighted</code>请求）到这个<code>URL</code>上，询问目标服务器是否接受</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS /path/to/resource HTTP/1.1</span><br><span class="line">Host: bar.com</span><br><span class="line">Origin: http://my.com</span><br><span class="line">Access-Control-Request-Method: POST</span><br></pre></td></tr></table></figure>
+<p>服务器必须响应并明确指出允许的Method：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: http://my.com</span><br><span class="line">Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS</span><br><span class="line">Access-Control-Max-Age: 86400</span><br></pre></td></tr></table></figure>
+<p>浏览器确认服务器响应的Access-Control-Allow-Methods头确实包含将要发送的AJAX请求的Method，才会继续发送AJAX，否则，抛出一个错误。</p>
+<p>由于以POST、PUT方式传送JSON格式的数据在REST中很常见，所以要跨域正确处理POST和PUT请求，服务器端必须正确响应OPTIONS请求。<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS">CORS文档</a></p>
+<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function callback() &#123;</span><br><span class="line">    console.log(&#x27;Done&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(&#x27;before setTimeout()&#x27;);</span><br><span class="line">setTimeout(callback, 1000); // 1秒钟后调用callback函数</span><br><span class="line">console.log(&#x27;after setTimeout()&#x27;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">new Promise(function (resolve, reject) &#123;</span><br><span class="line">    console.log(&#x27;start new Promise...&#x27;);</span><br><span class="line">    var timeOut = Math.random() * 2;</span><br><span class="line">    console.log(&#x27;set timeout to: &#x27; + timeOut + &#x27; seconds.&#x27;);</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        if (timeOut &lt; 1) &#123;</span><br><span class="line">            console.log(&#x27;call resolve()...&#x27;);</span><br><span class="line">            resolve(&#x27;200 OK&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            console.log(&#x27;call reject()...&#x27;);</span><br><span class="line">            reject(&#x27;timeout in &#x27; + timeOut + &#x27; seconds.&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, timeOut * 1000);</span><br><span class="line">&#125;).then(function (r) &#123;</span><br><span class="line">    console.log(&#x27;Done: &#x27; + r);</span><br><span class="line">&#125;).catch(function (reason) &#123;</span><br><span class="line">    console.log(&#x27;Failed: &#x27; + reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 0.5秒后返回input*input的计算结果:</span><br><span class="line">function multiply(input) &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        console.log(&#x27;calculating &#x27; + input + &#x27; x &#x27; + input + &#x27;...&#x27;);</span><br><span class="line">        setTimeout(resolve, 500, input * input);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 0.5秒后返回input+input的计算结果:</span><br><span class="line">function add(input) &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        console.log(&#x27;calculating &#x27; + input + &#x27; + &#x27; + input + &#x27;...&#x27;);</span><br><span class="line">        setTimeout(resolve, 500, input + input);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    console.log(&#x27;start new Promise...&#x27;);</span><br><span class="line">    resolve(123);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p.then(multiply)</span><br><span class="line"> .then(add)</span><br><span class="line"> .then(multiply)</span><br><span class="line"> .then(add)</span><br><span class="line"> .then(function (result) &#123;</span><br><span class="line">    console.log(&#x27;Got value: &#x27; + result);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">// ajax函数将返回Promise对象:</span><br><span class="line">function ajax(method, url, data) &#123;</span><br><span class="line">    var request = new XMLHttpRequest();</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        request.onreadystatechange = function () &#123;</span><br><span class="line">            if (request.readyState === 4) &#123;</span><br><span class="line">                if (request.status === 200) &#123;</span><br><span class="line">                    resolve(request.responseText);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    reject(request.status);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        request.open(method, url);</span><br><span class="line">        request.send(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Promise还可以并行执行异步任务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var p1 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 500, &#x27;P1&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">var p2 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 600, &#x27;P2&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">// 同时执行p1和p2，并在它们都完成后执行then:</span><br><span class="line">Promise.all([p1, p2]).then(function (results) &#123;</span><br><span class="line">    console.log(results); // 获得一个Array: [&#x27;P1&#x27;, &#x27;P2&#x27;]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var p1 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 500, &#x27;P1&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">var p2 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 600, &#x27;P2&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">Promise.race([p1, p2]).then(function (result) &#123;</span><br><span class="line">    console.log(result); // &#x27;P1&#x27;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h4><p>Canvas是HTML5新增的组件，它就像一块幕布，可以用JavaScript在上面绘制各种图表、动画等。<br>没有Canvas的年代，绘图只能借助Flash插件实现，页面不得不用JavaScript和Flash进行交互。</p>
+<p>Canvas除了能绘制基本的形状和文本，还可以实现动画、缩放、各种滤镜和像素转换等高级操作。如果要实现非常复杂的操作，考虑以下优化方案：</p>
+<ul>
+<li>通过创建一个不可见的Canvas来绘图，然后将最终绘制结果复制到页面的可见Canvas中；</li>
+<li>尽量使用整数坐标而不是浮点数；</li>
+<li>可以创建多个重叠的Canvas绘制不同的层，而不是在一个Canvas中绘制非常复杂的图；</li>
+<li>背景图片如果不变可以直接用<img>标签并放到最底层。</li>
+</ul>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/JavaScript%E4%B9%8B%E5%85%ADjQuery/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>JavaScript之六jQuery</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
+        <span>JavaScript之四面向对象编程</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%8C%E8%AF%A5%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%E6%9D%A5%E8%87%AA%E5%BB%96%E9%9B%AA%E5%B3%B0%E8%80%81%E5%B8%88%E2%80%94-JavaScript%E6%95%99%E7%A8%8B%EF%BC%8C%E6%AC%A2%E8%BF%8E%E8%AE%BF%E9%97%AE%E5%8E%9F%E5%88%9B%E8%80%85%E7%BD%91%E7%AB%99%EF%BC%8C%E6%9C%AC%E5%A4%84%E4%BB%85%E4%BB%85%E4%BD%9C%E4%B8%BA%E9%98%B2%E6%AD%A2%E8%87%AA%E5%B7%B1%E9%81%97%E5%BF%98%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9CDOM"><span class="toc-number">1.1.</span> <span class="toc-text">操作DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0DOM"><span class="toc-number">1.1.1.</span> <span class="toc-text">更新DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5DOM"><span class="toc-number">1.1.2.</span> <span class="toc-text">插入DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4DOM"><span class="toc-number">1.1.3.</span> <span class="toc-text">删除DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%A1%A8%E5%8D%95"><span class="toc-number">1.1.4.</span> <span class="toc-text">操作表单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.5.</span> <span class="toc-text">操作文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AJAX"><span class="toc-number">1.1.6.</span> <span class="toc-text">AJAX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CORS"><span class="toc-number">1.1.7.</span> <span class="toc-text">CORS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise"><span class="toc-number">1.1.8.</span> <span class="toc-text">Promise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Canvas"><span class="toc-number">1.1.9.</span> <span class="toc-text">Canvas</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

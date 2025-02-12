@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            C#正则表达式介绍 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/">C#正则表达式介绍</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-04
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=C#正则表达式介绍&url=https://frankbsd.github.io/frankbsd/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=C#正则表达式介绍&url=https://frankbsd.github.io/frankbsd/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/&title=C#正则表达式介绍" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=C#正则表达式介绍&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/&text=C#正则表达式介绍" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>Regex 类表示不可变（只读）的正则表达式。它还包含各种静态方法，允许在不显式创建其他类的实例的情况下使用其他正则表达式类。</p>
+<p><strong>正则表达式基础概述</strong><br>什么是正则表达式</p>
+<p>在编写字符串的处理程序时，经常会有查找符合某些复杂规则的字符串的需要。正则表达式就是用于描述这些规则的工具。换句话说，正则表达式就是记录文本规则的代码。<br>通常，我们在使用WINDOWS查找文件时，会使用通配符（*和?）。如果你想查找某个目录下的所有Word文档时，你就可以使用*.doc进行查找，在这里，*就被解释为任意字符串。和通配符类似，正则表达式也是用来进行文本匹配的工具，只不过比起通配符，它能更精确地描述你的需求——当然，代价就是更复杂。</p>
+<h3 id="一、C-正则表达式符号模式"><a href="#一、C-正则表达式符号模式" class="headerlink" title="一、C#正则表达式符号模式"></a>一、C#正则表达式符号模式</h3><style>
+table th:first-of-type {
+    width: 100px;
+}
+</style>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>将下一个字符标记为一个特殊字符、或一个原义字符、或一个 向后引用、或一个八进制转义符。例如，’n’ 匹配字符 “n”。’\n’ 匹配一个换行符。序列 ’\’ 匹配 “\” 而 “(” 则匹配 “(“</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 ’\n’ 或 ’\r’ 之后的位置</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 ’\n’ 或 ’\r’ 之前的位置</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配前面的子表达式零次或多次。例如，zo* 能匹配 “z” 以及 “zoo”。* 等价于{0,}</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前面的子表达式零次或一次。例如，”do(es)?” 可以匹配 “do” 或 “does” 中的”do” 。? 等价于 {0,1}</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ’o’，但是能匹配 “food” 中的两个 o</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>n 是一个非负整数。至少匹配n 次。例如，’o{2,}’ 不能匹配 “Bob” 中的 ’o’，但能匹配 “foooood” 中的所有 o。’o{1,}’ 等价于 ’o+’。’o{0,}’ 则等价于 ’o*’</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>m 和 n 均为非负整数，其中n &lt;&#x3D; m。最少匹配 n 次且最多匹配 m 次。例如，”o{1,3}” 将匹配 “fooooood” 中的前三个 o。’o{0,1}’ 等价于 ’o?’。请注意在逗号和两个数之间不能有空格</td>
+</tr>
+<tr>
+<td>?</td>
+<td>当该字符紧跟在任何一个其他限制符 (*, +, ?, {n}, {n,}, {n,m}) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串 “oooo”，’o+?’ 将匹配单个 “o”，而 ’o+’ 将匹配所有 ’o’</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配除 “\n” 之外的任何单个字符。要匹配包括 ’\n’ 在内的任何字符，请使用象 ’[.\n]’ 的模式</td>
+</tr>
+<tr>
+<td>(pattern)</td>
+<td>匹配 pattern 并获取这一匹配。所获取的匹配可以从产生的 Matches 集合得到，在VBScript 中使用 SubMatches 集合，在JScript 中则使用 $0…$9 属性。要匹配圆括号字符，请使用 ’(’ 或 ’)’</td>
+</tr>
+<tr>
+<td>(?:pattern)</td>
+<td>匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用 “或” 字符 (</td>
+</tr>
+<tr>
+<td>(?&#x3D;pattern)</td>
+<td>正向预查，在任何匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，’Windows (?&#x3D;95</td>
+</tr>
+<tr>
+<td>(?!pattern)</td>
+<td>负向预查，在任何不匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如’Windows (?!95</td>
+</tr>
+<tr>
+<td>x</td>
+<td>y</td>
+</tr>
+<tr>
+<td>[xyz]</td>
+<td>字符集合。匹配所包含的任意一个字符。例如， ’[abc]’ 可以匹配 “plain” 中的 ’a’</td>
+</tr>
+<tr>
+<td>[^xyz]</td>
+<td>负值字符集合。匹配未包含的任意字符。例如， ’[^abc]’ 可以匹配 “plain” 中的’p’</td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td>字符范围。匹配指定范围内的任意字符。例如，’[a-z]’ 可以匹配 ’a’ 到 ’z’ 范围内的任意小写字母字符</td>
+</tr>
+<tr>
+<td>[^a-z]</td>
+<td>负值字符范围。匹配任何不在指定范围内的任意字符。例如，’[^a-z]’ 可以匹配任何不在 ’a’ 到 ’z’ 范围内的任意字符</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配一个单词边界，也就是指单词和空格间的位置。例如， ’er\b’ 可以匹配”never” 中的 ’er’，但不能匹配 “verb” 中的 ’er’</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配由 x 指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ’c’ 字符</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配一个数字字符。等价于 [0-9]</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配一个非数字字符。等价于 [^0-9]</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配一个换页符。等价于 \x0c 和 \cL</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配一个换行符。等价于 \x0a 和 \cJ</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配一个回车符。等价于 \x0d 和 \cM</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任何非空白字符。等价于 [^ \f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配一个制表符。等价于 \x09 和 \cI</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>匹配一个垂直制表符。等价于 \x0b 和 \cK</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配包括下划线的任何单词字符。等价于’[A-Za-z0-9_]’</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配任何非单词字符。等价于 ’[^A-Za-z0-9_]’</td>
+</tr>
+<tr>
+<td>\xn</td>
+<td>匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，’\x41’ 匹配 “A”。’\x041’ 则等价于 ’\x04’ &amp; “1”。正则表达式中可以使用 ASCII 编码</td>
+</tr>
+<tr>
+<td>\num</td>
+<td>匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，’(.)\1’ 匹配两个连续的相同字符</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值</td>
+</tr>
+<tr>
+<td>\nm</td>
+<td>标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm</td>
+</tr>
+<tr>
+<td>\nml</td>
+<td>如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml</td>
+</tr>
+<tr>
+<td>\un</td>
+<td>匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)</td>
+</tr>
+<tr>
+<td>说明：</td>
+<td></td>
+</tr>
+<tr>
+<td>由于在正则表达式中“ \ ”、“ ? ”、“ * ”、“ ^ ”、“ $ ”、“ + ”、“（”、“）”、“</td>
+<td>”、“ { ”、“ [ ”等字符已经具有一定特殊意义，如果需要用它们的原始意义，则应该对它进行转义，例如希 望在字符串中至少有一个“ \ ”，那么正则表达式应该这么写： \+ 。</td>
+</tr>
+</tbody></table>
+<h3 id="二、在C-中，要使用正则表达式类，请在源文件开头处添加以下语句："><a href="#二、在C-中，要使用正则表达式类，请在源文件开头处添加以下语句：" class="headerlink" title="二、在C#中，要使用正则表达式类，请在源文件开头处添加以下语句："></a>二、在C#中，要使用正则表达式类，请在源文件开头处添加以下语句：</h3><p>代码如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">using System.Text.RegularExpressions;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="三、RegEx类常用的方法"><a href="#三、RegEx类常用的方法" class="headerlink" title="三、RegEx类常用的方法"></a>三、RegEx类常用的方法</h3><h4 id="1、静态Match方法"><a href="#1、静态Match方法" class="headerlink" title="1、静态Match方法"></a>1、静态Match方法</h4><p>使用静态Match方法，可以得到源中第一个匹配模式的连续子串。</p>
+<p>静态的Match方法有2个重载，分别是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Regex.Match(string input, string pattern);</span><br><span class="line">Regex.Match(string input, string pattern, RegexOptions options);</span><br></pre></td></tr></table></figure>
+
+<p>第一种重载的参数表示：输入、模式</p>
+<p>第二种重载的参数表示：输入、模式、<code>RegexOptions</code>枚举的“按位或”组合。</p>
+<p>RegexOptions枚举的有效值是：</p>
+<ul>
+<li><code>Complied</code>表示编译此模式</li>
+<li><code>CultureInvariant</code>表示不考虑文化背景</li>
+<li><code>ECMAScrip</code>t表示符合<code>ECMAScript</code>，这个值只能和<code>IgnoreCase</code>、<code>Multiline</code>、<code>Complied</code>连用</li>
+<li><code>ExplicitCapture</code>表示只保存显式命名的组</li>
+<li><code>IgnoreCase</code>表示不区分输入的大小写</li>
+<li><code>IgnorePatternWhitespace</code>表示去掉模式中的非转义空白，并启用由#标记的注释</li>
+<li><code>Multiline</code>表示多行模式，改变元字符<code>^</code>和<code>$</code>的含义，它们可以匹配行的开头和结尾</li>
+<li><code>None</code>表示无设置，此枚举项没有意义</li>
+<li><code>RightToLeft</code>表示从右向左扫描、匹配，这时，静态的Match方法返回从右向左的第一个匹配</li>
+<li><code>Singleline</code>表示单行模式，改变元字符.的意义，它可以匹配换行符</li>
+</ul>
+<p>注意：<code>Multiline</code>在没有<code>ECMAScript</code>的情况下，可以和<code>Singleline</code>连用。<code>Singleline</code>和<code>Multiline</code>不互斥，但是和<code>ECMAScript</code>互斥。</p>
+<h4 id="2、静态的Matches方法"><a href="#2、静态的Matches方法" class="headerlink" title="2、静态的Matches方法"></a>2、静态的Matches方法</h4><p>这个方法的重载形式同静态的Match方法，返回一个MatchCollection，表示输入中，匹配模式的匹配的集合。</p>
+<h4 id="3、静态的IsMatch方法"><a href="#3、静态的IsMatch方法" class="headerlink" title="3、静态的IsMatch方法"></a>3、静态的IsMatch方法</h4><p>此方法返回一个bool，重载形式同静态的Matches，若输入中匹配模式，返回true，否则返回false。<br>可以理解为：IsMatch方法，返回Matches方法返回的集合是否为空。</p>
+<h3 id="四、RegEx类的实例"><a href="#四、RegEx类的实例" class="headerlink" title="四、RegEx类的实例"></a>四、RegEx类的实例</h3><h4 id="1-字符串替换"><a href="#1-字符串替换" class="headerlink" title="1.字符串替换"></a>1.字符串替换</h4><p>例如我想把如下格式记录中的NAME值修改为WANG</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string line=&quot;ADDR=1234;NAME=ZHANG;PHONE=6789&quot;;</span><br><span class="line">Regex reg = new Regex(&quot;NAME=(.+);&quot;);</span><br><span class="line">string modified = reg.Replace(line, &quot;NAME=WANG;&quot;);</span><br></pre></td></tr></table></figure>
+<p>修改后的字符串为 <code>ADDR=1234;NAME=WANG;PHONE=6789</code></p>
+<h4 id="2-字符串匹配"><a href="#2-字符串匹配" class="headerlink" title="2.字符串匹配"></a>2.字符串匹配</h4><p>例如我想提取刚才那条记录中的NAME值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Regex reg = new Regex(&quot;NAME=(.+);&quot;);</span><br><span class="line">Match match=reg.Match(line);</span><br><span class="line">string value=match.Groups[1].Value;</span><br></pre></td></tr></table></figure>
+<h4 id="3、Match实例"><a href="#3、Match实例" class="headerlink" title="3、Match实例"></a>3、Match实例</h4><p>文本中含有”speed&#x3D;30.2mph”,需要提取该速度值，但是速度的单位可能是公制也可能是英制，mph,km&#x2F;h,m&#x2F;s都有可能；另外前后可能有空格。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string line=&quot;lane=1;speed=30.3mph;acceleration=2.5mph/s&quot;;</span><br><span class="line">Regex reg=new Regex(@&quot;speed\s*=\s*([\d\.]+)\s*(mph|km/h|m/s)*&quot;);</span><br><span class="line">Match match=reg.Match(line);</span><br></pre></td></tr></table></figure>
+<p>那么在返回的结果中match.Groups[1].Value将含有数值，而match.Groups[2].Value将含有单位。</p>
+<h4 id="4、再比如，解码gps的GPRMC字符串，只需"><a href="#4、再比如，解码gps的GPRMC字符串，只需" class="headerlink" title="4、再比如，解码gps的GPRMC字符串，只需"></a>4、再比如，解码gps的GPRMC字符串，只需</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Regex reg = new Regex(@&quot;^\$GPRMC,[\d\.]*,[A|V],(-?[0-9]*\.?[0-9]+),([NS]*),(-?[0-9]*\.?[0-9]+),([EW]*),.*&quot;);</span><br></pre></td></tr></table></figure>
+<p>就可以获得经度、纬度值，而以前需要几十行代码。</p>
+<h3 id="五、System-Text-RegularExpressions命名空间的说明"><a href="#五、System-Text-RegularExpressions命名空间的说明" class="headerlink" title="五、System.Text.RegularExpressions命名空间的说明"></a>五、<code>System.Text.RegularExpressions</code>命名空间的说明</h3><p>该名称空间包括8个类，1个枚举，1个委托。他们分别是：</p>
+<ul>
+<li><code>Capture</code>: 包含一次匹配的结果；</li>
+<li><code>CaptureCollection</code>: Capture的序列；</li>
+<li><code>Group</code>: 一次组记录的结果，由Capture继承而来；</li>
+<li><code>GroupCollection</code>：表示捕获组的集合</li>
+<li><code>Match</code>: 一次表达式的匹配结果，由Group继承而来；</li>
+<li><code>MatchCollection</code>: Match的一个序列；</li>
+<li><code>MatchEvaluator</code>: 执行替换操作时使用的委托；</li>
+<li><code>Regex</code>：编译后的表达式的实例。</li>
+<li><code>RegexCompilationInfo</code>：提供编译器用于将正则表达式编译为独立程序集的信息</li>
+<li><code>RegexOptions</code> 提供用于设置正则表达式的枚举值</li>
+<li><code>Regex</code>类中还包含一些静态的方法：</li>
+<li><code>Escape</code>: 对字符串中的regex中的转义符进行转义；</li>
+<li><code>IsMatch</code>: 如果表达式在字符串中匹配，该方法返回一个布尔值；</li>
+<li><code>Match</code>: 返回Match的实例；</li>
+<li><code>Matches</code>: 返回一系列的Match的方法；</li>
+<li><code>Replace</code>: 用替换字符串替换匹配的表达式；</li>
+<li><code>Split</code>: 返回一系列由表达式决定的字符串；</li>
+<li><code>Unescape</code>:不对字符串中的转义字符转义。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">/// 转义字符串中所有正则特殊字符</span><br><span class="line">/// &lt;/summary&gt;</span><br><span class="line">/// &lt;param name=&quot;input&quot;&gt;传入字符串&lt;/param&gt;</span><br><span class="line">/// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">static string FilterString(string input)</span><br><span class="line">&#123;</span><br><span class="line">    input = input.Replace(&quot;\\&quot;, &quot;\\\\&quot;);//先替换“\”，不然后面会因为替换出现其他的“\”</span><br><span class="line">    Regex regex = new Regex(&quot;[\\*\\.\\?\\+\\$\\^\\[\\]\\(\\)\\&#123;\\&#125;\\|\\/]&quot;);</span><br><span class="line">    MatchCollection ms = regex.Matches(input);</span><br><span class="line">    List list = new List();</span><br><span class="line">    foreach (Match item in ms)</span><br><span class="line">    &#123;</span><br><span class="line">        if (list.Contains(item.Value))</span><br><span class="line">            continue;</span><br><span class="line">        input = input.Replace(item.Value, &quot;\\&quot; + item.Value);</span><br><span class="line">        list.Add(item.Value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return input;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/30/Debian%E4%BD%BF%E7%94%A8/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Debian使用</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/30/C-%E5%AE%9E%E7%8E%B0XML%E5%A3%B0%E6%98%8E%E4%B8%BAUTF-8/">
+        <span>C#实现XML声明为UTF-8</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%A6%E5%8F%B7%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">一、C#正则表达式符号模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9C%A8C-%E4%B8%AD%EF%BC%8C%E8%A6%81%E4%BD%BF%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%B1%BB%EF%BC%8C%E8%AF%B7%E5%9C%A8%E6%BA%90%E6%96%87%E4%BB%B6%E5%BC%80%E5%A4%B4%E5%A4%84%E6%B7%BB%E5%8A%A0%E4%BB%A5%E4%B8%8B%E8%AF%AD%E5%8F%A5%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">二、在C#中，要使用正则表达式类，请在源文件开头处添加以下语句：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81RegEx%E7%B1%BB%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">三、RegEx类常用的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%9D%99%E6%80%81Match%E6%96%B9%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">1、静态Match方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%9D%99%E6%80%81%E7%9A%84Matches%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">2、静态的Matches方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E9%9D%99%E6%80%81%E7%9A%84IsMatch%E6%96%B9%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text">3、静态的IsMatch方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81RegEx%E7%B1%BB%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">四、RegEx类的实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9B%BF%E6%8D%A2"><span class="toc-number">4.1.</span> <span class="toc-text">1.字符串替换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D"><span class="toc-number">4.2.</span> <span class="toc-text">2.字符串匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Match%E5%AE%9E%E4%BE%8B"><span class="toc-number">4.3.</span> <span class="toc-text">3、Match实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E5%86%8D%E6%AF%94%E5%A6%82%EF%BC%8C%E8%A7%A3%E7%A0%81gps%E7%9A%84GPRMC%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%8C%E5%8F%AA%E9%9C%80"><span class="toc-number">4.4.</span> <span class="toc-text">4、再比如，解码gps的GPRMC字符串，只需</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81System-Text-RegularExpressions%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="toc-number">5.</span> <span class="toc-text">五、System.Text.RegularExpressions命名空间的说明</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

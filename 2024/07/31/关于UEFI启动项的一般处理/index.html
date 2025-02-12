@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            关于UEFI启动项的一般处理 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/">关于UEFI启动项的一般处理</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=关于UEFI启动项的一般处理&url=https://frankbsd.github.io/frankbsd/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=关于UEFI启动项的一般处理&url=https://frankbsd.github.io/frankbsd/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/&title=关于UEFI启动项的一般处理" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=关于UEFI启动项的一般处理&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/&text=关于UEFI启动项的一般处理" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Windows/ >Windows</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="删除多余启动菜单"><a href="#删除多余启动菜单" class="headerlink" title="删除多余启动菜单"></a>删除多余启动菜单</h2><p>以管理员运行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> D:\Temp\Java&gt; bcdedit.exe /<span class="class"><span class="keyword">enum</span> <span class="title">firmware</span></span></span><br><span class="line"><span class="class"><span class="title">Firmware</span> <span class="title">Boot</span> <span class="title">Manager</span></span></span><br><span class="line"><span class="class">---------------------</span></span><br><span class="line"><span class="class"><span class="title">identifier</span></span>              &#123;fwbootmgr&#125;</span><br><span class="line">displayorder            &#123;bootmgr&#125;</span><br><span class="line">                        &#123;<span class="number">93</span>cee840<span class="literal">-f524-11db-af62-aa767141e6b3</span>&#125;</span><br><span class="line">                        &#123;<span class="number">93</span>cee841<span class="literal">-f524-11db-af62-aa767141e6b3</span>&#125;</span><br><span class="line">                        &#123;<span class="number">93</span>cee842<span class="literal">-f524-11db-af62-aa767141e6b3</span>&#125;</span><br><span class="line">                        &#123;<span class="number">93</span>cee844<span class="literal">-f524-11db-af62-aa767141e6b3</span>&#125;</span><br><span class="line">                        &#123;<span class="number">93</span>cee843<span class="literal">-f524-11db-af62-aa767141e6b3</span>&#125;</span><br><span class="line">timeout                 <span class="number">2</span></span><br><span class="line"></span><br><span class="line">Windows Boot Manager</span><br><span class="line"><span class="literal">--------------------</span></span><br><span class="line">identifier              &#123;bootmgr&#125;</span><br><span class="line">device                  partition=\Device\HarddiskVolume1</span><br><span class="line">path                    \EFI\Microsoft\Boot\bootmgfw.efi</span><br><span class="line">description             Windows Boot Manager</span><br><span class="line">locale                  en<span class="literal">-US</span></span><br><span class="line">inherit                 &#123;globalsettings&#125;</span><br><span class="line">default                 &#123;current&#125;</span><br><span class="line">displayorder            &#123;current&#125;</span><br><span class="line">toolsdisplayorder       &#123;memdiag&#125;</span><br><span class="line">timeout                 <span class="number">30</span></span><br><span class="line"></span><br><span class="line">Firmware Application (<span class="number">101</span>fffff)</span><br><span class="line"><span class="literal">-------------------------------</span></span><br><span class="line">identifier              &#123;<span class="number">93</span>cee840<span class="literal">-f524-11db-af62-aa767141e6b3</span>&#125;</span><br><span class="line">description             Primary Master CDRO</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是<code>path</code>这个参数，可以看出是否是你想要删除的引导项。例如<code>primeos</code>的路径就是<code>\EFI\android\xxxx</code>，<code>ubuntu</code>的路径是<code>\EFI\ubuntu\xxx</code>，下边会用到其中的<code>identifier</code>项。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bcdedit /export savebcd</span><br><span class="line"><span class="built_in">copy</span> savebcd newbcd</span><br></pre></td></tr></table></figure>
+
+<p>新建<code>rm.cmd</code>，并写入以下代码，注意后面的<code>&#123;&#125;</code>内的内容替换为我们需要删除的引导项的<code>identifier</code>。</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Bcdedit /store newbcd /delete &#123;<span class="number">93</span>cee841-f524-<span class="number">11</span>db-af62-aa767141e6b3&#125;</span><br><span class="line">Bcdedit /store newbcd /delete &#123;<span class="number">93</span>cee842-f524-<span class="number">11</span>db-af62-aa767141e6b3&#125;</span><br><span class="line">Bcdedit /store newbcd /delete &#123;<span class="number">93</span>cee843-f524-<span class="number">11</span>db-af62-aa767141e6b3&#125;</span><br><span class="line">Bcdedit /store newbcd /delete &#123;<span class="number">93</span>cee844-f524-<span class="number">11</span>db-af62-aa767141e6b3&#125;</span><br><span class="line">Bcdedit /store newbcd /delete &#123;<span class="number">8</span>b87c5a1-f2f2-<span class="number">11</span>db-<span class="number">9717</span>-f87ee6ea6002&#125;</span><br><span class="line">Bcdedit /store newbcd /delete &#123;<span class="number">8</span>b87c5a2-f2f2-<span class="number">11</span>db-<span class="number">9717</span>-f87ee6ea6002&#125;</span><br><span class="line">Bcdedit /store newbcd /delete &#123;<span class="number">8</span>b87c5a3-f2f2-<span class="number">11</span>db-<span class="number">9717</span>-f87ee6ea6002&#125;</span><br><span class="line">Bcdedit /store newbcd /delete &#123;<span class="number">8</span>b87c5a4-f2f2-<span class="number">11</span>db-<span class="number">9717</span>-f87ee6ea6002&#125;</span><br><span class="line">Bcdedit /import newbcd /clean</span><br></pre></td></tr></table></figure>
+
+<p>运行命令</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">copy</span> rm.<span class="built_in">cmd</span> C:\WINDOWS\system32\</span><br><span class="line">.\rm.<span class="built_in">cmd</span></span><br><span class="line">Bcdedit /enum firmware</span><br><span class="line"><span class="built_in">del</span> rm.<span class="built_in">cmd</span> newbcd savebcd</span><br></pre></td></tr></table></figure>
+
+<p>彻底删除<code>boot</code>分区里的多余引导文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">diskpart</span><br><span class="line">list disk  ;显示所有磁盘</span><br><span class="line">select disk 0 ;boot所在磁盘</span><br><span class="line">list partition ;显示当前磁盘所有分区</span><br><span class="line">select partition 1  ;boot所在分区</span><br><span class="line">assign letter=p  ;这样就可以通过命令进入该分区，进行命令删除操作了</span><br><span class="line">remove letter=p  ;隐藏分区</span><br></pre></td></tr></table></figure>
+
+<p>参考：<br>a. <a target="_blank" rel="noopener" href="https://blog.csdn.net/fuyangruc/article/details/107455038">彻底删除UEFI启动项的方法</a><br>b. <a target="_blank" rel="noopener" href="https://blog.csdn.net/JohnsonSmile/article/details/89289469">window10下彻底删除多余引导项的终极方法</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/%E5%85%B3%E4%BA%8EWindows-64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%87%8D%E5%AE%9A%E5%90%91/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>关于Windows 64位系统的文件系统重定向</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E5%BC%82%E6%AD%A5%E6%96%B9%E6%B3%95%E7%9A%84%E6%96%B9%E5%BC%8F/">
+        <span>同步方法调用异步方法的方式</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/%E5%85%B3%E4%BA%8EUEFI%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9A%84%E4%B8%80%E8%88%AC%E5%A4%84%E7%90%86/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%A4%9A%E4%BD%99%E5%90%AF%E5%8A%A8%E8%8F%9C%E5%8D%95"><span class="toc-number">1.</span> <span class="toc-text">删除多余启动菜单</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

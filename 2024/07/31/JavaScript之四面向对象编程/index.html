@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            JavaScript之四面向对象编程 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">JavaScript之四面向对象编程</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=JavaScript之四面向对象编程&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=JavaScript之四面向对象编程&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/&title=JavaScript之四面向对象编程" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=JavaScript之四面向对象编程&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/&text=JavaScript之四面向对象编程" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <br />
+  
+<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1022910821149312">廖雪峰老师—-JavaScript教程</a>，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</h2><br />
+<br />
+<br />
+  
+<ol>
+<li><p>标准对象<br>在JavaScript的世界里，一切都是对象。<br>用<code>typeof</code>操作符获取对象的类型，它总是返回一个字符串<br>特别注意<code>null</code>的类型是<code>object</code>，<code>Array</code>的类型也是<code>object</code>，如果我们用<code>typeof</code>将无法区分出<code>null</code>、<code>Array</code>和通常意义上的<code>object</code>——<code>&#123;&#125;</code>。</p>
+</li>
+<li><p>包装对象<br>在JavaScript中，也区分标准类型和它的包装类型。包装对象用<code>new</code>创建，即类型<code>object</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var n = new Number(123); // 123,生成了新的包装类型</span><br><span class="line">var b = new Boolean(true); // true,生成了新的包装类型</span><br><span class="line">var s = new String(&#x27;str&#x27;); // &#x27;str&#x27;,生成了新的包装类型</span><br></pre></td></tr></table></figure>
+<p>所以闲的蛋疼也不要使用包装对象！尤其是针对<code>string</code>类型！！！<br>如果我们在使用<code>Number</code>、<code>Boolean</code>和<code>String</code>时，没有写<code>new</code>，此时，<code>Number()</code>、<code>Boolean</code>和<code>String()</code>被当做普通函数，把任何类型的数据转换为<code>number</code>、<code>boolean</code>和<code>string</code>类型（注意不是其包装类型）</p>
+</li>
+</ol>
+<p>总结一下，有这么几条规则需要遵守：</p>
+<ul>
+<li>不要使用<code>new Number()</code>、<code>new Boolean()</code>、<code>new String()</code>创建包装对象；</li>
+<li>用<code>parseInt()</code>或<code>parseFloat()</code>来转换任意类型到<code>number</code>；</li>
+<li>用<code>String()</code>来转换任意类型到<code>string</code>，或者直接调用某个对象的<code>toString()</code>方法；</li>
+<li>通常不必把任意类型转换为<code>boolean</code>再判断，因为可以直接写<code>if (myVar) &#123;...&#125;</code>；</li>
+<li><code>typeof</code>操作符可以判断出<code>number</code>、<code>boolean</code>、<code>string</code>、<code>function</code>和<code>undefined</code>；</li>
+<li>判断<code>Array</code>要使用<code>Array.isArray(arr)</code>；</li>
+<li>判断<code>null</code>请使用<code>myVar === null</code>；</li>
+<li>判断某个全局变量是否存在用<code>typeof window.myVar === &#39;undefined&#39;</code>；</li>
+<li>函数内部判断某个变量是否存在用<code>typeof myVar === &#39;undefined&#39;</code>。</li>
+</ul>
+<p>最后有细心的同学指出，任何对象都有<code>toString()</code>方法吗？<code>null</code>和<code>undefined</code>就没有！确实如此，这两个特殊值要除外，虽然<code>null</code>还伪装成了<code>object</code>类型。<br><code>number</code>对象调用<code>toString()</code>报<code>SyntaxError</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">123.toString(); // SyntaxError</span><br></pre></td></tr></table></figure>
+<p>遇到这种情况，要特殊处理一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">123..toString(); // &#x27;123&#x27;, 注意是两个点！</span><br><span class="line">(123).toString(); // &#x27;123&#x27;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Date</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var d1 = new Date(2015, 5, 19, 20, 15, 30, 123);</span><br><span class="line">var d2 = Date.parse(&#x27;2015-06-24T19:49:22.875+08:00&#x27;);  // 1435146562875</span><br><span class="line">var d3 = new Date(d2); // Wed Jun 24 2015 19:49:22 GMT+0800 (CST)</span><br></pre></td></tr></table></figure>
+<p>JavaScript的月份范围用整数表示是0~11，0表示一月，1表示二月……<br>Date对象表示的时间总是按浏览器所在时区显示的<br>时间戳是一个自增的整数，它表示从1970年1月1日零时整的GMT时区开始的那一刻，到现在的毫秒数。时间戳可以精确地表示一个时刻，并且与时区无关。</p>
+<ol start="4">
+<li>RegExp<br>单个字符</li>
+</ol>
+<ul>
+<li><code>\d</code>可以匹配一个数字，</li>
+<li><code>\w</code>可以匹配一个字母或数字,</li>
+<li><code>.</code>可以匹配任意字符,</li>
+<li><code>\s</code>可以匹配一个空格（也包括Tab等空白符）</li>
+</ul>
+<p>变长的字符</p>
+<ul>
+<li><code>*</code>表示任意个字符（包括0个），</li>
+<li><code>+</code>表示至少一个字符，</li>
+<li><code>?</code>表示0个或1个字符，</li>
+<li><code>&#123;n&#125;</code>表示n个字符，</li>
+<li><code>&#123;n,m&#125;</code>表示n-m个字符</li>
+</ul>
+<p>特殊字符，在正则表达式中，要用<code>&#39;\&#39;</code>转义</p>
+<ul>
+<li><code>&#39;-&#39;</code></li>
+</ul>
+<p>进阶  </p>
+<ul>
+<li><code>[]</code>表示范围</li>
+<li><code>A|B</code>可以匹配A或B</li>
+<li><code>^</code>表示行的开头</li>
+<li><code>$</code>表示行的结束</li>
+<li><code>()</code>表示的就是要提取的分组（Group）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//匹配&#x27;ABC-001&#x27;或者&#x27;ABC\-001&#x27;,re1=/ABC-001/也可以匹配这两项</span><br><span class="line">var re1 = /ABC\-001/;  //  &quot;/正则表达式/&quot;写出来</span><br><span class="line">var re2 = new RegExp(&#x27;ABC\\-001&#x27;);  // new RegExp(&#x27;正则表达式&#x27;)创建一个RegExp对象。</span><br><span class="line">re1 .test(&#x27;ABC-001&#x27;)    // true</span><br><span class="line">re1 .test(&#x27;ABC\-001&#x27;)  // true</span><br><span class="line">&#x27;a,b;; c  d&#x27;.split(/[\s\,\;]+/); // [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;]</span><br><span class="line">var re = /^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$/;</span><br><span class="line">re.exec(&#x27;010-12345&#x27;); // [&#x27;010-12345&#x27;, &#x27;010&#x27;, &#x27;12345&#x27;]，也可以分组&#x27;010\-12345&#x27;</span><br><span class="line">re.exec(&#x27;010 12345&#x27;); // null</span><br></pre></td></tr></table></figure>
+
+<p>贪婪匹配和非贪婪匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var re = /^(\d+)(0*)$/;</span><br><span class="line">re.exec(&#x27;102300&#x27;); // [&#x27;102300&#x27;, &#x27;102300&#x27;, &#x27;&#x27;],贪婪匹配</span><br><span class="line">var re = /^(\d+?)(0*)$/;</span><br><span class="line">re.exec(&#x27;102300&#x27;); // [&#x27;102300&#x27;, &#x27;1023&#x27;, &#x27;00&#x27;]，加个?可以让\d+采用非贪婪匹配</span><br></pre></td></tr></table></figure>
+
+<p>特殊标志</p>
+<ul>
+<li>g标志，表示全局匹配</li>
+<li>i标志，表示忽略大小写，</li>
+<li>m标志，表示执行多行匹配</li>
+</ul>
+<p>多次执行exec()方法来搜索一个匹配的字符串。每次运行exec()，正则表达式本身会更新lastIndex属性，表示上次匹配到的最后索引<br>使用<code>/^...$/</code>，那样只会最多匹配一次</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var r1 = /test/g;</span><br><span class="line">var r2 = new RegExp(&#x27;test&#x27;, &#x27;g&#x27;);</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>JSON<br>JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。为道格拉斯·克罗克福特（Douglas Crockford）2002年发明。<br>字符集必须是<code>UTF-8</code>，JSON的字符串也规定必须用双引号<code>&quot;&quot;</code>，<code>Object</code>的键也必须用双引号<code>&quot;&quot;</code>。</li>
+</ol>
+<p>数据类型：</p>
+<ul>
+<li><code>number</code>：和JavaScript的<code>number</code>完全一致；</li>
+<li><code>boolean</code>：就是JavaScript的<code>true</code>或<code>false</code>；</li>
+<li><code>string</code>：就是JavaScript的<code>string</code>；</li>
+<li><code>null</code>：就是JavaScript的<code>null</code>；</li>
+<li><code>array</code>：就是JavaScript的Array表示方式——<code>[]</code>；</li>
+<li><code>object</code>：就是JavaScript的<code>&#123; ... &#125;</code>表示方式。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">console.log(JSON.stringify(xiaoming));</span><br><span class="line"></span><br><span class="line">// 第二个参数用于控制如何筛选对象的键值</span><br><span class="line">console.log(JSON.stringify(xiaoming, null, &#x27;  &#x27;));</span><br><span class="line">// 传入Array,输出指定的属性</span><br><span class="line">console.log(JSON.stringify(xiaoming, [&#x27;name&#x27;, &#x27;skills&#x27;], &#x27;  &#x27;));</span><br><span class="line">// 传入一个函数</span><br><span class="line">function convert(key, value) &#123;</span><br><span class="line">    if (typeof value === &#x27;string&#x27;) &#123;</span><br><span class="line">        return value.toUpperCase();</span><br><span class="line">    &#125;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br><span class="line">console.log(JSON.stringify(xiaoming, convert, &#x27;  &#x27;));</span><br></pre></td></tr></table></figure>
+
+<p>自定义<code>toJSON()</code>方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    age: 14,</span><br><span class="line">    gender: true,</span><br><span class="line">    height: 1.65,</span><br><span class="line">    grade: null,</span><br><span class="line">    &#x27;middle-school&#x27;: &#x27;\&quot;W3C\&quot; Middle School&#x27;,</span><br><span class="line">    skills: [&#x27;JavaScript&#x27;, &#x27;Java&#x27;, &#x27;Python&#x27;, &#x27;Lisp&#x27;],</span><br><span class="line">    toJSON: function () &#123;</span><br><span class="line">        return &#123; // 只输出name和age，并且改变了key：</span><br><span class="line">            &#x27;Name&#x27;: this.name,</span><br><span class="line">            &#x27;Age&#x27;: this.age</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(JSON.stringify(xiaoming)); // &#x27;&#123;&quot;Name&quot;:&quot;小明&quot;,&quot;Age&quot;:14&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>反序列化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JSON.parse(&#x27;&#123;&quot;name&quot;:&quot;小明&quot;,&quot;age&quot;:14&#125;&#x27;)</span><br><span class="line">JSON.parse(&#x27;true&#x27;); </span><br></pre></td></tr></table></figure>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>JavaScript之五浏览器</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%89%E6%A0%87%E5%87%86%E5%AF%B9%E8%B1%A1/">
+        <span>JavaScript之三标准对象</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%8C%E8%AF%A5%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%E6%9D%A5%E8%87%AA%E5%BB%96%E9%9B%AA%E5%B3%B0%E8%80%81%E5%B8%88%E2%80%94-JavaScript%E6%95%99%E7%A8%8B%EF%BC%8C%E6%AC%A2%E8%BF%8E%E8%AE%BF%E9%97%AE%E5%8E%9F%E5%88%9B%E8%80%85%E7%BD%91%E7%AB%99%EF%BC%8C%E6%9C%AC%E5%A4%84%E4%BB%85%E4%BB%85%E4%BD%9C%E4%B8%BA%E9%98%B2%E6%AD%A2%E8%87%AA%E5%B7%B1%E9%81%97%E5%BF%98%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

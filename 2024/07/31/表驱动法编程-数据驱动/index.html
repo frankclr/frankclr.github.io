@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            表驱动法编程--数据驱动 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/">表驱动法编程--数据驱动</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-04
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=表驱动法编程--数据驱动&url=https://frankbsd.github.io/frankbsd/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=表驱动法编程--数据驱动&url=https://frankbsd.github.io/frankbsd/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/&title=表驱动法编程--数据驱动" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=表驱动法编程--数据驱动&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/&text=表驱动法编程--数据驱动" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/CPP/ >CPP</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p><strong>表驱动方法（Table-Driven Methods）</strong>，在《Unix 编程艺术》中有提到，《代码大全》的第十八章对此进行了详细地讲解。</p>
+<p>表驱动法是一种从表里查找信息而不是使用逻辑语句（<code>if</code>或<code>switch</code>）的编程模型。</p>
+<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>先通过一个简单的例子体验下，在某些情况下，如果不使用表驱动方法，代码会如何地难看。</p>
+<p>假设让你实现一个返回每个月天数的函数（为简单起见不考虑闰年）。</p>
+<p>初级码农的笨方法是马上摆出 12 副威武雄壮的 <code>if-else</code> 组合拳：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">iGetMonthDays</span>(<span class="params"><span class="built_in">int</span> iMonth</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> iDays;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(<span class="number">1</span> == iMonth) &#123;iDays = <span class="number">31</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">2</span> == iMonth) &#123;iDays = <span class="number">28</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">3</span> == iMonth) &#123;iDays = <span class="number">31</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">4</span> == iMonth) &#123;iDays = <span class="number">30</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">5</span> == iMonth) &#123;iDays = <span class="number">31</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">6</span> == iMonth) &#123;iDays = <span class="number">30</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">7</span> == iMonth) &#123;iDays = <span class="number">31</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">8</span> == iMonth) &#123;iDays = <span class="number">31</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">9</span> == iMonth) &#123;iDays = <span class="number">30</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">10</span> == iMonth) &#123;iDays = <span class="number">31</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">11</span> == iMonth) &#123;iDays = <span class="number">30</span>;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">12</span> == iMonth) &#123;iDays = <span class="number">31</span>;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> iDays;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>稍微机灵点的码农发现每月天数无外乎 28、30、31 三种，或许会用 <code>switch-case</code> “裁剪”下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">iGetMonthDays</span>(<span class="params"><span class="built_in">int</span> iMonth</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> iDays;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">switch</span> (iMonth) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">12</span>:&#123;iDays = <span class="number">31</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:&#123;iDays = <span class="number">28</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">9</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">11</span>:&#123;iDays = <span class="number">30</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> iDays;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这两种方法充斥了大量的逻辑判断，还凭空冒出了一大堆<code>1，2，…，11，12</code>这样的 <code>Magic Number</code>（魔鬼数字公然出现在程序里是很 ugly 的做法），不利于代码的维护与扩展。</p>
+<p>表驱动处理起来就赏心悦目得多了：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="built_in">int</span> monthDays[<span class="number">12</span>] = &#123;<span class="number">31</span>,<span class="number">28</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">31</span>&#125;;</span><br><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">iGetMonthDays</span>(<span class="params"><span class="built_in">int</span> iMonth</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> monthDays[(iMonth - <span class="number">1</span>)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>表驱动可以使你的代码更简洁，结构更加灵活，多用于逻辑性不强但是分支多的情况。</p>
+<h3 id="如何使用表驱动法"><a href="#如何使用表驱动法" class="headerlink" title="如何使用表驱动法?"></a>如何使用表驱动法?</h3><p>需要明确两个关键问题：表的形式及表中放什么内容</p>
+<ul>
+<li>表形式可以为一维数组、二维数组和结构体数组。</li>
+<li>表中可以存放数值、字符串或函数指针等数据。</li>
+</ul>
+<h3 id="如何去访问表"><a href="#如何去访问表" class="headerlink" title="如何去访问表?"></a>如何去访问表?</h3><p>下面介绍表的三种访问方式：</p>
+<ul>
+<li><h4 id="直接访问"><a href="#直接访问" class="headerlink" title="直接访问"></a>直接访问</h4><p>直接根据“键”来获得“值”，给定下标 index，然后array[index]就获得数组在相应下标处的数值。例如前面这个根据月份取天数的例子。</p>
+<p><img src="/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/key-value.png" alt="Key-Value"></p>
+</li>
+<li><h4 id="索引访问"><a href="#索引访问" class="headerlink" title="索引访问"></a>索引访问</h4><p><img src="/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/index.png" alt="索引访问"></p>
+<p>  它适用于这样的情况：假设你经营一家商店，有 100 种商品，每种商品都有一个 ID 号，但很多商品的描述都差不多，所以只有 30 条不同的描述，如何建立建立商品与商品描述的表？<br>  还是同上面做法来一一对应吗？那样描述会扩充到 100 个，会有 70 个描述是重复的！太浪费了。<br>  方法是建立一个 100 长的索引和 30 长的描述，然后这些索引指向相应的描述（不同的索引可以指向相同的描述），这样就解决了表数据冗余的问题啦。</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">product_t</span> &#123;</span><br><span class="line">    <span class="type">char</span> * id;</span><br><span class="line">    <span class="type">int</span> desc_index;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span> * desc[] = &#123;</span><br><span class="line">    <span class="string">&quot;description_1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;description_2&quot;</span>,</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&quot;description_29&quot;</span>,</span><br><span class="line">    <span class="string">&quot;description_30&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">product_t</span> goods [] = &#123;</span><br><span class="line">    &#123;<span class="string">&quot;id_1&quot;</span>, <span class="number">3</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;id_2&quot;</span>, <span class="number">1</span>&#125;,</span><br><span class="line">    ...</span><br><span class="line">    &#123;<span class="string">&quot;id_99&quot;</span>, <span class="number">12</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&quot;id_100&quot;</span>, <span class="number">5</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">const</span> <span class="type">char</span>* <span class="title">desc_product</span> <span class="params">(<span class="type">const</span> <span class="type">char</span>* id)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="type">product_t</span> &amp; p : goods) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">strcmp</span>(p.id, id) == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> desc[p.desc_index - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  <br>
+</li>
+<li><h4 id="阶梯访问"><a href="#阶梯访问" class="headerlink" title="阶梯访问"></a>阶梯访问</h4><table>
+<thead>
+<tr>
+<th>范围上限</th>
+<th>范围下限</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>90</td>
+<td>A</td>
+</tr>
+<tr>
+<td>90</td>
+<td>80</td>
+<td>B</td>
+</tr>
+<tr>
+<td>80</td>
+<td>70</td>
+<td>C</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
+<p>例子：将百分制成绩转成五级分制（我们用的优、良、中、合格、不合格，西方用的 A、B、C、D和F），假定转换关系:</p>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[90,100]</td>
+<td>A</td>
+</tr>
+<tr>
+<td>[80,90)</td>
+<td>B</td>
+</tr>
+<tr>
+<td>[70,80)</td>
+<td>C</td>
+</tr>
+<tr>
+<td>[60,70)</td>
+<td>D</td>
+</tr>
+<tr>
+<td>[0,60)</td>
+<td>E</td>
+</tr>
+</tbody></table>
+<p>如何用表格表示这些范围？</p>
+<p>你当然可以用第一种直接访问的方法：申请一个 100 长的表，然后在这个表中填充相应的等级。很明显，也会浪费大量空间，有没有更好的方法？</p>
+<p>对于这种“某个范围区间内，对应某个值”的逻辑规则，可用阶梯访问的方式。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span> gradeTable[] = &#123;</span><br><span class="line">    <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;F&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> downLimit[] = &#123;</span><br><span class="line">    <span class="number">90</span>, <span class="number">80</span>, <span class="number">70</span>, <span class="number">60</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">degree</span><span class="params">(<span class="type">int</span> score)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> gradeLevel = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> lowestDegree = gradeTable[<span class="built_in">sizeof</span>(gradeTable)/<span class="built_in">sizeof</span>(gradeTable[<span class="number">0</span>]) - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里可用二分查找优化</span></span><br><span class="line">    <span class="keyword">while</span> (gradeTable[gradeLevel] != lowestDegree) &#123;</span><br><span class="line">        <span class="keyword">if</span>(score &lt; downLimit[gradeLevel]) &#123;</span><br><span class="line">            ++ gradeLevel;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> gradeTable[gradeLevel];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将来如果等级规则变了（比如 85～100 分为等级 A，或添加 50～60 分为等级 E），只需要修改 gradeTable 和 downLimit 表就行，degree 函数可以保持一行都不改动。</p>
+<p>更进一步地，gradeTable 和 downLimit 表还可以配置文件的形式表示，主程序从外部文件 load 进来就行，程序灵活性大大增加。</p>
+</li>
+</ul>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p>  伟大的 C 语言大师 Rob Pike 有句话说的好：</p>
+<blockquote>
+<p>数据压倒一切。<br>如果选择了正确的数据结构并把一切组织的井井有条，正确的算法就不言自明。编程的核心是数据结构，而不是算法。</p>
+</blockquote>
+<p>  <em><strong>对人类来说，数据比编程逻辑更容易驾驭。在复杂数据和复杂代码中选择，宁可选择前者。</strong></em></p>
+<p>  更进一步，在设计中，应该主动将代码的复杂度转移到数据中去。</p>
+<p>  这里谈到了 Unix 哲学之分离原则：<strong>策略同机制分离</strong></p>
+<ul>
+<li>机制，即提供的功能。</li>
+<li>策略，即如何使用功能。</li>
+</ul>
+<p>以百分制转五级分制为例，机制就是 degree 函数：你给一个百分制分数给它，它吐出来一个五级分制给你。策略就是gradeTable 和 downLimit 这两个表，它规定了哪个区间的分数对应哪个等级。<br>从 degree 的实现可以看出:对机制而言，策略是透明的（degree 完全看不到 gradeTable 和 downLimit 这两个表的内部规则）。<br>将两者分离，可以使机制(degree)相对保持稳定，而同时支持策略(表)的变化。</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/%E6%9F%A5%E7%9C%8B%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>查看端口占用</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/%E4%BF%9D%E6%8C%81fork%E4%B9%8B%E5%90%8E%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%92%8C%E4%B8%8A%E6%B8%B8%E5%90%8C%E6%AD%A5/">
+        <span>保持fork之后的项目和上游同步</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95%E7%BC%96%E7%A8%8B-%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What"><span class="toc-number">1.</span> <span class="toc-text">What</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why"><span class="toc-number">2.</span> <span class="toc-text">Why</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How"><span class="toc-number">3.</span> <span class="toc-text">How</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">如何使用表驱动法?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8E%BB%E8%AE%BF%E9%97%AE%E8%A1%A8"><span class="toc-number">3.2.</span> <span class="toc-text">如何去访问表?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE"><span class="toc-number">3.2.1.</span> <span class="toc-text">直接访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E8%AE%BF%E9%97%AE"><span class="toc-number">3.2.2.</span> <span class="toc-text">索引访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B6%E6%A2%AF%E8%AE%BF%E9%97%AE"><span class="toc-number">3.2.3.</span> <span class="toc-text">阶梯访问</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Review"><span class="toc-number">4.</span> <span class="toc-text">Review</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

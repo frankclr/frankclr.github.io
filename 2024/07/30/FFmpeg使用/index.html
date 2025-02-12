@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            FFmpeg使用 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/">FFmpeg使用</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-11-11
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=FFmpeg使用&url=https://frankbsd.github.io/frankbsd/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=FFmpeg使用&url=https://frankbsd.github.io/frankbsd/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/&title=FFmpeg使用" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=FFmpeg使用&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/&text=FFmpeg使用" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/FFmpeg/ >FFmpeg</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg  <span class="literal">-i</span> test.wav <span class="number">2</span>&gt;&amp;<span class="number">1</span>|grep <span class="string">&#x27;Duration&#x27;</span>|cut <span class="literal">-d</span> <span class="string">&#x27; &#x27;</span> <span class="operator">-f</span> <span class="number">4</span> |sed s/,//       <span class="comment"># 获取文件长度</span></span><br><span class="line">ffmpeg <span class="operator">-f</span> concat <span class="literal">-i</span> playlist.txt <span class="literal">-c</span> <span class="built_in">copy</span> output.mp4                       <span class="comment"># 合并文件，`playlist.txt`格式附后</span></span><br><span class="line">ffmpeg <span class="literal">-i</span> video.mp4 <span class="literal">-i</span> audio.mp3 <span class="literal">-vcodec</span> <span class="built_in">copy</span> <span class="literal">-acodec</span> <span class="built_in">copy</span> output.mp4     <span class="comment"># 合并音频视频</span></span><br><span class="line">ffmpeg <span class="literal">-i</span> <span class="string">&quot;url.m3u8&quot;</span> <span class="literal">-c</span> <span class="built_in">copy</span> output.mp4                                   <span class="comment"># 下载串流影片</span></span><br><span class="line"><span class="comment"># 截图,每秒3张，截图质量控制`-qscale:v 1`可选值为`1-31`,当设为`1`时，必须加上选项`-qmin 1`,因为默认`-qmin 2`</span></span><br><span class="line">ffmpeg <span class="literal">-i</span> xxx.mp4 <span class="literal">-qscale</span>:v <span class="number">1</span> <span class="literal">-qmin</span> <span class="number">1</span>  <span class="literal">-r</span> <span class="number">3</span> output_%<span class="number">03</span>d.jpg</span><br><span class="line">ffplay <span class="literal">-i</span> rtmp://ip:port/stream <span class="literal">-fflags</span> nobuffer <span class="literal">-analyzeduration</span> <span class="number">1000</span>    <span class="comment"># 减少rtmp视频延迟</span></span><br><span class="line">ffplay <span class="literal">-i</span> rtsp://user:password@ip:port/stream   <span class="literal">-analyzeduration</span> <span class="number">1000</span>     <span class="comment"># 减少rtsp视频延迟</span></span><br><span class="line"><span class="comment"># ts 是流，没有索引的，每次快进都要二分搜索找位置，这是设计之初就决定的，快进或定位到某点播放卡顿无解。</span></span><br><span class="line"><span class="comment"># 使用 ffmpeg 重新复制打包 mp4，不需要编码，速度很快。</span></span><br><span class="line">ffmpeg <span class="literal">-i</span> test.ts <span class="literal">-acodec</span> <span class="built_in">copy</span> <span class="literal">-vcodec</span> <span class="built_in">copy</span> <span class="operator">-f</span> mp4 test.mp4</span><br><span class="line">ffmpeg <span class="literal">-i</span> input.wav <span class="literal">-filter</span>:a <span class="string">&quot;volume=0.5&quot;</span> output.wav                     <span class="comment"># 调整音量</span></span><br><span class="line">ffmpeg <span class="literal">-i</span> input.mp4 <span class="literal">-c</span> <span class="built_in">copy</span> <span class="literal">-map</span> <span class="number">0</span> output.mp4                             <span class="comment"># 修复MP4时间轴损坏</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 推流</span></span><br><span class="line">ffmpeg <span class="literal">-re</span> <span class="literal">-i</span> rtmp://<span class="number">58.200</span>.<span class="number">131.2</span>:<span class="number">1935</span>/livetv/cctv1 <span class="literal">-c</span> <span class="built_in">copy</span> <span class="operator">-f</span> flv rtmp://<span class="number">10.211</span>.<span class="number">55.5</span>:<span class="number">1985</span>/myapp/testv  </span><br><span class="line">ffmpeg <span class="literal">-re</span> <span class="literal">-stream_loop</span> <span class="literal">-1</span> <span class="literal">-i</span> D:\test_video.mp4 <span class="literal">-vcodec</span> libx264 <span class="literal">-acodec</span> aac <span class="operator">-f</span> flv rtmp://<span class="number">192.168</span>.<span class="number">1.100</span>:<span class="number">1935</span>/live62  <span class="comment"># 推mp4  &quot;-stream_loop -1&quot; 无限循环读取 </span></span><br><span class="line">ffmpeg <span class="operator">-f</span> avfoundation <span class="literal">-i</span> <span class="string">&quot;1&quot;</span> <span class="literal">-vcodec</span> libx264 <span class="literal">-preset</span> ultrafast <span class="literal">-acodec</span> libfaac <span class="operator">-f</span> flv rtmp://localhost:<span class="number">1935</span>/rtmplive/home  <span class="comment"># 录制桌面并推送</span></span><br></pre></td></tr></table></figure>
+
+<p><code>playlist.txt</code></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file  &#x27;17247226_part1.flv&#x27;</span><br><span class="line">file  &#x27;17247226_part2.flv&#x27;</span><br><span class="line">file  &#x27;17247226_part3.flv&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://minuo.org/yt-dlp-complete-guide-2024">yt-dlp使用</a></p>
+<p>使用Cookies</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要浏览器先登录相关网站</span></span><br><span class="line">yt<span class="literal">-dlp</span>.exe <span class="literal">-vU</span>  <span class="literal">--cookies-from-browser</span> firefox:<span class="string">&quot;C:\Users\FRANK\AppData\Roaming\Mozilla\Firefox\Profiles\7ypo291s.dev-edition-default\&quot;</span>  <span class="string">&#x27;url&#x27;</span></span><br><span class="line"><span class="comment"># chrome 无效，不知是bug，还是设置无效</span></span><br><span class="line">yt<span class="literal">-dlp</span>.exe <span class="literal">-vU</span>  <span class="literal">--cookies-from-browser</span> chrome:<span class="string">&quot;C:\Users\FRANK\AppData\Local\Google\Chrome\User Data\Default\Network\Cookies&quot;</span>  <span class="string">&#x27;url&#x27;</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/30/ELement%E6%89%93%E5%8C%85%E5%88%B0%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E5%88%86%E6%A0%B7%E5%BC%8F%E4%B8%A2%E5%A4%B1/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>ELement打包到生产环境部分样式丢失</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/30/Docker%E8%BF%90%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93/">
+        <span>Docker运行数据库</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

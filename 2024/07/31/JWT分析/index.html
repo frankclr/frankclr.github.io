@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            JWT分析 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/JWT%E5%88%86%E6%9E%90/">JWT分析</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=JWT分析&url=https://frankbsd.github.io/frankbsd/2024/07/31/JWT%E5%88%86%E6%9E%90/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=JWT分析&url=https://frankbsd.github.io/frankbsd/2024/07/31/JWT%E5%88%86%E6%9E%90/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/07/31/JWT%E5%88%86%E6%9E%90/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/07/31/JWT%E5%88%86%E6%9E%90/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/07/31/JWT%E5%88%86%E6%9E%90/&title=JWT分析" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=JWT分析&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/07/31/JWT%E5%88%86%E6%9E%90/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/07/31/JWT%E5%88%86%E6%9E%90/&text=JWT分析" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JWT/ >JWT</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p><a target="_blank" rel="noopener" href="https://learnku.com/articles/17883">原文</a></p>
+<p>本篇文章不讨论 Laravel 中 JWT 这个怎么使用，要这方面内容的可以看我另一篇文章 <a target="_blank" rel="noopener" href="https://learnku.com/articles/10885/full-use-of-jwt">JWT 完整使用详解</a> 。</p>
+<p>在此我要从一个更深的层次来探讨 JWT 在实际运用中的使用以及其优缺点，以及 JWT 和 Oauth 2.0 这两者到底有什么差别和联系。</p>
+<p>首先我们从 Token 入手，再联系到 JWT，然后分析 JWT 的优缺点和使用场景，最后再联系到 Oauth2.0。</p>
+<h3 id="一、Token"><a href="#一、Token" class="headerlink" title="一、Token"></a>一、Token</h3><p>token 是一串字符串，通常因为作为鉴权凭据，最常用的使用场景是 API 鉴权。</p>
+<h4 id="1-API-鉴权"><a href="#1-API-鉴权" class="headerlink" title="1. API 鉴权"></a>1. API 鉴权</h4><p>那么 API 鉴权一般有几种方式呢？我大概整理了如下：</p>
+<h5 id="cookie-session"><a href="#cookie-session" class="headerlink" title="cookie + session"></a>cookie + session</h5><p>和平常 web 登陆一样的鉴权方式，很常见，不再赘述。</p>
+<h5 id="HTTP-Basic"><a href="#HTTP-Basic" class="headerlink" title="HTTP Basic"></a>HTTP Basic</h5><p>将账号和密码拼接然后 base64 编码加到 header 头中。很显然，因为账号和密码几乎是『明文』传输的，而且每次请求都传，安全性可想而知。</p>
+<h5 id="HTTP-Digest"><a href="#HTTP-Digest" class="headerlink" title="HTTP Digest"></a>HTTP Digest</h5><p>将账号和密码加上其他一些信息拼接然后取摘要加到 header 头中。这个安全性比上面要好一点，因为如果是取摘要的话，即使信息段被截取，也无法轻易破解出来（当然也是有破解的可能）。</p>
+<p>不过其实最大的问题还是：每次请求都要对账号、密码取一次摘要，也就是说每次请求都要有账号和密码，也就是说账号和密码要么缓存一下，要么就每次请求要去用户输一次密码，这样显然不合适。同样，上面的 Basic 也存在这样的问题。</p>
+<h5 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h5><p>token 通过一次登录验证，得到一个鉴权字符串，然后以后带着这个鉴权字符串进行后续操作，这样就可以解决每次请求都要带账号密码的问题，而且也不需要反复使用账号和密码。</p>
+<p>所以我们接下来主要探讨 token 相对于 Cookie + Session 的认证方式有什么优势呢？</p>
+<h4 id="2-Token-的优势"><a href="#2-Token-的优势" class="headerlink" title="2. Token 的优势"></a>2. Token 的优势</h4><p>token 相对于 Cookie + Session 的优点，主要有下面两个：</p>
+<h5 id="CSRF-攻击"><a href="#CSRF-攻击" class="headerlink" title="CSRF 攻击"></a>CSRF 攻击</h5><p>这个原理不多做介绍，构成这个攻击的原因，就在于 Cookie + Session 的鉴权方式中，鉴权数据（cookie 中的 session_id）是由浏览器自动携带发送到服务端的，借助这个特性，攻击者就可以通过让用户误点攻击链接，达到攻击效果。而 token 是通过客户端本身逻辑作为动态参数加到请求中的，token 也不会轻易泄露出去，因此 token 在 CSRF 防御方面存在天然优势。</p>
+<h5 id="适合移动应用"><a href="#适合移动应用" class="headerlink" title="适合移动应用"></a>适合移动应用</h5><p>移动端上不支持 cookie，而 token 只要客户端能够进行存储就能够使用，因此 token 在移动端上也具有优势。</p>
+<h4 id="3-Token-的种类"><a href="#3-Token-的种类" class="headerlink" title="3. Token 的种类"></a>3. Token 的种类</h4><p>一般来说 token 主要三种：</p>
+<ul>
+<li>自定义的 token：开发者根据业务逻辑自定义的 token</li>
+<li>JWT：JSON Web Token，定义在 RFC 7519 中的一种 token 规范</li>
+<li>Oauth2.0：定义在 RFC 6750 中的一种授权规范，但这其实并不是一种 token，只是其中也有用到 token<br>以上，我仔细介绍了 API 常用的鉴权方式，以及 token 相对于 cookie + session 的优点。然后接下来仔细分析 JWT。</li>
+</ul>
+<h3 id="二、JWT-的组成和优势"><a href="#二、JWT-的组成和优势" class="headerlink" title="二、JWT 的组成和优势"></a>二、JWT 的组成和优势</h3><p>JWT 全称 JSON Web Tokens ，是一种规范化的 token。可以理解为对 token 这一技术提出一套规范，是在 RFC 7519 中提出的。</p>
+<h4 id="1-组成"><a href="#1-组成" class="headerlink" title="1. 组成"></a>1. 组成</h4><p>一个 JWT token 是一个字符串，它由三部分组成，头部、载荷与签名，中间用 . 分隔，例如：xxxxx.yyyyy.zzzzz</p>
+<h5 id="头部（header）"><a href="#头部（header）" class="headerlink" title="头部（header）"></a>头部（header）</h5><p>头部通常由两部分组成：令牌的类型（即 JWT）和正在使用的签名算法（如 HMAC SHA256 或 RSA.）。<br>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;alg&quot;: &quot;HS256&quot;,</span><br><span class="line">  &quot;typ&quot;: &quot;JWT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后用 <code>Base64Url</code> 编码得到头部，即<code>xxxxx</code>。</p>
+<h5 id="载荷（Payload）"><a href="#载荷（Payload）" class="headerlink" title="载荷（Payload）"></a>载荷（Payload）</h5><p>载荷中放置了 token 的一些基本信息，以帮助接受它的服务器来理解这个 token。同时还可以包含一些自定义的信息，用户信息交换。</p>
+<p>载荷的属性也分三类：</p>
+<ul>
+<li>预定义（Registered）</li>
+<li>公有（public）</li>
+<li>私有（private）</li>
+<li>预定义的载荷<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;sub&quot;: &quot;1&quot;,</span><br><span class="line">  &quot;iss&quot;: &quot;http://localhost:8000/auth/login&quot;,</span><br><span class="line">  &quot;iat&quot;: 1451888119,</span><br><span class="line">  &quot;exp&quot;: 1454516119,</span><br><span class="line">  &quot;nbf&quot;: 1451888119,</span><br><span class="line">  &quot;jti&quot;: &quot;37c107e4609ddbcc9c096ea5ee76c667&quot;,</span><br><span class="line">  &quot;aud&quot;: &quot;dev&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>这里面的前 7 个字段都是由官方所定义的，也就是预定义（Registered claims）的，并不都是必需的。</p>
+<ul>
+<li>iss (issuer)：签发人</li>
+<li>sub (subject)：主题</li>
+<li>aud (audience)：受众</li>
+<li>exp (expiration time)：过期时间</li>
+<li>nbf (Not Before)：生效时间，在此之前是无效的</li>
+<li>iat (Issued At)：签发时间</li>
+<li>jti (JWT ID)：编号</li>
+</ul>
+<h5 id="公有的载荷"><a href="#公有的载荷" class="headerlink" title="公有的载荷"></a>公有的载荷</h5><p>在使用 JWT 时可以额外定义的载荷。为了避免冲突，应该使用 IANA JSON Web Token Registry 中定义好的，或者给额外载荷加上类似命名空间的唯一标识。</p>
+<h5 id="私有载荷"><a href="#私有载荷" class="headerlink" title="私有载荷"></a>私有载荷</h5><p>在信息交互的双方之间约定好的，既不是预定义载荷也不是公有载荷的一类载荷。这一类载荷可能会发生冲突，所以应该谨慎使用。</p>
+<p>将上面的 json 进行 Base64Url 编码得到载荷，，即 yyyyy。</p>
+<blockquote>
+<p>关于载荷的理解：</p>
+</blockquote>
+<blockquote>
+<p>这里三种载荷的定义应该明确的一点是 —— 对于后两种载荷，它并非定义了载荷的种类，然后让你去选用哪种载荷，而是对你可能会定义出来的载荷做一个分类。</p>
+</blockquote>
+<blockquote>
+<p>比如你定义了一个 admin 载荷，这个载荷按其分类应该是私有载荷，可能会和其他人定义的发生冲突。但如果你加了一个前缀（命名空间），如 namespace-admin，那么这应该就算一个公有载荷了。（但其实标准并没有定义怎么去声明命名空间，所以严格来说，还是可能会冲突）</p>
+</blockquote>
+<blockquote>
+<p>但是在现实中，团队都是约定好的了要使用的载荷，这样的话，好像根本不存在冲突的可能。那为什么文档要这么定义呢？我的理解是，RFC 是提出一种技术规范，出发点是一套通用的规范，考虑的范围是所有开发者，而不仅仅局限于一个开发者团队。就像用 token 做认证已经是很常见的技术了，但是 JWT 的提出就相当于提出了一套较为通用的技术规范。既然是为了通用，那么考虑在大环境下的冲突可能性也是必须的。</p>
+</blockquote>
+<h5 id="签名（Signature）"><a href="#签名（Signature）" class="headerlink" title="签名（Signature）"></a>签名（Signature）</h5><p>签名时需要用到前面编码过的两个字符串，如果以 HMACSHA256 加密，就如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HMACSHA256(</span><br><span class="line">    base64UrlEncode(header) + &quot;.&quot; +</span><br><span class="line">    base64UrlEncode(payload),</span><br><span class="line">    secret</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>加密后再进行 <code>base64url</code> 编码最后得到的字符串就是 token 的第三部分 <code>zzzzz</code>。</p>
+<p>组合便可以得到 token：<code>xxxxx.yyyyy.zzzzz</code>。</p>
+<p>签名的作用：保证 JWT 没有被篡改过，原理如下：</p>
+<blockquote>
+<p>HMAC 算法是不可逆算法，类似 MD5 和 hash ，但多一个密钥，密钥（即上面的 secret）由服务端持有，客户端把 token 发给服务端后，服务端可以把其中的头部和载荷再加上事先共享的 secret 再进行一次 HMAC 加密，得到的结果和 token 的第三段进行对比，如果一样则表明数据没有被篡改。</p>
+</blockquote>
+<blockquote>
+<p>Hash-based Message Authentication Code</p>
+</blockquote>
+<h5 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h5><p>JWT 的使用有两种方式：</p>
+<ul>
+<li>加到 url 中：?token&#x3D;你的token</li>
+<li>加到 header 中，建议用这种，因为在 https 情况下更安全：Authorization:Bearer 你的token</li>
+</ul>
+<p>JWT 在客户端的存储有三种方式：</p>
+<ul>
+<li>LocalStorage</li>
+<li>SessionStorage</li>
+<li>Cookie [不能设置 HTTPonly]<br>但是最推荐的还是第三种，因为第一二种存在跨域读取限制，而 Cookie 使用不同的跨域策略</li>
+</ul>
+<p>因为没开 HTTPonly，所以要注意防范 XSS 漏洞。</p>
+<h5 id="Cookie-的跨域策略"><a href="#Cookie-的跨域策略" class="headerlink" title="Cookie 的跨域策略"></a>Cookie 的跨域策略</h5><p>子可以读父，但是父不可以读子，兄弟之间不能互相访问。</p>
+<p>a.xxx.com 和 b.xxx.com 可以读 xxx.com，但是 a.xxx.com 和 b.xxx.com 不能互相读取，xxx.com 也不能读 a.xxx.com 和 b.xxx.com 的。</p>
+<blockquote>
+<p>你可能会想：存 Cookie 那我不是又变得和 cookie + session 一样了吗？</p>
+</blockquote>
+<blockquote>
+<p>其实不然，因为存 cookie 在这只是用到了其存储机制，而没有利用其去鉴权。也就是说我只是简单存一下，并没有期望浏览器带上去 token 去鉴权，将 token 加入请求这部分操作还是我手动进行的。</p>
+</blockquote>
+<h4 id="3-相对于一般-token-的优点"><a href="#3-相对于一般-token-的优点" class="headerlink" title="3. 相对于一般 token 的优点"></a>3. 相对于一般 token 的优点</h4><p>既然 JWT 也是一种 token，那么它相对于普通的 token 有何优点呢？</p>
+<h5 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h5><p>因为 JWT 的有效期完全与其载荷中编码的过期时间，服务端不维护任何状态，因此 JWT 『一般』是『无状态』的（为什么是一般，后面会仔细说）。无状态最大的优势在于三点：</p>
+<ul>
+<li>节省服务器的资源：因为服务端无需维护一个状态，因此能够节省服务端原先保存这些状态所花费的资源</li>
+<li>适合分布式：因为服务端无需维护状态，因此如果服务端是多台服务器组成的分布式集群，那么无需像『有状态』一样互相同步各自的状态。</li>
+<li>时间换空间：因为 token 的校验时通过签名校验来进行的，签名校验消耗的是 CPU 时间，而『有状态』是需要通过客户端提供的凭据对服务端现有的状态进行一次查询，消耗的是 I&#x2F;O 和内存、磁盘空间。通常对于一个 Web 服务来说，其属于 I&#x2F;O 密集型，因此通过时间换空间这一操作，可以提高整体的硬件使用率。</li>
+</ul>
+<h5 id="编码数据"><a href="#编码数据" class="headerlink" title="编码数据"></a>编码数据</h5><p>因为 JWT 能够在载荷中编码了部分信息，所以如果把常用数据编码进去的话，能够大大减少数据库的查询次数，不过有两点需要额外注意的：</p>
+<ul>
+<li>载荷信息是明文编码的，所以不能编码敏感信息在里面，如果要编码可以先加密再编码进去</li>
+<li>token 在每次请求时都会进行传输，所以载荷中不能编码过多的信息，否则会降低传输效率</li>
+</ul>
+<p>所以 JWT 就有四个优点了：</p>
+<ul>
+<li>防 CSRF</li>
+<li>适合移动应用</li>
+<li>无状态</li>
+<li>编码数据<br>前两个是 token 的优势，后两个是 JWT 独特的优势。</li>
+</ul>
+<h3 id="三、JWT-的安全问题"><a href="#三、JWT-的安全问题" class="headerlink" title="三、JWT 的安全问题"></a>三、JWT 的安全问题</h3><p>既然主要使用场景是鉴权，那么安全问题就是不得不考虑的问题了。下面对 JWT 可能需要的安全问题都进行一次深入的探讨并寻求最佳的解决方案。</p>
+<h4 id="1-重放攻击"><a href="#1-重放攻击" class="headerlink" title="1. 重放攻击"></a>1. 重放攻击</h4><p>重放攻击是通过把原先的包进行一次重放来进行攻击的手段。需要先明确是的 cookie + session 也是存在重放攻击的问题的。</p>
+<p>常用的防范重放攻击的措施主要有以下几种：</p>
+<h5 id="timestamp"><a href="#timestamp" class="headerlink" title="timestamp"></a>timestamp</h5><p>在请求中夹带一个时间戳，设置较短的有效期，如果一个新来的请求的请求时间超过了请求中的有效期，则认为无效。但是这种策略也存在问题，即如果一个黑客『眼疾手快』在有效期以内将你的包进行了重放， 那就来攻击成功。</p>
+<p>这种策略对应到 JWT 中就是给 token 设置一个较短的有效期。</p>
+<h5 id="nonce"><a href="#nonce" class="headerlink" title="nonce"></a>nonce</h5><p>在请求中夹带一个随机字符串，这个字符串传送到客户端后即存入客户端的黑名单中，如果一个新来的请求其中存在的随机字符串已经在黑名单中则认为无效。但是显然，这个策略存在巨大的问题：服务端需要维护一个黑名单库，这个库的大小会随着业务运行的时间而变得无比巨大，从而严重影响效率。</p>
+<p>这种策略对应到 JWT 中就是给 token 设置一个黑名单，但是不设置有效期。</p>
+<h5 id="timestamp-nonce"><a href="#timestamp-nonce" class="headerlink" title="timestamp + nonce"></a>timestamp + nonce</h5><p>在请求中夹带一个随机字符串和一个时间戳，如果一个新来的请求，其随机字符串已经在黑名单中则认为无效，或者一个请求的的请求时间超过了其有效期，则也认为其无效。这样黑名单的范围只需设置为时间戳策略的有效期范围即可。</p>
+<p>这种策略对应到 JWT 中就是给 token 既设置一个黑名单，又设置一个有效期。</p>
+<h5 id="挑战-应答"><a href="#挑战-应答" class="headerlink" title="挑战 - 应答"></a>挑战 - 应答</h5><p>这个其实和 timestamp + nonce 策略一样，只是随机字符串是有服务端生成给客户端的，客户端携带服务端所给的随机串来请求。这样有什么好处呢？服务端可以通过一个加密算法来生成这个串，使其和时间戳相关，同时客户端又无法伪造。这样就不需要维护黑名单了。同样也是时间换空间的策略。但是显然每次或几次请求就要进行一次与预请求以得到随机串，并不是特别方便，造成的额外消耗也有待考量。</p>
+<h5 id="序列号"><a href="#序列号" class="headerlink" title="序列号"></a>序列号</h5><p>通过在请求中嵌入一个序列号，每次请求依次加一，如果一个请求的序列号早已用过，则认为无效。但是这个要用逻辑额外一个全局序列号，并不是特别方便。</p>
+<h5 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h5><p>终极解决方案了，HTTPS 在握手过程中会自动维护一个隐式序列号，解决了上面要自己维护序列号的问题。</p>
+<p>注意：以上均没有讨论客户端主动重放的问题，有兴趣的同学可以自己研究一下。</p>
+<h4 id="2-token-被盗"><a href="#2-token-被盗" class="headerlink" title="2. token 被盗"></a>2. token 被盗</h4><p>因为 token 中包含了登陆状态，因此一旦 token 被盗，那么就会被人盗用身份。那么 token 针对被盗的防范措施整理如下：</p>
+<ul>
+<li>使用 HTTPS 传输：从传输层的角度解决问题</li>
+<li>HTTPOnly：从存储层的角度解决问题，防止 XSS 攻击窃取 cookie，但是这种方案其实存在问题，因为这样 js 就无法读取 token 并把它加到 header 头中了。所以不开启 HTTPOnly 的话必须要额外注意防范 XSS 攻击。</li>
+<li>在 token 中嵌入客户端指纹：通过客户端指纹，即使黑客盗取了你的 cookie，他也无法用你的 cookie 进行请求。</li>
+<li>设置较短的 token 有效期：这样如果 token 被盗，只要超过一定时限就无法使用。</li>
+</ul>
+<h3 id="四、JWT-的其他问题"><a href="#四、JWT-的其他问题" class="headerlink" title="四、JWT 的其他问题"></a>四、JWT 的其他问题</h3><p>除了安全问题，JWT 还有许多其他需要考虑的问题。</p>
+<h4 id="1-注销问题"><a href="#1-注销问题" class="headerlink" title="1. 注销问题"></a>1. 注销问题</h4><p>因为 JWT 是无状态的，所以它的有效期完全由其本身决定，也就是说服务端无法让一个 token 失效。显然这是一个比较大的问题，对此也有诸多解决方案：</p>
+<h5 id="1-1-客户端主动注销"><a href="#1-1-客户端主动注销" class="headerlink" title="1.1 客户端主动注销"></a>1.1 客户端主动注销</h5><h5 id="客户端直接删除存储-token-的-cookie"><a href="#客户端直接删除存储-token-的-cookie" class="headerlink" title="客户端直接删除存储 token 的 cookie"></a>客户端直接删除存储 token 的 cookie</h5><p>这种方案最为简单，操作的结果是无论客户端还是服务端都没有这个 token，可问题是，这个 token 并没有真正不可使用，而是处于一个游离态。</p>
+<h5 id="黑名单策略"><a href="#黑名单策略" class="headerlink" title="黑名单策略"></a>黑名单策略</h5><p>客户端携带要注销的 token 访问一个注销接口，服务端把 token 加入一个黑名单。</p>
+<p>此策略是否会出现黑名单过大的问题？</p>
+<p>答案是不会，因为黑名单只需维护本身没有过期但又要使其无效的 token，过期的 token 就可以不用存在黑名单了。</p>
+<h5 id="1-2-服务端主动注销-用户修改密码"><a href="#1-2-服务端主动注销-用户修改密码" class="headerlink" title="1.2 服务端主动注销 \ 用户修改密码"></a>1.2 服务端主动注销 \ 用户修改密码</h5><h5 id="把-token-和-uuid-用-key-value-对存储在-redis"><a href="#把-token-和-uuid-用-key-value-对存储在-redis" class="headerlink" title="把 token 和 uuid 用 key-value 对存储在 redis"></a>把 token 和 uuid 用 key-value 对存储在 redis</h5><p>这种方案看上去没问题，但是实际上，相当于自己实现了一次 cookie + session，JWT 就失去了『无状态』这一特性，从也会失去『无状态』特性带来的一系列的优点。</p>
+<h5 id="让每个用户都有一个-secret"><a href="#让每个用户都有一个-secret" class="headerlink" title="让每个用户都有一个 secret"></a>让每个用户都有一个 secret</h5><p>前面讲到签发 token 的时候用到了 secret ，这种策略的思想就是让每个用户都有一个 secret，注销一个用户的时候修改其 secret，即可使其前面签发的 token 无法通过校验而失效。</p>
+<p>这种策略上听上去不需要维护一个状态，但是实际上存在更大的问题。试想一下，第一种方案是通过 uuid 在已登录用户的 token 表中找到要注销的 token 注销。cookie + session 是通过 session_id 在已登录的用户的 session 表中找到其对应的 session 并删除来注销。而此方案是通过 uuid 在所有用户（而非已登录用户）中找到对于的 secret 修改来注销。这样看来会发现效率更低，因为查找范围更大了。</p>
+<h5 id="预黑名单"><a href="#预黑名单" class="headerlink" title="预黑名单"></a>预黑名单</h5><p>把要注销的用户的 uuid 和当前时间（TIME） 组成 key-value 对加入预黑名单，下次请求来时，若其 uuid 和黑名单中的对应，并且签发时间在 TIME 之前，则将其注销。这样查找范围就是未过期但又要注销的用户。并且在实现逻辑上这个预黑名单可以和签名的黑名单做到一起。</p>
+<blockquote>
+<p>关于黑名单策略的补充：</p>
+</blockquote>
+<blockquote>
+<p>有人可能会觉得黑名单也是一种状态，用这种策略实现的 JWT 并不能算纯正的无状态。这种说法没错，但是考虑每次要检索的数据范围可以得到下面一个关系：</p>
+</blockquote>
+<blockquote>
+<p>未过期但要提前注销的用户或 token 数 &lt; 所有已登录用户数 &lt; 所有用户数</p>
+</blockquote>
+<blockquote>
+<p>此处的『 &lt; 』基本可以看成『远远小于』，所以黑名单策略虽然也算有状态，但是其维护的状态数也是特别小的。</p>
+</blockquote>
+<blockquote>
+<p>可见 『黑名单』策略能够有效解决 JWT 的注销问题。</p>
+</blockquote>
+<h4 id="2-续签问题"><a href="#2-续签问题" class="headerlink" title="2. 续签问题"></a>2. 续签问题</h4><p>session 可以自动续签，那 token 如何实现自动续签呢？我们先仔细分析一下在 web 和 app 环境中，token 分别如何续签。先具体分析 web 续签和 app 续签分别是什么样的具体需求。</p>
+<h5 id="web"><a href="#web" class="headerlink" title="web"></a>web</h5><p>超过一段时间没有请求，需要重新登录，这个时间一般设置为 1-2 小时</p>
+<h5 id="app"><a href="#app" class="headerlink" title="app"></a>app</h5><p>超过一段较长的时间没有请求，需要重新登录，这个时间一般为 15-30 天</p>
+<p>那这个需求可以如何实现呢？</p>
+<h5 id="2-1-方式一"><a href="#2-1-方式一" class="headerlink" title="2.1 方式一"></a>2.1 方式一</h5><ul>
+<li>服务端接管刷新</li>
+<li>token 设置一个『过期时间』</li>
+<li>token 过期后但是仍在『刷新时间』内时仍然可刷新</li>
+<li>token 过期后超过『刷新时间』就不能再刷新，需重新登录</li>
+</ul>
+<h5 id="web-1"><a href="#web-1" class="headerlink" title="web"></a>web</h5><p>假设一个 token 的签发时间为 12:00，需求为 2h 未进行请求就要重新登录。则过期时间为 1h，刷新时间为 3h。</p>
+<p>那么在 12:00 - 13:00 其都是可以正常使用的，如果在 13:00 - 15:00 进行请求，服务端自动换一个新 token 给客户端，达成续签。</p>
+<p>如果 13:00 -15:00 之间没有进行请求，而是在 15:00 之后进行的请求，那么判断过期，需重新登录。</p>
+<p>这样的话，最终的实现效果是：token 过期 2h 后需要重新登录 ，而不是 token 2h 未使用需要重新登录，导致的结果是，用户是 2 - 3h 未进行请求，需要重新登录。比设定的需求要多一个小时的不确定时间，但这也是没办法的办法了，至于会不会对业务造成影响，看具体需求吧，大多数的情况还是不会的。</p>
+<h5 id="app-1"><a href="#app-1" class="headerlink" title="app"></a>app</h5><p>和 web 端类似，设置成更长的时间周期即可。</p>
+<p>对使用 Laravel 开发并使用 tymon&#x2F;jwt-auth 这个插件的开发者，有个必须要注意的地方。</p>
+<p>此处进行 token 的刷新并不是通过 refresh 这个操作获得新 token，因为这样 token 在不断的刷新过程中会达到一个刷新时间的上限。而上面的逻辑是每次都新签发一个 token，只要不断签就能够一直使用下去。 然后这里的旧 token 放入黑名单，黑名单有效期设置为『刷新时间』—— 3h。</p>
+<p>当然如果开发者觉得这样不断签就能够一直使用不太好，那就可以设置更长的刷新时间，用 refresh 操作来获取新 token，刷新时间保证每次登陆得到 token 后，即使每次及时续签，最终也不会超过刷新时间。</p>
+<p>然后这里又会出现一个新坑：</p>
+<p>如果刷新时间设置为 14 天，过期时间设置为 2h。</p>
+<p>token A 在 『 &lt;&#x3D; 14 天 』时刷新得到 token B，此时若再拿 token A 去请求刷新，肯定是不允许，否则 token 会出现『 1 变 N 』的问题，所以显然必须设置一个黑名单去放这些已过期但是又已经刷新过的 token。而这个黑名单的有效期范围应当为 token 的刷新期，即 14 天。然后你会发现对于每个用户每次登陆，需要维护的黑名单 token 数目最大可达 14 * 24 &#x2F; 2 &#x3D; 168 个，黑名单变得很大。</p>
+<p>所以，如果要使用 refresh 操作，刷新时间务必是过期时间的尽量小的倍数。</p>
+<h5 id="2-2-方式二"><a href="#2-2-方式二" class="headerlink" title="2.2 方式二"></a>2.2 方式二</h5><ul>
+<li>每次请求 token 都进行一次刷新</li>
+<li>token 设置一个过期时间</li>
+<li>token 过期后无法再刷新</li>
+<li>token 没必要设置刷新时间了</li>
+</ul>
+<h5 id="web-2"><a href="#web-2" class="headerlink" title="web"></a>web</h5><p>假设一个 token 的签发时间为 12:00，需求为 2h 未进行请求即过期。则设置有效期 2h，不需要设置刷新期。那么每次请求都会把一个 token 换成一个新 token。如果 2h 没有进行请求，那么上一次请求的到的 token 就会过期，需要重新登录。同样是不断签就能一直使用下去。</p>
+<p>如果想要和上面一样，不希望永久续签，则设置一个刷新时间即可。这个刷新时间不会导致进一步膨胀。</p>
+<h5 id="app-2"><a href="#app-2" class="headerlink" title="app"></a>app</h5><p>和 web 端类似，设置更长时间即可。</p>
+<p>然后又到了问题时间：</p>
+<ul>
+<li><p>每次都刷新 token，带来的性能影响如何？</p>
+<blockquote>
+<p>以前每次请求，需要进行一次 token 签名校验，而现在是要签发一个新 token，进行的都是一次签名运算，那么运算量即从 n 变成 2n。<br>其次，每次刷新都要把旧 token 加入黑名单，会导致黑名单特别大，远远比方式一的设置刷新期大。</p>
+</blockquote>
+</li>
+<li><p>每次都刷新 token，并发请求时会不会因为 token 刷新而导致只有一个请求成功？</p>
+<blockquote>
+<p>答案是确实会导致这个问题，怎么解决呢？设置一个宽限时间，每次 token 刷新后，原来逻辑应该是立刻不可用，现在设置一个宽限时间，让其在 n 秒之内仍然可用即可。</p>
+</blockquote>
+</li>
+</ul>
+<p>总之，这种策略会导致花费的 CPU 运算翻倍，并导致巨大的黑名单，然后必须设置一个宽限时间以解决并发请求问题，至于宽限时间会不会带来安全问题，微乎其微吧。</p>
+<h5 id="2-3-黑名单膨胀的解决方案"><a href="#2-3-黑名单膨胀的解决方案" class="headerlink" title="2.3 黑名单膨胀的解决方案"></a>2.3 黑名单膨胀的解决方案</h5><p>上面讲到，对于方式一【限定不能一直续签】，会导致巨大的黑名单，对于方式二，总会导致一个更加巨大的黑名单。那有没有解决方案呢？当然是有的。</p>
+<p>我们可以这么想，既然一个 token 进行了刷新，那么签发时间在这次刷新之前的即可认为无效。于是，和上面的『预黑名单』策略类似，我刷新时不是把一个 token 加入黑名单，而是把 uuid-refresh_time 组成 key-vakue 对加入黑名单，这样针对每个用户的每次登陆，要存储到黑名单中的条目数就从 N 个变成了一个。</p>
+<p>但是这样还要考虑一个问题：就是一个用户开两个浏览器，在不同的时刻在同一个系统都登陆了（假设业务允许），那么一个浏览器的 token 刷新就可能会导致另一个浏览器登陆失效。所以存储在黑名单中的 key-value 应该再加一个 key 以代表每次登陆，并且这个 key 要在 JWT 的载荷中随着刷新一直传承。</p>
+<p>基于以上的优化，黑名单的大小变成了：每个用户同时登陆的系统个数之和，就变的和 cookie + session 一样了。</p>
+<p>比如，A 系统（假设 2h 过期时间，14 天刷新时间），你用一个浏览器登陆了你的账号，我用 Chrome 浏览器登陆了我的账号，然后我又用 QQ 浏览器再登陆我的账号，那么黑名单的大小就为 ： 1 + 2 &#x3D; 3</p>
+<p>而对于方式一【限定不能一直续签】，黑名单的大小（最大）：168 + 168 * 2</p>
+<p>而对于方式二，黑名单的大小为：你在 2h 内请求的次数 x ，我在 Chrome 浏览器请求的次数 y，我在 QQ 浏览器请求的次数 z 之和，即：x + y + z</p>
+<h4 id="2-4-总结"><a href="#2-4-总结" class="headerlink" title="2.4 总结"></a>2.4 总结</h4><p>如果要解决续签问题，方式一【可以一直续签】是个比较好的解决方案，虽然会带来一点小问题，但是并不会有太大的影响。方式二【限定不能一直续签】和 每次刷新会让黑名单的维护量和有状态差不多，但是有更高的安全性。</p>
+<h5 id="3-token-有没有必要每次刷新"><a href="#3-token-有没有必要每次刷新" class="headerlink" title="3. token 有没有必要每次刷新"></a>3. token 有没有必要每次刷新</h5><p>我们先列举每次刷新 token 的优缺点：</p>
+<p>优点：</p>
+<ul>
+<li>能够实现续签</li>
+<li>能够解决重放</li>
+<li>更安全</li>
+</ul>
+<p> 缺点：</p>
+<ul>
+<li>双倍的 CPU 消耗</li>
+<li>几乎和有状态一样的空间消耗</li>
+<li>必须设置宽限时间解决并发问题</li>
+</ul>
+<p>上面讨论过，『续签』和『重放』都可以通过其他方式解决。只有『更安全』算半个痛点，为什么是半个痛点呢？因为如果采用 HTTPS 的话，那么盗取 token 的手段就只要以下几种办法：</p>
+<ul>
+<li>破解 HTTPS</li>
+<li>直接从你电脑上手抄过去</li>
+<li>XSS【前面说到为了能够让 js 读取，不能设置 HTTPOnly】</li>
+</ul>
+<p>只有第三种方法存在一点可能性。</p>
+<p>所以，要不要每次刷新，还是根据各位的具体业务情况进行选择吧。</p>
+<h3 id="五、JWT-适合用来做什么"><a href="#五、JWT-适合用来做什么" class="headerlink" title="五、JWT 适合用来做什么"></a>五、JWT 适合用来做什么</h3><h4 id="1-无状态的-RESTful-API"><a href="#1-无状态的-RESTful-API" class="headerlink" title="1. 无状态的 RESTful API"></a>1. 无状态的 RESTful API</h4><p>这个显然很适合。</p>
+<h4 id="2-SSO-单点登录"><a href="#2-SSO-单点登录" class="headerlink" title="2. SSO 单点登录"></a>2. SSO 单点登录</h4><p>单点登录必须要实现的：</p>
+<ul>
+<li>会话管理：通过黑名单和预黑名单解决</li>
+<li>续签：通过签名的解决方案解决<br>可见，对 JWT 部署一些额外逻辑（黑名单，续签管理）即可让 JWT 在大部分场景代替 cookie + session。</li>
+</ul>
+<h3 id="六、JWT-与-Oauth2-0"><a href="#六、JWT-与-Oauth2-0" class="headerlink" title="六、JWT 与 Oauth2.0"></a>六、JWT 与 Oauth2.0</h3><p>Oauth 2.0 是干嘛的不再赘述，它与 JWT 其实并不是一个层面的东西。Oauth2.0 是一个方便的第三方授权规范，而 JWT 是一个 token 结构规范。只是 JWT 常用来登陆鉴权，而 Oauth2.0 在授权时也涉及到了登陆，所以就比较容易搞混。</p>
+<p>但是在此，我要说的是，Oauth 2.0 其实可以和 JWT 结合使用。</p>
+<p>以下是一个常见的 Oauth2.0 登陆返回：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;access_token&quot;:&quot;kag2geh11a3eh56e23hj&quot;,</span><br><span class="line">    &quot;expires_in&quot;:7200,</span><br><span class="line">    &quot;refresh_token&quot;:&quot;jgko97cq4c8wn69j&quot;,</span><br><span class="line">    &quot;scope&quot;:&quot;SCOPE&quot; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 Oauth2.0 中，access_token 用来进行数据请求，而 refresh_token 用来刷新 access_token。每次刷新，上一个 access_token 就会失效，而 access_token 和 refresh_token 显然都没有记录任何状态，所以必须为服务端进行状态的维护。</p>
+<p>把 JWT 和 Oauth2.0 结合后，可以得到这样的返回：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;access_token&quot;:&quot;xxx.yyy.zzz&quot;,</span><br><span class="line">    &quot;expires_in&quot;:7200,</span><br><span class="line">    &quot;refresh_token&quot;:&quot;xxxxx.yyyyy.zzzzz&quot;,</span><br><span class="line">    &quot;scope&quot;:&quot;SCOPE&quot; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>进行结合后有如下优势：</p>
+<ul>
+<li>Oauth2.0 的 token 也能够实现无状态（虽然也要用到黑名单）</li>
+<li>Oauth2.0 的 token 也能够附带部分常用数据</li>
+<li>前面讲到 JWT 续签，在需要限定不能一直续签的情形，可能会导致黑名单库膨胀，但是和 Oauth2.0 结合，通过 refresh_token 的机制，让黑名单库中 token 的有效期从 『刷新时间』又变回『过期时间』，从而解决了这个问题。</li>
+</ul>
+<h3 id="七、关于-token-十件必须知道的事"><a href="#七、关于-token-十件必须知道的事" class="headerlink" title="七、关于 token 十件必须知道的事"></a>七、关于 token 十件必须知道的事</h3><p>这是我从 Auth0 组织的这篇文章 <a target="_blank" rel="noopener" href="https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/">10 Things You Should Know about Tokens</a> 整理过来的：</p>
+<ul>
+<li><p>Token 获取到后需要保存起来以便下次使用，可以选择存储在 localstorage &#x2F;sessionstorage&#x2F;cookie</p>
+</li>
+<li><p>Token 是包含有效期的，你必须部署一些逻辑来进行有效期的控制</p>
+</li>
+<li><p>localstorage &#x2F;sessionstorage 的跨域限制较 cookie 更为严格，推荐使用 cookie</p>
+</li>
+<li><p>在你进行异步请求时，浏览器一般都会发送预检请求（option），后端应对此部署相应的逻辑</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1046663">为什么会有 OPTIONS 请求 </a></p>
+<ul>
+<li><p>使用 cookie 可以轻松处理一个文件下载请求，但是 token 一般都是通过 XHR 方式进行请求的，所以你必须部署额外的逻辑。比如生成一个实时 ticket ，以 ticket 进行访问，然后校验，重定向，最后下载文件。</p>
+</li>
+<li><p>处理 XSS 比处理 CSRF 更容易（这一点我实在没看到他是什么个逻辑，大家可以去看看原文）</p>
+</li>
+<li><p>token 在每次请求时都会被编码到请求中，所以请注意 token 的大小，不要编码过多数据</p>
+</li>
+<li><p>如果在 token 中编码敏感信息，请对 token 进行加密</p>
+</li>
+<li><p>JSON Web Token 可以用于 Oauth2.0 的 Bearer Token 中，赋予 Oauth2.0 无状态的优势</p>
+</li>
+<li><p>Token 不是银弹，请根据实际业务需要进行选择</p>
+</li>
+</ul>
+<h3 id="八、结语"><a href="#八、结语" class="headerlink" title="八、结语"></a>八、结语</h3><p>前阵子写的两篇文章，承蒙各位关照，指出了许多问题。最近公司分享，我恰好打算对以前提出的问题结合我新的理解写一篇文章，于是便有了本文，前面两篇文章，近期我会重新整理一下，补上一些细节，修复一些错误，各位若不嫌弃到时候可以再看看。</p>
+<p>JWT 完整使用详解<br>JWT 扩展具体实现详解</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/07/31/Linux%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E8%B6%85%E9%87%8F%E9%94%99%E8%AF%AF/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Linux监控文件超量错误</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/07/31/MD5%E7%9A%84C-%E5%AE%9E%E7%8E%B0/">
+        <span>MD5的C#实现</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/07/31/JWT%E5%88%86%E6%9E%90/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81Token"><span class="toc-number">1.</span> <span class="toc-text">一、Token</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-API-%E9%89%B4%E6%9D%83"><span class="toc-number">1.1.</span> <span class="toc-text">1. API 鉴权</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#cookie-session"><span class="toc-number">1.1.1.</span> <span class="toc-text">cookie + session</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP-Basic"><span class="toc-number">1.1.2.</span> <span class="toc-text">HTTP Basic</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTP-Digest"><span class="toc-number">1.1.3.</span> <span class="toc-text">HTTP Digest</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Token"><span class="toc-number">1.1.4.</span> <span class="toc-text">Token</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Token-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">1.2.</span> <span class="toc-text">2. Token 的优势</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#CSRF-%E6%94%BB%E5%87%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">CSRF 攻击</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%82%E5%90%88%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">适合移动应用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Token-%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">3. Token 的种类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81JWT-%E7%9A%84%E7%BB%84%E6%88%90%E5%92%8C%E4%BC%98%E5%8A%BF"><span class="toc-number">2.</span> <span class="toc-text">二、JWT 的组成和优势</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%BB%84%E6%88%90"><span class="toc-number">2.1.</span> <span class="toc-text">1. 组成</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%B4%E9%83%A8%EF%BC%88header%EF%BC%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">头部（header）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BD%BD%E8%8D%B7%EF%BC%88Payload%EF%BC%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">载荷（Payload）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%AC%E6%9C%89%E7%9A%84%E8%BD%BD%E8%8D%B7"><span class="toc-number">2.1.3.</span> <span class="toc-text">公有的载荷</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A7%81%E6%9C%89%E8%BD%BD%E8%8D%B7"><span class="toc-number">2.1.4.</span> <span class="toc-text">私有载荷</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AD%BE%E5%90%8D%EF%BC%88Signature%EF%BC%89"><span class="toc-number">2.1.5.</span> <span class="toc-text">签名（Signature）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.6.</span> <span class="toc-text">2. 使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Cookie-%E7%9A%84%E8%B7%A8%E5%9F%9F%E7%AD%96%E7%95%A5"><span class="toc-number">2.1.7.</span> <span class="toc-text">Cookie 的跨域策略</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E7%9B%B8%E5%AF%B9%E4%BA%8E%E4%B8%80%E8%88%AC-token-%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">3. 相对于一般 token 的优点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A0%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.1.</span> <span class="toc-text">无状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.2.</span> <span class="toc-text">编码数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81JWT-%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">三、JWT 的安全问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB"><span class="toc-number">3.1.</span> <span class="toc-text">1. 重放攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#timestamp"><span class="toc-number">3.1.1.</span> <span class="toc-text">timestamp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nonce"><span class="toc-number">3.1.2.</span> <span class="toc-text">nonce</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#timestamp-nonce"><span class="toc-number">3.1.3.</span> <span class="toc-text">timestamp + nonce</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8C%91%E6%88%98-%E5%BA%94%E7%AD%94"><span class="toc-number">3.1.4.</span> <span class="toc-text">挑战 - 应答</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8F%B7"><span class="toc-number">3.1.5.</span> <span class="toc-text">序列号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HTTPS"><span class="toc-number">3.1.6.</span> <span class="toc-text">HTTPS</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-token-%E8%A2%AB%E7%9B%97"><span class="toc-number">3.2.</span> <span class="toc-text">2. token 被盗</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81JWT-%E7%9A%84%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">四、JWT 的其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B3%A8%E9%94%80%E9%97%AE%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text">1. 注销问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%BB%E5%8A%A8%E6%B3%A8%E9%94%80"><span class="toc-number">4.1.1.</span> <span class="toc-text">1.1 客户端主动注销</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9B%B4%E6%8E%A5%E5%88%A0%E9%99%A4%E5%AD%98%E5%82%A8-token-%E7%9A%84-cookie"><span class="toc-number">4.1.2.</span> <span class="toc-text">客户端直接删除存储 token 的 cookie</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%BB%91%E5%90%8D%E5%8D%95%E7%AD%96%E7%95%A5"><span class="toc-number">4.1.3.</span> <span class="toc-text">黑名单策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%BB%E5%8A%A8%E6%B3%A8%E9%94%80-%E7%94%A8%E6%88%B7%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">4.1.4.</span> <span class="toc-text">1.2 服务端主动注销 \ 用户修改密码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%8A%8A-token-%E5%92%8C-uuid-%E7%94%A8-key-value-%E5%AF%B9%E5%AD%98%E5%82%A8%E5%9C%A8-redis"><span class="toc-number">4.1.5.</span> <span class="toc-text">把 token 和 uuid 用 key-value 对存储在 redis</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%A9%E6%AF%8F%E4%B8%AA%E7%94%A8%E6%88%B7%E9%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA-secret"><span class="toc-number">4.1.6.</span> <span class="toc-text">让每个用户都有一个 secret</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%84%E9%BB%91%E5%90%8D%E5%8D%95"><span class="toc-number">4.1.7.</span> <span class="toc-text">预黑名单</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%BB%AD%E7%AD%BE%E9%97%AE%E9%A2%98"><span class="toc-number">4.2.</span> <span class="toc-text">2. 续签问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#web"><span class="toc-number">4.2.1.</span> <span class="toc-text">web</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#app"><span class="toc-number">4.2.2.</span> <span class="toc-text">app</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="toc-number">4.2.3.</span> <span class="toc-text">2.1 方式一</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#web-1"><span class="toc-number">4.2.4.</span> <span class="toc-text">web</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#app-1"><span class="toc-number">4.2.5.</span> <span class="toc-text">app</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="toc-number">4.2.6.</span> <span class="toc-text">2.2 方式二</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#web-2"><span class="toc-number">4.2.7.</span> <span class="toc-text">web</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#app-2"><span class="toc-number">4.2.8.</span> <span class="toc-text">app</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-%E9%BB%91%E5%90%8D%E5%8D%95%E8%86%A8%E8%83%80%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">4.2.9.</span> <span class="toc-text">2.3 黑名单膨胀的解决方案</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-%E6%80%BB%E7%BB%93"><span class="toc-number">4.3.</span> <span class="toc-text">2.4 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-token-%E6%9C%89%E6%B2%A1%E6%9C%89%E5%BF%85%E8%A6%81%E6%AF%8F%E6%AC%A1%E5%88%B7%E6%96%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text">3. token 有没有必要每次刷新</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81JWT-%E9%80%82%E5%90%88%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">5.</span> <span class="toc-text">五、JWT 适合用来做什么</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84-RESTful-API"><span class="toc-number">5.1.</span> <span class="toc-text">1. 无状态的 RESTful API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-SSO-%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95"><span class="toc-number">5.2.</span> <span class="toc-text">2. SSO 单点登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81JWT-%E4%B8%8E-Oauth2-0"><span class="toc-number">6.</span> <span class="toc-text">六、JWT 与 Oauth2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%85%B3%E4%BA%8E-token-%E5%8D%81%E4%BB%B6%E5%BF%85%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E4%BA%8B"><span class="toc-number">7.</span> <span class="toc-text">七、关于 token 十件必须知道的事</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%BB%93%E8%AF%AD"><span class="toc-number">8.</span> <span class="toc-text">八、结语</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

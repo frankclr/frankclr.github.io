@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            关于 Gradle 在 Powershell终端 乱码的问题 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/">关于 Gradle 在 Powershell终端 乱码的问题</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-08-02
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-04
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=关于 Gradle 在 Powershell终端 乱码的问题&url=https://frankbsd.github.io/frankbsd/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/&pic=https://frankbsd.github.io/frankbsd/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=关于 Gradle 在 Powershell终端 乱码的问题&url=https://frankbsd.github.io/frankbsd/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankbsd.github.io/frankbsd/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankbsd.github.io/frankbsd/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankbsd.github.io/frankbsd/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/&title=关于 Gradle 在 Powershell终端 乱码的问题" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=关于 Gradle 在 Powershell终端 乱码的问题&summary=&pics=https://frankbsd.github.io/frankbsd/null&url=https://frankbsd.github.io/frankbsd/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankbsd.github.io/frankbsd/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/&text=关于 Gradle 在 Powershell终端 乱码的问题" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Gradle/ >Gradle</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/PowerShell/ >PowerShell</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="默认情况下，-在PowerShell-执行-gradle-build-如果代码有中文显示，会出现乱码"><a href="#默认情况下，-在PowerShell-执行-gradle-build-如果代码有中文显示，会出现乱码" class="headerlink" title="默认情况下， 在PowerShell 执行 gradle build,如果代码有中文显示，会出现乱码"></a>默认情况下， 在<code>PowerShell</code> 执行 <code>gradle build</code>,如果代码有中文显示，会出现乱码</h3><p>在没有特别设置的情况下，不论是 <code>IntelliJ IDEA</code>还是 <code>gradle init</code>创建项目，其代码文件默认都是<code>UTF-8</code>编码。<br>而 Windows 系统，则是 <code>GBK</code>、<code>GB18030</code>或者更早的<code>GB2312</code>。<br>两者是不一致的。</p>
+<p>解决方法：</p>
+<ol>
+<li><p>修改系统的编码为<code>UTF-8</code>,<code>Windows 10</code>和<code>Windows 11</code>支持。<br>此方法最为彻底，方便！但影响不支持<code>UTF-8</code>的程序;<br>修改路径: <code>设置</code>-&gt;<code>时间和语言</code>-&gt;<code>管理语言设置</code>-&gt;<code>非 Unicode程序的语言</code>-&gt;<code>更改系统区域设置</code>-&gt;勾选<code>Beta版: 使用Unicode UTF-8 提供全球语言支持</code>-&gt;<code>确定</code></p>
+</li>
+<li><p>调整<code>gradle</code>命令执行的<code>JVM</code>环境</p>
+<ol>
+<li><p><code>IntelliJ IDEA</code>通过<code>Spring Initializr</code>创建的<code>Gradle</code>管理项目</p>
+<ol>
+<li>设置<code>Gradle</code>配置文件<code>~/.gradle/gradle.properties</code></li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.gradle.jvmargs=-Dfile.encoding=GBK</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>设置环境变量</li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRADLE_OPTS=-Dfile.encoding=GBK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过<code>gradle init</code>创建的项目和<code>IntelliJ IDEA</code>通过<code>Java</code>模版创建的项目</p>
+<ol>
+<li>设置<code>Gradle</code>配置文件<code>~/.gradle/gradle.properties</code></li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.gradle.jvmargs=-Dfile.encoding=GB2312</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>设置环境变量</li>
+</ol>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRADLE_OPTS=-Dfile.encoding=GBK</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<p>其他说明:</p>
+<ol>
+<li><code>IntelliJ IDEA</code> 运行 <code>gradle</code>,读取的是<code>~/.gradle/gradle.properties</code>的设置，环境变量<code>GRADLE_OPTS</code>无效</li>
+<li>设置环境变量后，如果使用 <code>IntelliJ IDEA</code> 内建的PowerShell，需要重启 <code>IntelliJ IDEA</code></li>
+<li>设置环境变量<code>$PSDefaultParameterValues</code> 和 <code>$OutputEncoding</code>为<code>UTF-8</code>，无效;</li>
+<li>运行<code>chcp 65001</code>, 只能改变 <code>JVM</code> 环境的 <code>stdout</code>设置，<code>native.encoding</code> 仍然为 <code>GBK</code>,无效。</li>
+<li><code>~/.gradle/gradle.properties</code>中设置<code>org.gradle.jvmargs=-Dfile.encoding=GBK</code>， 影响<code>IntelliJ IDEA</code>和 <code>PowerShell</code>。如果在 RootProject 下设置 <code>gradle.properties</code> 设置，<code>IntelliJ IDEA</code>正常，但 PowerShell不正常</li>
+<li><code>GRADLE_OPTS</code> 只影响 <code>PowerShell</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.gradle.org/current/userguide/common_caching_problems.html"><code>Gradle</code>不跟踪系统编码和环境变量的变化。</a></li>
+</ol>
+<p><code>JVM</code>一旦运行，不可修改的属性:</p>
+<ol>
+<li><code>file.encoding</code></li>
+<li><code>user.language</code></li>
+<li><code>user.country</code></li>
+<li><code>user.variant</code></li>
+<li><code>java.io.tmpdir</code></li>
+<li><code>javax.net.ssl.keyStore</code></li>
+<li><code>javax.net.ssl.keyStorePassword</code></li>
+<li><code>javax.net.ssl.keyStoreType</code></li>
+<li><code>javax.net.ssl.trustStore</code></li>
+<li><code>javax.net.ssl.trustStorePassword</code></li>
+<li><code>javax.net.ssl.trustStoreType</code></li>
+<li><code>com.sun.management.jmxremote</code></li>
+</ol>
+<p>在启动控制的属性也不可修改:</p>
+<ol>
+<li><code>-Xmx</code></li>
+<li><code>-Xms</code></li>
+<li><code>-Xbootclasspath</code></li>
+<li><code>-ea</code></li>
+</ol>
+<p><span id="ps1">PowerShell配置文件</span></p>
+<p>PowerShell 控制台支持以下基本配置文件。 这些文件路径是默认位置。</p>
+<ol>
+<li>所有用户，所有主机<ul>
+<li>Windows - $PSHOME\Profile.ps1。</li>
+<li>Linux - &#x2F;opt&#x2F;microsoft&#x2F;powershell&#x2F;7&#x2F;profile.ps1</li>
+<li>macOS - &#x2F;usr&#x2F;local&#x2F;microsoft&#x2F;powershell&#x2F;7&#x2F;profile.ps1</li>
+</ul>
+</li>
+<li>所有用户，当前主机<ul>
+<li>Windows - $PSHOME\Microsoft.PowerShell_profile.ps1。</li>
+<li>Linux - &#x2F;opt&#x2F;microsoft&#x2F;powershell&#x2F;7&#x2F;Microsoft.PowerShell_profile.ps1</li>
+<li>macOS - &#x2F;usr&#x2F;local&#x2F;microsoft&#x2F;powershell&#x2F;7&#x2F;Microsoft.PowerShell_profile.ps1</li>
+</ul>
+</li>
+<li>当前用户，所有主机<ul>
+<li>Windows - $HOME\Documents\PowerShell\Profile.ps1。</li>
+<li>Linux - ~&#x2F;.config&#x2F;powershell&#x2F;profile.ps1</li>
+<li>macOS - ~&#x2F;.config&#x2F;powershell&#x2F;profile.ps1</li>
+</ul>
+</li>
+<li>当前用户，当前主机<ul>
+<li>Windows - $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1。</li>
+<li>Linux - ~&#x2F;.config&#x2F;powershell&#x2F;Microsoft.PowerShell_profile.ps1</li>
+<li>macOS - ~&#x2F;.config&#x2F;powershell&#x2F;Microsoft.PowerShell_profile.ps1</li>
+</ul>
+</li>
+</ol>
+<p>资料:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_character_encoding?view=powershell-7.4#%E6%9B%B4%E6%94%B9%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81">更改默认编码</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.4">PowerShell Profiles</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.codenong.com/cs106124420/">深入浅出了解Java程序中的乱码</a></li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2024/08/02/Gradle%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E5%90%AF%E5%8A%A8/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Gradle项目不能启动</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/">
+        <span>Java官方文档使用</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C-%E5%9C%A8PowerShell-%E6%89%A7%E8%A1%8C-gradle-build-%E5%A6%82%E6%9E%9C%E4%BB%A3%E7%A0%81%E6%9C%89%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%EF%BC%8C%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">默认情况下， 在PowerShell 执行 gradle build,如果代码有中文显示，会出现乱码</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >
