@@ -282,104 +282,6 @@
       
       
         <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/Unicode%E4%B8%AD%E6%96%87%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%B1%89%E5%AD%97/">Unicode中文转换为汉字</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Unicode转 汉字字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> str \u6728</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#x27;木&#x27; 26408</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">convertUnicodeToZhString</span><span class="params">(String str)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">Pattern</span> <span class="variable">pattern</span> <span class="operator">=</span> Pattern.compile(<span class="string">&quot;(\\\\u(\\p&#123;XDigit&#125;&#123;4&#125;))&quot;</span>);</span><br><span class="line">    <span class="type">Matcher</span> <span class="variable">matcher</span> <span class="operator">=</span> pattern.matcher(str);</span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="keyword">while</span> (matcher.find()) &#123;</span><br><span class="line">        <span class="comment">//group 6728</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">group</span> <span class="operator">=</span> matcher.group(<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//ch:&#x27;木&#x27; 26408</span></span><br><span class="line">        ch = (<span class="type">char</span>) Integer.parseInt(group, <span class="number">16</span>);</span><br><span class="line">        <span class="comment">//group1 \u6728</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">group1</span> <span class="operator">=</span> matcher.group(<span class="number">1</span>);</span><br><span class="line">        str = str.replace(group1, ch + <span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Unicode%E4%B8%AD%E6%96%87%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%B1%89%E5%AD%97/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/return%E8%AF%AD%E5%8F%A5%E4%B8%8D%E5%BD%B1%E5%93%8Dusing%E9%87%8A%E6%94%BE%E5%AF%B9%E8%B1%A1/">return语句不影响using释放对象</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/C/ >C#</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (A a = <span class="keyword">new</span> A())</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主程序开始执行。&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">            <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;</span></span><br><span class="line">            Console.WriteLine(<span class="string">&quot;using内&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;,以下语句都不会执行 ???</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;using外&quot;</span>);</span><br><span class="line">        Console.ReadLine();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">IDisposable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Dispose</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;执行了Dispose方法。&quot;</span>);</span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/return%E8%AF%AD%E5%8F%A5%E4%B8%8D%E5%BD%B1%E5%93%8Dusing%E9%87%8A%E6%94%BE%E5%AF%B9%E8%B1%A1/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">VisualStudio常用快捷键</a>
   <div class="post-header-meta">
     <span>
@@ -811,6 +713,108 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%83%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">JavaScript之七错误处理</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <br />
+  
+<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a href="https://www.liaoxuefeng.com/wiki/102291082114931...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%83%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/JavaScript%E4%B9%8B%E5%85%ADjQuery/">JavaScript之六jQuery</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <br />
+  
+<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a href="https://www.liaoxuefeng.com/wiki/102291082114931...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/JavaScript%E4%B9%8B%E5%85%ADjQuery/">Read More</a>
         </div>
       </div>
     </article>
