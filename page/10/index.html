@@ -282,64 +282,6 @@
       
       
         <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/30/IntelliJ-IDEA%E4%B9%8B%E4%B8%80%E9%94%AEDocker%E9%83%A8%E7%BD%B2Java%E7%A8%8B%E5%BA%8F/">IntelliJ-IDEA之一键Docker部署Java程序</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-30
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-30
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/IntelliJ-IDEA/ >IntelliJ IDEA</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Docker/ >Docker</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>在完成打包好<code>jar</code>步骤后<br>检查docker 服务器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br><span class="line"># 在ExecStart=/usr/bin/dockerd追加 `-H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock`</span><br><span class="line"># 重新启动</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/IntelliJ-IDEA%E4%B9%8B%E4%B8%80%E9%94%AEDocker%E9%83%A8%E7%BD%B2Java%E7%A8%8B%E5%BA%8F/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/30/IntelliJ-IDEA%E4%B9%8BHttpClient%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8/">IntelliJ-IDEA之HttpClient组件使用</a>
   <div class="post-header-meta">
     <span>
@@ -401,7 +343,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-12
+      Edited on:&nbsp;2025-02-14
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -504,7 +446,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-12
+      Edited on:&nbsp;2025-02-14
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -608,7 +550,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-11-11
+      Edited on:&nbsp;2025-02-14
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -707,7 +649,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-14
+      Edited on:&nbsp;2025-02-15
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -757,7 +699,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-14
+      Edited on:&nbsp;2025-02-15
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -784,13 +726,68 @@
       <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
         <div class="post-abstract mdui-typo ">
           
-            <h3 id="设置静态IP"><a href="#设置静态IP" class="headerlink" title="设置静态IP"></a>设置静态IP</h3><p>备份、编辑 <code>/etc/network/interfaces</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># This file describes the network interfaces available on your system</span><br><span class="line"># and how to activate them. For more information, see interfaces(5).</span><br><span class="line"></span><br><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line"># The loopback network interface</span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line"># The primary network interface</span><br><span class="line">allow-hotplug ens33</span><br><span class="line">#iface ens33 inet dhcp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto ens33</span><br><span class="line">iface ens33 inet static</span><br><span class="line">address 192.168.1.18</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.1.1</span><br></pre></td></tr></table></figure>
+            <p><strong>建议使用 DVD 镜像安装。</strong><br><strong>“小型安装镜像”必须联网，由于网络环境，可能系统安装出错而又没有明显的信息提示，然后出现奇怪的问题</strong></p>
+<ul>
+<li>出现过，MySQL的docker镜像内存耗尽问题</li>
+</ul>
+<h3 id="设置静态IP"><a href="#设置静态IP" class="headerlink" title="设置静态IP"></a>设置静态IP</h3><p>备份、编辑 <code>/etc/network/interfaces</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># This file describes the network interfaces available on your system</span><br><span class="line"># and how to activate them. For more information, see interfaces(5).</span><br><span class="line"></span><br><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line"># The loopback network interface</span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 静态配置 ipv4</span><br><span class="line"># 只有当内核从网络接口检测到热插拔事件后（检测到有接入网线），才会启用该接口。</span><br><span class="line">allow-hotplug</span><br><span class="line"># auto 在系统启动的时候，启动网络接口,无论网络接口有无连接。</span><br><span class="line"># 如果该接口配置了 DHCP，则无论有无网线，系统都会 DHCP; 如果没有插入网线，则等该接口超时后才会继续</span><br><span class="line">auto eth0</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.18.18</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.18.1</span><br><span class="line"></span><br><span class="line"># 动态配置 ipv6</span><br><span class="line">inet eth0 inet6 dhcp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
           
         </div>
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/Debian%E4%BD%BF%E7%94%A8/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/">C#正则表达式介绍</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-04
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <p>Regex 类表示不可变（只读）的正则表达式。它还包含各种静态方法，允许在不显式创建其他类的实例的情况下使用其他正则表达式类。</p>
+<p><strong>正则表达式基础概述</strong><br>什么是正则表达式</p>
+<p>在编写字符串的处理程序时，经常会有查找符合某些复杂规则的字符串的需要。正则表达式就是用于描述这些规则的工具。换句话说，正则表达式就是记录文本规则的代码。<br>通常，我们在使用WINDOWS查找文件时，会使用通配符（*和?）。如果你想查找某个目录下的所有Word文档时，你就可以使用*.doc进行查找，在这里，*就被解释为任意字符串。和通配符类似，正则表...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/">Read More</a>
         </div>
       </div>
     </article>
