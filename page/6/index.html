@@ -282,6 +282,55 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/MySQL%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/">MySQL快速生成数据字典</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/MySQL/ >MySQL</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line"><span class="comment">--     t.TABLE_SCHEMA AS 库名,</span></span><br><span class="line"><span class="comment">--     t.TABLE_NAME AS 表名,</span></span><br><span class="line">    t.COLUMN_NAME <span class="keyword">AS</span> <span class="string">&#x27;字段名&#x27;</span>,</span><br><span class="line">    t.COLUMN_TYPE <span class="keyword">AS</span> <span class="string">&#x27;数据类型&#x27;</span>,</span><br><span class="line">    <span class="keyword">CASE</span> t.COLUMN_KEY </span><br><span class="line">		<span class="keyword">WHEN</span> <span class="string">&#x27;PRI&#x27;</span> <span class="keyword">THEN</span> <span class="string">&#x27;是&#x27;</span></span><br><span class="line">        <span class="keyword">ELSE</span> <span class="string">&#x27;否&#x27;</span> <span class="keyword">END</span> <span class="keyword">AS</span> <span class="string">&#x27;是否主键&#x27;</span>,</span><br><span class="line">    <span class="keyword">CASE</span> IFNULL(t.COLUMN_DEFAULT,<span class="string">&#x27;Null&#x27;</span>) </span><br><span class="line">        <span class="keyword">WHEN</span> <span class="string">&#x27;&#x27;</span> <span class="keyword">THEN</span> <span class="string">&#x27;空字符串&#x27;</span> </span><br><span class="line">        <span class="keyword">WHEN</span> <span class="string">&#x27;Null&#x27;</span> <span class="keyword">THEN</span> <span class="string">&#x27;NULL&#x27;</span> </span><br><span class="line">        <span class="keyword">ELSE</span> t.COLUMN_DEFAULT <span class="keyword">END</span>  <span class="keyword">AS</span> <span class="string">&#x27;默认值&#x27;</span>,</span><br><span class="line">    <span class="keyword">CASE</span> t.IS_NULLABLE <span class="keyword">WHEN</span> <span class="string">&#x27;YES&#x27;</span> <span class="keyword">THEN</span> <span class="string">&#x27;是&#x27;</span> <span class="keyword">ELSE</span> <span class="string">&#x27;否&#x27;</span> <span class="keyword">END</span> <span class="keyword">AS</span> <span class="string">&#x27;是否允许为空&#x27;</span>,</span><br><span class="line">    t.COLUMN_COMMENT <span class="keyword">AS</span> <span class="string">&#x27;字段说明&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> information_schema.COLUMNS t </span><br><span class="line"><span class="keyword">WHERE</span> t.TABLE_SCHEMA<span class="operator">=</span><span class="string">&#x27;substation-platform&#x27;</span> <span class="keyword">AND</span> t.TABLE_NAME<span class="operator">=</span><span class="string">&#x27;biz_audio_device&#x27;</span>;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/MySQL%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/31/MySQL%E6%97%A5%E5%BF%97%E6%9F%A5%E8%AF%A2/">MySQL日志查询</a>
   <div class="post-header-meta">
     <span>
@@ -735,56 +784,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Linux%E5%88%A0%E9%99%A4%E4%B8%AA%E5%88%AB%E5%A4%96%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/SpringBootTest%E6%BF%80%E6%B4%BB%E9%85%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE/">SpringBootTest激活配置设置</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>一般使用如下方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ActiveProfiles(&quot;dev&quot;)</span></span><br><span class="line"><span class="meta">@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UnitTest</span>&#123;</span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SpringBootTest%E6%BF%80%E6%B4%BB%E9%85%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE/">Read More</a>
         </div>
       </div>
     </article>
