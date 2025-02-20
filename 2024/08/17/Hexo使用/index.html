@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-08-17
+      Edited on:&nbsp;2025-02-20
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -317,7 +317,10 @@
 <p>安装了<code>shelljs</code>组件再删除后,<code>package.json</code>多了 <code>&quot;hexo-site&quot;: &quot;file:&quot;,</code>,使用<code>npm</code>命令删除即可,否则一直报错</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Plugin load failed: hexo<span class="literal">-site</span></span><br><span class="line">ERROR: EISDIR: illegal operation on a direcotry,read at async readFileHandle (node:internal/fs/promises:<span class="number">553</span>:<span class="number">24</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone git@gitee.com:franklovebsd/blog.git</span><br><span class="line">npm install hexo<span class="literal">-cli</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone git@gitee.com:franklovebsd/blog.git</span><br><span class="line">npm install hexo<span class="literal">-cli</span> <span class="literal">-g</span></span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>Linux <code>deploy.sh</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">dest_dir=/home/frank/blog/source/_posts</span><br><span class="line">cd $dest_dir</span><br><span class="line"></span><br><span class="line">find $dest_dir -type d -empty -delete</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;hexo backup&quot;</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 
   </div>
   <!--文末结束语-->
