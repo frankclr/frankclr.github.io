@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-18
+      Edited on:&nbsp;2025-02-22
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -332,13 +332,18 @@
 <li>MSSQL_ERROR_LOG_FILE	设置 errorlog 文件的位置。 例如 &#x2F;var&#x2F;opt&#x2F;mssql&#x2F;log&#x2F;errorlog</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver16">使用 mssql-conf 工具配置 Linux 上的 SQL Server</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/sql/linux/sql-server-linux-configure-environment-variables?view=sql-server-ver16">在 Linux 上使用环境变量配置 SQL Server 设置</a></p>
-<h2 id="运行Redis"><a href="#运行Redis" class="headerlink" title="运行Redis"></a>运行Redis</h2><p>创建相关目录</p>
+<h2 id="运行Redis"><a href="#运行Redis" class="headerlink" title="运行Redis"></a>运行Redis</h2><p>官方提供两个版本的镜像</p>
+<ol>
+<li><code>redis/redis-stack</code> 包含 Redis 服务和 可视化工具Redis Insight，适合本地开发</li>
+<li><code>redis/redis-stack-server</code> 仅包含 Redis 服务，适合生产环境</li>
+</ol>
+<p>创建相关目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/db/redis</span><br><span class="line">cd ~/db/redis</span><br><span class="line">mkdir log data conf</span><br></pre></td></tr></table></figure>
 
 <p>编辑配置文件<code>redis.conf</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes</span><br><span class="line">logfile &quot;/var/log/redis/redis.log&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 默认配置</span><br><span class="line">port 6379</span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line"># Specify the log file name. Also the empty string can be used to force</span><br><span class="line"># Redis to log on the standard output. Note that if you use standard</span><br><span class="line"># output for logging but daemonize, logs will be sent to /dev/null</span><br><span class="line"># logfile &quot;&quot;</span><br><span class="line">logfile &quot;/var/log/redis/redis.log&quot;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run \</span><br><span class="line">-d  \</span><br><span class="line">--restart=always  \</span><br><span class="line">--name redis-server \</span><br><span class="line">-p 6379:6379  \</span><br><span class="line">-v ~/db/redis/data:/data \</span><br><span class="line">-v ~/db/redis/conf:/usr/local/etc/redis  \</span><br><span class="line">-v  ~/db/redis/log:/var/log/redis  \</span><br><span class="line">redis:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run \</span><br><span class="line">-d  \</span><br><span class="line">--restart=always  \</span><br><span class="line">--name redis-7.4.2 \</span><br><span class="line">-p 16379:6379  \</span><br><span class="line">-p 18001:8001 \</span><br><span class="line">-v ~/db/redis/conf/redis-stack.conf:/redis-stack.conf  \</span><br><span class="line">-v ~/db/redis/data:/data \</span><br><span class="line">-v  ~/db/redis/log:/var/log/redis  \</span><br><span class="line">redis/redis-stack:latest</span><br></pre></td></tr></table></figure>
 
 <p>说明: <code>docker: invalid reference format.</code> 原因可能是</p>
 <ol>
@@ -347,10 +352,7 @@
 <li><code>\</code>后面存在多余的空格或Tab</li>
 </ol>
 <p>说明：启动多个 docker 容器，不用更改 redis 的端口配置，只需要在启动的时候使用<code>-p portOFServer:portOfContainer</code>指定就好。另外，多个 container 内部网络通信，使用docker内部网段，详细新可用<code>sudo docker netwrok ls</code> 和<code>sudo docker  inspect bridge</code> 查看</p>
-<h3 id="待处理"><a href="#待处理" class="headerlink" title="待处理"></a>待处理</h3><p>问题</p>
-<ul>
-<li><input disabled="" type="checkbox"> 配置的redis端口在docker里为什么没有生效</li>
-</ul>
+<p><a target="_blank" rel="noopener" href="https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/docker/">Run Redis Stack on Docker</a><br><a target="_blank" rel="noopener" href="https://redis.io/docs/latest/operate/oss_and_stack/management/config/">Redis configuration</a></p>
 <h2 id="运行-PostgresSQL"><a href="#运行-PostgresSQL" class="headerlink" title="运行 PostgresSQL"></a>运行 PostgresSQL</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker run -d \</span></span><br><span class="line"><span class="language-bash">    --name postgres \</span></span><br><span class="line"><span class="language-bash">    -e PGDATA=/var/lib/postgresql/data/pgdata \</span></span><br><span class="line"><span class="language-bash">    -v ~/db/postgres/data:/var/lib/postgresql/data \</span></span><br><span class="line"><span class="language-bash">    -p 15432:5432 \</span></span><br><span class="line"><span class="language-bash">    -e POSTGRES_PASSWORD=123456 \</span></span><br><span class="line"><span class="language-bash">    postgres:17.3-bookworm</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">debian镜像默认没有包括进程管理相关工具</span></span><br><span class="line">apt update &amp;&amp; apt install -y procps</span><br></pre></td></tr></table></figure>
 
 <p>PostgreSQL的管理员账户名为postgres，默认用户名和数据库也是postgres，没有默认密码。<br>因为PostgreSQL使用Linux用户账户来验证用户，所以必须以Linux账户postgres登陆才能以postgres用户身份访问PostgreSQL服务器。</p>
@@ -396,7 +398,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/2024/07/30/Docker%E8%BF%90%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93/" id="toc-header" class="mdui-ripple">Table of Contents</a>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CMySQL-5-7"><span class="toc-number">1.</span> <span class="toc-text">运行MySQL 5.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-8-4-%E6%9C%80%E6%96%B0LTS%E7%89%88%E6%9C%AC"><span class="toc-number">2.</span> <span class="toc-text">MySQL 8.4(最新LTS版本)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-SQL-Server"><span class="toc-number">3.</span> <span class="toc-text">运行 SQL Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CRedis"><span class="toc-number">4.</span> <span class="toc-text">运行Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%85%E5%A4%84%E7%90%86"><span class="toc-number">4.1.</span> <span class="toc-text">待处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-PostgresSQL"><span class="toc-number">5.</span> <span class="toc-text">运行 PostgresSQL</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CMySQL-5-7"><span class="toc-number">1.</span> <span class="toc-text">运行MySQL 5.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-8-4-%E6%9C%80%E6%96%B0LTS%E7%89%88%E6%9C%AC"><span class="toc-number">2.</span> <span class="toc-text">MySQL 8.4(最新LTS版本)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-SQL-Server"><span class="toc-number">3.</span> <span class="toc-text">运行 SQL Server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8CRedis"><span class="toc-number">4.</span> <span class="toc-text">运行Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-PostgresSQL"><span class="toc-number">5.</span> <span class="toc-text">运行 PostgresSQL</span></a></li></ol>
       </li>
     </ul>
   </div>

@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-21
+      Edited on:&nbsp;2025-02-22
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -302,7 +302,8 @@
 
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <h2 id="启用WSL"><a href="#启用WSL" class="headerlink" title="启用WSL"></a>启用WSL</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+    <p>BUG太多，慎用</p>
+<h2 id="启用WSL"><a href="#启用WSL" class="headerlink" title="启用WSL"></a>启用WSL</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
 
 <h2 id="WSL配置"><a href="#WSL配置" class="headerlink" title="WSL配置"></a>WSL配置</h2><p>全局配置 <code>%UserProfile%\.wslconfig</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[wsl2]</span><br><span class="line">memory=12GB </span><br><span class="line">networkingMode=mirrored</span><br><span class="line"></span><br><span class="line">[experimental]</span><br><span class="line">autoMemoryReclaim=gradual </span><br></pre></td></tr></table></figure>
