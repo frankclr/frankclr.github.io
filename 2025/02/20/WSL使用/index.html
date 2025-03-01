@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-22
+      Edited on:&nbsp;2025-02-23
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -336,7 +336,7 @@
 <li><input disabled="" type="checkbox"> 截至 2025-02-21 官方示例测试全部失败，</li>
 </ul>
 <p>只能在把<code>Windows</code>对应的目录加入到<code>PATH</code>中，才可以在 <code>WSL</code> 中访问 <code>Windows</code> 应用程序</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Debian 默认http源，需要切换到国内源，而国内源使用的是https</span></span><br><span class="line">sudo apt install ca-certificates</span><br><span class="line">sudo apt update</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 的命令补全, 但使用 <span class="built_in">sudo</span> 仍然可能命令不补全，见后面设置</span></span><br><span class="line">sudo apt-get install bash-completion</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Git 需要在要使用它的每个文件系统上安装</span></span><br><span class="line">sudo apt install git</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 docker， docker.io 是 Debian 维护的， 版本较老； docker-ce 是官方维护的，有最新版</span></span><br><span class="line">sudo apt install docker.io</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Debian 默认http源，需要切换到国内源，而国内源使用的是https</span></span><br><span class="line">sudo apt install ca-certificates</span><br><span class="line">sudo apt update</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 的命令补全, 但使用 <span class="built_in">sudo</span> 仍然可能命令不补全，见后面设置</span></span><br><span class="line">sudo apt-get install bash-completion</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Git 需要在要使用它的每个文件系统上安装</span></span><br><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
 
 <p><code>bash</code>全局配置<code>/etc/bash.bashrc</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 处理 `sudo` 命令不补全，编辑`/etc/bash.bashrc`</span><br><span class="line">if [ -f /etc/bash_completion ]; then</span><br><span class="line">        . /etc/bash_completion</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
