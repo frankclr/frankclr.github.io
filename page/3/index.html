@@ -282,6 +282,161 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/08/09/Windows%E5%88%A0%E9%99%A4%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6/">Windows删除系统组件</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-08-09
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-09
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Windows/ >Windows</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <p>以管理员运行PowerShell</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AppxPackage</span> <span class="literal">-allusers</span> | <span class="built_in">Select</span> Name,PackageFullName</span><br><span class="line"><span class="built_in">Get-AppxPackage</span> Microsoft.YourPhone <span class="literal">-AllUsers</span> | <span class="built_in">Remove-AppxPackage</span></span><br><span class="line"> <span class="built_in">get-appxpackage</span> <span class="literal">-allusers</span> *crossdevice* | <span class="built_in">remove-appxpackage</span>   </span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/09/Windows%E5%88%A0%E9%99%A4%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/08/08/Debian%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85grub%E5%BC%95%E5%AF%BC/">Debian重新安装grub引导</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-08-08
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Debian/ >Debian</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <p>一定要使用<code>Live CD</code>,不要使用普通<code>ISO</code>，确保<code>UEFI</code>引导进入系统，否则会有其他错误产生</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /proc/partitions</span><br><span class="line">fdisk -l</span><br><span class="line">mount /dev/sda2	/target/			<span class="comment"># sda2 根分区</span></span><br><span class="line">mount /dev/sda4 /target/boot/			<span class="comment"># sda4 boot分区</span></span><br><span class="line">mount /dev/sda1 /target/boot/efi/		<span class="comment"># efi 分区</span></span><br><span class="line">mount --<span class="built_in">bind</span> /proc/ /target/proc/</span><br><span class="line">mount --<span class="built_in">bind</span> /sys/ /target/sys/</span><br><span class="line">mount --<span class="built_in">bind</span> /dev/ /target/dev/</span><br><span class="line">mount --<span class="built_in">bind</span> /dev/pts/ /target/dev/pts/</span><br><span class="line"><span class="built_in">chroot</span> /target/</span><br><span class="line">grub-install /dev/sda</span><br><span class="line">update-grub</span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/08/Debian%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85grub%E5%BC%95%E5%AF%BC/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/08/08/POM%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0JAR/">POM中使用本地JAR</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-08-08
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-08
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Maven/ >Maven</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <p>假定<code>lib</code>位于项目根目录，与<code>pom.xml</code>同级别</p>
+<p>错误: 使用项目的相关变量，子项目找不到，编译也会错误提醒，但似乎可以执行。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jdk.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jconsole<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;pom.basedir&#125;/lib/jconsole.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/08/POM%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0JAR/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/08/04/Linux%E4%B8%AD%E6%96%87%E4%BB%B6%E5%91%BD%E5%90%8D%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">Linux中文件命名的最佳实践</a>
   <div class="post-header-meta">
     <span>
@@ -661,173 +816,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/03/IntelliJ-IDEA-%E7%BC%96%E8%BE%91-pom-xml-%E5%8D%A1%E9%A1%BF/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/08/03/MySql%E5%9C%A8Docker%E9%87%8C%E6%97%B6%E9%97%B4%E6%99%9A8%E5%B0%8F%E6%97%B6/">MySql在Docker里时间晚8小时</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-08-03
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Docker/ >Docker</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p><code>/etc/localtime</code>是用来描述本机时间<br><code>/etc/timezone</code>是用来描述本机所属的时区</p>
-<p>在Linux中，有一些程序会自己计算时间，不会直接采用带有时区的本机时间格式，会根据UTC时间和本机所属的时区等计算出当前的时间。</p>
-<p>比如JDK应用，时区为“Etc&#x2F;UTC”，本机时间改为北京时间，通过Java代码中<code>new</code> 出来的时间还是 <code>UTC</code> 时间，所以必须得修正本机的时区。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it containerID /bin/bash</span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/03/MySql%E5%9C%A8Docker%E9%87%8C%E6%97%B6%E9%97%B4%E6%99%9A8%E5%B0%8F%E6%97%B6/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/08/02/Gradle%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E5%90%AF%E5%8A%A8/">Gradle项目不能启动</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-08-02
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-08-02
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Gradle/ >Gradle</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>在<code>build.gradle</code>添加</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;application&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">application &#123;</span><br><span class="line">    mainClass= <span class="string">&#x27;org.frank.Main&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.jar&#123;</span><br><span class="line">    manifest &#123;</span><br><span class="line">        attributes[<span class="string">&quot;Main-Class&quot;</span>]=<span class="string">&#x27;org.frank.Main&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/02/Gradle%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E5%90%AF%E5%8A%A8/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/">关于 Gradle 在 Powershell终端 乱码的问题</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-08-02
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-08-04
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/PowerShell/ >PowerShell</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Gradle/ >Gradle</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="默认情况下，-在PowerShell-执行-gradle-build-如果代码有中文显示，会出现乱码"><a href="#默认情况下，-在PowerShell-执行-gradle-build-如果代码有中文显示，会出现乱码" class="headerlink" title="默认情况下， 在PowerShell 执行 gradle build,如果代码有中文显示，会出现乱码"></a>默认情况下， 在<code>PowerShell</...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/">Read More</a>
         </div>
       </div>
     </article>
