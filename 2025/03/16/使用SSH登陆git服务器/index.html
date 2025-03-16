@@ -299,7 +299,7 @@
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
     <p>生成 ssh_key</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-t</span> rsa <span class="operator">-f</span> <span class="string">&quot;.\.ssh\github&quot;</span> <span class="literal">-C</span> <span class="string">&quot;2070353930@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-t</span> rsa <span class="operator">-f</span> <span class="string">&quot;.\.ssh\github&quot;</span> <span class="literal">-C</span> <span class="string">&quot;email&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>编辑<code>~\.ssh\config</code>,配置ssh</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Host</span> <span class="string">github.com</span></span><br><span class="line">  <span class="attr">HostName</span> <span class="string">github.com</span></span><br><span class="line">  <span class="attr">User</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">IdentityFile</span> <span class="string">~/.ssh/github</span></span><br></pre></td></tr></table></figure>
