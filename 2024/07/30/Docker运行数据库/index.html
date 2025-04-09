@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-03-07
+      Edited on:&nbsp;2025-03-18
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -343,7 +343,7 @@
 <p>编辑配置文件<code>redis.conf</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 默认配置</span><br><span class="line">port 6379</span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line"># Specify the log file name. Also the empty string can be used to force</span><br><span class="line"># Redis to log on the standard output. Note that if you use standard</span><br><span class="line"># output for logging but daemonize, logs will be sent to /dev/null</span><br><span class="line"># logfile &quot;&quot;</span><br><span class="line">logfile &quot;/var/log/redis/redis.log&quot;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run \</span><br><span class="line">-d  \</span><br><span class="line">--restart=always  \</span><br><span class="line">--name redis-7.4.2 \</span><br><span class="line">-p 16379:6379  \</span><br><span class="line">-p 18001:8001 \</span><br><span class="line">-v /data/database/redis/conf/redis-stack.conf:/redis-stack.conf  \</span><br><span class="line">-v /data/database/redis/data:/data \</span><br><span class="line">-v  /data/database/redis/log:/var/log/redis  \</span><br><span class="line">redis/redis-stack:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run \</span><br><span class="line">-d  \</span><br><span class="line">--restart=always  \</span><br><span class="line">--name redis \</span><br><span class="line">-p 16379:6379  \</span><br><span class="line">-p 18001:8001 \</span><br><span class="line">-e REDIS_ARGS=&quot;--requirepass 123456&quot; \</span><br><span class="line">-v /data/database/redis/conf/redis-stack.conf:/redis-stack.conf  \</span><br><span class="line">-v /data/database/redis/data:/data \</span><br><span class="line">-v  /data/database/redis/log:/var/log/redis  \</span><br><span class="line">redis/redis-stack:latest</span><br></pre></td></tr></table></figure>
 
 <p>说明: <code>docker: invalid reference format.</code> 原因可能是</p>
 <ol>

@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-08-17
+      Edited on:&nbsp;2025-04-07
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -324,7 +324,10 @@
 <p> 说明: 已有多版本管理工具 <code>virtualenvwrapper</code> ,类似Maven Wrapper.<br> 但目前Windows版本只有支持 CMD的<code>virtualenvwrapper-win</code>,PowerShell版本 <code>VirtualEnvWrapper</code> 需要使用 <code>venv</code>模块,要安装Python Install安装版,</p>
 </li>
 <li><p>虚拟环境</p>
- <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">python3 <span class="literal">-m</span> venv env                // 新建虚拟环境(安装版才自带)</span><br><span class="line">pip3 install virtualenv            // 安装 virtualenv</span><br><span class="line">virtual env                        // 创建虚拟环境 env</span><br><span class="line">.\env\Scripts\activate.ps1          // 使用新建虚拟环境</span><br><span class="line">pip install xxx                    // 安装缺少的 xxx 包</span><br><span class="line">pip freeze &gt; requirements.txt      // 导出项目安装的所有包</span><br><span class="line">pip install <span class="literal">-r</span> requirements.txt    // 新环境安装项目需要的包</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">python3 <span class="literal">-m</span> venv env                // 新建虚拟环境(安装版才自带)</span><br><span class="line">pip3 install virtualenv            // 安装 virtualenv</span><br><span class="line">virtual env                        // 创建虚拟环境 env</span><br><span class="line">.\env\Scripts\activate.ps1          // 使用新建虚拟环境</span><br><span class="line">pip install xxx                    // 安装缺少的 xxx 包</span><br><span class="line">pip freeze &gt; requirements.txt      // 导出项目安装的所有包</span><br><span class="line">pip install <span class="literal">-r</span> requirements.txt    // 新环境安装项目需要的包</span><br></pre></td></tr></table></figure>
+
+<p> 在 Debian 上需要安装</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3.11-venv</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">激活环境</span></span><br><span class="line">source ./activate</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出环境</span></span><br><span class="line">deactivate</span><br></pre></td></tr></table></figure></li>
 </ol>
 
   </div>
