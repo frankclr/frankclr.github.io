@@ -282,6 +282,110 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/30/Git%E4%BD%BF%E7%94%A8/">Git使用</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2025-02-14
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Git/ >Git</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h3 id="一、下载Git-的Windows客户端"><a href="#一、下载Git-的Windows客户端" class="headerlink" title="一、下载Git 的Windows客户端"></a>一、下载Git 的Windows客户端</h3><p>从<a target="_blank" rel="noopener" href="https://gitforwindows.org/">Git下载地址</a>下载，并安装。</p>
+<h3 id="二、初始配置"><a href="#二、初始配置" class="headerlink" title="二、初始配置"></a>二、初始配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;Your Name&quot;</span><br><span class="line">$ git config --global user.email &quot;email@example.com&quot;</span><br><span class="line">$ git config --global http.proxy &#x27;http://127.0.0.1:10808&#x27;        #指定全局http代理</span><br><span class="line">$ git config --global https.proxy &#x27;http://127.0.0.1:10808&#x27;      #指定全局https代理</span><br><span class="line">$ git config --global --unset http.proxy                                    #取消代理</span><br><span class="line">$ git config --global --unset https.proxy</span><br><span class="line">$ git config --global http.https://github.com.proxy http://127.0.0.1:10808 #仅仅指定`https://github.com`才使用代理</span><br><span class="line">$ git config --system core.longpaths true  #支持长文件名，同时需要Windows系统支持(【gpedit.msc】→【本地计算机策略】→【计算机配置】→【管理模板】→【系统】→【文件系统】→【启用 Win32 长路径】)</span><br><span class="line">$ git config --global --add safe.directory &#x27;*&#x27; # 解决重装系统后，出现的&quot;fatal: detected dubious ownership in repository Error&quot;错误</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/Git%E4%BD%BF%E7%94%A8/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/30/ELement%E6%89%93%E5%8C%85%E5%88%B0%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E5%88%86%E6%A0%B7%E5%BC%8F%E4%B8%A2%E5%A4%B1/">ELement打包到生产环境部分样式丢失</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Element/ >Element</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <p>编辑<code>项目/build/utils.js</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// Extract CSS when that option is specified</span><br><span class="line">// (which is the case during production build)</span><br><span class="line">if (options.extract) &#123;</span><br><span class="line">  return ExtractTextPlugin.extract(&#123;</span><br><span class="line">    use: loaders,</span><br><span class="line">    fallback: &#x27;vue-style-loader&#x27;,</span><br><span class="line">    publicPath: &#x27;../../&#x27;  // 添加此句</span><br><span class="line">  &#125;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  return [&#x27;vue-style-loader&#x27;].concat(loaders)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/ELement%E6%89%93%E5%8C%85%E5%88%B0%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%83%A8%E5%88%86%E6%A0%B7%E5%BC%8F%E4%B8%A2%E5%A4%B1/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/30/FFmpeg%E4%BD%BF%E7%94%A8/">FFmpeg使用</a>
   <div class="post-header-meta">
     <span>

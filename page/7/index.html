@@ -282,6 +282,107 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/JWT%E5%88%86%E6%9E%90/">JWT分析</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JWT/ >JWT</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <p><a target="_blank" rel="noopener" href="https://learnku.com/articles/17883">原文</a></p>
+<p>本篇文章不讨论 Laravel 中 JWT 这个怎么使用，要这方面内容的可以看我另一篇文章 <a target="_blank" rel="noopener" href="https://learnku.com/articles/10885/full-use-of-jwt">JWT 完整使用详解</a> 。</p>
+<p>在此我要从一个更深的层次来探讨 JWT 在实际运用中的使用以及其优缺点，以及 JWT 和 Oauth 2.0 这两者到底有什么差别和联系。</p>
+<p>首先我们从 Token 入手，再联系到 JWT，然后分...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/JWT%E5%88%86%E6%9E%90/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/MD5%E7%9A%84C-%E5%AE%9E%E7%8E%B0/">MD5的C#实现</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h3 id="一、16位实现方法"><a href="#一、16位实现方法" class="headerlink" title="一、16位实现方法"></a>一、16位实现方法</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 16位MD5加密</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;strForEncrypt&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">EncryptTo16BitMD5</span>(<span class="params"><span class="built_in">string</span> strForEncrypt</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MD5 md5 = <span class="keyword">new</span> MD5CryptoServiceProvider();</span><br><span class="line">    <span class="built_in">string</span> result = BitConverter.ToString(md5.ComputeHash(Encoding.Default.GetBytes(strForEncrypt)), <span class="number">4</span>, <span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result.Replace(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/MD5%E7%9A%84C-%E5%AE%9E%E7%8E%B0/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/31/MyBatis%E6%89%93%E5%8D%B0SQL%E6%97%A5%E5%BF%97/">MyBatis打印SQL日志</a>
   <div class="post-header-meta">
     <span>
@@ -679,111 +780,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Linux%E6%89%B9%E9%87%8F%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/Node-js%E7%BC%96%E8%AF%91%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8vs2022/">Node.js编译无法使用vs2022</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Node-js/ >Node.js</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &quot;C:\Program Files\nodejs&quot;</span><br><span class="line">cd node_modules\npm\node_modules\@npmcli\run-script</span><br><span class="line">npm install node-gyp@latest</span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Node-js%E7%BC%96%E8%AF%91%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8vs2022/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/Node-js%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">Node.js开发环境</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-14
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Node-js/ >Node.js</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <ol>
-<li><p>卸载所有Node.js安装,并删除路径<code>C:\Program Files (x86)\nodejs</code>和<code>C:\Program Files\nodejs</code></p>
-</li>
-<li><p>下载<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows">nvm-noinstall.zip</a></p>
-</li>
-<li><p>解压到希望安装的目录<code>D:\ProgramFiles\nvm-noinstall</code></p>
-</li>
-<li><p>设置环境变...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Node-js%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">Read More</a>
         </div>
       </div>
     </article>
