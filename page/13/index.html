@@ -50,6 +50,62 @@
 
 
 
+    
+        <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        
+            load: ['[tex]/mhchem'],
+        
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        
+            packages: {'[+]': ['mhchem']},
+        
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
           
 
 
@@ -222,96 +278,63 @@
   
   <main id="main-contain" class="mdui-container mdui-m-t-5">
     
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/30/%E6%B7%B7%E6%B7%86%E8%BD%AF%E4%BB%B6Allatori%E4%BD%BF%E7%94%A8/">混淆软件Allatori使用</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
     
+  </div>
+</div>   
     
 
 
-<div class="mdui-card mdui-p-a-4 mdui-m-b-5">
-    <div class="posts-collapse">
-        <div class="collection-title">
-            <h2>后端<small>Categories</small></h2>
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h2 id="1-混淆类库"><a href="#1-混淆类库" class="headerlink" title="1. 混淆类库"></a>1. 混淆类库</h2><p>所有公共 API 不应该重命名，这样才能保证其他库调用能正常使用。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">jar</span> <span class="attr">in</span>=<span class="string">&quot;test.jar&quot;</span> <span class="attr">out</span>=<span class="string">&quot;obf-test.jar&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">jar</span> <span class="attr">in</span>=<span class="string">&quot;mousegestures-1.2.jar&quot;</span> <span class="attr">out</span>=<span class="string">&quot;obf-mousegestures-1.2.jar&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">keep-names</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">class</span> <span class="attr">access</span>=<span class="string">&quot;protected+&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">access</span>=<span class="string">&quot;protected+&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">method</span> <span class="attr">access</span>=<span class="string">&quot;protected+&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">keep-names</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;log-file&quot;</span> <span class="attr">value</span>=<span class="string">&quot;log.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
         </div>
         
-            <div class="collection-item">
-                <h3><a href="/2024/07/31/Jackson%E5%B0%81%E8%A3%85/">Jackson封装</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-31 >
-                    2024.07.31
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/31/Spring%E9%A1%B9%E7%9B%AERedis%E4%B9%B1%E7%A0%81/">Spring项目Redis乱码</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-31 >
-                    2024.07.31
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/30/Maven%E4%BD%BF%E7%94%A8/">Maven使用</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-30 >
-                    2024.07.30
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/30/IntelliJ-IDEA%E4%B8%ADJDK%E7%89%88%E6%9C%AC%E4%B8%8D%E5%AF%B9%E7%9A%84%E6%A3%80%E6%9F%A5/">IntelliJ-IDEA中JDK版本不对的检查</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-30 >
-                    2024.07.30
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/30/IntelliJ-IDEA%E4%B9%8B%E4%B8%80%E9%94%AEDocker%E9%83%A8%E7%BD%B2Java%E7%A8%8B%E5%BA%8F/">IntelliJ-IDEA之一键Docker部署Java程序</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-30 >
-                    2024.07.30
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/30/IntelliJ-IDEA%E4%B9%8BHttpClient%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8/">IntelliJ-IDEA之HttpClient组件使用</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-30 >
-                    2024.07.30
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/30/IntelliJ-IDEA%E4%BD%BF%E7%94%A8/">IntelliJ IDEA使用</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-30 >
-                    2024.07.30
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/30/Git%E4%BD%BF%E7%94%A8/">Git使用</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-30 >
-                    2024.07.30
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/30/Docker%E8%BF%90%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93/">Docker运行数据库</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-30 >
-                    2024.07.30
-                </time>
-            </div>
-        
-            <div class="collection-item">
-                <h3><a href="/2024/07/30/C-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%8B%E7%BB%8D/">C#正则表达式介绍</a></h3>
-                <time itemprop="dateCreated" datetime=2024-07-30 >
-                    2024.07.30
-                </time>
-            </div>
-        
-    </div>
-</div>
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/%E6%B7%B7%E6%B7%86%E8%BD%AF%E4%BB%B6Allatori%E4%BD%BF%E7%94%A8/">Read More</a>
+        </div>
+      </div>
+    </article>
+
 
 
   <nav style="text-align: center;">
     <div class="pagination">
-      <a class="extend prev" rel="prev" href="/categories/%E5%90%8E%E7%AB%AF/page/6/"><i class="iconfont icon-angle-left"></i></a><a class="page-number" href="/categories/%E5%90%8E%E7%AB%AF/">1</a><span class="space">&hellip;</span><a class="page-number" href="/categories/%E5%90%8E%E7%AB%AF/page/5/">5</a><a class="page-number" href="/categories/%E5%90%8E%E7%AB%AF/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/categories/%E5%90%8E%E7%AB%AF/page/8/">8</a><a class="extend next" rel="next" href="/categories/%E5%90%8E%E7%AB%AF/page/8/"><i class="iconfont icon-angle-right"></i></a>
+      <a class="extend prev" rel="prev" href="/page/12/"><i class="iconfont icon-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span>
     </div>
   </nav>
-
 
   </main>
   <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">

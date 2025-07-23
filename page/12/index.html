@@ -282,6 +282,55 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/30/grep%E4%BD%BF%E7%94%A8/">grep使用</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Linux/ >Linux</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">满足任意条件（word1、word2和word3之一）将匹配。</span></span><br><span class="line">cat info.log|grep -E &quot;word1|word2|word3&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">必须同时满足三个条件（word1、word2和word3）才匹配。</span></span><br><span class="line">cat info.log |grep word1 |grep word2|grep word3</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">排除关键字</span></span><br><span class="line">ifconfig |grep inet |grep -v inet6</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">排除多个关键字</span></span><br><span class="line">ifconfig |grep inet |grep -v &#x27;inet6\|127.0.0.1&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-a 将二进制当做文本处理,防止有时候编码乱码或者其他</span></span><br><span class="line">cat info.log|grep -a &quot;text&quot;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/grep%E4%BD%BF%E7%94%A8/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/30/Git%E4%BD%BF%E7%94%A8/">Git使用</a>
   <div class="post-header-meta">
     <span>
@@ -740,61 +789,11 @@
       </div>
     </article>
 
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/30/%E6%B7%B7%E6%B7%86%E8%BD%AF%E4%BB%B6Allatori%E4%BD%BF%E7%94%A8/">混淆软件Allatori使用</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-30
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-30
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <h2 id="1-混淆类库"><a href="#1-混淆类库" class="headerlink" title="1. 混淆类库"></a>1. 混淆类库</h2><p>所有公共 API 不应该重命名，这样才能保证其他库调用能正常使用。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">jar</span> <span class="attr">in</span>=<span class="string">&quot;test.jar&quot;</span> <span class="attr">out</span>=<span class="string">&quot;obf-test.jar&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">jar</span> <span class="attr">in</span>=<span class="string">&quot;mousegestures-1.2.jar&quot;</span> <span class="attr">out</span>=<span class="string">&quot;obf-mousegestures-1.2.jar&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">keep-names</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">class</span> <span class="attr">access</span>=<span class="string">&quot;protected+&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">access</span>=<span class="string">&quot;protected+&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">method</span> <span class="attr">access</span>=<span class="string">&quot;protected+&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">keep-names</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;log-file&quot;</span> <span class="attr">value</span>=<span class="string">&quot;log.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/%E6%B7%B7%E6%B7%86%E8%BD%AF%E4%BB%B6Allatori%E4%BD%BF%E7%94%A8/">Read More</a>
-        </div>
-      </div>
-    </article>
-
 
 
   <nav style="text-align: center;">
     <div class="pagination">
-      <a class="extend prev" rel="prev" href="/page/11/"><i class="iconfont icon-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span>
+      <a class="extend prev" rel="prev" href="/page/11/"><i class="iconfont icon-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/13/"><i class="iconfont icon-angle-right"></i></a>
     </div>
   </nav>
 
