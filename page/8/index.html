@@ -282,6 +282,55 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/MySql%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%86%E5%88%86%E5%AE%9E%E7%8E%B0split%E5%8A%9F%E8%83%BD/">MySql字符串拆分实现split功能</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/MySQL/ >MySQL</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line"><span class="comment">-- 因为表连接，所以有几个逗号就会出现几行相同的行，只是help_topic_id不一样；</span></span><br><span class="line"><span class="comment">-- 当help_topic_id=0 时，获取第1个逗号左边的值；为1时获取第2个逗号与第1个逗号之间的值，为2时获取第3个逗号与第2个逗号之间的值，以此类推</span></span><br><span class="line">SUBSTRING_INDEX(SUBSTRING_INDEX(<span class="string">&#x27;7654,7698,7782,7788&#x27;</span>,<span class="string">&#x27;,&#x27;</span>,help_topic_id<span class="operator">+</span><span class="number">1</span>),<span class="string">&#x27;,&#x27;</span>,<span class="number">-1</span>) <span class="keyword">AS</span> num  </span><br><span class="line"><span class="keyword">FROM</span> mysql.help_topic </span><br><span class="line"><span class="comment">-- 判断有几个逗号，就生成几个相同的但help_topic_id的行</span></span><br><span class="line"><span class="keyword">WHERE</span> help_topic_id <span class="operator">&lt;</span> LENGTH(<span class="string">&#x27;7654,7698,7782,7788&#x27;</span>)<span class="operator">-</span>LENGTH(  REPLACE(<span class="string">&#x27;7654,7698,7782,7788&#x27;</span>,<span class="string">&#x27;,&#x27;</span>,<span class="string">&#x27;&#x27;</span>)  )<span class="operator">+</span><span class="number">1</span> </span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/MySql%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%86%E5%88%86%E5%AE%9E%E7%8E%B0split%E5%8A%9F%E8%83%BD/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/31/Linux%E6%89%B9%E9%87%8F%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B/">Linux批量终止进程</a>
   <div class="post-header-meta">
     <span>
@@ -735,59 +784,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SQLProfiler%E5%B7%A5%E5%85%B7%E7%AE%80%E4%BB%8B/">阅读更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/SqlServer%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E8%AE%B0%E5%BD%95/">SqlServer删除重复记录</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/SQL-Server/ >SQL Server</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <h3 id="有两个意义上的重复记录"><a href="#有两个意义上的重复记录" class="headerlink" title="有两个意义上的重复记录:"></a>有两个意义上的重复记录:</h3><ul>
-<li>完全重复的记录，也即所有字段均重复的记录；</li>
-<li>部分关键字段重复的记录，比如Name字段重复，而其他字段不一定重复或都重复可以忽略。</li>
-</ul>
-<h4 id="1、对于第一种重复，比较容易解决，使用"><a href="#1、对于第一种重复，比较容易解决，使用" class="headerlink" title="1、对于第一种重复，比较...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SqlServer%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E8%AE%B0%E5%BD%95/">阅读更多</a>
         </div>
       </div>
     </article>

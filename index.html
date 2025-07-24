@@ -282,6 +282,58 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2025/07/24/%E5%9C%A8Hyper-V%E5%AE%89%E8%A3%85%E7%9A%84Debian10%E7%A6%81%E7%94%A8swap/">在Hyper-V安装的Debian10禁用swap</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2025-07-24
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2025-07-24
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Linux-Debian/ >Linux,Debian</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <blockquote>
+<p>在Hyper-V中安装了Debian 10测试K8S，Debian 10重启后都会自动加载 swap 分区，即使已经注释了 <code>/etc/fstab</code> 中swap行，导致K8S启动失败。这是因为 <code>initramfs</code> 内硬编码了 swap 分区信息（设备名或 UUID）</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 找到 swap 分区设备名：</span></span><br><span class="line">swapon --show</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 屏蔽设备 swap unit。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.1 假设输出： /dev/sda2</span></span><br><span class="line">sudo systemctl mask dev-sda2.swap</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.2 如果名字是 dev-disk-by-uuid-xxxxxx.swap，则 mask 那个 unit：</span></span><br><span class="line">sudo systemctl mask &quot;dev-disk-by-uuid-&lt;your-uuid&gt;.swap&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 重新构建 initramfs</span></span><br><span class="line">sudo update-initramfs -u</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4. 重启验证</span></span><br><span class="line">sudo reboot</span><br><span class="line">swapon --show</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/07/24/%E5%9C%A8Hyper-V%E5%AE%89%E8%A3%85%E7%9A%84Debian10%E7%A6%81%E7%94%A8swap/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2025/07/23/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%8D%A0%E7%94%A8CPU%E7%9A%84Java%E7%BA%BF%E7%A8%8B/">使用命令查看占用CPU的Java线程</a>
   <div class="post-header-meta">
     <span>
@@ -742,55 +794,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/10/Log4j2%E4%BD%BF%E7%94%A8/">阅读更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2025/03/04/Docker%E8%BF%90%E8%A1%8CNexus/">Docker运行Nexus</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-03-04
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-03-04
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> /data/nexus</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span>  <span class="built_in">chown</span> -R 200 /data/nexus</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker run -d \</span></span><br><span class="line"><span class="language-bash">--name nexus \</span></span><br><span class="line"><span class="language-bash">--restart=always \</span></span><br><span class="line"><span class="language-bash">-p 18081:8081 \</span></span><br><span class="line"><span class="language-bash">-e INSTALL4J_ADD_VM_PARAMS=<span class="string">&quot;-Xms32m -Xmx1024m -XX:MaxDirectMemorySize=1024m&quot;</span> \</span></span><br><span class="line"><span class="language-bash">--env-file ~/.docker/proxy \</span></span><br><span class="line"><span class="language-bash">-v /data/nexus:/nexus-data \</span></span><br><span class="line"><span class="language-bash">sonatype/nexus3</span></span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/04/Docker%E8%BF%90%E8%A1%8CNexus/">阅读更多</a>
         </div>
       </div>
     </article>
