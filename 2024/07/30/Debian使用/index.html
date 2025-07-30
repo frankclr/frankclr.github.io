@@ -311,7 +311,10 @@
 <p>重启网络</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart networking.service</span><br></pre></td></tr></table></figure>
 
-<h3 id="sudo-配置"><a href="#sudo-配置" class="headerlink" title="sudo 配置"></a>sudo 配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Allow members of group sudo to execute any command</span><br><span class="line"># %sudo   ALL=(ALL:ALL) ALL</span><br><span class="line">%sudo   ALL=(ALL:ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
+<h3 id="sudo-配置"><a href="#sudo-配置" class="headerlink" title="sudo 配置"></a>sudo 配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br><span class="line">sudo vi /etc/sudoers</span><br></pre></td></tr></table></figure>
+
+<p>内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Allow members of group sudo to execute any command</span><br><span class="line"># %sudo   ALL=(ALL:ALL) ALL</span><br><span class="line">%sudo   ALL=(ALL:ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
 
 <h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ca-certificates支持https</span></span><br><span class="line">sudo apt install curl git ca-certificates</span><br></pre></td></tr></table></figure>
 
