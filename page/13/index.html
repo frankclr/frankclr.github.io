@@ -282,6 +282,56 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/30/C-%E5%AE%9E%E7%8E%B0XML%E5%A3%B0%E6%98%8E%E4%B8%BAUTF-8/">C#实现XML声明为UTF-8</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-08-04
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h3 id="一、首先添加辅助类StringWriterWithEncoding"><a href="#一、首先添加辅助类StringWriterWithEncoding" class="headerlink" title="一、首先添加辅助类StringWriterWithEncoding"></a>一、首先添加辅助类StringWriterWithEncoding</h3><p>因StringWriter默认为Unicode码(即UTF-16),且无Encoding类型参数的构造函数</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">StringWriterWithEncoding</span> : <span class="title">StringWriter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> Encoding encoding;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringWriterWithEncoding</span>() : <span class="title">this</span>(<span class="params">Encoding.UTF8</span>)</span> &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringWriterWithEncoding</span>(<span class="params">Encoding encoding</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.encoding = encoding;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> Encoding Encoding &#123; <span class="keyword">get</span> &#123; <span class="keyword">return</span> encoding; &#125; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/30/C-%E5%AE%9E%E7%8E%B0XML%E5%A3%B0%E6%98%8E%E4%B8%BAUTF-8/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/30/C-%E5%8D%95%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E5%8F%91%E5%B8%83/">C#单文件可执行程序发布</a>
   <div class="post-header-meta">
     <span>

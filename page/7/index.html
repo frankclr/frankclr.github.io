@@ -282,6 +282,57 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/A%E7%B1%BB%E5%92%8CB%E7%B1%BB%E4%BA%92%E7%9B%B8%E5%BC%95%E7%94%A8%E7%9A%84%E8%A7%A3%E9%87%8A/">A类和B类互相引用的解释</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>2 C# classes contain each other as a member<br>I have two c# classes A,B.</p>
+<p>And the code is something like this</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Class A</span><br><span class="line">&#123;</span><br><span class="line">     B object1;</span><br><span class="line">     <span class="built_in">bool</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Class B       </span><br><span class="line">&#123;     </span><br><span class="line">    A object2;        </span><br><span class="line">    <span class="built_in">bool</span> y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/A%E7%B1%BB%E5%92%8CB%E7%B1%BB%E4%BA%92%E7%9B%B8%E5%BC%95%E7%94%A8%E7%9A%84%E8%A7%A3%E9%87%8A/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/31/Windows-Socket%E9%94%99%E8%AF%AF/">Windows Socket错误</a>
   <div class="post-header-meta">
     <span>
@@ -733,56 +784,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/MySQL%E5%BF%AB%E9%80%9F%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/MySQL%E6%97%A5%E5%BF%97%E6%9F%A5%E8%AF%A2/">MySQL日志查询</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/MySQL/ >MySQL</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>– 查看mysql 执行语句记录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM mysql.general_log ORDER BY event_time desc LIMIT 20;</span><br><span class="line"></span><br><span class="line">SELECT *, CONVERT(argument USING utf8) FROM mysql.general_log where command_type = &#x27;Query&#x27; and user_host like &#x27;%[192.168.1.110]&#x27; ORDER BY event_time desc</span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/MySQL%E6%97%A5%E5%BF%97%E6%9F%A5%E8%AF%A2/">Read More</a>
         </div>
       </div>
     </article>

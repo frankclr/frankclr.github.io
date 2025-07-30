@@ -282,6 +282,56 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/MySQL%E6%97%A5%E5%BF%97%E6%9F%A5%E8%AF%A2/">MySQL日志查询</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/MySQL/ >MySQL</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <p>– 查看mysql 执行语句记录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM mysql.general_log ORDER BY event_time desc LIMIT 20;</span><br><span class="line"></span><br><span class="line">SELECT *, CONVERT(argument USING utf8) FROM mysql.general_log where command_type = &#x27;Query&#x27; and user_host like &#x27;%[192.168.1.110]&#x27; ORDER BY event_time desc</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/MySQL%E6%97%A5%E5%BF%97%E6%9F%A5%E8%AF%A2/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/31/MySql%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%86%E5%88%86%E5%AE%9E%E7%8E%B0split%E5%8A%9F%E8%83%BD/">MySql字符串拆分实现split功能</a>
   <div class="post-header-meta">
     <span>
@@ -735,55 +785,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SpringBootTest%E6%BF%80%E6%B4%BB%E9%85%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/SQLProfiler%E5%B7%A5%E5%85%B7%E7%AE%80%E4%BB%8B/">SQLProfiler工具简介</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/SQL-Server/ >SQL Server</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>转自<a target="_blank" rel="noopener" href="https://www.cnblogs.com/kissdodog/p/3398523.html">SQL Server Profiler工具</a></p>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SQLProfiler%E5%B7%A5%E5%85%B7%E7%AE%80%E4%BB%8B/">Read More</a>
         </div>
       </div>
     </article>
