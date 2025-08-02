@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-20
+      Edited on:&nbsp;2025-08-02
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -298,7 +298,9 @@
 
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <h2 id="自动备份"><a href="#自动备份" class="headerlink" title="自动备份"></a>自动备份</h2><ol>
+    <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-cli</span> <span class="literal">-g</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="自动备份"><a href="#自动备份" class="headerlink" title="自动备份"></a>自动备份</h2><ol>
 <li><p>删除 <code>themes\</code>目录下的所有 <code>.git</code>目录, Git不允许嵌套.否则,主题不能被提交,之后克隆下来,因为没有主题,网站不显示.</p>
 </li>
 <li><p>在本地Hexo创建的博客根目录<code>D:\blog</code> 执行命令 <code>git init</code>, 然后编辑<code>.gitignore</code> 文件</p>
@@ -312,7 +314,7 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@gitee.com:franklovebsd/blog.git</span><br><span class="line">git push <span class="literal">-u</span> origin <span class="string">&quot;master&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>另外修改发布脚本<code>deploy.ps1</code></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除建立的不需要的图片保存目录</span></span><br><span class="line"><span class="variable">$destDir</span>= <span class="string">&quot;D:\blog\source\_posts&quot;</span></span><br><span class="line"><span class="built_in">Get-ChildItem</span> <span class="variable">$destDir</span> <span class="literal">-Recurse</span> <span class="literal">-Directory</span> | <span class="built_in">Where-Object</span> &#123; <span class="selector-tag">@</span>(<span class="built_in">Get-ChildItem</span> <span class="variable">$_</span>.FullName).Length <span class="operator">-eq</span> <span class="number">0</span>&#125; | <span class="built_in">Remove-Item</span></span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份到gitee</span></span><br><span class="line">git add .</span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">&quot;hexo backup&quot;</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除建立的不需要的图片保存目录</span></span><br><span class="line"><span class="variable">$destDir</span>= <span class="string">&quot;D:\blog\source\_posts&quot;</span></span><br><span class="line"><span class="built_in">Get-ChildItem</span> <span class="variable">$destDir</span> <span class="literal">-Recurse</span> <span class="literal">-Directory</span> | <span class="built_in">Where-Object</span> &#123; <span class="selector-tag">@</span>(<span class="built_in">Get-ChildItem</span> <span class="variable">$_</span>.FullName).Length <span class="operator">-eq</span> <span class="number">0</span>&#125; | <span class="built_in">Remove-Item</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$destDir</span></span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份到gitee</span></span><br><span class="line">git add .</span><br><span class="line">git commit <span class="literal">-m</span> <span class="string">&quot;hexo backup&quot;</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 
 <p>安装了<code>shelljs</code>组件再删除后,<code>package.json</code>多了 <code>&quot;hexo-site&quot;: &quot;file:&quot;,</code>,使用<code>npm</code>命令删除即可,否则一直报错</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR: Plugin load failed: hexo<span class="literal">-site</span></span><br><span class="line">ERROR: EISDIR: illegal operation on a direcotry,read at async readFileHandle (node:internal/fs/promises:<span class="number">553</span>:<span class="number">24</span>)</span><br></pre></td></tr></table></figure>
@@ -355,7 +357,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/2024/08/17/Hexo%E4%BD%BF%E7%94%A8/" id="toc-header" class="mdui-ripple">Table of Contents</a>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD"><span class="toc-number">1.</span> <span class="toc-text">自动备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D"><span class="toc-number">2.</span> <span class="toc-text">恢复</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD"><span class="toc-number">2.</span> <span class="toc-text">自动备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D"><span class="toc-number">3.</span> <span class="toc-text">恢复</span></a></li></ol>
       </li>
     </ul>
   </div>

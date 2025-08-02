@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-14
+      Edited on:&nbsp;2025-08-01
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -298,42 +298,54 @@
 
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <h3 id="一、下载Git-的Windows客户端"><a href="#一、下载Git-的Windows客户端" class="headerlink" title="一、下载Git 的Windows客户端"></a>一、下载Git 的Windows客户端</h3><p>从<a target="_blank" rel="noopener" href="https://gitforwindows.org/">Git下载地址</a>下载，并安装。</p>
-<h3 id="二、初始配置"><a href="#二、初始配置" class="headerlink" title="二、初始配置"></a>二、初始配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;Your Name&quot;</span><br><span class="line">$ git config --global user.email &quot;email@example.com&quot;</span><br><span class="line">$ git config --global http.proxy &#x27;http://127.0.0.1:10808&#x27;        #指定全局http代理</span><br><span class="line">$ git config --global https.proxy &#x27;http://127.0.0.1:10808&#x27;      #指定全局https代理</span><br><span class="line">$ git config --global --unset http.proxy                                    #取消代理</span><br><span class="line">$ git config --global --unset https.proxy</span><br><span class="line">$ git config --global http.https://github.com.proxy http://127.0.0.1:10808 #仅仅指定`https://github.com`才使用代理</span><br><span class="line">$ git config --system core.longpaths true  #支持长文件名，同时需要Windows系统支持(【gpedit.msc】→【本地计算机策略】→【计算机配置】→【管理模板】→【系统】→【文件系统】→【启用 Win32 长路径】)</span><br><span class="line">$ git config --global --add safe.directory &#x27;*&#x27; # 解决重装系统后，出现的&quot;fatal: detected dubious ownership in repository Error&quot;错误</span><br></pre></td></tr></table></figure>
+    <h3 id="一、下载Git-的Windows客户端"><a href="#一、下载Git-的Windows客户端" class="headerlink" title="一、下载Git 的Windows客户端"></a>一、下载Git 的Windows客户端</h3><p>从<a target="_blank" rel="noopener" href="https://github.com/git-for-windows/git/releases">Git下载地址</a>下载，并安装。</p>
+<h3 id="二、初始配置"><a href="#二、初始配置" class="headerlink" title="二、初始配置"></a>二、初始配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global user.name <span class="string">&quot;Your Name&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global user.email <span class="string">&quot;email@example.com&quot;</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定全局http代理</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global http.proxy <span class="string">&#x27;http://127.0.0.1:10808&#x27;</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定全局https代理</span>       </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global https.proxy <span class="string">&#x27;http://127.0.0.1:10808&#x27;</span></span>   </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取消代理</span>  </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global --<span class="built_in">unset</span> http.proxy</span>                                    </span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global --<span class="built_in">unset</span> https.proxy</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅仅指定`https://github.com`才使用代理</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global http.https://github.com.proxy http://127.0.0.1:10808</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">支持长文件名</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --system core.longpaths <span class="literal">true</span></span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解决重装系统后，出现的<span class="string">&quot;fatal: detected dubious ownership in repository Error&quot;</span>错误</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git config --global --add safe.directory <span class="string">&#x27;*&#x27;</span></span> </span><br></pre></td></tr></table></figure>
+
 <p><strong>注意：</strong> <code>git config</code>命令的<code>–global</code>参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。配置保存在 <code>~/.gitconfig</code> 文件中。</p>
-<h3 id="三、创建仓库"><a href="#三、创建仓库" class="headerlink" title="三、创建仓库"></a>三、创建仓库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /home/git/repo/test.git</span><br><span class="line">$ cd /home/git/repo/test.git</span><br><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<h3 id="三、创建仓库"><a href="#三、创建仓库" class="headerlink" title="三、创建仓库"></a>三、创建仓库</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> -p /home/git/repo/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /home/git/repo/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git init</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="四、给Git仓库添加文件"><a href="#四、给Git仓库添加文件" class="headerlink" title="四、给Git仓库添加文件"></a>四、给Git仓库添加文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add file1.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add file2.txt file3.txt</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit -m <span class="string">&quot;add 3 files.&quot;</span></span></span><br></pre></td></tr></table></figure>
 
 
-<h3 id="四、给Git仓库添加文件"><a href="#四、给Git仓库添加文件" class="headerlink" title="四、给Git仓库添加文件"></a>四、给Git仓库添加文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add file1.txt</span><br><span class="line">$ git add file2.txt file3.txt</span><br><span class="line">$ git commit -m &quot;add 3 files.&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="五、查看Git状态"><a href="#五、查看Git状态" class="headerlink" title="五、查看Git状态"></a>五、查看Git状态</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git status</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="六、查看具体修改"><a href="#六、查看具体修改" class="headerlink" title="六、查看具体修改"></a>六、查看具体修改</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git diff readme.txt</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="五、查看Git状态"><a href="#五、查看Git状态" class="headerlink" title="五、查看Git状态"></a>五、查看Git状态</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="六、查看具体修改"><a href="#六、查看具体修改" class="headerlink" title="六、查看具体修改"></a>六、查看具体修改</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff readme.txt</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="七、版本日志"><a href="#七、版本日志" class="headerlink" title="七、版本日志"></a>七、版本日志</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br><span class="line">$ git log --pretty=oneline</span><br></pre></td></tr></table></figure>
+<h3 id="七、版本日志"><a href="#七、版本日志" class="headerlink" title="七、版本日志"></a>七、版本日志</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">log</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">log</span> --pretty=oneline</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="八、版本回退"><a href="#八、版本回退" class="headerlink" title="八、版本回退"></a>八、版本回退</h3><p>首先，Git必须知道当前版本是哪个版本，在Git中，用<code>HEAD</code>表示当前版本，也就是最新的提交<code>3628164…882e1e0</code>（注意我的提交ID和你的肯定不一样），上一个版本就是<code>HEAD^</code>（注意符号），上上一个版本就是<code>HEAD^^</code>，当然往上100个版本写100个^比较容易数不过来，所以写成<code>HEAD~100</code>（注意符号）。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at ea34578 add distributed</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard HEAD^</span></span><br><span class="line">HEAD is now at ea34578 add distributed</span><br></pre></td></tr></table></figure>
+
 <p>定位到某个特定版本(版本号没必要写全，前几位就可以了,但需保证其所代表的版本号唯一）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard 3628164</span><br><span class="line">HEAD is now at 3628164 append GPL</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reset --hard 3628164</span></span><br><span class="line">HEAD is now at 3628164 append GPL</span><br></pre></td></tr></table></figure>
+
 <p>查看命令历史</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reflog</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git reflog</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="九、其他"><a href="#九、其他" class="headerlink" title="九、其他"></a>九、其他</h3><p>1、 <code>fatal: unsafe repository</code>错误</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --add safe.directory &quot;*&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --add safe.directory &quot;*&quot;</span><br></pre></td></tr></table></figure>
+
 <p>或者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R current_user:current_user_group ./</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R current_user:current_user_group ./</span><br></pre></td></tr></table></figure>
+
 
 <h3 id="十-克隆超大文件"><a href="#十-克隆超大文件" class="headerlink" title="十 克隆超大文件"></a>十 克隆超大文件</h3><ol>
-<li>关闭压缩（似乎非必须）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.compression 0</span><br></pre></td></tr></table></figure>
-2、克隆部分<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --depth 1 &lt;repo_URI&gt;</span><br></pre></td></tr></table></figure>
-3、进入文件夹，继续克隆剩下的<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;repo&gt;</span><br><span class="line">git fetch --unshallow </span><br></pre></td></tr></table></figure>
-或<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch --depth=2147483647</span><br></pre></td></tr></table></figure>
-4、最后，做一个完整的拉取请求<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --all</span><br></pre></td></tr></table></figure></li>
+<li>关闭压缩（似乎非必须）</li>
 </ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.compression 0</span><br></pre></td></tr></table></figure>
+
+<p>2、克隆部分</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --depth 1 &lt;repo_URI&gt;</span><br></pre></td></tr></table></figure>
+
+<p>3、进入文件夹，继续克隆剩下的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;repo&gt;</span><br><span class="line">git fetch --unshallow </span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch --depth=2147483647</span><br></pre></td></tr></table></figure>
+
+<p>4、最后，做一个完整的拉取请求</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --all</span><br></pre></td></tr></table></figure>
+
 <p>参考：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰–Git教程</a></li>

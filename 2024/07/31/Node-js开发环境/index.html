@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-02-14
+      Edited on:&nbsp;2025-08-02
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -301,7 +301,7 @@
     <ol>
 <li><p>卸载所有Node.js安装,并删除路径<code>C:\Program Files (x86)\nodejs</code>和<code>C:\Program Files\nodejs</code></p>
 </li>
-<li><p>下载<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows">nvm-noinstall.zip</a></p>
+<li><p>下载<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows">nvm-noinstall</a></p>
 </li>
 <li><p>解压到希望安装的目录<code>D:\ProgramFiles\nvm-noinstall</code></p>
 </li>
@@ -310,10 +310,10 @@
 <li><p>将环境变量<code>%NVM_HOME%</code>和<code>%NVM_SYMLINK%</code>加到<code>Path</code>中</p>
 </li>
 <li><p>添加配置文件<code>D:\ProgramFiles\nvm-noinstall\settings.txt</code></p>
- <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root: D:\ProgramFiles\nvm-noinstall</span><br><span class="line">path: D:\ProgramFiles\nvm-noinstall\Node.js</span><br><span class="line">arch: 64</span><br><span class="line">proxy: none</span><br></pre></td></tr></table></figure>
+ <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root: D:\ProgramFiles\nvm-noinstall</span><br><span class="line">path: D:\ProgramFiles\nvm-noinstall\Node.js</span><br><span class="line">arch: 64</span><br><span class="line">proxy: none</span><br><span class="line">node_mirror： https://mirrors.aliyun.com/nodejs-release/</span><br><span class="line">npm_mirror: http://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>nvm</code>基本使用</p>
- <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nvm current</span><br><span class="line">nvm list</span><br><span class="line">nvm list available</span><br><span class="line">nvm install <span class="number">14</span> <span class="literal">--lts</span></span><br><span class="line">nvm use version   <span class="comment"># 需要管理员权限</span></span><br><span class="line">nvm uninstall</span><br></pre></td></tr></table></figure>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nvm install lts</span><br><span class="line">nvm current</span><br><span class="line">nvm list</span><br><span class="line">nvm list available</span><br><span class="line">nvm install <span class="number">14</span> <span class="literal">--lts</span></span><br><span class="line">nvm use version   <span class="comment"># 需要管理员权限</span></span><br><span class="line">nvm uninstall</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>切换到具体<code>Node.js</code>版本后</p>
  <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">node <span class="literal">--version</span></span><br><span class="line">npm <span class="literal">--version</span></span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br><span class="line">npm install <span class="literal">-g</span> yarn yrm </span><br><span class="line">yrm add ali https://registry.npmmirror.com <span class="comment"># 使用阿里镜像,原来的taobao镜像</span></span><br><span class="line">yrm use ali</span><br></pre></td></tr></table></figure>

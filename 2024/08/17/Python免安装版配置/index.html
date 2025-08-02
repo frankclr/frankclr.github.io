@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-04-07
+      Edited on:&nbsp;2025-08-02
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -301,7 +301,7 @@
     <ol>
 <li><p>指定<code>pip</code>源泉<br> 创建配置文件</p>
 <ul>
-<li>Windows: 在<code>C:\Users\&#123;UserName&#125;\pip\pip.ini</code></li>
+<li>Windows: 在<code>%USERPROFILE%\pip\pip.ini</code><br>  <code>mklink /D %USERPROFILE%\pip\ D:\SystemConfig\pip</code></li>
 <li>Linux：在<code>~/.pip/pip.conf</code></li>
 </ul>
  <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span> = http://mirrors.aliyun.com/pypi/simple</span><br><span class="line"><span class="section">[install]</span></span><br><span class="line"><span class="attr">trusted-host</span>=mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
