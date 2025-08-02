@@ -16,25 +16,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Chrome自定义搜索引擎</title>
-    <url>/2024/08/17/Chrome%E8%87%AA%E5%AE%9A%E4%B9%89%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</url>
-    <content><![CDATA[<p><code>设置</code>–&gt;<code>搜索引擎</code>–&gt;<code>管理搜索引擎和网站数据</code>–&gt;网站搜索旁的<code>添加</code>–&gt;<code>保存</code>–&gt;<code>设置默认选项</code></p>
-<p>比如,google原来的格式为</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">&#123;google:baseURL&#125;search?<span class="attr">q</span>=%s&amp;&#123;google:RLZ&#125;&#123;google:originalQueryForSuggestion&#125;&#123;google:assistedQueryStats&#125;&#123;google:searchFieldtrialParameter&#125;&#123;google:language&#125;&#123;google:prefetchSource&#125;&#123;google:searchClient&#125;&#123;google:sourceId&#125;&#123;google:contextualSearchVersion&#125;ie=&#123;inputEncoding&#125;</span><br></pre></td></tr></table></figure>
-
-<p>现在要过滤”csdn.net”的内容,格式为</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">&#123;google:baseURL&#125;search?<span class="attr">q</span>=%s+-site:csdn.net&amp;&#123;google:RLZ&#125;&#123;google:originalQueryForSuggestion&#125;&#123;google:assistedQueryStats&#125;&#123;google:searchFieldtrialParameter&#125;&#123;google:language&#125;&#123;google:prefetchSource&#125;&#123;google:searchClient&#125;&#123;google:sourceId&#125;&#123;google:contextualSearchVersion&#125;ie=&#123;inputEncoding&#125;</span><br></pre></td></tr></table></figure>
-
-<p>将修改好的网址格式保存</p>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Chrome</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Gradle 基本介绍</title>
     <url>/2024/08/03/Gradle-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<p><img src="/2024/08/03/Gradle-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/gradle-basic-1.png" alt="Gradle流程图"></p>
@@ -350,6 +331,38 @@
       </tags>
   </entry>
   <entry>
+    <title>Chrome自定义搜索引擎</title>
+    <url>/2024/08/17/Chrome%E8%87%AA%E5%AE%9A%E4%B9%89%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</url>
+    <content><![CDATA[<p><code>设置</code>–&gt;<code>搜索引擎</code>–&gt;<code>管理搜索引擎和网站数据</code>–&gt;网站搜索旁的<code>添加</code>–&gt;<code>保存</code>–&gt;<code>设置默认选项</code></p>
+<p>比如,google原来的格式为</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">&#123;google:baseURL&#125;search?<span class="attr">q</span>=%s&amp;&#123;google:RLZ&#125;&#123;google:originalQueryForSuggestion&#125;&#123;google:assistedQueryStats&#125;&#123;google:searchFieldtrialParameter&#125;&#123;google:language&#125;&#123;google:prefetchSource&#125;&#123;google:searchClient&#125;&#123;google:sourceId&#125;&#123;google:contextualSearchVersion&#125;ie=&#123;inputEncoding&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在要过滤”csdn.net”的内容,格式为</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">&#123;google:baseURL&#125;search?<span class="attr">q</span>=%s+-site:csdn.net&amp;&#123;google:RLZ&#125;&#123;google:originalQueryForSuggestion&#125;&#123;google:assistedQueryStats&#125;&#123;google:searchFieldtrialParameter&#125;&#123;google:language&#125;&#123;google:prefetchSource&#125;&#123;google:searchClient&#125;&#123;google:sourceId&#125;&#123;google:contextualSearchVersion&#125;ie=&#123;inputEncoding&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将修改好的网址格式保存</p>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IntelliJ IDEA 编辑 pom.xml 卡顿</title>
+    <url>/2024/08/03/IntelliJ-IDEA-%E7%BC%96%E8%BE%91-pom-xml-%E5%8D%A1%E9%A1%BF/</url>
+    <content><![CDATA[<p>删除<code>%localappdata%\JetBrains\IntelliJIdea&#123;version&#125;\Maven\Indices</code>目录下的内容</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>IntelliJ IDEA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo使用</title>
     <url>/2024/08/17/Hexo%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">npm install hexo<span class="literal">-cli</span> <span class="literal">-g</span></span><br></pre></td></tr></table></figure>
@@ -386,16 +399,21 @@
       </tags>
   </entry>
   <entry>
-    <title>IntelliJ IDEA 编辑 pom.xml 卡顿</title>
-    <url>/2024/08/03/IntelliJ-IDEA-%E7%BC%96%E8%BE%91-pom-xml-%E5%8D%A1%E9%A1%BF/</url>
-    <content><![CDATA[<p>删除<code>%localappdata%\JetBrains\IntelliJIdea&#123;version&#125;\Maven\Indices</code>目录下的内容</p>
+    <title>JVM的一些说明</title>
+    <url>/2024/08/17/JVM%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E/</url>
+    <content><![CDATA[<ol>
+<li>开启GC日志,使用<code>-XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/export/log/risk_pillar/gc.log</code><br><img src="/gc.jpg" alt="gc"></li>
+<li>设置JVM垃圾最大年龄 <code>-XX:MaxTenuringThreshold=15</code></li>
+<li>打印所有命令参数 <code>-XX:+PrintCommandLineFlags -version</code></li>
+<li>使用压缩指针<code>-XX:+UseCompressedClassPointers</code>。64位虚拟机中在堆内存小于32GB的情况下，UseCompressedOops是默认开启的，该参数表示开启指针压缩，会将原来64位的指针压缩为32位。所以，在内存大于32G但又不是特别大的时候(比如36G-48G)，通过<code>-xmx=31G</code>限制最大堆内存，强迫JVM开启压缩指针。</li>
+</ol>
+<p><a href="https://help.aliyun.com/zh/sae/jvm-options">JVM参数配置说明</a></p>
 ]]></content>
       <categories>
         <category>后端</category>
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>IntelliJ IDEA</tag>
       </tags>
   </entry>
   <entry>
@@ -434,24 +452,6 @@
 <h2 id="阅读编译器的细节"><a href="#阅读编译器的细节" class="headerlink" title="阅读编译器的细节"></a>阅读编译器的细节</h2><p>使用<code>-XX:+LogCompilation</code> 选项会生成一个有关编译器和运行时决策的低级 <code>XML</code> 文件，这可能对某些人来说很有趣。这个选项也必须和<code>-XX:+UnlockDiagnosticVMOptions</code>一起使用。默认日志位于当前目录的<code>hotspot.log</code>;也可以使用选项指定位置，如<code>-XX:LogFile=jit.log</code>。</p>
 <h2 id="JITWatch"><a href="#JITWatch" class="headerlink" title="JITWatch"></a>JITWatch</h2><p><a href="https://github.com/AdoptOpenJDK/jitwatch">JITWatch</a>是对<code>PrintAssembly</code>打印出的汇编代码进行可视化分析工具。因此，需要添加<code>-Xcomp</code>、<code>-XX:+LogCompilation</code>和选项<code>-XX:LogFile=jit.log</code>打印出汇编代码。</p>
 <p>参考<br><a href="https://wiki.openjdk.org/display/HotSpot/PrintAssembly">PrintAssembly</a><br><a href="https://xyzghio.xyz/HSDISAndJITWatch/">Java 反汇编：HSDIS、JITWatch</a><br><a href="https://dropzone.nfshost.com/hsdis/">How to build hsdis-amd64.dll and hsdis-i386.dll on Windows</a><br><a href="https://blogs.oracle.com/javamagazine/post/java-hotspot-hsdis-disassembler">Developers disassemble! Use Java and hsdis to see it all.</a><br><a href="https://github.com/openjdk/jdk/tree/master/src/utils/hsdis">hsdis源码</a><br><a href="https://jornvernee.github.io/hsdis/2022/04/30/hsdis.html">Building hsdis in 2022</a></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM的一些说明</title>
-    <url>/2024/08/17/JVM%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E/</url>
-    <content><![CDATA[<ol>
-<li>开启GC日志,使用<code>-XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/export/log/risk_pillar/gc.log</code><br><img src="/gc.jpg" alt="gc"></li>
-<li>设置JVM垃圾最大年龄 <code>-XX:MaxTenuringThreshold=15</code></li>
-<li>打印所有命令参数 <code>-XX:+PrintCommandLineFlags -version</code></li>
-<li>使用压缩指针<code>-XX:+UseCompressedClassPointers</code>。64位虚拟机中在堆内存小于32GB的情况下，UseCompressedOops是默认开启的，该参数表示开启指针压缩，会将原来64位的指针压缩为32位。所以，在内存大于32G但又不是特别大的时候(比如36G-48G)，通过<code>-xmx=31G</code>限制最大堆内存，强迫JVM开启压缩指针。</li>
-</ol>
-<p><a href="https://help.aliyun.com/zh/sae/jvm-options">JVM参数配置说明</a></p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -532,27 +532,6 @@
       </tags>
   </entry>
   <entry>
-    <title>POM中使用本地JAR</title>
-    <url>/2024/08/08/POM%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0JAR/</url>
-    <content><![CDATA[<p>假定<code>lib</code>位于项目根目录，与<code>pom.xml</code>同级别</p>
-<p>错误: 使用项目的相关变量，子项目找不到，编译也会错误提醒，但似乎可以执行。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jdk.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jconsole<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;pom.basedir&#125;/lib/jconsole.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>方式一: 使用绝对路径</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">local.lib</span>&gt;</span>D:/Java/JDK/OpenJDK/jdk8u412-b08/lib<span class="tag">&lt;/<span class="name">local.lib</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jdk.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jconsole<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;local.lib&#125;/jconsole.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>方式二: 使用仓库</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>external_lib<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>Repository in project&#x27;s lib dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>file:///$&#123;project.basedir&#125;/lib<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jdk.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jconsole<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Maven</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySql在Docker里时间晚8小时</title>
     <url>/2024/08/03/MySql%E5%9C%A8Docker%E9%87%8C%E6%97%B6%E9%97%B4%E6%99%9A8%E5%B0%8F%E6%97%B6/</url>
     <content><![CDATA[<p><code>/etc/localtime</code>是用来描述本机时间<br><code>/etc/timezone</code>是用来描述本机所属的时区</p>
@@ -571,6 +550,27 @@
       <tags>
         <tag>Java</tag>
         <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>POM中使用本地JAR</title>
+    <url>/2024/08/08/POM%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0JAR/</url>
+    <content><![CDATA[<p>假定<code>lib</code>位于项目根目录，与<code>pom.xml</code>同级别</p>
+<p>错误: 使用项目的相关变量，子项目找不到，编译也会错误提醒，但似乎可以执行。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jdk.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jconsole<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;pom.basedir&#125;/lib/jconsole.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>方式一: 使用绝对路径</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">local.lib</span>&gt;</span>D:/Java/JDK/OpenJDK/jdk8u412-b08/lib<span class="tag">&lt;/<span class="name">local.lib</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jdk.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jconsole<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;local.lib&#125;/jconsole.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>方式二: 使用仓库</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>external_lib<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>Repository in project&#x27;s lib dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">layout</span>&gt;</span>default<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>file:///$&#123;project.basedir&#125;/lib<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jdk.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jconsole<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Maven</tag>
       </tags>
   </entry>
   <entry>
@@ -641,6 +641,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Windows删除系统组件</title>
+    <url>/2024/08/09/Windows%E5%88%A0%E9%99%A4%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6/</url>
+    <content><![CDATA[<p>以管理员运行PowerShell</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-AppxPackage</span> <span class="literal">-allusers</span> | <span class="built_in">Select</span> Name,PackageFullName</span><br><span class="line"><span class="built_in">Get-AppxPackage</span> Microsoft.YourPhone <span class="literal">-AllUsers</span> | <span class="built_in">Remove-AppxPackage</span></span><br><span class="line"> <span class="built_in">get-appxpackage</span> <span class="literal">-allusers</span> *crossdevice* | <span class="built_in">remove-appxpackage</span>   </span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows禁用别名curl</title>
+    <url>/2024/08/14/Windows%E7%A6%81%E7%94%A8%E5%88%AB%E5%90%8Dcurl/</url>
+    <content><![CDATA[<p>编辑用户配置文件<br>添加</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">remove-item</span> alias:<span class="built_in">curl</span></span><br></pre></td></tr></table></figure>
+
+<p>Windows 11默认是5.1版本的PowerShell，不支持 <code>Remove-Alias</code>命令</p>
+ <a href="/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" title="关于 Gradle 在 Powershell终端 乱码的问题">关于 Gradle 在 Powershell终端</a>]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python免安装版配置</title>
     <url>/2024/08/17/Python%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<ol>
@@ -677,34 +705,6 @@
 ]]></content>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows删除系统组件</title>
-    <url>/2024/08/09/Windows%E5%88%A0%E9%99%A4%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6/</url>
-    <content><![CDATA[<p>以管理员运行PowerShell</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Get-AppxPackage</span> <span class="literal">-allusers</span> | <span class="built_in">Select</span> Name,PackageFullName</span><br><span class="line"><span class="built_in">Get-AppxPackage</span> Microsoft.YourPhone <span class="literal">-AllUsers</span> | <span class="built_in">Remove-AppxPackage</span></span><br><span class="line"> <span class="built_in">get-appxpackage</span> <span class="literal">-allusers</span> *crossdevice* | <span class="built_in">remove-appxpackage</span>   </span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows禁用别名curl</title>
-    <url>/2024/08/14/Windows%E7%A6%81%E7%94%A8%E5%88%AB%E5%90%8Dcurl/</url>
-    <content><![CDATA[<p>编辑用户配置文件<br>添加</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">remove-item</span> alias:<span class="built_in">curl</span></span><br></pre></td></tr></table></figure>
-
-<p>Windows 11默认是5.1版本的PowerShell，不支持 <code>Remove-Alias</code>命令</p>
- <a href="/2024/08/02/%E5%85%B3%E4%BA%8E-Gradle-%E5%9C%A8-Powershell%E7%BB%88%E7%AB%AF-%E4%B9%B1%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98/" title="关于 Gradle 在 Powershell终端 乱码的问题">关于 Gradle 在 Powershell终端</a>]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -913,6 +913,44 @@
       </categories>
       <tags>
         <tag>投机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IntelliJ IDEA之External tools</title>
+    <url>/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/</url>
+    <content><![CDATA[<h2 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h2><p><code>Ctrl + Alt + S</code> ——&gt; <code>External Tools</code> ——&gt; <code>Add</code> ,在添加页面的 <code>Tool Setting</code>部分分别设置</p>
+<ol>
+<li><code>Program</code> 填 <code>$JDKPath$\bin\javap</code><br>  <code>javap</code> 使用 JVM 选项 <code>-J-Dfile.encoding=GB2312</code></li>
+<li><code>Arguments</code> 填 <code>-v -c -l -s -p $FileClass$</code></li>
+<li><code>Working directory</code> 填 <code>$OutputPath$</code></li>
+</ol>
+<h2 id="jconsole"><a href="#jconsole" class="headerlink" title="jconsole"></a>jconsole</h2><ol>
+<li><code>Program</code> 填 <code>$JDKPath$\bin\jconsole</code></li>
+</ol>
+<h2 id="protoc"><a href="#protoc" class="headerlink" title="protoc"></a>protoc</h2><ol>
+<li><code>Program</code> 填 <code>protoc</code></li>
+<li><code>Arguments</code> 填 <code>--java_out=$SourcepathEntry$ $FileNameWithoutExtension$.proto</code><br>  <code>--java_out=</code> 指定输出文件的目录。如果使用宏<code>$SourcepathEntry$</code>,则在编写<code>xx.proto</code>文件时，最好指定正确的包名，结果会输出到相应的位置。或者指定为<code>.</code>,即输出到<code>xx.proto</code>文件所在的文件夹，然后复制到正确位置。</li>
+<li><code>Working directory</code> 填 <code>$FileDir$</code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot项目启动</title>
+    <url>/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="不使用spring-boot-starter-parent"><a href="#不使用spring-boot-starter-parent" class="headerlink" title="不使用spring-boot-starter-parent"></a>不使用<code>spring-boot-starter-parent</code></h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -3598,6 +3636,27 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>Node.js编译无法使用vs2022</title>
+    <url>/2024/07/31/Node-js%E7%BC%96%E8%AF%91%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8vs2022/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd &quot;C:\Program Files\nodejs&quot;</span><br><span class="line">cd node_modules\npm\node_modules\@npmcli\run-script</span><br><span class="line">npm install node-gyp@latest</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm cache clean --force</span><br><span class="line">rmrf.ps1 node_modules</span><br><span class="line">rmrf.ps1 package-lock.json yarn.lock</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>参考</p>
+<ol>
+<li><a href="https://github.com/nodejs/node-gyp/blob/master/docs/Updating-npm-bundled-node-gyp.md">Updating the npm-bundled version of node-gyp</a></li>
+<li><a href="https://stackoverflow.com/questions/54532854/error-c-program-files-x86-microsoft-visual-studio-2017-buildtools-msbuild-1">Error: <code>C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe</code> failed with exit code: 1</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Node.js开发环境</title>
     <url>/2024/07/31/Node-js%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<ol>
@@ -3628,27 +3687,6 @@ table th:first-of-type {
 
 <p> <a href="https://github.com/nvm-sh/nvm">Node Version Manager</a></p>
 </li>
-</ol>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Node.js编译无法使用vs2022</title>
-    <url>/2024/07/31/Node-js%E7%BC%96%E8%AF%91%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8vs2022/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd &quot;C:\Program Files\nodejs&quot;</span><br><span class="line">cd node_modules\npm\node_modules\@npmcli\run-script</span><br><span class="line">npm install node-gyp@latest</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm cache clean --force</span><br><span class="line">rmrf.ps1 node_modules</span><br><span class="line">rmrf.ps1 package-lock.json yarn.lock</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>参考</p>
-<ol>
-<li><a href="https://github.com/nodejs/node-gyp/blob/master/docs/Updating-npm-bundled-node-gyp.md">Updating the npm-bundled version of node-gyp</a></li>
-<li><a href="https://stackoverflow.com/questions/54532854/error-c-program-files-x86-microsoft-visual-studio-2017-buildtools-msbuild-1">Error: <code>C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe</code> failed with exit code: 1</a></li>
 </ol>
 ]]></content>
       <categories>
@@ -3934,6 +3972,20 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>SQLServer的CommandText的最大长度</title>
+    <url>/2024/07/31/SQLServer%E7%9A%84CommandText%E7%9A%84%E6%9C%80%E5%A4%A7%E9%95%BF%E5%BA%A6/</url>
+    <content><![CDATA[<p>SQLCommand的CommandText的最大长度,取决于SQL Server版本</p>
+<p>SQL Server 2012、2016、2017的默认最大值为65,536*网络数据包大小，而网络数据包大小默认是4K，可由“网络数据包大小”配置选项控制</p>
+<p>参考:<br><a href="https://stackoverflow.com/questions/21390537/sqlcommand-executenonquery-maximum-commandtext-length">SQLCommand ExecuteNonQuery Maximum CommandText Length?</a><br><a href="https://docs.microsoft.com/zh-cn/sql/sql-server/maximum-capacity-specifications-for-sql-server?view=sql-server-2017">SQL Server 的最大容量规范</a></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>SQL Server</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringBootTest激活配置设置</title>
     <url>/2024/07/31/SpringBootTest%E6%BF%80%E6%B4%BB%E9%85%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE/</url>
     <content><![CDATA[<p>一般使用如下方法：</p>
@@ -3947,20 +3999,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQLServer的CommandText的最大长度</title>
-    <url>/2024/07/31/SQLServer%E7%9A%84CommandText%E7%9A%84%E6%9C%80%E5%A4%A7%E9%95%BF%E5%BA%A6/</url>
-    <content><![CDATA[<p>SQLCommand的CommandText的最大长度,取决于SQL Server版本</p>
-<p>SQL Server 2012、2016、2017的默认最大值为65,536*网络数据包大小，而网络数据包大小默认是4K，可由“网络数据包大小”配置选项控制</p>
-<p>参考:<br><a href="https://stackoverflow.com/questions/21390537/sqlcommand-executenonquery-maximum-commandtext-length">SQLCommand ExecuteNonQuery Maximum CommandText Length?</a><br><a href="https://docs.microsoft.com/zh-cn/sql/sql-server/maximum-capacity-specifications-for-sql-server?view=sql-server-2017">SQL Server 的最大容量规范</a></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>SQL Server</tag>
       </tags>
   </entry>
   <entry>
@@ -4611,20 +4649,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>Windows删除右键</title>
-    <url>/2024/07/31/Windows%E5%88%A0%E9%99%A4%E5%8F%B3%E9%94%AE/</url>
-    <content><![CDATA[<p>保存为del_yun_shell.bat</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">reg delete HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\YunShellExt /f</span><br><span class="line">reg delete HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\YunShellExt /f</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>注册表</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows删不掉的文件处理</title>
     <url>/2024/07/31/Windows%E5%88%A0%E4%B8%8D%E6%8E%89%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">PS</span> D:\ProgramFiles\UltraEdit.<span class="number">26.0</span>.<span class="number">0.72</span>.x32&gt; tasklist /m ue64ctmn.dll</span><br><span class="line"><span class="built_in">PS</span> D:\ProgramFiles\UltraEdit.<span class="number">26.0</span>.<span class="number">0.72</span>.x32&gt; taskkill /f  /pid <span class="number">6664</span></span><br><span class="line"><span class="built_in">PS</span> D:\ProgramFiles\UltraEdit.<span class="number">26.0</span>.<span class="number">0.72</span>.x32&gt; <span class="built_in">del</span> .\ue64ctmn.dll</span><br></pre></td></tr></table></figure>
@@ -4642,6 +4666,20 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows删除右键</title>
+    <url>/2024/07/31/Windows%E5%88%A0%E9%99%A4%E5%8F%B3%E9%94%AE/</url>
+    <content><![CDATA[<p>保存为del_yun_shell.bat</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">reg delete HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\YunShellExt /f</span><br><span class="line">reg delete HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\YunShellExt /f</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>注册表</tag>
       </tags>
   </entry>
   <entry>
@@ -4674,29 +4712,6 @@ table th:first-of-type {
 <p>如何使目录不区分大小写<br>要撤消更改并再次使目录不区分大小写（正如比尔盖茨所希望的那样），请运行以下命令，将“C:\folder”替换为文件夹的路径。</p>
 <p>fsutil.exe file setCaseSensitiveInfo C:\folder disable</p>
 <p>如果您尝试对包含名称冲突的文件的文件夹禁用区分大小写，您将看到“错误：目录不为空”消息。您需要先删除或重命名冲突的文件，然后才能继续。</p>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows调整系统MTU值</title>
-    <url>/2024/07/31/Windows%E8%B0%83%E6%95%B4%E7%B3%BB%E7%BB%9FMTU%E5%80%BC/</url>
-    <content><![CDATA[<p>首先需要以【管理员】模式运行<code>cmd.exe</code>或<code>PowerShell</code></p>
-<p>以如下命令查看目前网卡MTU设置</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh interface ipv4 show interfaces</span><br></pre></td></tr></table></figure>
-
-<p>以如下命令确认最佳MTU的数据包大小</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ping <span class="literal">-l</span> <span class="number">1464</span> <span class="operator">-f</span> www.microsoft.com</span><br></pre></td></tr></table></figure>
-
-<p>在测试成功的数据包值上加上用于数据包包头28字节，即1464+28&#x3D;1492，这就是最佳MTU值<br>然后，以如下命令进行设置</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh interface ipv4 <span class="built_in">set</span> subinterface <span class="string">&quot;以太网&quot;</span> mtu=<span class="number">1492</span> store=persistent</span><br></pre></td></tr></table></figure>
-
-<p>Wifi6 无线局域网传输速度受限解除</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh int tcp <span class="built_in">set</span> global autotuninglevel=restricted</span><br><span class="line">netsh interface tcp <span class="built_in">set</span> heuristics disabled</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>系统</category>
@@ -4749,6 +4764,29 @@ table th:first-of-type {
 </tr>
 </tbody></table>
 <p>Windows注册表是不区分大小写</p>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows调整系统MTU值</title>
+    <url>/2024/07/31/Windows%E8%B0%83%E6%95%B4%E7%B3%BB%E7%BB%9FMTU%E5%80%BC/</url>
+    <content><![CDATA[<p>首先需要以【管理员】模式运行<code>cmd.exe</code>或<code>PowerShell</code></p>
+<p>以如下命令查看目前网卡MTU设置</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh interface ipv4 show interfaces</span><br></pre></td></tr></table></figure>
+
+<p>以如下命令确认最佳MTU的数据包大小</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ping <span class="literal">-l</span> <span class="number">1464</span> <span class="operator">-f</span> www.microsoft.com</span><br></pre></td></tr></table></figure>
+
+<p>在测试成功的数据包值上加上用于数据包包头28字节，即1464+28&#x3D;1492，这就是最佳MTU值<br>然后，以如下命令进行设置</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh interface ipv4 <span class="built_in">set</span> subinterface <span class="string">&quot;以太网&quot;</span> mtu=<span class="number">1492</span> store=persistent</span><br></pre></td></tr></table></figure>
+
+<p>Wifi6 无线局域网传输速度受限解除</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh int tcp <span class="built_in">set</span> global autotuninglevel=restricted</span><br><span class="line">netsh interface tcp <span class="built_in">set</span> heuristics disabled</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>系统</category>
@@ -4834,7 +4872,9 @@ table th:first-of-type {
 <h2 id="Windows-11展开右键菜单"><a href="#Windows-11展开右键菜单" class="headerlink" title="Windows 11展开右键菜单"></a>Windows 11展开右键菜单</h2><p>以管理员在<code>CMD</code>中执行下面的语句，然后<strong>重启电脑</strong></p>
 <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">reg add HKCU\Software\Classes\CLSID\&#123;<span class="number">86</span>ca1aa0-<span class="number">34</span>aa-<span class="number">4</span>e8b-a509-<span class="number">50</span>c905bae2a2&#125;\InprocServer32 /ve /d &quot;&quot; /f</span><br></pre></td></tr></table></figure>
 
-<h2 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h2><p><a href="./VSCode%E8%AE%BE%E7%BD%AE.md">VSCode设置</a></p>
+<h2 id="VS-Code"><a href="#VS-Code" class="headerlink" title="VS Code"></a>VS Code</h2><p><a href=""></a></p>
+<a href="/2024/07/31/VSCode%E8%AE%BE%E7%BD%AE/" title="VSCode设置">VSCode设置</a>
+
 <h2 id="PowerShell"><a href="#PowerShell" class="headerlink" title="PowerShell"></a>PowerShell</h2><h3 id="本地PS可执行"><a href="#本地PS可执行" class="headerlink" title="本地PS可执行"></a>本地PS可执行</h3><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned</span><br></pre></td></tr></table></figure>
 
 <p>如果从其他电脑或网络上下载的脚步，默认无法执行，需要在文件右键<code>属性</code>–&gt;<code>取消阻止</code><br><a href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_signing?view=powershell-7.4">关于签名</a><br><a href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.utility/unblock-file?view=powershell-7.4">unblock-file</a></p>
@@ -5602,167 +5642,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>IntelliJ IDEA之External tools</title>
-    <url>/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/</url>
-    <content><![CDATA[<h2 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h2><p><code>Ctrl + Alt + S</code> ——&gt; <code>External Tools</code> ——&gt; <code>Add</code> ,在添加页面的 <code>Tool Setting</code>部分分别设置</p>
-<ol>
-<li><code>Program</code> 填 <code>$JDKPath$\bin\javap</code><br>  <code>javap</code> 使用 JVM 选项 <code>-J-Dfile.encoding=GB2312</code></li>
-<li><code>Arguments</code> 填 <code>-v -c -l -s -p $FileClass$</code></li>
-<li><code>Working directory</code> 填 <code>$OutputPath$</code></li>
-</ol>
-<h2 id="jconsole"><a href="#jconsole" class="headerlink" title="jconsole"></a>jconsole</h2><ol>
-<li><code>Program</code> 填 <code>$JDKPath$\bin\jconsole</code></li>
-</ol>
-<h2 id="protoc"><a href="#protoc" class="headerlink" title="protoc"></a>protoc</h2><ol>
-<li><code>Program</code> 填 <code>protoc</code></li>
-<li><code>Arguments</code> 填 <code>--java_out=$SourcepathEntry$ $FileNameWithoutExtension$.proto</code><br>  <code>--java_out=</code> 指定输出文件的目录。如果使用宏<code>$SourcepathEntry$</code>,则在编写<code>xx.proto</code>文件时，最好指定正确的包名，结果会输出到相应的位置。或者指定为<code>.</code>,即输出到<code>xx.proto</code>文件所在的文件夹，然后复制到正确位置。</li>
-<li><code>Working directory</code> 填 <code>$FileDir$</code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot项目启动</title>
-    <url>/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="不使用spring-boot-starter-parent"><a href="#不使用spring-boot-starter-parent" class="headerlink" title="不使用spring-boot-starter-parent"></a>不使用<code>spring-boot-starter-parent</code></h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hyper-V管理器显示的内存和虚拟机查看的内存不一致问题</title>
-    <url>/2025/04/19/Hyper-V%E7%AE%A1%E7%90%86%E5%99%A8%E6%98%BE%E7%A4%BA%E7%9A%84%E5%86%85%E5%AD%98%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9F%A5%E7%9C%8B%E7%9A%84%E5%86%85%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="一、问题现象总结"><a href="#一、问题现象总结" class="headerlink" title="一、问题现象总结"></a>一、问题现象总结</h2><ul>
-<li>Hyper-V 管理器显示内存占用：12 GB</li>
-<li>Debian 12 系统内部（htop）看到内存总量：约 893 MB</li>
-<li>使用了 动态内存配置：1 GB ~ 12 GB</li>
-</ul>
-<h2 id="二、原因解析"><a href="#二、原因解析" class="headerlink" title="二、原因解析"></a>二、原因解析</h2><ol>
-<li>Hyper-V 的动态内存机制<br>Hyper-V 的动态内存技术会根据虚拟机的实际需求动态地：</li>
-</ol>
-<ul>
-<li><p>分配或回收主机内存；</p>
-</li>
-<li><p>它不会马上告诉 Guest OS（这里是 Debian）完整的可用最大内存；</p>
-</li>
-<li><p>Guest OS 启动时，仅看到“启动分配的初始内存”（如你配置的是初始 1 GB）；</p>
-</li>
-<li><p>Hyper-V 会在后台 透明增加内存页，但 Guest OS 并不直接更新 total memory 的数字。</p>
-</li>
-<li><p>➤ 换句话说：<br>Hyper-V 分配了更多内存，但 Linux 默认并不更新 &#x2F;proc&#x2F;meminfo 或 htop 显示的 总内存值，因为：</p>
-<ul>
-<li>Linux 只认启动时的 e820 BIOS 内存映射；</li>
-<li>热添加内存后，Linux 内核默认不刷新 total RAM（除非支持 memory hotplug 并启用 memhp_default_state&#x3D;online）。</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>为什么 htop 显示只有 893 MB？<br>这是启动时初始内存（可能略低于 1G），并未反映 Hyper-V 后续增加的内存。</li>
-</ol>
-<h2 id="三、如何验证是否真的内存增加？"><a href="#三、如何验证是否真的内存增加？" class="headerlink" title="三、如何验证是否真的内存增加？"></a>三、如何验证是否真的内存增加？</h2><p>用以下命令确认系统是否收到了 Hyper-V 分配的额外内存：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -r . /sys/devices/system/memory/ | grep state</span><br></pre></td></tr></table></figure>
-
-<p>如果看到 <code>/sys/devices/system/memory/memory*/state</code> 中有 多个 <code>memory block</code>，并且状态是 <code>online</code>，说明内存确实被添加，但可能未被正确统计。</p>
-<h2 id="四、怎么让-Linux-识别这些新内存？"><a href="#四、怎么让-Linux-识别这些新内存？" class="headerlink" title="四、怎么让 Linux 识别这些新内存？"></a>四、怎么让 Linux 识别这些新内存？</h2><p>尝试以下方法让 Linux 正确识别增加的内存：</p>
-<h3 id="方法一：开机参数添加自动上线热插内存"><a href="#方法一：开机参数添加自动上线热插内存" class="headerlink" title="方法一：开机参数添加自动上线热插内存"></a>方法一：开机参数添加自动上线热插内存</h3><p>编辑 <code>/etc/default/grub</code> 配置：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=<span class="string">&quot;quiet splash memhp_default_state=online&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后更新 grub 并重启：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="built_in">sudo</span> reboot</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二：手动上线热插内存"><a href="#方法二：手动上线热插内存" class="headerlink" title="方法二：手动上线热插内存"></a>方法二：手动上线热插内存</h3><p>在系统运行后，可以执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> block <span class="keyword">in</span> /sys/devices/system/memory/memory*/state; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> online | <span class="built_in">sudo</span> <span class="built_in">tee</span> <span class="variable">$block</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-
-<p>然后再执行 <code>free -h</code> 或 <code>htop</code> 看是否更新。</p>
-<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>Hyper-V 显示使用了 12 GB，但 Linux 只看到 893 MB Hyper-V 动态分配了更多内存，但 Linux 没自动识别 启用内存热插拔自动上线，或手动上线 memory block</p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSH连接Docker中的MySQL</title>
-    <url>/2025/04/23/SSH%E8%BF%9E%E6%8E%A5Docker%E4%B8%AD%E7%9A%84MySQL/</url>
-    <content><![CDATA[<h2 id="🐳💻-SSH-连接-Docker-中的-MySQL-容器-—-速查表"><a href="#🐳💻-SSH-连接-Docker-中的-MySQL-容器-—-速查表" class="headerlink" title="🐳💻 SSH 连接 Docker 中的 MySQL 容器 — 速查表"></a>🐳💻 SSH 连接 Docker 中的 MySQL 容器 — 速查表</h2><table>
-<thead>
-<tr>
-<th>方式</th>
-<th>命令</th>
-<th>是否推荐</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>✅ 一次登录</td>
-<td><code>ssh user@host -t &quot;sudo docker exec -it mysql mysql -uroot -p&quot;</code></td>
-<td>⭐⭐⭐</td>
-<td>成功率高，适合快速连接（注意 <code>-t</code> 位置！）</td>
-</tr>
-<tr>
-<td>✅ 最推荐（稳！）</td>
-<td><code>ssh -t user@host &quot;sudo docker exec -it mysql bash&quot;</code><br>（然后容器内手动 <code>mysql -uroot -p</code>）</td>
-<td>⭐⭐⭐⭐</td>
-<td>稳定、安全、适配性强，适合所有情况</td>
-</tr>
-<tr>
-<td>🚀 快速执行 SQL</td>
-<td><code>ssh user@host &quot;docker exec -i mysql mysql -uroot -p你的密码 -e &#39;SHOW DATABASES;&#39;&quot;</code></td>
-<td>⭐⭐</td>
-<td>自动化脚本、批处理时用；明文密码⚠️</td>
-</tr>
-<tr>
-<td>✅ 正统方法（推荐）</td>
-<td>SSH 隧道 + 本地客户端<br>1. <code>ssh -L 3307:127.0.0.1:3306 user@host</code><br>2. 本地连接 <code>mysql -h 127.0.0.1 -P 3307 -uroot -p</code></td>
-<td>⭐⭐⭐⭐</td>
-<td>安全、稳定、兼容图形工具</td>
-</tr>
-<tr>
-<td>🚫 容易卡死的写法</td>
-<td><code>ssh user@host &quot;docker exec -it mysql mysql -uroot -p&quot;</code></td>
-<td>❌</td>
-<td>没有 <code>-t</code>，会卡住或 stdin 无效</td>
-</tr>
-<tr>
-<td>🚫 明文密码（仅测试）</td>
-<td><code>ssh user@host &quot;docker exec -i mysql mysql -uroot -p你的密码&quot;</code></td>
-<td>❌</td>
-<td>密码暴露在命令行中，危险</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="🧠-小贴士"><a href="#🧠-小贴士" class="headerlink" title="🧠 小贴士"></a>🧠 小贴士</h3><ul>
-<li><code>-t</code>：请求伪终端，<strong>必须有才能安全交互</strong></li>
-<li><code>-i</code>：保持标准输入，不然 <code>mysql</code> 接收不到你键盘输入</li>
-<li>多层 SSH &#x2F; 跳板机？可以加 <code>-tt</code> 强制 tty</li>
-</ul>
-<hr>
-<h3 id="🛠-推荐别名（Alias）"><a href="#🛠-推荐别名（Alias）" class="headerlink" title="🛠 推荐别名（Alias）"></a>🛠 推荐别名（Alias）</h3><p>写到 <code>~/.bashrc</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql-remote=<span class="string">&#x27;ssh -t user@host &quot;sudo docker exec -it mysql bash&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>下次只需要：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql-remote</span><br><span class="line"><span class="comment"># 然后容器里 mysql -uroot -p</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker运行Nexus</title>
     <url>/2025/03/04/Docker%E8%BF%90%E8%A1%8CNexus/</url>
     <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> /data/nexus</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span>  <span class="built_in">chown</span> -R 200 /data/nexus</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker run -d \</span></span><br><span class="line"><span class="language-bash">--name nexus \</span></span><br><span class="line"><span class="language-bash">--restart=always \</span></span><br><span class="line"><span class="language-bash">-p 18081:8081 \</span></span><br><span class="line"><span class="language-bash">-e INSTALL4J_ADD_VM_PARAMS=<span class="string">&quot;-Xms32m -Xmx1024m -XX:MaxDirectMemorySize=1024m&quot;</span> \</span></span><br><span class="line"><span class="language-bash">--env-file ~/.docker/proxy \</span></span><br><span class="line"><span class="language-bash">-v /data/nexus:/nexus-data \</span></span><br><span class="line"><span class="language-bash">sonatype/nexus3</span></span><br></pre></td></tr></table></figure>
@@ -5792,27 +5671,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>Java9后获取加载的Jar路径</title>
-    <url>/2025/03/29/Java9%E5%90%8E%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E7%9A%84Jar%E8%B7%AF%E5%BE%84/</url>
-    <content><![CDATA[<p>JDK9后，由于模块化，要想获取启动加载的 Jar 包的路径，只有使用代理机制实现，先制作代理 <code>agent.jar</code>，然后在执行目标<code>jar</code>时，加载<code>agent.jar</code>。具体方法如下</p>
-<p>添加代理类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.instrument.Instrumentation;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.security.CodeSource;</span><br><span class="line"><span class="keyword">import</span> java.security.ProtectionDomain;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BootstrapAgent</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">premain</span><span class="params">(String args, Instrumentation inst)</span> &#123;</span><br><span class="line">        Set&lt;String&gt; paths = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        Class&lt;?&gt;[] classes = inst.getAllLoadedClasses();</span><br><span class="line">        <span class="keyword">for</span> (Class&lt;?&gt; clazz : classes) &#123;</span><br><span class="line">            <span class="type">ProtectionDomain</span> <span class="variable">domain</span> <span class="operator">=</span> clazz.getProtectionDomain();</span><br><span class="line">            <span class="keyword">if</span> (domain != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="type">CodeSource</span> <span class="variable">source</span> <span class="operator">=</span> domain.getCodeSource();</span><br><span class="line">                <span class="keyword">if</span> (source != <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="type">URL</span> <span class="variable">location</span> <span class="operator">=</span> source.getLocation();</span><br><span class="line">                    paths.add(location.toString());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;Bootstrap ClassPath JARs:&quot;</span>);</span><br><span class="line">        paths.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>添加<code>MANIFEST.MF</code>，<strong>注意最后要空一行</strong></p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">Manifest-Version: 1.0</span><br><span class="line">Premain-Class: BootstrapAgent</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">javac BootstrapAgent.java</span><br><span class="line">jar cmf MANIFEST.MF agent.jar BootstrapAgent.class</span><br><span class="line">java -javaagent:agent.jar -jar YourApplication.jar</span><br></pre></td></tr></table></figure>
-
-<p>如果有包名，要对应; 打包 <code>agent.jar</code>的时候要到包的根目录去运行程序，以使<code>agent.jar</code>里面的目录结构与包名一致，否则容易出现<code>ClassNotFoundException</code></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java获取当前运行的方法名称</title>
     <url>/2025/03/15/Java%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0/</url>
     <content><![CDATA[<p>在 Java 中，获取当前正在运行的方法名称可以通过 Thread 类中的堆栈信息来实现。具体方法如下：</p>
@@ -5828,6 +5686,27 @@ table th:first-of-type {
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.StackWalker;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        printCurrentMethodName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printCurrentMethodName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> StackWalker.getInstance()</span><br><span class="line">                                       .walk(frames -&gt; frames.skip(<span class="number">1</span>).findFirst().get().getMethodName());</span><br><span class="line">        System.out.println(<span class="string">&quot;当前方法名称: &quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>优势：<br>更高效，且更加灵活。<br>适用于 Java 9 及以上版本。<br>哪个方法更好？<br>如果追求性能，建议使用 StackWalker（Java 9+）。<br>对于简单的调试或兼容性需求，Thread.currentThread().getStackTrace() 更方便。</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java9后获取加载的Jar路径</title>
+    <url>/2025/03/29/Java9%E5%90%8E%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E7%9A%84Jar%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<p>JDK9后，由于模块化，要想获取启动加载的 Jar 包的路径，只有使用代理机制实现，先制作代理 <code>agent.jar</code>，然后在执行目标<code>jar</code>时，加载<code>agent.jar</code>。具体方法如下</p>
+<p>添加代理类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.instrument.Instrumentation;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.security.CodeSource;</span><br><span class="line"><span class="keyword">import</span> java.security.ProtectionDomain;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BootstrapAgent</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">premain</span><span class="params">(String args, Instrumentation inst)</span> &#123;</span><br><span class="line">        Set&lt;String&gt; paths = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        Class&lt;?&gt;[] classes = inst.getAllLoadedClasses();</span><br><span class="line">        <span class="keyword">for</span> (Class&lt;?&gt; clazz : classes) &#123;</span><br><span class="line">            <span class="type">ProtectionDomain</span> <span class="variable">domain</span> <span class="operator">=</span> clazz.getProtectionDomain();</span><br><span class="line">            <span class="keyword">if</span> (domain != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="type">CodeSource</span> <span class="variable">source</span> <span class="operator">=</span> domain.getCodeSource();</span><br><span class="line">                <span class="keyword">if</span> (source != <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="type">URL</span> <span class="variable">location</span> <span class="operator">=</span> source.getLocation();</span><br><span class="line">                    paths.add(location.toString());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;Bootstrap ClassPath JARs:&quot;</span>);</span><br><span class="line">        paths.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>添加<code>MANIFEST.MF</code>，<strong>注意最后要空一行</strong></p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">Manifest-Version: 1.0</span><br><span class="line">Premain-Class: BootstrapAgent</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">javac BootstrapAgent.java</span><br><span class="line">jar cmf MANIFEST.MF agent.jar BootstrapAgent.class</span><br><span class="line">java -javaagent:agent.jar -jar YourApplication.jar</span><br></pre></td></tr></table></figure>
+
+<p>如果有包名，要对应; 打包 <code>agent.jar</code>的时候要到包的根目录去运行程序，以使<code>agent.jar</code>里面的目录结构与包名一致，否则容易出现<code>ClassNotFoundException</code></p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -6000,19 +5879,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>取消BitLocker正在等待激活状态</title>
-    <url>/2025/03/03/%E5%8F%96%E6%B6%88BitLocker%E6%AD%A3%E5%9C%A8%E7%AD%89%E5%BE%85%E6%BF%80%E6%B4%BB%E7%8A%B6%E6%80%81/</url>
-    <content><![CDATA[<p>管理员运行<code>Powershell</code></p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 根据分区文件的多少，需要的时间会有所不一样，一般10分钟内完成</span></span><br><span class="line">manage<span class="literal">-bde</span> <span class="literal">-off</span> c: </span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>制作U盘Linux系统</title>
     <url>/2025/03/03/%E5%88%B6%E4%BD%9CU%E7%9B%98Linux%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<p>注意两点:</p>
@@ -6096,6 +5962,142 @@ table th:first-of-type {
 <ul>
 <li><input disabled="" type="checkbox"> IntelliJ IDEA 怎么支持？</li>
 </ul>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>取消BitLocker正在等待激活状态</title>
+    <url>/2025/03/03/%E5%8F%96%E6%B6%88BitLocker%E6%AD%A3%E5%9C%A8%E7%AD%89%E5%BE%85%E6%BF%80%E6%B4%BB%E7%8A%B6%E6%80%81/</url>
+    <content><![CDATA[<p>管理员运行<code>Powershell</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 根据分区文件的多少，需要的时间会有所不一样，一般10分钟内完成</span></span><br><span class="line">manage<span class="literal">-bde</span> <span class="literal">-off</span> c: </span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hyper-V管理器显示的内存和虚拟机查看的内存不一致问题</title>
+    <url>/2025/04/19/Hyper-V%E7%AE%A1%E7%90%86%E5%99%A8%E6%98%BE%E7%A4%BA%E7%9A%84%E5%86%85%E5%AD%98%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9F%A5%E7%9C%8B%E7%9A%84%E5%86%85%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="一、问题现象总结"><a href="#一、问题现象总结" class="headerlink" title="一、问题现象总结"></a>一、问题现象总结</h2><ul>
+<li>Hyper-V 管理器显示内存占用：12 GB</li>
+<li>Debian 12 系统内部（htop）看到内存总量：约 893 MB</li>
+<li>使用了 动态内存配置：1 GB ~ 12 GB</li>
+</ul>
+<h2 id="二、原因解析"><a href="#二、原因解析" class="headerlink" title="二、原因解析"></a>二、原因解析</h2><ol>
+<li>Hyper-V 的动态内存机制<br>Hyper-V 的动态内存技术会根据虚拟机的实际需求动态地：</li>
+</ol>
+<ul>
+<li><p>分配或回收主机内存；</p>
+</li>
+<li><p>它不会马上告诉 Guest OS（这里是 Debian）完整的可用最大内存；</p>
+</li>
+<li><p>Guest OS 启动时，仅看到“启动分配的初始内存”（如你配置的是初始 1 GB）；</p>
+</li>
+<li><p>Hyper-V 会在后台 透明增加内存页，但 Guest OS 并不直接更新 total memory 的数字。</p>
+</li>
+<li><p>➤ 换句话说：<br>Hyper-V 分配了更多内存，但 Linux 默认并不更新 &#x2F;proc&#x2F;meminfo 或 htop 显示的 总内存值，因为：</p>
+<ul>
+<li>Linux 只认启动时的 e820 BIOS 内存映射；</li>
+<li>热添加内存后，Linux 内核默认不刷新 total RAM（除非支持 memory hotplug 并启用 memhp_default_state&#x3D;online）。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>为什么 htop 显示只有 893 MB？<br>这是启动时初始内存（可能略低于 1G），并未反映 Hyper-V 后续增加的内存。</li>
+</ol>
+<h2 id="三、如何验证是否真的内存增加？"><a href="#三、如何验证是否真的内存增加？" class="headerlink" title="三、如何验证是否真的内存增加？"></a>三、如何验证是否真的内存增加？</h2><p>用以下命令确认系统是否收到了 Hyper-V 分配的额外内存：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -r . /sys/devices/system/memory/ | grep state</span><br></pre></td></tr></table></figure>
+
+<p>如果看到 <code>/sys/devices/system/memory/memory*/state</code> 中有 多个 <code>memory block</code>，并且状态是 <code>online</code>，说明内存确实被添加，但可能未被正确统计。</p>
+<h2 id="四、怎么让-Linux-识别这些新内存？"><a href="#四、怎么让-Linux-识别这些新内存？" class="headerlink" title="四、怎么让 Linux 识别这些新内存？"></a>四、怎么让 Linux 识别这些新内存？</h2><p>尝试以下方法让 Linux 正确识别增加的内存：</p>
+<h3 id="方法一：开机参数添加自动上线热插内存"><a href="#方法一：开机参数添加自动上线热插内存" class="headerlink" title="方法一：开机参数添加自动上线热插内存"></a>方法一：开机参数添加自动上线热插内存</h3><p>编辑 <code>/etc/default/grub</code> 配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=<span class="string">&quot;quiet splash memhp_default_state=online&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后更新 grub 并重启：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="built_in">sudo</span> reboot</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二：手动上线热插内存"><a href="#方法二：手动上线热插内存" class="headerlink" title="方法二：手动上线热插内存"></a>方法二：手动上线热插内存</h3><p>在系统运行后，可以执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> block <span class="keyword">in</span> /sys/devices/system/memory/memory*/state; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> online | <span class="built_in">sudo</span> <span class="built_in">tee</span> <span class="variable">$block</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>然后再执行 <code>free -h</code> 或 <code>htop</code> 看是否更新。</p>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>Hyper-V 显示使用了 12 GB，但 Linux 只看到 893 MB Hyper-V 动态分配了更多内存，但 Linux 没自动识别 启用内存热插拔自动上线，或手动上线 memory block</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSH连接Docker中的MySQL</title>
+    <url>/2025/04/23/SSH%E8%BF%9E%E6%8E%A5Docker%E4%B8%AD%E7%9A%84MySQL/</url>
+    <content><![CDATA[<h2 id="🐳💻-SSH-连接-Docker-中的-MySQL-容器-—-速查表"><a href="#🐳💻-SSH-连接-Docker-中的-MySQL-容器-—-速查表" class="headerlink" title="🐳💻 SSH 连接 Docker 中的 MySQL 容器 — 速查表"></a>🐳💻 SSH 连接 Docker 中的 MySQL 容器 — 速查表</h2><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>命令</th>
+<th>是否推荐</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ 一次登录</td>
+<td><code>ssh user@host -t &quot;sudo docker exec -it mysql mysql -uroot -p&quot;</code></td>
+<td>⭐⭐⭐</td>
+<td>成功率高，适合快速连接（注意 <code>-t</code> 位置！）</td>
+</tr>
+<tr>
+<td>✅ 最推荐（稳！）</td>
+<td><code>ssh -t user@host &quot;sudo docker exec -it mysql bash&quot;</code><br>（然后容器内手动 <code>mysql -uroot -p</code>）</td>
+<td>⭐⭐⭐⭐</td>
+<td>稳定、安全、适配性强，适合所有情况</td>
+</tr>
+<tr>
+<td>🚀 快速执行 SQL</td>
+<td><code>ssh user@host &quot;docker exec -i mysql mysql -uroot -p你的密码 -e &#39;SHOW DATABASES;&#39;&quot;</code></td>
+<td>⭐⭐</td>
+<td>自动化脚本、批处理时用；明文密码⚠️</td>
+</tr>
+<tr>
+<td>✅ 正统方法（推荐）</td>
+<td>SSH 隧道 + 本地客户端<br>1. <code>ssh -L 3307:127.0.0.1:3306 user@host</code><br>2. 本地连接 <code>mysql -h 127.0.0.1 -P 3307 -uroot -p</code></td>
+<td>⭐⭐⭐⭐</td>
+<td>安全、稳定、兼容图形工具</td>
+</tr>
+<tr>
+<td>🚫 容易卡死的写法</td>
+<td><code>ssh user@host &quot;docker exec -it mysql mysql -uroot -p&quot;</code></td>
+<td>❌</td>
+<td>没有 <code>-t</code>，会卡住或 stdin 无效</td>
+</tr>
+<tr>
+<td>🚫 明文密码（仅测试）</td>
+<td><code>ssh user@host &quot;docker exec -i mysql mysql -uroot -p你的密码&quot;</code></td>
+<td>❌</td>
+<td>密码暴露在命令行中，危险</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🧠-小贴士"><a href="#🧠-小贴士" class="headerlink" title="🧠 小贴士"></a>🧠 小贴士</h3><ul>
+<li><code>-t</code>：请求伪终端，<strong>必须有才能安全交互</strong></li>
+<li><code>-i</code>：保持标准输入，不然 <code>mysql</code> 接收不到你键盘输入</li>
+<li>多层 SSH &#x2F; 跳板机？可以加 <code>-tt</code> 强制 tty</li>
+</ul>
+<hr>
+<h3 id="🛠-推荐别名（Alias）"><a href="#🛠-推荐别名（Alias）" class="headerlink" title="🛠 推荐别名（Alias）"></a>🛠 推荐别名（Alias）</h3><p>写到 <code>~/.bashrc</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql-remote=<span class="string">&#x27;ssh -t user@host &quot;sudo docker exec -it mysql bash&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>下次只需要：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql-remote</span><br><span class="line"><span class="comment"># 然后容器里 mysql -uroot -p</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>后端</category>
