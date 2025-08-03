@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C#单文件可执行程序发布</title>
+    <url>/2024/07/30/C-%E5%8D%95%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E5%8F%91%E5%B8%83/</url>
+    <content><![CDATA[<ul>
+<li><p>1 Create a new HelloWorld app: <code>HelloWorld$ dotnet new console</code></p>
+</li>
+<li><p>2 Framework Dependent Publish</p>
+<ul>
+<li>Normal publish: <code>dotnet publish</code><ul>
+<li>Published files: <code>HelloWorld.exe, HelloWorld.dll, HelloWorld.deps.json, HelloWorld.runtimeconfig.json, HelloWorld.pdb</code></li>
+</ul>
+</li>
+<li>Single-file publish: <code>dotnet publish -r win-x64 --self-contained=false /p:PublishSingleFile=true</code><ul>
+<li>Published files: <code>HelloWorld.exe, HelloWorld.pdb</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3 Self-Contained Publish</p>
+<ul>
+<li>Normal publish: <code>dotnet publish -r win-x64</code><ul>
+<li>Published files: <code>HelloWorld.exe, HelloWorld.pdb, and 224 more files</code></li>
+</ul>
+</li>
+<li>Single-file publish Linux: <code>dotnet publish -r linux-x64 /p:PublishSingleFile=true</code><ul>
+<li>Published files: <code>HelloWorld, HelloWorld.pdb</code></li>
+</ul>
+</li>
+<li>Single-file publish Windows: <code>dotnet publish -r win-x64 /p:PublishSingleFile=true</code><ul>
+<li>Published files: <code>HelloWorld.exe, HelloWorld.pdb, coreclr.dll, clrjit.dll, clrcompression.dll, mscordaccore.dll</code></li>
+</ul>
+</li>
+<li>Single-file publish Windows with Extraction: <code>dotnet publish -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true</code><ul>
+<li>Published files: <code>HelloWorld.exe, HelloWorld.pdb</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://github.com/dotnet/designs/blob/main/accepted/2020/single-file/design.md">Single-file Publish</a></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A类和B类互相引用的解释</title>
     <url>/2024/07/31/A%E7%B1%BB%E5%92%8CB%E7%B1%BB%E4%BA%92%E7%9B%B8%E5%BC%95%E7%94%A8%E7%9A%84%E8%A7%A3%E9%87%8A/</url>
     <content><![CDATA[<h4 id="Question"><a href="#Question" class="headerlink" title="Question:"></a>Question:</h4><p>2 C# classes contain each other as a member<br>I have two c# classes A,B.</p>
@@ -64,82 +112,6 @@
 <p>输出：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b=2  a=1</span><br></pre></td></tr></table></figure>
 <p>参考:<br><a href="https://stackoverflow.com/questions/22477984/2-c-sharp-classes-contain-each-other-as-a-member">2 C# classes contain each other as a member</a><br><a href="https://blog.csdn.net/xijiaoda_liuhao/article/details/6823408">类中定义自身类对象</a></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C#单文件可执行程序发布</title>
-    <url>/2024/07/30/C-%E5%8D%95%E6%96%87%E4%BB%B6%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%E5%8F%91%E5%B8%83/</url>
-    <content><![CDATA[<ul>
-<li><p>1 Create a new HelloWorld app: <code>HelloWorld$ dotnet new console</code></p>
-</li>
-<li><p>2 Framework Dependent Publish</p>
-<ul>
-<li>Normal publish: <code>dotnet publish</code><ul>
-<li>Published files: <code>HelloWorld.exe, HelloWorld.dll, HelloWorld.deps.json, HelloWorld.runtimeconfig.json, HelloWorld.pdb</code></li>
-</ul>
-</li>
-<li>Single-file publish: <code>dotnet publish -r win-x64 --self-contained=false /p:PublishSingleFile=true</code><ul>
-<li>Published files: <code>HelloWorld.exe, HelloWorld.pdb</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>3 Self-Contained Publish</p>
-<ul>
-<li>Normal publish: <code>dotnet publish -r win-x64</code><ul>
-<li>Published files: <code>HelloWorld.exe, HelloWorld.pdb, and 224 more files</code></li>
-</ul>
-</li>
-<li>Single-file publish Linux: <code>dotnet publish -r linux-x64 /p:PublishSingleFile=true</code><ul>
-<li>Published files: <code>HelloWorld, HelloWorld.pdb</code></li>
-</ul>
-</li>
-<li>Single-file publish Windows: <code>dotnet publish -r win-x64 /p:PublishSingleFile=true</code><ul>
-<li>Published files: <code>HelloWorld.exe, HelloWorld.pdb, coreclr.dll, clrjit.dll, clrcompression.dll, mscordaccore.dll</code></li>
-</ul>
-</li>
-<li>Single-file publish Windows with Extraction: <code>dotnet publish -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true</code><ul>
-<li>Published files: <code>HelloWorld.exe, HelloWorld.pdb</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><a href="https://github.com/dotnet/designs/blob/main/accepted/2020/single-file/design.md">Single-file Publish</a></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C#实现XML声明为UTF-8</title>
-    <url>/2024/07/30/C-%E5%AE%9E%E7%8E%B0XML%E5%A3%B0%E6%98%8E%E4%B8%BAUTF-8/</url>
-    <content><![CDATA[<h3 id="一、首先添加辅助类StringWriterWithEncoding"><a href="#一、首先添加辅助类StringWriterWithEncoding" class="headerlink" title="一、首先添加辅助类StringWriterWithEncoding"></a>一、首先添加辅助类StringWriterWithEncoding</h3><p>因StringWriter默认为Unicode码(即UTF-16),且无Encoding类型参数的构造函数</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">StringWriterWithEncoding</span> : <span class="title">StringWriter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> Encoding encoding;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringWriterWithEncoding</span>() : <span class="title">this</span>(<span class="params">Encoding.UTF8</span>)</span> &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringWriterWithEncoding</span>(<span class="params">Encoding encoding</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.encoding = encoding;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> Encoding Encoding &#123; <span class="keyword">get</span> &#123; <span class="keyword">return</span> encoding; &#125; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="二、序列化、反序列化"><a href="#二、序列化、反序列化" class="headerlink" title="二、序列化、反序列化"></a>二、序列化、反序列化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">XMLHelper</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 序列化</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;obj&quot;&gt;</span>对象<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">Serializer</span>&lt;<span class="title">T</span>&gt;(<span class="params">T obj</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        StringWriterWithEncoding result = <span class="keyword">new</span> StringWriterWithEncoding(Encoding.UTF8);</span><br><span class="line">        XmlSerializer xmlSerializer = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(T));</span><br><span class="line"></span><br><span class="line">        XmlWriterSettings xmlWriterSettings = <span class="keyword">new</span> XmlWriterSettings()</span><br><span class="line">        &#123;</span><br><span class="line">            Encoding = Encoding.UTF8,</span><br><span class="line">            Indent = <span class="literal">false</span></span><br><span class="line">            <span class="comment">//    Indent = true,                //获取或设置指示是否缩进元素的值</span></span><br><span class="line">            <span class="comment">//    IndentChars = &quot;    &quot;,         //使用此设置时 Indent 属性设置为 true。获取或设置缩进时要使用的字符串。</span></span><br><span class="line">            <span class="comment">//    NewLineChars = &quot;\r\n&quot;,        //获取或设置要用于换行符的字符串。</span></span><br><span class="line">            <span class="comment">//    OmitXmlDeclaration = true;    //不生成声明头  </span></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">using</span> (XmlWriter xmlWriter = XmlWriter.Create(result, xmlWriterSettings))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 强制指定命名空间，覆盖默认的命名空间</span></span><br><span class="line">            <span class="comment">// 若不指定命名空间，使用xmlSerializer.Serialize(xmlWriter, obj);则根目录如下</span></span><br><span class="line">            <span class="comment">// &lt;purchaseStateQuery xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</span></span><br><span class="line">            <span class="comment">// &lt;stock_id&gt;261753&lt;/stock_id&gt;&lt;owner_id&gt;201888&lt;/owner_id&gt;&lt;/purchaseStateQuery&gt;  </span></span><br><span class="line">            XmlSerializerNamespaces namespaces = <span class="keyword">new</span> XmlSerializerNamespaces();</span><br><span class="line">            namespaces.Add(<span class="built_in">string</span>.Empty, <span class="built_in">string</span>.Empty);</span><br><span class="line">            xmlSerializer.Serialize(xmlWriter, obj, namespaces);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//此句多余</span></span><br><span class="line">            <span class="comment">//xmlWriter.Close();</span></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result.ToString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 反序列化</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;xml&quot;&gt;</span>XML字符串<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> T <span class="title">Deserialize</span>&lt;<span class="title">T</span>&gt;(<span class="params"><span class="built_in">string</span> xml</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (StringReader sr = <span class="keyword">new</span> StringReader(xml))</span><br><span class="line">        &#123;</span><br><span class="line">            XmlSerializer xmldes = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(T));</span><br><span class="line">            <span class="keyword">return</span> (T)xmldes.Deserialize(sr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 反序列化</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;xml&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> T <span class="title">Deserialize</span>&lt;<span class="title">T</span>&gt;(<span class="params">Stream stream</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        XmlSerializer xmldes = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(T));</span><br><span class="line">        <span class="keyword">return</span> (T)xmldes.Deserialize(stream);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三、序列化对象XML属性设置"><a href="#三、序列化对象XML属性设置" class="headerlink" title="三、序列化对象XML属性设置"></a>三、序列化对象XML属性设置</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">XmlRoot(<span class="string">&quot;cats&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CatCollection</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">XmlArray(<span class="string">&quot;items&quot;</span>),XmlArrayItem(<span class="string">&quot;item&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> Cat[] Cats &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">[<span class="meta">XmlRoot(<span class="string">&quot;cat&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Cat</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//定义Color属性的序列化为cat节点的属性</span></span><br><span class="line">    [<span class="meta">XmlAttribute(<span class="string">&quot;color&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Color &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//要求不序列化Speed属性</span></span><br><span class="line">    [<span class="meta">XmlIgnore</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Speed &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//设置Saying属性序列化为Xml子元素</span></span><br><span class="line">    [<span class="meta">XmlElement(<span class="string">&quot;saying&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Saying &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="四、动态生成的程序集-MSDN-XmlSerializer-Class-待明白？？？"><a href="#四、动态生成的程序集-MSDN-XmlSerializer-Class-待明白？？？" class="headerlink" title="四、动态生成的程序集([MSDN](XmlSerializer Class)) (待明白？？？)"></a>四、动态生成的程序集([MSDN](XmlSerializer Class)) (待明白？？？)</h3><p>为了提高性能，XML 序列化基础结构动态生成要序列化和反序列化指定的类型的程序集。 基础结构查找并重用这些程序集。 仅当使用下面的构造函数时，会出现此行为︰</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">XmlSerializer.XmlSerializer(Type)</span><br><span class="line">XmlSerializer.XmlSerializer(Type, String)</span><br></pre></td></tr></table></figure>
-<p>如果您使用任何其他构造函数，同一程序集的多个版本生成，并永远不会卸载，这将导致内存泄漏和性能低下。<br>最简单的解决方案是使用前面提到的两个构造函数之一。 否则，必须缓存中的程序集 Hashtable, ，如在下面的示例所示。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Hashtable serializers = <span class="keyword">new</span> Hashtable();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use the constructor that takes a type and XmlRootAttribute.</span></span><br><span class="line">XmlSerializer s = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(MyClass), myRoot);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Implement a method named GenerateKey that creates unique keys </span></span><br><span class="line"><span class="comment">// for each instance of the XmlSerializer. The code should take </span></span><br><span class="line"><span class="comment">// into account all parameters passed to the XmlSerializer </span></span><br><span class="line"><span class="comment">// constructor.</span></span><br><span class="line"><span class="built_in">object</span> key = GenerateKey(<span class="keyword">typeof</span>(MyClass), myRoot);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Check the local cache for a matching serializer.</span></span><br><span class="line">XmlSerializer ser = (XmlSerializer)serializers[key];</span><br><span class="line"><span class="keyword">if</span> (ser == <span class="literal">null</span>) </span><br><span class="line">&#123;</span><br><span class="line">    ser = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(MyClass), myRoot);</span><br><span class="line">    <span class="comment">// Cache the serializer.</span></span><br><span class="line">    serializers[key] = ser;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Use the serializer to serialize, or deserialize.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>HTTP请求XML封装</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HttpHelper</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">readonly</span> IHttpClientFactory _clientFactory;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">HttpHelper</span>(<span class="params">IHttpClientFactory clientFactory</span>)</span></span><br><span class="line">       &#123;</span><br><span class="line">           _clientFactory = clientFactory;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;T&gt; <span class="title">ActionAsync</span>(<span class="params">HttpRequestMessage httpRequestMessage</span>)</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">var</span> client = _clientFactory.CreateClient();</span><br><span class="line">           <span class="keyword">var</span> response = <span class="keyword">await</span> client.SendAsync(httpRequestMessage);</span><br><span class="line">           <span class="keyword">if</span> (response.IsSuccessStatusCode)</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">var</span> resultStr = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">               <span class="keyword">return</span> XMLHelper&lt;T&gt;.Deserialize(resultStr);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">default</span>(T);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> 返回原字符串，用于调试</span></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;httpRequestMessage&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;<span class="built_in">string</span>&gt; <span class="title">ActionForStringAsync</span>(<span class="params">HttpRequestMessage httpRequestMessage</span>)</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">var</span> client = _clientFactory.CreateClient();</span><br><span class="line">           <span class="keyword">var</span> response = <span class="keyword">await</span> client.SendAsync(httpRequestMessage);</span><br><span class="line">           <span class="keyword">if</span> (response.IsSuccessStatusCode)</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="built_in">string</span>.Empty;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>备注：本文参考了</p>
-<p><a href="http://www.cnblogs.com/yukaizhao/archive/2011/07/22/xml-serialization.html">XmlSerializer 对象的Xml序列化和反序列化</a><br><a href="https://blog.csdn.net/lilinoscar/article/details/21027319">C#生成、解析xml文件以及处理报错原因</a><br><a href="https://msdn.microsoft.com/zh-cn/library/system.xml.serialization.xmlserializer(v=vs.110).aspx">XmlSerializer 类</a><br><a href="https://msdn.microsoft.com/zh-cn/library/system.xml.xmlwritersettings_properties(v=vs.110).aspx">XmlWriterSettings 属性</a><br><a href="https://stackoverflow.com/questions/42583299/xmlwriter-encoding-utf-8-using-stringwriter-in-c-sharp">XmlWriter encoding UTF-8 using StringWriter in C#</a></p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -450,158 +422,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>Docker使用</title>
-    <url>/2024/07/30/Docker%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p>Debian默认安装即可，指定版本&#x2F;最新版本安装参考docker官方文档<br><a href="https://docs.docker.com/engine/install/debian/">Install Docker Engine on Debian</a></p>
-<p>由于Docker服务默认绑定到Unix Socket，而非一个TCP端口；而Unix Socket属于 root,因此Docker服务总是以 <code>root</code>用户运行，其他用户需要使用<code>sudo</code>来访问。<br>为了避免每次使用<code>sudo</code>才能操作，可以添加<code>docker</code>组，并将当前用户加入<code>docker</code>组,命令如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install docker.io -y</span><br><span class="line">sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure>
-
-<p>虚拟机: 需要重启，以生效<br>实体机: X Window退出，重新进入生效或者执行命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">newgrp docker</span><br></pre></td></tr></table></figure>
-
-<p>验证</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker version</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
-
-<p>启动(二选一)</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service docker start</span><br><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装-docker-compose"><a href="#安装-docker-compose" class="headerlink" title="安装 docker-compose"></a>安装 docker-compose</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 Docker Compose Plugin（推荐，Compose V2）,但 Debian 12 不支持</span></span><br><span class="line">sudo apt install docker-compose-plugin -y</span><br><span class="line">docker compose version</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 Docker Compose CLI (Compose V1)</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">sudo</span> 环境似乎不走代理，分两步</span></span><br><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; \</span><br><span class="line"> -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line">curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; \</span><br><span class="line"> -o docker-compose</span><br><span class="line">sudo mv docker-compose /usr/local/bin/</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
-
-<h3 id="镜像文件-image"><a href="#镜像文件-image" class="headerlink" title="镜像文件(image)"></a>镜像文件(image)</h3><p>Dcoker官方仓库<a href="https://hub.docker.com/">Docker Hub</a>,可能国内访问很慢且断线，可修改为国内的镜像站。<br>首先检查 <code>docker.service</code>中是否配置过</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl cat docker | grep &#x27;\-\-registry\-mirror&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>如果该命令有输出，那么请执行 <code>$ systemctl cat docker</code> 查看 <code>ExecStart=</code> 出现的位置，修改对应的文件内容去掉 <code>--registry-mirror</code> 参数及其值，并按接下来的步骤进行配置。<br>编辑<code>/etc/docker/daemon.json</code></p>
-<p><a href="https://github.com/dongyubin/DockerHub">DockerHub 国内加速镜像列表</a><br>容器失效，建议代理</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;registry-mirrors&quot;: [</span><br><span class="line">        &quot;https://docker.1panelproxy.com&quot;,</span><br><span class="line">        &quot;https://atomhub.openatom.cn&quot;, // 地址必须以 http等网络协议开头</span><br><span class="line">        &quot;https://docker.m.daocloud.io&quot; // 最后一个地址后面不能有&quot;,&quot;,否则docker报错，不能重启,并且没有明显的错误提示</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后重启服务</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一定要执行此命令，否则，即使重新启动服务，也会报错</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
-<p>查看 docker 的运行状态</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker 服务的运行状态</span></span><br><span class="line">sudo systemctl status docker</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker 服务本身的运行日志</span></span><br><span class="line">sudo journalctl -u docker  &gt; ~/docker.log</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">debian 没有此文件，是否需要配置?</span></span><br><span class="line">sudo cat /var/log/docker.log</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看某个容器的所有日志</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker logs [OPTIONS] &lt;CONTAINER&gt;</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器的实时日志</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker logs -f &lt;CONTAINER&gt;</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker container logs mysql8lts</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用于查看服务或任务集群的日志</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker service logs [OPTIONS] SERVICE|TASK</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 docker 中进程资源消耗</span></span><br><span class="line">sudo docker stats</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>Docker 把应用程序及其依赖，打包在 image 文件里面。只有通过这个文件，才能生成 Docker 容器。image 文件可以看作是容器的模板。Docker 根据 image 文件生成容器的实例。同一个 image 文件，可以生成多个同时运行的容器实例。<br>image 是二进制文件。实际开发中，一个 image 文件往往通过继承另一个 image 文件，加上一些个性化设置而生成。举例来说,在 Debian 的 image 基础上，往里面加入 Nginx 服务器，形成新的 Nginx Server image。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker image pull library/hello-world  // library/hello-world是 image 文件在仓库里面的位置，其中library是 image 文件所在的组，hello-world是 image 文件的名字。</span><br><span class="line">docker image pull hello-world          // 由于 Docker 官方提供的 image 文件，都放在library组里面，所以它的是默认组，可以省略。</span><br><span class="line">docker image ls //列出所有image文件</span><br><span class="line">docker images   // 同上</span><br><span class="line">docker image rm [imageName/imageId]</span><br></pre></td></tr></table></figure>
-
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker container run hello-world   // `docker container run` 命令会从 image 文件，生成一个正在运行的容器实例。具有自动抓取 image 文件的功能。前面的docker image pull命令并不是必需的步骤。</span><br><span class="line">docker container run -it debian bash</span><br></pre></td></tr></table></figure>
-
-<h3 id="容器文件"><a href="#容器文件" class="headerlink" title="容器文件"></a>容器文件</h3><p>image 文件生成的容器实例，本身也是一个文件，称为容器文件。也就是说，一旦容器生成，就会同时存在两个文件： image 文件和容器文件。而且关闭容器并不会删除容器文件，只是容器停止运行而已。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker container ls        // 列出本机正在运行的容器</span><br><span class="line">docker container ls --all  // 列出本机所有容器，包括终止运行的容器</span><br><span class="line">docker container rm [containerID]</span><br></pre></td></tr></table></figure>
-
-<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>Dockerfile 文件是一个文本文件，用来配置 image。Docker 根据 该文件生成二进制的 image 文件。</p>
-<p>编辑<code>.dockerignore</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.git</span><br><span class="line">__pycache__</span><br></pre></td></tr></table></figure>
-
-<p>编辑 Dockerfile<br>Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instruction)，###每一条指令构建一层###，因此每一条指令的内容，就是描述该层应当如何构建。<br>特殊的镜像<code>scratch</code>,这个镜像是虚拟的概念，并不实际存在，它表示一个空白的镜像。如果你以 <code>scratch</code> 为基础镜像的话，意味着你不以任何镜像为基础，接下来所写的指令将作为镜像第一层开始存在。不以任何系统为基础，直接将可执行文件复制进镜像的做法并不罕见，对于 Linux 下静态编译的程序来说，并不需要有操作系统提供运行时支持，所需的一切库都已经在可执行文件里了，因此直接 <code>FROM scratch</code> 会让镜像体积更加小巧。</p>
-<p><code>RUN</code> 指令是用来执行命令行命令的。</p>
-<ol>
-<li>shell 格式：RUN &lt;命令&gt;</li>
-<li>exec 格式：RUN [“可执行文件”, “参数1”, “参数2”]</li>
-</ol>
-<p>能一条指令执行绝对不要用两条执行。<em><strong>每一条<code>RUN</code>指令构建一层，Union FS 是有最大层数限制的，比如 AUFS，曾经是最大不得超过 42 层，现在是不得超过 127 层。</strong></em><br>例如：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> debian:stretch</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">set</span> -x; buildDeps=<span class="string">&#x27;gcc libc6-dev make wget&#x27;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get update \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get install -y <span class="variable">$buildDeps</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; wget -O redis.tar.gz <span class="string">&quot;http://download.redis.io/releases/redis-5.0.3.tar.gz&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">mkdir</span> -p /usr/src/redis \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; make -C /usr/src/redis \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; make -C /usr/src/redis install \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/* \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> redis.tar.gz \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> -r /usr/src/redis \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get purge -y --auto-remove <span class="variable">$buildDeps</span></span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.6</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> . /app</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install -r requirements.txt</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;python&quot;</span>,<span class="string">&quot;app.py&quot;</span>]</span></span><br></pre></td></tr></table></figure>
-
-<p>创建image</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker image build -t hello-world:1.0 .</span><br></pre></td></tr></table></figure>
-
-<p>命令最后的<code>.</code>,叫镜像构建上下文（Context）。<br><code>docker build</code> 的工作原理:Docker 在运行时分为 Docker 引擎（也就是服务端守护进程）和客户端工具。Docker 的引擎提供了一组 REST API，被称为 Docker Remote API，而如 docker 命令这样的客户端工具，则是通过这组 API 与 Docker 引擎交互，从而完成各种功能。因此，虽然表面上我们好像是在本机执行各种 docker 功能，但实际上，一切都是使用的远程调用形式在服务端（Docker 引擎）完成。<br>当构建的时候，用户会指定构建镜像上下文的路径，<code>docker build</code> 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。因此，<code>COPY</code> 这类指令中的源文件的路径都是相对路径。这也是为什么 <code>COPY ../package.json /app</code> 或者 <code>COPY /opt/xxxx /app</code> 无法工作的原因，因为这些路径已经超出了上下文的范围，Docker 引擎无法获得这些位置的文件。</p>
-<p>一般来说，应该会将 <code>Dockerfile</code> 置于一个空目录下，或者项目根目录下。如果该目录下没有所需文件，那么应该把所需文件复制一份过来。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 <code>.gitignore</code> 一样的语法写一个 <code>.dockerignore</code>，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。</p>
-<p>在默认情况下，如果不额外指定 Dockerfile 的话，会将上下文目录下的名为 Dockerfile 的文件作为 Dockerfile。这只是默认行为，实际上 Dockerfile 的文件名并不要求必须为 Dockerfile，而且并不要求必须位于上下文目录中，比如可以用 <code>-f ../Dockerfile.php</code> 参数指定某个文件作为 Dockerfile。</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./package.json /app/</span></span><br></pre></td></tr></table></figure>
-
-<p>这并不是要复制执行 <code>docker build</code> 命令所在的目录下的 package.json，也不是复制 Dockerfile 所在目录下的 package.json，而是复制 上下文（context） 目录下的 package.json。</p>
-<p>其它 docker build 的用法<br>直接用 Git repo 进行构建<br>用给定的 tar 压缩包构建<br>从标准输入中读取 Dockerfile 进行构建<br>从标准输入中读取上下文压缩包进行构建</p>
-<h4 id="COPY-复制文件"><a href="#COPY-复制文件" class="headerlink" title="COPY 复制文件"></a>COPY 复制文件</h4><ol>
-<li>COPY [–chown&#x3D;<user>:<group>] &lt;源路径&gt;… &lt;目标路径&gt;</li>
-<li>COPY [–chown&#x3D;<user>:<group>] [“&lt;源路径1&gt;”,… “&lt;目标路径&gt;”]<br>&lt;源路径&gt; 可以是多个，甚至可以是通配符，其通配符规则要满足 Go 的 filepath.Match 规则<br>&lt;目标路径&gt; 可以是容器内的绝对路径，也可以是相对于工作目录的相对路径（工作目录可以用 WORKDIR 指令来指定）。目标路径不需要事先创建<br>COPY 指令，源文件的各种元数据都会保留。比如读、写、执行权限、文件变更时间等。这个特性对于镜像定制很有用。特别是构建相关文件都在使用 Git 进行管理的时候。<br>如果源路径为文件夹，复制的时候不是直接复制该文件夹，而是将文件夹中的内容复制到目标路径。</li>
-</ol>
-<h4 id="ADD-更高级的复制文件"><a href="#ADD-更高级的复制文件" class="headerlink" title="ADD 更高级的复制文件"></a>ADD 更高级的复制文件</h4><p>比如 &lt;源路径&gt; 可以是一个 URL,下载（下载后权限为600）,可增加一层RUN去改变权限<br>如果 &lt;源路径&gt; 为一个 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，ADD 指令将会自动解压缩这个压缩文件到 &lt;目标路径&gt; 去。<br>需要注意的是，ADD 指令会令镜像构建缓存失效，从而可能会令镜像构建变得比较缓慢。</p>
-<h4 id="CMD-容器启动命令"><a href="#CMD-容器启动命令" class="headerlink" title="CMD 容器启动命令"></a>CMD 容器启动命令</h4><ul>
-<li>shell 格式：CMD &lt;命令&gt;</li>
-<li>exec 格式：CMD [“可执行文件”, “参数1”, “参数2”…]</li>
-<li>参数列表格式：CMD [“参数1”, “参数2”…]。在指定了 ENTRYPOINT 指令后，用 CMD 指定具体的参数。</li>
-</ul>
-<p>Docker 不是虚拟机，容器就是进程。既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。CMD 指令就是用于指定默认的容器主进程的启动命令的。<br>在运行时可以指定新的命令来替代镜像设置中的这个默认命令<br>在指令格式上，一般推荐使用 <code>exec</code> 格式，这类格式在解析时会被解析为 <code>JSON</code> 数组，因此一定要使用双引号 <code>&quot;</code>，而不要使用单引号。<br>如果使用 shell 格式的话，实际的命令会被包装为 <code>sh -c</code> 的参数的形式进行执行。这就是为什么可以使用环境变量的原因，因为这些环境变量会被 shell 进行解析处理。<br>Docker 不是虚拟机，容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 systemd 去启动后台服务，容器内没有后台服务的概念。</p>
-<p><code>CMD service nginx start</code> 会被理解为 <code>CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;service nginx start&quot;]</code>，因此主进程实际上是 <code>sh</code>。那么当 <code>service nginx start</code> 命令结束后，<code>sh</code> 也就结束了，<code>sh</code> 作为主进程退出了，自然就会令容器退出。正确的做法是直接执行 nginx 可执行文件，并且要求以前台形式运行。比如：<code>CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</code></p>
-<h4 id="ENTRYPOINT-入口点"><a href="#ENTRYPOINT-入口点" class="headerlink" title="ENTRYPOINT 入口点"></a>ENTRYPOINT 入口点</h4><p>ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数。ENTRYPOINT 在运行时也可以替代，不过需要通过 <code>docker run</code> 的参数 <code>--entrypoint</code> 来指定。<br>那么有了 CMD 后，为什么还要有 ENTRYPOINT 呢？<br>场景一：让镜像变成像命令一样使用<br>场景二：应用运行前的准备工作</p>
-<h5 id="ENV-设置环境变量"><a href="#ENV-设置环境变量" class="headerlink" title="ENV 设置环境变量"></a>ENV 设置环境变量</h5><ul>
-<li>ENV <code>&lt;key&gt; &lt;value&gt;</code></li>
-<li>ENV <code>&lt;key1&gt;=&lt;value1&gt; &lt;key2&gt;=&lt;value2&gt;...</code><br>无论是Dockerfile后面的其它指令，如 RUN，还是运行时的应用，都可以直接使用这里定义的环境变量。</li>
-</ul>
-<h4 id="ARG-构建参数"><a href="#ARG-构建参数" class="headerlink" title="ARG 构建参数"></a>ARG 构建参数</h4><p>构建参数和 ENV 的效果一样，都是设置环境变量。所不同的是，ARG 所设置的构建环境的环境变量，在将来容器运行时是不会存在这些环境变量的。<br>Dockerfile 中的 ARG 指令是定义参数名称，以及定义其默认值。该默认值可以在构建命令 <code>docker build</code> 中用 <code>--build-arg &lt;参数名&gt;=&lt;值&gt;</code> 来覆盖。<br>灵活的使用 ARG 指令，能够在不修改 Dockerfile 的情况下，构建出不同的镜像。</p>
-<p>ARG 指令有生效范围，如果在 FROM 指令之前指定，那么只能用于 FROM 指令中。</p>
-<h4 id="VOLUME-定义匿名卷"><a href="#VOLUME-定义匿名卷" class="headerlink" title="VOLUME 定义匿名卷"></a>VOLUME 定义匿名卷</h4><ul>
-<li>VOLUME [“&lt;路径1&gt;”, “&lt;路径2&gt;”…]</li>
-<li>VOLUME &lt;路径&gt;<br>为了防止运行时用户忘记将动态文件所保存目录挂载为卷，在 Dockerfile 中，我们可以事先指定某些目录挂载为匿名卷，这样在运行时如果用户不指定挂载，其应用也可以正常运行，不会向容器存储层写入大量数据。</li>
-</ul>
-<h4 id="EXPOSE-暴露端口"><a href="#EXPOSE-暴露端口" class="headerlink" title="EXPOSE 暴露端口"></a>EXPOSE 暴露端口</h4><p>EXPOSE 指令是声明容器运行时提供服务的端口，这只是一个声明，在容器运行时并不会因为这个声明应用就会开启这个端口的服务。<br>在 Dockerfile 中写入这样的声明有两个好处，一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射；另一个用处则是在运行时使用随机端口映射时，也就是 <code>docker run -P</code> 时，会自动随机映射 EXPOSE 的端口。<br>要将 EXPOSE 和在运行时使用 <code>-p &lt;宿主端口&gt;:&lt;容器端口&gt;</code> 区分开来。<code>-p</code>，是映射宿主端口和容器端口，换句话说，就是将容器的对应端口服务公开给外界访问，而 EXPOSE 仅仅是声明容器打算使用什么端口而已，并不会自动在宿主进行端口映射。</p>
-<h4 id="WORKDIR-指定工作目录"><a href="#WORKDIR-指定工作目录" class="headerlink" title="WORKDIR 指定工作目录"></a>WORKDIR 指定工作目录</h4><ul>
-<li>WORKDIR &lt;工作目录路径&gt;</li>
-</ul>
-<h4 id="USER-指定当前用户"><a href="#USER-指定当前用户" class="headerlink" title="USER 指定当前用户"></a>USER 指定当前用户</h4><ul>
-<li>USER &lt;用户名&gt;[:&lt;用户组&gt;]</li>
-</ul>
-<p>USER 指令和 WORKDIR 相似，都是改变环境状态并影响以后的层。WORKDIR 是改变工作目录，USER 则是改变之后层的执行 RUN, CMD 以及 ENTRYPOINT 这类命令的身份。<br>注意，USER 只是帮助你切换到指定用户而已，这个用户必须是事先建立好的，否则无法切换。<br>如果以 root 执行的脚本，在执行期间希望改变身份，比如希望以某个已经建立好的用户来运行某个服务进程，不要使用 <code>su</code> 或者 <code>sudo</code>。建议使用 <code>gosu</code>。</p>
-<h4 id="HEALTHCHECK-健康检查"><a href="#HEALTHCHECK-健康检查" class="headerlink" title="HEALTHCHECK 健康检查"></a>HEALTHCHECK 健康检查</h4><ul>
-<li>HEALTHCHECK [选项] CMD &lt;命令&gt;：设置检查容器健康状况的命令</li>
-<li>HEALTHCHECK NONE：如果基础镜像有健康检查指令，使用这行可以屏蔽掉其健康检查指令<br>在没有 HEALTHCHECK 指令前，Docker 引擎只可以通过容器内主进程是否退出来判断容器是否状态异常。很多情况下这没问题，但是如果程序进入死锁状态，或者死循环状态，应用进程并不退出，但是该容器已经无法提供服务了。在 1.12 以前，Docker 不会检测到容器的这种状态，从而不会重新调度，导致可能会有部分容器已经无法提供服务了却还在接受用户请求。</li>
-</ul>
-<p>以守护态运行</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:8080 hello-world:1.0</span><br><span class="line">docker container run -d  -v /pathOfHost:/home/paddle_out -p 9999:9999 paddle_zh_cn_py-server:v5</span><br></pre></td></tr></table></figure>
-
-<p>进入服务操作</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it hello-world:1.0 bash</span><br></pre></td></tr></table></figure>
-
-<p>修改完成后，保存镜像</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker commit --author &quot;frank&quot; --message &quot;change default index.html&quot; webserver nginx:2.0</span><br></pre></td></tr></table></figure>
-
-<p>备注： 慎用 <code>docker commit</code>。使用 docker commit 命令虽然可以比较直观的帮助理解镜像分层存储的概念，但是实际环境中并不会这样使用。因为：1.有大量的无关内容被添加进来，将会导致镜像极为臃肿。2.所有对镜像的操作都是黑箱操作，生成的镜像也被称为 黑箱镜像。3. 每一次修改都会让镜像更加臃肿一次，所删除的上一层的东西并不会丢失</p>
-<p>查询修改历史</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker history nginx:2.0</span><br></pre></td></tr></table></figure>
-
-<p>至此，可以访问Python服务</p>
-<h5 id="附-Python-hello-world"><a href="#附-Python-hello-world" class="headerlink" title="附  Python hello-world"></a>附  Python hello-world</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> waitress <span class="keyword">import</span> serve</span><br><span class="line"><span class="keyword">from</span> http_flask <span class="keyword">import</span> flask_service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 程序入口</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 初始化 Flask 服务</span></span><br><span class="line">    flask_service.config[<span class="string">&#x27;JSON_AS_ASCII&#x27;</span>] = <span class="literal">False</span>  <span class="comment"># 解决返回中文乱码</span></span><br><span class="line">    serve(flask_service,listen=<span class="string">&#x27;*:8080&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> crypt <span class="keyword">import</span> methods</span><br><span class="line"><span class="keyword">from</span> logging.config <span class="keyword">import</span> listen</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request, send_from_directory</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务初始化</span></span><br><span class="line">flask_service = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@flask_service.route(<span class="params"><span class="string">&#x27;/api/hello&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;code&#x27;</span>:<span class="number">200</span>,<span class="string">&#x27;message&#x27;</span>:<span class="string">&#x27;文本转语音成功&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="镜像备份-恢复"><a href="#镜像备份-恢复" class="headerlink" title="镜像备份&#x2F;恢复"></a>镜像备份&#x2F;恢复</h3><h4 id="1-备份"><a href="#1-备份" class="headerlink" title="1. 备份"></a>1. 备份</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker images | grep  image-name  # 查询镜像ID</span><br><span class="line">docker save [OPTIONS] IMAGE [IMAGE...]</span><br><span class="line">docker save -o /root/mycentos7.tar mycentos:7</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-恢复"><a href="#2-恢复" class="headerlink" title="2. 恢复"></a>2. 恢复</h3><p>docker加载镜像：tar-&gt;image的过程</p>
-<p>a. 从tar包载入镜像：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker load -i &#123;image_name&#125;.tar</span><br><span class="line">docker load --input &#123;image_name&#125;.tar</span><br></pre></td></tr></table></figure>
-
-<p>b. 查看载入是否成功：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker images | grep &#123;image_name&#125;</span><br></pre></td></tr></table></figure>
-
-<p>c. 如果看到加载的镜像没有tag和镜像名，则手动打tag:</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker tag &#123;image_id&#125; &#123;image_name&#125;:&#123;image_tag&#125;</span><br></pre></td></tr></table></figure>
-
-<p>d. 确认镜像是否成功打上tag</p>
-<p>设置代理</p>
-<p>只能通过创建<code>systemd</code>配置文件，<code>/etc/docker/daemon.json</code>,<code>~/.docker/config.json</code>无效</p>
-<p>创建<code>/etc/systemd/system/docker.service.d/http-proxy.conf</code>文件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/systemd/system/docker.service.d</span><br></pre></td></tr></table></figure>
-
-<p>并编辑内容:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Service]</span><br><span class="line">Environment=&quot;HTTP_PROXY=http://192.168.1.3:10810&quot;</span><br><span class="line">Environment=&quot;HTTPS_PROXY=http://192.168.1.3:10810&quot;</span><br></pre></td></tr></table></figure>
-
-<p>然后运行</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line">sudo systemctl show --property=Environment docker</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://docs.docker.com/config/daemon/proxy/#httphttps-proxy">配置<code>docker</code>服务使用代理</a></p>
-<p><a href="https://docs.docker.com/">官方文档</a><br><a href="https://yeasy.gitbook.io/docker_practice/">Docker — 从入门到实践</a></p>
-<h3 id="Docker磁盘占用情况"><a href="#Docker磁盘占用情况" class="headerlink" title="Docker磁盘占用情况"></a>Docker磁盘占用情况</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">通过 <span class="built_in">df</span> -h 可以发现所有磁盘的使用情况， /var/lib/docker 为 docker 容器安装的默认磁盘目录</span></span><br><span class="line">frank@localhost:~$ sudo df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">udev            944M     0  944M   0% /dev</span><br><span class="line">tmpfs           191M  512K  190M   1% /run</span><br><span class="line">/dev/sda3        28G  3.1G   23G  12% /</span><br><span class="line">tmpfs           951M     0  951M   0% /dev/shm</span><br><span class="line">tmpfs           5.0M     0  5.0M   0% /run/lock</span><br><span class="line">/dev/sda4        93G  2.3G   86G   3% /home</span><br><span class="line">/dev/sda2       488M   12M  476M   3% /boot/efi</span><br><span class="line">overlay          28G  3.1G   23G  12% /var/lib/docker/overlay2/9b3c4b326acbfe36b17bef23e847ed2260e3a91f42c027d64d43b901b9392157/merged</span><br><span class="line">tmpfs           191M     0  191M   0% /run/user/1000</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看docker 磁盘使用情况</span></span><br><span class="line">frank@localhost:~$ sudo du -sh /var/lib/docker/</span><br><span class="line">1.3G    /var/lib/docker/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker system <span class="built_in">df</span>  命令，类似于Linux上的<span class="built_in">df</span>命令，用于查看Docker的磁盘使用情况</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v 选项可用查询更详细的信息</span></span><br><span class="line">frank@localhost:~$ sudo docker system df</span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          4         2         1.145GB   583.7MB (50%)</span><br><span class="line">Containers      8         1         2.887kB   758B (26%)</span><br><span class="line">Local Volumes   1         0         0B        0B</span><br><span class="line">Build Cache     0         0         0B        0B</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker system prune命令可以用于清理磁盘，删除关闭的容器、无用的数据卷和网络，以及dangling镜像(即无tag的镜像)</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-a  选项清理得更加彻底，可以将没有容器使用Docker镜像都删掉</span></span><br><span class="line">frank@localhost:~$ sudo docker system prune</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker运行数据库</title>
     <url>/2024/07/30/Docker%E8%BF%90%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
     <content><![CDATA[<h2 id="运行MySQL-5-7"><a href="#运行MySQL-5-7" class="headerlink" title="运行MySQL 5.7"></a>运行MySQL 5.7</h2><p>创建MySQL相关目录</p>
@@ -774,6 +594,186 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C#实现XML声明为UTF-8</title>
+    <url>/2024/07/30/C-%E5%AE%9E%E7%8E%B0XML%E5%A3%B0%E6%98%8E%E4%B8%BAUTF-8/</url>
+    <content><![CDATA[<h3 id="一、首先添加辅助类StringWriterWithEncoding"><a href="#一、首先添加辅助类StringWriterWithEncoding" class="headerlink" title="一、首先添加辅助类StringWriterWithEncoding"></a>一、首先添加辅助类StringWriterWithEncoding</h3><p>因StringWriter默认为Unicode码(即UTF-16),且无Encoding类型参数的构造函数</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title">StringWriterWithEncoding</span> : <span class="title">StringWriter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> Encoding encoding;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringWriterWithEncoding</span>() : <span class="title">this</span>(<span class="params">Encoding.UTF8</span>)</span> &#123; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StringWriterWithEncoding</span>(<span class="params">Encoding encoding</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.encoding = encoding;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">override</span> Encoding Encoding &#123; <span class="keyword">get</span> &#123; <span class="keyword">return</span> encoding; &#125; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、序列化、反序列化"><a href="#二、序列化、反序列化" class="headerlink" title="二、序列化、反序列化"></a>二、序列化、反序列化</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">XMLHelper</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 序列化</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;obj&quot;&gt;</span>对象<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">string</span> <span class="title">Serializer</span>&lt;<span class="title">T</span>&gt;(<span class="params">T obj</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        StringWriterWithEncoding result = <span class="keyword">new</span> StringWriterWithEncoding(Encoding.UTF8);</span><br><span class="line">        XmlSerializer xmlSerializer = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(T));</span><br><span class="line"></span><br><span class="line">        XmlWriterSettings xmlWriterSettings = <span class="keyword">new</span> XmlWriterSettings()</span><br><span class="line">        &#123;</span><br><span class="line">            Encoding = Encoding.UTF8,</span><br><span class="line">            Indent = <span class="literal">false</span></span><br><span class="line">            <span class="comment">//    Indent = true,                //获取或设置指示是否缩进元素的值</span></span><br><span class="line">            <span class="comment">//    IndentChars = &quot;    &quot;,         //使用此设置时 Indent 属性设置为 true。获取或设置缩进时要使用的字符串。</span></span><br><span class="line">            <span class="comment">//    NewLineChars = &quot;\r\n&quot;,        //获取或设置要用于换行符的字符串。</span></span><br><span class="line">            <span class="comment">//    OmitXmlDeclaration = true;    //不生成声明头  </span></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">using</span> (XmlWriter xmlWriter = XmlWriter.Create(result, xmlWriterSettings))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 强制指定命名空间，覆盖默认的命名空间</span></span><br><span class="line">            <span class="comment">// 若不指定命名空间，使用xmlSerializer.Serialize(xmlWriter, obj);则根目录如下</span></span><br><span class="line">            <span class="comment">// &lt;purchaseStateQuery xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;</span></span><br><span class="line">            <span class="comment">// &lt;stock_id&gt;261753&lt;/stock_id&gt;&lt;owner_id&gt;201888&lt;/owner_id&gt;&lt;/purchaseStateQuery&gt;  </span></span><br><span class="line">            XmlSerializerNamespaces namespaces = <span class="keyword">new</span> XmlSerializerNamespaces();</span><br><span class="line">            namespaces.Add(<span class="built_in">string</span>.Empty, <span class="built_in">string</span>.Empty);</span><br><span class="line">            xmlSerializer.Serialize(xmlWriter, obj, namespaces);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//此句多余</span></span><br><span class="line">            <span class="comment">//xmlWriter.Close();</span></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result.ToString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 反序列化</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;xml&quot;&gt;</span>XML字符串<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> T <span class="title">Deserialize</span>&lt;<span class="title">T</span>&gt;(<span class="params"><span class="built_in">string</span> xml</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (StringReader sr = <span class="keyword">new</span> StringReader(xml))</span><br><span class="line">        &#123;</span><br><span class="line">            XmlSerializer xmldes = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(T));</span><br><span class="line">            <span class="keyword">return</span> (T)xmldes.Deserialize(sr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 反序列化</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;xml&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> T <span class="title">Deserialize</span>&lt;<span class="title">T</span>&gt;(<span class="params">Stream stream</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        XmlSerializer xmldes = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(T));</span><br><span class="line">        <span class="keyword">return</span> (T)xmldes.Deserialize(stream);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、序列化对象XML属性设置"><a href="#三、序列化对象XML属性设置" class="headerlink" title="三、序列化对象XML属性设置"></a>三、序列化对象XML属性设置</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">XmlRoot(<span class="string">&quot;cats&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CatCollection</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">XmlArray(<span class="string">&quot;items&quot;</span>),XmlArrayItem(<span class="string">&quot;item&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> Cat[] Cats &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">[<span class="meta">XmlRoot(<span class="string">&quot;cat&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Cat</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//定义Color属性的序列化为cat节点的属性</span></span><br><span class="line">    [<span class="meta">XmlAttribute(<span class="string">&quot;color&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Color &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//要求不序列化Speed属性</span></span><br><span class="line">    [<span class="meta">XmlIgnore</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Speed &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//设置Saying属性序列化为Xml子元素</span></span><br><span class="line">    [<span class="meta">XmlElement(<span class="string">&quot;saying&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> Saying &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、动态生成的程序集-MSDN-XmlSerializer-Class-待明白？？？"><a href="#四、动态生成的程序集-MSDN-XmlSerializer-Class-待明白？？？" class="headerlink" title="四、动态生成的程序集([MSDN](XmlSerializer Class)) (待明白？？？)"></a>四、动态生成的程序集([MSDN](XmlSerializer Class)) (待明白？？？)</h3><p>为了提高性能，XML 序列化基础结构动态生成要序列化和反序列化指定的类型的程序集。 基础结构查找并重用这些程序集。 仅当使用下面的构造函数时，会出现此行为︰</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">XmlSerializer.XmlSerializer(Type)</span><br><span class="line">XmlSerializer.XmlSerializer(Type, String)</span><br></pre></td></tr></table></figure>
+<p>如果您使用任何其他构造函数，同一程序集的多个版本生成，并永远不会卸载，这将导致内存泄漏和性能低下。<br>最简单的解决方案是使用前面提到的两个构造函数之一。 否则，必须缓存中的程序集 Hashtable, ，如在下面的示例所示。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Hashtable serializers = <span class="keyword">new</span> Hashtable();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Use the constructor that takes a type and XmlRootAttribute.</span></span><br><span class="line">XmlSerializer s = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(MyClass), myRoot);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Implement a method named GenerateKey that creates unique keys </span></span><br><span class="line"><span class="comment">// for each instance of the XmlSerializer. The code should take </span></span><br><span class="line"><span class="comment">// into account all parameters passed to the XmlSerializer </span></span><br><span class="line"><span class="comment">// constructor.</span></span><br><span class="line"><span class="built_in">object</span> key = GenerateKey(<span class="keyword">typeof</span>(MyClass), myRoot);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Check the local cache for a matching serializer.</span></span><br><span class="line">XmlSerializer ser = (XmlSerializer)serializers[key];</span><br><span class="line"><span class="keyword">if</span> (ser == <span class="literal">null</span>) </span><br><span class="line">&#123;</span><br><span class="line">    ser = <span class="keyword">new</span> XmlSerializer(<span class="keyword">typeof</span>(MyClass), myRoot);</span><br><span class="line">    <span class="comment">// Cache the serializer.</span></span><br><span class="line">    serializers[key] = ser;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// Use the serializer to serialize, or deserialize.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>HTTP请求XML封装</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HttpHelper</span>&lt;<span class="title">T</span>&gt;</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">readonly</span> IHttpClientFactory _clientFactory;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">HttpHelper</span>(<span class="params">IHttpClientFactory clientFactory</span>)</span></span><br><span class="line">       &#123;</span><br><span class="line">           _clientFactory = clientFactory;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;T&gt; <span class="title">ActionAsync</span>(<span class="params">HttpRequestMessage httpRequestMessage</span>)</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">var</span> client = _clientFactory.CreateClient();</span><br><span class="line">           <span class="keyword">var</span> response = <span class="keyword">await</span> client.SendAsync(httpRequestMessage);</span><br><span class="line">           <span class="keyword">if</span> (response.IsSuccessStatusCode)</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">var</span> resultStr = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">               <span class="keyword">return</span> XMLHelper&lt;T&gt;.Deserialize(resultStr);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">default</span>(T);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> 返回原字符串，用于调试</span></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;httpRequestMessage&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">       <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;<span class="built_in">string</span>&gt; <span class="title">ActionForStringAsync</span>(<span class="params">HttpRequestMessage httpRequestMessage</span>)</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="keyword">var</span> client = _clientFactory.CreateClient();</span><br><span class="line">           <span class="keyword">var</span> response = <span class="keyword">await</span> client.SendAsync(httpRequestMessage);</span><br><span class="line">           <span class="keyword">if</span> (response.IsSuccessStatusCode)</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">           &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="built_in">string</span>.Empty;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>备注：本文参考了</p>
+<p><a href="http://www.cnblogs.com/yukaizhao/archive/2011/07/22/xml-serialization.html">XmlSerializer 对象的Xml序列化和反序列化</a><br><a href="https://blog.csdn.net/lilinoscar/article/details/21027319">C#生成、解析xml文件以及处理报错原因</a><br><a href="https://msdn.microsoft.com/zh-cn/library/system.xml.serialization.xmlserializer(v=vs.110).aspx">XmlSerializer 类</a><br><a href="https://msdn.microsoft.com/zh-cn/library/system.xml.xmlwritersettings_properties(v=vs.110).aspx">XmlWriterSettings 属性</a><br><a href="https://stackoverflow.com/questions/42583299/xmlwriter-encoding-utf-8-using-stringwriter-in-c-sharp">XmlWriter encoding UTF-8 using StringWriter in C#</a></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker使用</title>
+    <url>/2024/07/30/Docker%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p>Debian默认安装即可，指定版本&#x2F;最新版本安装参考docker官方文档<br><a href="https://docs.docker.com/engine/install/debian/">Install Docker Engine on Debian</a></p>
+<p>由于Docker服务默认绑定到Unix Socket，而非一个TCP端口；而Unix Socket属于 root,因此Docker服务总是以 <code>root</code>用户运行，其他用户需要使用<code>sudo</code>来访问。<br>为了避免每次使用<code>sudo</code>才能操作，可以添加<code>docker</code>组，并将当前用户加入<code>docker</code>组,命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install docker.io -y</span><br><span class="line">sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure>
+
+<p>虚拟机: 需要重启，以生效<br>实体机: X Window退出，重新进入生效或者执行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">newgrp docker</span><br></pre></td></tr></table></figure>
+
+<p>验证</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker version</span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<p>启动(二选一)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service docker start</span><br><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-docker-compose"><a href="#安装-docker-compose" class="headerlink" title="安装 docker-compose"></a>安装 docker-compose</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 Docker Compose Plugin（推荐，Compose V2）,但 Debian 12 不支持</span></span><br><span class="line">sudo apt install docker-compose-plugin -y</span><br><span class="line">docker compose version</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 Docker Compose CLI (Compose V1)</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">sudo</span> 环境似乎不走代理，分两步</span></span><br><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; \</span><br><span class="line"> -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line">curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; \</span><br><span class="line"> -o docker-compose</span><br><span class="line">sudo mv docker-compose /usr/local/bin/</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像文件-image"><a href="#镜像文件-image" class="headerlink" title="镜像文件(image)"></a>镜像文件(image)</h3><p>Dcoker官方仓库<a href="https://hub.docker.com/">Docker Hub</a>,可能国内访问很慢且断线，可修改为国内的镜像站。<br>首先检查 <code>docker.service</code>中是否配置过</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl cat docker | grep &#x27;\-\-registry\-mirror&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>如果该命令有输出，那么请执行 <code>$ systemctl cat docker</code> 查看 <code>ExecStart=</code> 出现的位置，修改对应的文件内容去掉 <code>--registry-mirror</code> 参数及其值，并按接下来的步骤进行配置。<br>编辑<code>/etc/docker/daemon.json</code></p>
+<p><a href="https://github.com/dongyubin/DockerHub">DockerHub 国内加速镜像列表</a><br>容器失效，建议代理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;registry-mirrors&quot;: [</span><br><span class="line">        &quot;https://docker.1panelproxy.com&quot;,</span><br><span class="line">        &quot;https://atomhub.openatom.cn&quot;, // 地址必须以 http等网络协议开头</span><br><span class="line">        &quot;https://docker.m.daocloud.io&quot; // 最后一个地址后面不能有&quot;,&quot;,否则docker报错，不能重启,并且没有明显的错误提示</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后重启服务</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一定要执行此命令，否则，即使重新启动服务，也会报错</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>查看 docker 的运行状态</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker 服务的运行状态</span></span><br><span class="line">sudo systemctl status docker</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker 服务本身的运行日志</span></span><br><span class="line">sudo journalctl -u docker  &gt; ~/docker.log</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">debian 没有此文件，是否需要配置?</span></span><br><span class="line">sudo cat /var/log/docker.log</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看某个容器的所有日志</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker logs [OPTIONS] &lt;CONTAINER&gt;</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器的实时日志</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker logs -f &lt;CONTAINER&gt;</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker container logs mysql8lts</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用于查看服务或任务集群的日志</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker service logs [OPTIONS] SERVICE|TASK</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 docker 中进程资源消耗</span></span><br><span class="line">sudo docker stats</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Docker 把应用程序及其依赖，打包在 image 文件里面。只有通过这个文件，才能生成 Docker 容器。image 文件可以看作是容器的模板。Docker 根据 image 文件生成容器的实例。同一个 image 文件，可以生成多个同时运行的容器实例。<br>image 是二进制文件。实际开发中，一个 image 文件往往通过继承另一个 image 文件，加上一些个性化设置而生成。举例来说,在 Debian 的 image 基础上，往里面加入 Nginx 服务器，形成新的 Nginx Server image。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker image pull library/hello-world  // library/hello-world是 image 文件在仓库里面的位置，其中library是 image 文件所在的组，hello-world是 image 文件的名字。</span><br><span class="line">docker image pull hello-world          // 由于 Docker 官方提供的 image 文件，都放在library组里面，所以它的是默认组，可以省略。</span><br><span class="line">docker image ls //列出所有image文件</span><br><span class="line">docker images   // 同上</span><br><span class="line">docker image rm [imageName/imageId]</span><br></pre></td></tr></table></figure>
+
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker container run hello-world   // `docker container run` 命令会从 image 文件，生成一个正在运行的容器实例。具有自动抓取 image 文件的功能。前面的docker image pull命令并不是必需的步骤。</span><br><span class="line">docker container run -it debian bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="容器文件"><a href="#容器文件" class="headerlink" title="容器文件"></a>容器文件</h3><p>image 文件生成的容器实例，本身也是一个文件，称为容器文件。也就是说，一旦容器生成，就会同时存在两个文件： image 文件和容器文件。而且关闭容器并不会删除容器文件，只是容器停止运行而已。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker container ls        // 列出本机正在运行的容器</span><br><span class="line">docker container ls --all  // 列出本机所有容器，包括终止运行的容器</span><br><span class="line">docker container rm [containerID]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>Dockerfile 文件是一个文本文件，用来配置 image。Docker 根据 该文件生成二进制的 image 文件。</p>
+<p>编辑<code>.dockerignore</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.git</span><br><span class="line">__pycache__</span><br></pre></td></tr></table></figure>
+
+<p>编辑 Dockerfile<br>Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instruction)，###每一条指令构建一层###，因此每一条指令的内容，就是描述该层应当如何构建。<br>特殊的镜像<code>scratch</code>,这个镜像是虚拟的概念，并不实际存在，它表示一个空白的镜像。如果你以 <code>scratch</code> 为基础镜像的话，意味着你不以任何镜像为基础，接下来所写的指令将作为镜像第一层开始存在。不以任何系统为基础，直接将可执行文件复制进镜像的做法并不罕见，对于 Linux 下静态编译的程序来说，并不需要有操作系统提供运行时支持，所需的一切库都已经在可执行文件里了，因此直接 <code>FROM scratch</code> 会让镜像体积更加小巧。</p>
+<p><code>RUN</code> 指令是用来执行命令行命令的。</p>
+<ol>
+<li>shell 格式：RUN &lt;命令&gt;</li>
+<li>exec 格式：RUN [“可执行文件”, “参数1”, “参数2”]</li>
+</ol>
+<p>能一条指令执行绝对不要用两条执行。<em><strong>每一条<code>RUN</code>指令构建一层，Union FS 是有最大层数限制的，比如 AUFS，曾经是最大不得超过 42 层，现在是不得超过 127 层。</strong></em><br>例如：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> debian:stretch</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">set</span> -x; buildDeps=<span class="string">&#x27;gcc libc6-dev make wget&#x27;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get update \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get install -y <span class="variable">$buildDeps</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; wget -O redis.tar.gz <span class="string">&quot;http://download.redis.io/releases/redis-5.0.3.tar.gz&quot;</span> \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">mkdir</span> -p /usr/src/redis \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; make -C /usr/src/redis \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; make -C /usr/src/redis install \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/* \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> redis.tar.gz \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; <span class="built_in">rm</span> -r /usr/src/redis \</span></span><br><span class="line"><span class="language-bash">    &amp;&amp; apt-get purge -y --auto-remove <span class="variable">$buildDeps</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.6</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"><span class="keyword">ADD</span><span class="language-bash"> . /app</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> pip install -r requirements.txt</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;python&quot;</span>,<span class="string">&quot;app.py&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>创建image</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker image build -t hello-world:1.0 .</span><br></pre></td></tr></table></figure>
+
+<p>命令最后的<code>.</code>,叫镜像构建上下文（Context）。<br><code>docker build</code> 的工作原理:Docker 在运行时分为 Docker 引擎（也就是服务端守护进程）和客户端工具。Docker 的引擎提供了一组 REST API，被称为 Docker Remote API，而如 docker 命令这样的客户端工具，则是通过这组 API 与 Docker 引擎交互，从而完成各种功能。因此，虽然表面上我们好像是在本机执行各种 docker 功能，但实际上，一切都是使用的远程调用形式在服务端（Docker 引擎）完成。<br>当构建的时候，用户会指定构建镜像上下文的路径，<code>docker build</code> 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。因此，<code>COPY</code> 这类指令中的源文件的路径都是相对路径。这也是为什么 <code>COPY ../package.json /app</code> 或者 <code>COPY /opt/xxxx /app</code> 无法工作的原因，因为这些路径已经超出了上下文的范围，Docker 引擎无法获得这些位置的文件。</p>
+<p>一般来说，应该会将 <code>Dockerfile</code> 置于一个空目录下，或者项目根目录下。如果该目录下没有所需文件，那么应该把所需文件复制一份过来。如果目录下有些东西确实不希望构建时传给 Docker 引擎，那么可以用 <code>.gitignore</code> 一样的语法写一个 <code>.dockerignore</code>，该文件是用于剔除不需要作为上下文传递给 Docker 引擎的。</p>
+<p>在默认情况下，如果不额外指定 Dockerfile 的话，会将上下文目录下的名为 Dockerfile 的文件作为 Dockerfile。这只是默认行为，实际上 Dockerfile 的文件名并不要求必须为 Dockerfile，而且并不要求必须位于上下文目录中，比如可以用 <code>-f ../Dockerfile.php</code> 参数指定某个文件作为 Dockerfile。</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">COPY</span><span class="language-bash"> ./package.json /app/</span></span><br></pre></td></tr></table></figure>
+
+<p>这并不是要复制执行 <code>docker build</code> 命令所在的目录下的 package.json，也不是复制 Dockerfile 所在目录下的 package.json，而是复制 上下文（context） 目录下的 package.json。</p>
+<p>其它 docker build 的用法<br>直接用 Git repo 进行构建<br>用给定的 tar 压缩包构建<br>从标准输入中读取 Dockerfile 进行构建<br>从标准输入中读取上下文压缩包进行构建</p>
+<h4 id="COPY-复制文件"><a href="#COPY-复制文件" class="headerlink" title="COPY 复制文件"></a>COPY 复制文件</h4><ol>
+<li>COPY [–chown&#x3D;<user>:<group>] &lt;源路径&gt;… &lt;目标路径&gt;</li>
+<li>COPY [–chown&#x3D;<user>:<group>] [“&lt;源路径1&gt;”,… “&lt;目标路径&gt;”]<br>&lt;源路径&gt; 可以是多个，甚至可以是通配符，其通配符规则要满足 Go 的 filepath.Match 规则<br>&lt;目标路径&gt; 可以是容器内的绝对路径，也可以是相对于工作目录的相对路径（工作目录可以用 WORKDIR 指令来指定）。目标路径不需要事先创建<br>COPY 指令，源文件的各种元数据都会保留。比如读、写、执行权限、文件变更时间等。这个特性对于镜像定制很有用。特别是构建相关文件都在使用 Git 进行管理的时候。<br>如果源路径为文件夹，复制的时候不是直接复制该文件夹，而是将文件夹中的内容复制到目标路径。</li>
+</ol>
+<h4 id="ADD-更高级的复制文件"><a href="#ADD-更高级的复制文件" class="headerlink" title="ADD 更高级的复制文件"></a>ADD 更高级的复制文件</h4><p>比如 &lt;源路径&gt; 可以是一个 URL,下载（下载后权限为600）,可增加一层RUN去改变权限<br>如果 &lt;源路径&gt; 为一个 tar 压缩文件的话，压缩格式为 gzip, bzip2 以及 xz 的情况下，ADD 指令将会自动解压缩这个压缩文件到 &lt;目标路径&gt; 去。<br>需要注意的是，ADD 指令会令镜像构建缓存失效，从而可能会令镜像构建变得比较缓慢。</p>
+<h4 id="CMD-容器启动命令"><a href="#CMD-容器启动命令" class="headerlink" title="CMD 容器启动命令"></a>CMD 容器启动命令</h4><ul>
+<li>shell 格式：CMD &lt;命令&gt;</li>
+<li>exec 格式：CMD [“可执行文件”, “参数1”, “参数2”…]</li>
+<li>参数列表格式：CMD [“参数1”, “参数2”…]。在指定了 ENTRYPOINT 指令后，用 CMD 指定具体的参数。</li>
+</ul>
+<p>Docker 不是虚拟机，容器就是进程。既然是进程，那么在启动容器的时候，需要指定所运行的程序及参数。CMD 指令就是用于指定默认的容器主进程的启动命令的。<br>在运行时可以指定新的命令来替代镜像设置中的这个默认命令<br>在指令格式上，一般推荐使用 <code>exec</code> 格式，这类格式在解析时会被解析为 <code>JSON</code> 数组，因此一定要使用双引号 <code>&quot;</code>，而不要使用单引号。<br>如果使用 shell 格式的话，实际的命令会被包装为 <code>sh -c</code> 的参数的形式进行执行。这就是为什么可以使用环境变量的原因，因为这些环境变量会被 shell 进行解析处理。<br>Docker 不是虚拟机，容器中的应用都应该以前台执行，而不是像虚拟机、物理机里面那样，用 systemd 去启动后台服务，容器内没有后台服务的概念。</p>
+<p><code>CMD service nginx start</code> 会被理解为 <code>CMD [ &quot;sh&quot;, &quot;-c&quot;, &quot;service nginx start&quot;]</code>，因此主进程实际上是 <code>sh</code>。那么当 <code>service nginx start</code> 命令结束后，<code>sh</code> 也就结束了，<code>sh</code> 作为主进程退出了，自然就会令容器退出。正确的做法是直接执行 nginx 可执行文件，并且要求以前台形式运行。比如：<code>CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]</code></p>
+<h4 id="ENTRYPOINT-入口点"><a href="#ENTRYPOINT-入口点" class="headerlink" title="ENTRYPOINT 入口点"></a>ENTRYPOINT 入口点</h4><p>ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数。ENTRYPOINT 在运行时也可以替代，不过需要通过 <code>docker run</code> 的参数 <code>--entrypoint</code> 来指定。<br>那么有了 CMD 后，为什么还要有 ENTRYPOINT 呢？<br>场景一：让镜像变成像命令一样使用<br>场景二：应用运行前的准备工作</p>
+<h5 id="ENV-设置环境变量"><a href="#ENV-设置环境变量" class="headerlink" title="ENV 设置环境变量"></a>ENV 设置环境变量</h5><ul>
+<li>ENV <code>&lt;key&gt; &lt;value&gt;</code></li>
+<li>ENV <code>&lt;key1&gt;=&lt;value1&gt; &lt;key2&gt;=&lt;value2&gt;...</code><br>无论是Dockerfile后面的其它指令，如 RUN，还是运行时的应用，都可以直接使用这里定义的环境变量。</li>
+</ul>
+<h4 id="ARG-构建参数"><a href="#ARG-构建参数" class="headerlink" title="ARG 构建参数"></a>ARG 构建参数</h4><p>构建参数和 ENV 的效果一样，都是设置环境变量。所不同的是，ARG 所设置的构建环境的环境变量，在将来容器运行时是不会存在这些环境变量的。<br>Dockerfile 中的 ARG 指令是定义参数名称，以及定义其默认值。该默认值可以在构建命令 <code>docker build</code> 中用 <code>--build-arg &lt;参数名&gt;=&lt;值&gt;</code> 来覆盖。<br>灵活的使用 ARG 指令，能够在不修改 Dockerfile 的情况下，构建出不同的镜像。</p>
+<p>ARG 指令有生效范围，如果在 FROM 指令之前指定，那么只能用于 FROM 指令中。</p>
+<h4 id="VOLUME-定义匿名卷"><a href="#VOLUME-定义匿名卷" class="headerlink" title="VOLUME 定义匿名卷"></a>VOLUME 定义匿名卷</h4><ul>
+<li>VOLUME [“&lt;路径1&gt;”, “&lt;路径2&gt;”…]</li>
+<li>VOLUME &lt;路径&gt;<br>为了防止运行时用户忘记将动态文件所保存目录挂载为卷，在 Dockerfile 中，我们可以事先指定某些目录挂载为匿名卷，这样在运行时如果用户不指定挂载，其应用也可以正常运行，不会向容器存储层写入大量数据。</li>
+</ul>
+<h4 id="EXPOSE-暴露端口"><a href="#EXPOSE-暴露端口" class="headerlink" title="EXPOSE 暴露端口"></a>EXPOSE 暴露端口</h4><p>EXPOSE 指令是声明容器运行时提供服务的端口，这只是一个声明，在容器运行时并不会因为这个声明应用就会开启这个端口的服务。<br>在 Dockerfile 中写入这样的声明有两个好处，一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射；另一个用处则是在运行时使用随机端口映射时，也就是 <code>docker run -P</code> 时，会自动随机映射 EXPOSE 的端口。<br>要将 EXPOSE 和在运行时使用 <code>-p &lt;宿主端口&gt;:&lt;容器端口&gt;</code> 区分开来。<code>-p</code>，是映射宿主端口和容器端口，换句话说，就是将容器的对应端口服务公开给外界访问，而 EXPOSE 仅仅是声明容器打算使用什么端口而已，并不会自动在宿主进行端口映射。</p>
+<h4 id="WORKDIR-指定工作目录"><a href="#WORKDIR-指定工作目录" class="headerlink" title="WORKDIR 指定工作目录"></a>WORKDIR 指定工作目录</h4><ul>
+<li>WORKDIR &lt;工作目录路径&gt;</li>
+</ul>
+<h4 id="USER-指定当前用户"><a href="#USER-指定当前用户" class="headerlink" title="USER 指定当前用户"></a>USER 指定当前用户</h4><ul>
+<li>USER &lt;用户名&gt;[:&lt;用户组&gt;]</li>
+</ul>
+<p>USER 指令和 WORKDIR 相似，都是改变环境状态并影响以后的层。WORKDIR 是改变工作目录，USER 则是改变之后层的执行 RUN, CMD 以及 ENTRYPOINT 这类命令的身份。<br>注意，USER 只是帮助你切换到指定用户而已，这个用户必须是事先建立好的，否则无法切换。<br>如果以 root 执行的脚本，在执行期间希望改变身份，比如希望以某个已经建立好的用户来运行某个服务进程，不要使用 <code>su</code> 或者 <code>sudo</code>。建议使用 <code>gosu</code>。</p>
+<h4 id="HEALTHCHECK-健康检查"><a href="#HEALTHCHECK-健康检查" class="headerlink" title="HEALTHCHECK 健康检查"></a>HEALTHCHECK 健康检查</h4><ul>
+<li>HEALTHCHECK [选项] CMD &lt;命令&gt;：设置检查容器健康状况的命令</li>
+<li>HEALTHCHECK NONE：如果基础镜像有健康检查指令，使用这行可以屏蔽掉其健康检查指令<br>在没有 HEALTHCHECK 指令前，Docker 引擎只可以通过容器内主进程是否退出来判断容器是否状态异常。很多情况下这没问题，但是如果程序进入死锁状态，或者死循环状态，应用进程并不退出，但是该容器已经无法提供服务了。在 1.12 以前，Docker 不会检测到容器的这种状态，从而不会重新调度，导致可能会有部分容器已经无法提供服务了却还在接受用户请求。</li>
+</ul>
+<p>以守护态运行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d -p 8080:8080 hello-world:1.0</span><br><span class="line">docker container run -d  -v /pathOfHost:/home/paddle_out -p 9999:9999 paddle_zh_cn_py-server:v5</span><br></pre></td></tr></table></figure>
+
+<p>进入服务操作</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it hello-world:1.0 bash</span><br></pre></td></tr></table></figure>
+
+<p>修改完成后，保存镜像</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker commit --author &quot;frank&quot; --message &quot;change default index.html&quot; webserver nginx:2.0</span><br></pre></td></tr></table></figure>
+
+<p>备注： 慎用 <code>docker commit</code>。使用 docker commit 命令虽然可以比较直观的帮助理解镜像分层存储的概念，但是实际环境中并不会这样使用。因为：1.有大量的无关内容被添加进来，将会导致镜像极为臃肿。2.所有对镜像的操作都是黑箱操作，生成的镜像也被称为 黑箱镜像。3. 每一次修改都会让镜像更加臃肿一次，所删除的上一层的东西并不会丢失</p>
+<p>查询修改历史</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker history nginx:2.0</span><br></pre></td></tr></table></figure>
+
+<p>至此，可以访问Python服务</p>
+<h5 id="附-Python-hello-world"><a href="#附-Python-hello-world" class="headerlink" title="附  Python hello-world"></a>附  Python hello-world</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> waitress <span class="keyword">import</span> serve</span><br><span class="line"><span class="keyword">from</span> http_flask <span class="keyword">import</span> flask_service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 程序入口</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 初始化 Flask 服务</span></span><br><span class="line">    flask_service.config[<span class="string">&#x27;JSON_AS_ASCII&#x27;</span>] = <span class="literal">False</span>  <span class="comment"># 解决返回中文乱码</span></span><br><span class="line">    serve(flask_service,listen=<span class="string">&#x27;*:8080&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- encoding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> crypt <span class="keyword">import</span> methods</span><br><span class="line"><span class="keyword">from</span> logging.config <span class="keyword">import</span> listen</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,request, send_from_directory</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务初始化</span></span><br><span class="line">flask_service = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@flask_service.route(<span class="params"><span class="string">&#x27;/api/hello&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hello</span>():</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;code&#x27;</span>:<span class="number">200</span>,<span class="string">&#x27;message&#x27;</span>:<span class="string">&#x27;文本转语音成功&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像备份-恢复"><a href="#镜像备份-恢复" class="headerlink" title="镜像备份&#x2F;恢复"></a>镜像备份&#x2F;恢复</h3><h4 id="1-备份"><a href="#1-备份" class="headerlink" title="1. 备份"></a>1. 备份</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker images | grep  image-name  # 查询镜像ID</span><br><span class="line">docker save [OPTIONS] IMAGE [IMAGE...]</span><br><span class="line">docker save -o /root/mycentos7.tar mycentos:7</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-恢复"><a href="#2-恢复" class="headerlink" title="2. 恢复"></a>2. 恢复</h3><p>docker加载镜像：tar-&gt;image的过程</p>
+<p>a. 从tar包载入镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker load -i &#123;image_name&#125;.tar</span><br><span class="line">docker load --input &#123;image_name&#125;.tar</span><br></pre></td></tr></table></figure>
+
+<p>b. 查看载入是否成功：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker images | grep &#123;image_name&#125;</span><br></pre></td></tr></table></figure>
+
+<p>c. 如果看到加载的镜像没有tag和镜像名，则手动打tag:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker tag &#123;image_id&#125; &#123;image_name&#125;:&#123;image_tag&#125;</span><br></pre></td></tr></table></figure>
+
+<p>d. 确认镜像是否成功打上tag</p>
+<p>设置代理</p>
+<p>只能通过创建<code>systemd</code>配置文件，<code>/etc/docker/daemon.json</code>,<code>~/.docker/config.json</code>无效</p>
+<p>创建<code>/etc/systemd/system/docker.service.d/http-proxy.conf</code>文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/systemd/system/docker.service.d</span><br><span class="line">sudo vi /etc/systemd/system/docker.service.d/http-proxy.conf</span><br></pre></td></tr></table></figure>
+
+<p>并编辑内容:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Service]</span><br><span class="line">Environment=&quot;HTTP_PROXY=socks5://192.168.1.3:10810&quot;</span><br><span class="line">Environment=&quot;HTTPS_PROXY=socks5://192.168.1.3:10810&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后运行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line">sudo systemctl show --property=Environment docker</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://docs.docker.com/config/daemon/proxy/#httphttps-proxy">配置<code>docker</code>服务使用代理</a></p>
+<p><a href="https://docs.docker.com/">官方文档</a><br><a href="https://yeasy.gitbook.io/docker_practice/">Docker — 从入门到实践</a></p>
+<h3 id="Docker磁盘占用情况"><a href="#Docker磁盘占用情况" class="headerlink" title="Docker磁盘占用情况"></a>Docker磁盘占用情况</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">通过 <span class="built_in">df</span> -h 可以发现所有磁盘的使用情况， /var/lib/docker 为 docker 容器安装的默认磁盘目录</span></span><br><span class="line">frank@localhost:~$ sudo df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">udev            944M     0  944M   0% /dev</span><br><span class="line">tmpfs           191M  512K  190M   1% /run</span><br><span class="line">/dev/sda3        28G  3.1G   23G  12% /</span><br><span class="line">tmpfs           951M     0  951M   0% /dev/shm</span><br><span class="line">tmpfs           5.0M     0  5.0M   0% /run/lock</span><br><span class="line">/dev/sda4        93G  2.3G   86G   3% /home</span><br><span class="line">/dev/sda2       488M   12M  476M   3% /boot/efi</span><br><span class="line">overlay          28G  3.1G   23G  12% /var/lib/docker/overlay2/9b3c4b326acbfe36b17bef23e847ed2260e3a91f42c027d64d43b901b9392157/merged</span><br><span class="line">tmpfs           191M     0  191M   0% /run/user/1000</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看docker 磁盘使用情况</span></span><br><span class="line">frank@localhost:~$ sudo du -sh /var/lib/docker/</span><br><span class="line">1.3G    /var/lib/docker/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker system <span class="built_in">df</span>  命令，类似于Linux上的<span class="built_in">df</span>命令，用于查看Docker的磁盘使用情况</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v 选项可用查询更详细的信息</span></span><br><span class="line">frank@localhost:~$ sudo docker system df</span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          4         2         1.145GB   583.7MB (50%)</span><br><span class="line">Containers      8         1         2.887kB   758B (26%)</span><br><span class="line">Local Volumes   1         0         0B        0B</span><br><span class="line">Build Cache     0         0         0B        0B</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker system prune命令可以用于清理磁盘，删除关闭的容器、无用的数据卷和网络，以及dangling镜像(即无tag的镜像)</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-a  选项清理得更加彻底，可以将没有容器使用Docker镜像都删掉</span></span><br><span class="line">frank@localhost:~$ sudo docker system prune</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -2462,6 +2462,26 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>MySQL之GroupBy</title>
+    <url>/2024/07/31/MySQL%E4%B9%8BGroupBy/</url>
+    <content><![CDATA[<p>SQL 标准中不允许 <code>SELECT</code> 列表，<code>HAVING</code> 条件语句，或 <code>ORDER BY</code> 语句中出现 <code>GROUP BY</code> 中未列表的可聚合列。而 MySQL 中有一个状态 <code>ONLY_FULL_GROUP_BY</code> 来标识是否遵从这一标准，默认为开启状态。</p>
+<p>查看变更前的<code>sql_mode</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@sql_mode</span>;</span><br></pre></td></tr></table></figure>
+
+<p>会话停用<code>ONLY_FULL_GROUP_BY</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> SESSION sql_mode<span class="operator">=</span>(<span class="keyword">SELECT</span> REPLACE(@<span class="variable">@sql_mode</span>,<span class="string">&#x27;ONLY_FULL_GROUP_BY,&#x27;</span>,<span class="string">&#x27;&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>全局配置，编辑<code>/etc/my.cnf</code>文件</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">sql_mode<span class="operator">=</span>STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MyBatis打印SQL日志</title>
     <url>/2024/07/31/MyBatis%E6%89%93%E5%8D%B0SQL%E6%97%A5%E5%BF%97/</url>
     <content><![CDATA[<ol>
@@ -2480,26 +2500,6 @@ table th:first-of-type {
       <tags>
         <tag>Java</tag>
         <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL之GroupBy</title>
-    <url>/2024/07/31/MySQL%E4%B9%8BGroupBy/</url>
-    <content><![CDATA[<p>SQL 标准中不允许 <code>SELECT</code> 列表，<code>HAVING</code> 条件语句，或 <code>ORDER BY</code> 语句中出现 <code>GROUP BY</code> 中未列表的可聚合列。而 MySQL 中有一个状态 <code>ONLY_FULL_GROUP_BY</code> 来标识是否遵从这一标准，默认为开启状态。</p>
-<p>查看变更前的<code>sql_mode</code></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@sql_mode</span>;</span><br></pre></td></tr></table></figure>
-
-<p>会话停用<code>ONLY_FULL_GROUP_BY</code></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> SESSION sql_mode<span class="operator">=</span>(<span class="keyword">SELECT</span> REPLACE(@<span class="variable">@sql_mode</span>,<span class="string">&#x27;ONLY_FULL_GROUP_BY,&#x27;</span>,<span class="string">&#x27;&#x27;</span>));</span><br></pre></td></tr></table></figure>
-
-<p>全局配置，编辑<code>/etc/my.cnf</code>文件</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">sql_mode<span class="operator">=</span>STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2860,6 +2860,20 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>SQLServer WMI错误</title>
+    <url>/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p>以管理员身份在CMD中运行以下命令即可。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">mofcomp <span class="string">&quot;sqlmgmprovider.mof&quot;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://support.microsoft.com/zh-cn/help/956013/error-message-when-you-open-sql-server-configuration-manager-in-sql-se">在 SQL Server 中打开 SQL Server 配置管理器时出现错误消息:”无法连接到 WMI 提供程序。您没有权限或该服务器不可用”</a></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>SQL Server</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQLServer数据类型映射</title>
     <url>/2024/07/31/SQLServer%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%98%A0%E5%B0%84/</url>
     <content><![CDATA[<table>
@@ -3004,20 +3018,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>C#</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQLServer WMI错误</title>
-    <url>/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<p>以管理员身份在CMD中运行以下命令即可。</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">mofcomp <span class="string">&quot;sqlmgmprovider.mof&quot;</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://support.microsoft.com/zh-cn/help/956013/error-message-when-you-open-sql-server-configuration-manager-in-sql-se">在 SQL Server 中打开 SQL Server 配置管理器时出现错误消息:”无法连接到 WMI 提供程序。您没有权限或该服务器不可用”</a></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>SQL Server</tag>
       </tags>
   </entry>
   <entry>
@@ -3853,10 +3853,10 @@ table th:first-of-type {
 </ol>
 <h2 id="命令行设置代理"><a href="#命令行设置代理" class="headerlink" title="命令行设置代理"></a>命令行设置代理</h2><ol>
 <li><p>PowerShell</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash"><span class="built_in">env</span>:HTTP_PROXY=<span class="string">&quot;http://127.0.0.1:10808&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash"><span class="built_in">env</span>:HTTPS_PROXY=<span class="string">&quot;http://127.0.0.1:10808&quot;</span></span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash"><span class="built_in">env</span>:HTTP_PROXY=<span class="string">&quot;socks5://127.0.0.1:10808&quot;</span></span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash"><span class="built_in">env</span>:HTTPS_PROXY=<span class="string">&quot;socks5://127.0.0.1:10808&quot;</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>CMD</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">set http_proxy=http://127.0.0.1:10808</span><br><span class="line">set https_proxy=http://127.0.0.1:10808</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">set http_proxy=socks5://127.0.0.1:10808</span><br><span class="line">set https_proxy=socks5://127.0.0.1:10808</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="Windows-Defender配置"><a href="#Windows-Defender配置" class="headerlink" title="Windows Defender配置"></a>Windows Defender配置</h2><p>配置修正选项<br>你可以利用此部分中所述的组策略设置配置修正的工作方式。</p>
 <p>若要配置这些设置：</p>
@@ -3972,23 +3972,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>return语句不影响using释放对象</title>
-    <url>/2024/07/31/return%E8%AF%AD%E5%8F%A5%E4%B8%8D%E5%BD%B1%E5%93%8Dusing%E9%87%8A%E6%94%BE%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (A a = <span class="keyword">new</span> A())</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主程序开始执行。&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">            <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;</span></span><br><span class="line">            Console.WriteLine(<span class="string">&quot;using内&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;,以下语句都不会执行 ???</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;using外&quot;</span>);</span><br><span class="line">        Console.ReadLine();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">IDisposable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Dispose</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;执行了Dispose方法。&quot;</span>);</span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行结果：</p>
-<blockquote>
-<p>主程序开始执行。<br>执行了Dispose方法。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>C#</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>保持fork之后的项目和上游同步</title>
     <url>/2024/07/31/%E4%BF%9D%E6%8C%81fork%E4%B9%8B%E5%90%8E%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%92%8C%E4%B8%8A%E6%B8%B8%E5%90%8C%E6%AD%A5/</url>
     <content><![CDATA[<ol>
@@ -4011,6 +3994,23 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>return语句不影响using释放对象</title>
+    <url>/2024/07/31/return%E8%AF%AD%E5%8F%A5%E4%B8%8D%E5%BD%B1%E5%93%8Dusing%E9%87%8A%E6%94%BE%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (A a = <span class="keyword">new</span> A())</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主程序开始执行。&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">            <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;</span></span><br><span class="line">            Console.WriteLine(<span class="string">&quot;using内&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;,以下语句都不会执行 ???</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;using外&quot;</span>);</span><br><span class="line">        Console.ReadLine();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">IDisposable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Dispose</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;执行了Dispose方法。&quot;</span>);</span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<blockquote>
+<p>主程序开始执行。<br>执行了Dispose方法。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>C#</tag>
       </tags>
   </entry>
   <entry>
@@ -4162,41 +4162,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>搭建Git服务器</title>
-    <url>/2024/07/31/%E6%90%AD%E5%BB%BAGit%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<p>说明：此文是在FreeBSD系统下的处理过程，未来得及修改</p>
-<h3 id="安装-Git-并创建Git仓储目录"><a href="#安装-Git-并创建Git仓储目录" class="headerlink" title="安装 Git 并创建Git仓储目录"></a>安装 Git 并创建Git仓储目录</h3><pre><code><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">pkg install git</span></span><br></pre></td></tr></table></figure>
-</code></pre>
-<h3 id="添加-git-用户"><a href="#添加-git-用户" class="headerlink" title="添加 git 用户"></a>添加 git 用户</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pw groupadd -n git -g 9418</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pw useradd -n git -u 9418 -g git -c git -d /home/git -s /usr/local/libexec/git-core/git-shell -h -</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">passwd git</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建仓库根目录，并确认权限正确"><a href="#创建仓库根目录，并确认权限正确" class="headerlink" title="创建仓库根目录，并确认权限正确"></a>创建仓库根目录，并确认权限正确</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir /home/git</span><br><span class="line">chown git:git /home/git</span><br><span class="line">mkdir /home/git/base</span><br><span class="line">chown git:git /home/git/base</span><br><span class="line">chmode 775 /home/git/base</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加能够访问-home-git-base建立仓库的用户到git用户组"><a href="#添加能够访问-home-git-base建立仓库的用户到git用户组" class="headerlink" title="添加能够访问&#x2F;home&#x2F;git&#x2F;base建立仓库的用户到git用户组"></a>添加能够访问&#x2F;home&#x2F;git&#x2F;base建立仓库的用户到git用户组</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vi /etc/group</span></span><br><span class="line">git:*:9418:user1,user2</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用SSH-keys认证"><a href="#使用SSH-keys认证" class="headerlink" title="使用SSH keys认证"></a>使用SSH keys认证</h3><p>  首先，收集所有需要有提交权限的用户的public keys。然后把这些public keys添加到<code>/home/git/.ssh/</code>目录下面。对应的客户端比如Windows10，在<code>C:\Users\Frank\.ssh\</code>下面应包含此公约和对应的私钥，如果只包含私钥，在push或pull时会一直提示输入密码，即ssh配置失败。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">mkdir</span> /home/git/.ssh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chmod</span> 700 /git/.ssh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">touch</span> /git/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chmod</span> 600 /home/git/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Put the public keys into authorized_keys,one per line)</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chown</span> -R git:git /home/git/.ssh/</span></span><br></pre></td></tr></table></figure>
-
-<p>现在创建一个仓库来测试</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> /git/base/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /git/base/test.git &amp;&amp; git init --bare</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">chown</span> -R git:git /home/git/</span></span><br></pre></td></tr></table></figure>
-
-<p>在客户机创建本地仓库，并提交</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> ~/test</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> ~/test &amp;&amp; git init</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;123456&#x27;</span> &gt; foo</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add .</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit</span></span><br></pre></td></tr></table></figure>
-
-<p>push到远程仓库</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git remote add origin git@git.example.com:base/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git push -u origin master</span></span><br></pre></td></tr></table></figure>
-
-<p>关于Git使用ssh协议免密</p>
-<p>附：<br><a href="https://git-scm.com/book/zh/v2">Git使用手册</a></p>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>怎样看公司财务报表</title>
     <url>/2024/07/31/%E6%80%8E%E6%A0%B7%E7%9C%8B%E5%85%AC%E5%8F%B8%E8%B4%A2%E5%8A%A1%E6%8A%A5%E8%A1%A8/</url>
     <content><![CDATA[<p>拿到一份财务报表，很多人不知道如何下手，其实分析企业财务一般从企业偿债能力、营运能力和盈利能力等方面分析以下一张图涵盖了财务分析的各维度，各指标。</p>
@@ -4255,6 +4220,41 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>投机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建Git服务器</title>
+    <url>/2024/07/31/%E6%90%AD%E5%BB%BAGit%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<p>说明：此文是在FreeBSD系统下的处理过程，未来得及修改</p>
+<h3 id="安装-Git-并创建Git仓储目录"><a href="#安装-Git-并创建Git仓储目录" class="headerlink" title="安装 Git 并创建Git仓储目录"></a>安装 Git 并创建Git仓储目录</h3><pre><code><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">pkg install git</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<h3 id="添加-git-用户"><a href="#添加-git-用户" class="headerlink" title="添加 git 用户"></a>添加 git 用户</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pw groupadd -n git -g 9418</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pw useradd -n git -u 9418 -g git -c git -d /home/git -s /usr/local/libexec/git-core/git-shell -h -</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">passwd git</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建仓库根目录，并确认权限正确"><a href="#创建仓库根目录，并确认权限正确" class="headerlink" title="创建仓库根目录，并确认权限正确"></a>创建仓库根目录，并确认权限正确</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir /home/git</span><br><span class="line">chown git:git /home/git</span><br><span class="line">mkdir /home/git/base</span><br><span class="line">chown git:git /home/git/base</span><br><span class="line">chmode 775 /home/git/base</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加能够访问-home-git-base建立仓库的用户到git用户组"><a href="#添加能够访问-home-git-base建立仓库的用户到git用户组" class="headerlink" title="添加能够访问&#x2F;home&#x2F;git&#x2F;base建立仓库的用户到git用户组"></a>添加能够访问&#x2F;home&#x2F;git&#x2F;base建立仓库的用户到git用户组</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vi /etc/group</span></span><br><span class="line">git:*:9418:user1,user2</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用SSH-keys认证"><a href="#使用SSH-keys认证" class="headerlink" title="使用SSH keys认证"></a>使用SSH keys认证</h3><p>  首先，收集所有需要有提交权限的用户的public keys。然后把这些public keys添加到<code>/home/git/.ssh/</code>目录下面。对应的客户端比如Windows10，在<code>C:\Users\Frank\.ssh\</code>下面应包含此公约和对应的私钥，如果只包含私钥，在push或pull时会一直提示输入密码，即ssh配置失败。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">mkdir</span> /home/git/.ssh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chmod</span> 700 /git/.ssh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">touch</span> /git/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chmod</span> 600 /home/git/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Put the public keys into authorized_keys,one per line)</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chown</span> -R git:git /home/git/.ssh/</span></span><br></pre></td></tr></table></figure>
+
+<p>现在创建一个仓库来测试</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> /git/base/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /git/base/test.git &amp;&amp; git init --bare</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">chown</span> -R git:git /home/git/</span></span><br></pre></td></tr></table></figure>
+
+<p>在客户机创建本地仓库，并提交</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> ~/test</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> ~/test &amp;&amp; git init</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;123456&#x27;</span> &gt; foo</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add .</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit</span></span><br></pre></td></tr></table></figure>
+
+<p>push到远程仓库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git remote add origin git@git.example.com:base/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git push -u origin master</span></span><br></pre></td></tr></table></figure>
+
+<p>关于Git使用ssh协议免密</p>
+<p>附：<br><a href="https://git-scm.com/book/zh/v2">Git使用手册</a></p>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -4486,6 +4486,44 @@ table th:first-of-type {
         <tag>Java</tag>
         <tag>C</tag>
         <tag>CPP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IntelliJ IDEA之External tools</title>
+    <url>/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/</url>
+    <content><![CDATA[<h2 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h2><p><code>Ctrl + Alt + S</code> ——&gt; <code>External Tools</code> ——&gt; <code>Add</code> ,在添加页面的 <code>Tool Setting</code>部分分别设置</p>
+<ol>
+<li><code>Program</code> 填 <code>$JDKPath$\bin\javap</code><br>  <code>javap</code> 使用 JVM 选项 <code>-J-Dfile.encoding=GB2312</code></li>
+<li><code>Arguments</code> 填 <code>-v -c -l -s -p $FileClass$</code></li>
+<li><code>Working directory</code> 填 <code>$OutputPath$</code></li>
+</ol>
+<h2 id="jconsole"><a href="#jconsole" class="headerlink" title="jconsole"></a>jconsole</h2><ol>
+<li><code>Program</code> 填 <code>$JDKPath$\bin\jconsole</code></li>
+</ol>
+<h2 id="protoc"><a href="#protoc" class="headerlink" title="protoc"></a>protoc</h2><ol>
+<li><code>Program</code> 填 <code>protoc</code></li>
+<li><code>Arguments</code> 填 <code>--java_out=$SourcepathEntry$ $FileNameWithoutExtension$.proto</code><br>  <code>--java_out=</code> 指定输出文件的目录。如果使用宏<code>$SourcepathEntry$</code>,则在编写<code>xx.proto</code>文件时，最好指定正确的包名，结果会输出到相应的位置。或者指定为<code>.</code>,即输出到<code>xx.proto</code>文件所在的文件夹，然后复制到正确位置。</li>
+<li><code>Working directory</code> 填 <code>$FileDir$</code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot项目启动</title>
+    <url>/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="不使用spring-boot-starter-parent"><a href="#不使用spring-boot-starter-parent" class="headerlink" title="不使用spring-boot-starter-parent"></a>不使用<code>spring-boot-starter-parent</code></h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -4965,6 +5003,27 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>Linux文本重定向权限问题</title>
+    <url>/2024/08/03/Linux%E6%96%87%E6%9C%AC%E9%87%8D%E5%AE%9A%E5%90%91%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frank@debian:/etc/nginx/sites-enabled$ <span class="built_in">cat</span> nexus.conf |grep -s proxy_set &gt;&gt; blog.conf</span><br><span class="line">-bash: blog.conf: Permission denied</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，<code>Linux</code> shell 是使用当前用户的权限去执行 <code>&gt;</code> 和 <code>&gt;&gt;</code> 命令。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
+<li><h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> -i</span><br><span class="line"><span class="built_in">cd</span> /etc/nginx/sites-enabled/</span><br><span class="line"><span class="built_in">cat</span> nexus.conf |grep -s proxy_set &gt;&gt; blog.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="二"><a href="#二" class="headerlink" title="二"></a>二</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> bash -c <span class="string">&#x27;cat nexus.conf |grep -s proxy_set &gt;&gt; blog.conf&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="三"><a href="#三" class="headerlink" title="三"></a>三</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> nexus.conf |grep proxy_set|<span class="built_in">sudo</span> <span class="built_in">tee</span> -a blog.conf</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux中文件命名的最佳实践</title>
     <url>/2024/08/04/Linux%E4%B8%AD%E6%96%87%E4%BB%B6%E5%91%BD%E5%90%8D%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
     <content><![CDATA[<p>转自<a href="https://www.inmotionhosting.com/support/server/linux/best-practice-for-naming-files-in-linux/">Best practice for naming files in Linux</a></p>
@@ -4996,27 +5055,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux文本重定向权限问题</title>
-    <url>/2024/08/03/Linux%E6%96%87%E6%9C%AC%E9%87%8D%E5%AE%9A%E5%90%91%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frank@debian:/etc/nginx/sites-enabled$ <span class="built_in">cat</span> nexus.conf |grep -s proxy_set &gt;&gt; blog.conf</span><br><span class="line">-bash: blog.conf: Permission denied</span><br></pre></td></tr></table></figure>
-
-<p>默认情况下，<code>Linux</code> shell 是使用当前用户的权限去执行 <code>&gt;</code> 和 <code>&gt;&gt;</code> 命令。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
-<li><h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> -i</span><br><span class="line"><span class="built_in">cd</span> /etc/nginx/sites-enabled/</span><br><span class="line"><span class="built_in">cat</span> nexus.conf |grep -s proxy_set &gt;&gt; blog.conf</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="二"><a href="#二" class="headerlink" title="二"></a>二</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> bash -c <span class="string">&#x27;cat nexus.conf |grep -s proxy_set &gt;&gt; blog.conf&#x27;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="三"><a href="#三" class="headerlink" title="三"></a>三</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> nexus.conf |grep proxy_set|<span class="built_in">sudo</span> <span class="built_in">tee</span> -a blog.conf</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -5404,78 +5442,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>IntelliJ IDEA之External tools</title>
-    <url>/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/</url>
-    <content><![CDATA[<h2 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h2><p><code>Ctrl + Alt + S</code> ——&gt; <code>External Tools</code> ——&gt; <code>Add</code> ,在添加页面的 <code>Tool Setting</code>部分分别设置</p>
-<ol>
-<li><code>Program</code> 填 <code>$JDKPath$\bin\javap</code><br>  <code>javap</code> 使用 JVM 选项 <code>-J-Dfile.encoding=GB2312</code></li>
-<li><code>Arguments</code> 填 <code>-v -c -l -s -p $FileClass$</code></li>
-<li><code>Working directory</code> 填 <code>$OutputPath$</code></li>
-</ol>
-<h2 id="jconsole"><a href="#jconsole" class="headerlink" title="jconsole"></a>jconsole</h2><ol>
-<li><code>Program</code> 填 <code>$JDKPath$\bin\jconsole</code></li>
-</ol>
-<h2 id="protoc"><a href="#protoc" class="headerlink" title="protoc"></a>protoc</h2><ol>
-<li><code>Program</code> 填 <code>protoc</code></li>
-<li><code>Arguments</code> 填 <code>--java_out=$SourcepathEntry$ $FileNameWithoutExtension$.proto</code><br>  <code>--java_out=</code> 指定输出文件的目录。如果使用宏<code>$SourcepathEntry$</code>,则在编写<code>xx.proto</code>文件时，最好指定正确的包名，结果会输出到相应的位置。或者指定为<code>.</code>,即输出到<code>xx.proto</code>文件所在的文件夹，然后复制到正确位置。</li>
-<li><code>Working directory</code> 填 <code>$FileDir$</code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot项目启动</title>
-    <url>/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="不使用spring-boot-starter-parent"><a href="#不使用spring-boot-starter-parent" class="headerlink" title="不使用spring-boot-starter-parent"></a>不使用<code>spring-boot-starter-parent</code></h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FreeBSD使用</title>
-    <url>/2025/02/15/FreeBSD%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>切换国内源</p>
-<p><a href="https://book.bsdcn.org/di-3-zhang-bao-guan-li-qi-ji-freebsd-geng-xin-yu-sheng-ji/di-3.2-jie-freebsd-huan-yuan-fang-shi">FreeBSD 换源方式</a></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">frank@freebsd:~ % su</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">mkdir</span> -p /usr/local/etc/pkg/repos</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vi /usr/local/etc/pkg/repos/ustc.conf</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ustc: &#123;</span><br><span class="line">  url: &quot;http://mirrors.ustc.edu.cn/freebsd-pkg/$&#123;ABI&#125;/quarterly&quot;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FreeBSD: &#123; enabled: no &#125;</span><br></pre></td></tr></table></figure>
-
-<p>NJU 和 163 均同步自 USTC 而非 FreeBSD 直接上游。</p>
-<p>安装配置sudo</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pkg install  <span class="built_in">sudo</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">visudo</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%wheel ALL=(ALL:ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">frank@freebsd:~ % sudo pkg install zsh curl git</span><br><span class="line">frank@freebsd:~ % zsh</span><br><span class="line">frank@freebsd:~ % export all_proxy=http://192.168.1.3:10810</span><br><span class="line">frank@freebsd:~ % sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
-
-<p>设置中文</p>
-<p>不同的shell要改不同的配置文件</p>
-<p>默认 tcsh 终端：</p>
-<p>只需在 <code>~/.cshrc</code> 文件添加以下几行即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setenv LANG         zh_CN.UTF-8</span><br><span class="line">setenv LC_CTYPE     zh_CN.UTF-8</span><br><span class="line">setenv LC_ALL       zh_CN.UTF-8</span><br></pre></td></tr></table></figure>
-
-<p>bash&#x2F;zsh终端：</p>
-<p>为了支持中文显示，可以在 <code>~/.zshrc</code>中添加如下内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export LANG=zh_CN.UTF-8</span><br><span class="line">export LC_CTYPE=zh_CN.UTF-8</span><br><span class="line">export LC_ALL=zh_CN.UTF-8</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>FreeBSD</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IDEA使用WSL环境的Maven构建</title>
     <url>/2025/02/21/IDEA%E4%BD%BF%E7%94%A8WSL%E7%8E%AF%E5%A2%83%E7%9A%84Maven%E6%9E%84%E5%BB%BA/</url>
     <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 JDK</span></span><br><span class="line">sdk install java  21.0.6-librca</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 maven</span></span><br><span class="line">sdk install maven 3.9.9</span><br><span class="line">cp /mnt/c/User/FRANK/.m2/settings.xml ~/.m2/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装arthas</span></span><br><span class="line">curl -O https://arthas.aliyun.com/arthas-boot.jar</span><br></pre></td></tr></table></figure>
@@ -5499,6 +5465,40 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FreeBSD使用</title>
+    <url>/2025/02/15/FreeBSD%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>切换国内源</p>
+<p><a href="https://book.bsdcn.org/di-3-zhang-bao-guan-li-qi-ji-freebsd-geng-xin-yu-sheng-ji/di-3.2-jie-freebsd-huan-yuan-fang-shi">FreeBSD 换源方式</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">frank@freebsd:~ % su</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">mkdir</span> -p /usr/local/etc/pkg/repos</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vi /usr/local/etc/pkg/repos/ustc.conf</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ustc: &#123;</span><br><span class="line">  url: &quot;http://mirrors.ustc.edu.cn/freebsd-pkg/$&#123;ABI&#125;/quarterly&quot;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FreeBSD: &#123; enabled: no &#125;</span><br></pre></td></tr></table></figure>
+
+<p>NJU 和 163 均同步自 USTC 而非 FreeBSD 直接上游。</p>
+<p>安装配置sudo</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pkg install  <span class="built_in">sudo</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">visudo</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%wheel ALL=(ALL:ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">frank@freebsd:~ % sudo pkg install zsh curl git</span><br><span class="line">frank@freebsd:~ % zsh</span><br><span class="line">frank@freebsd:~ % export all_proxy=socks5://192.168.1.3:10810</span><br><span class="line">frank@freebsd:~ % sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+
+<p>设置中文</p>
+<p>不同的shell要改不同的配置文件</p>
+<p>默认 tcsh 终端：</p>
+<p>只需在 <code>~/.cshrc</code> 文件添加以下几行即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">setenv LANG         zh_CN.UTF-8</span><br><span class="line">setenv LC_CTYPE     zh_CN.UTF-8</span><br><span class="line">setenv LC_ALL       zh_CN.UTF-8</span><br></pre></td></tr></table></figure>
+
+<p>bash&#x2F;zsh终端：</p>
+<p>为了支持中文显示，可以在 <code>~/.zshrc</code>中添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export LANG=zh_CN.UTF-8</span><br><span class="line">export LC_CTYPE=zh_CN.UTF-8</span><br><span class="line">export LC_ALL=zh_CN.UTF-8</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>FreeBSD</tag>
       </tags>
   </entry>
   <entry>
@@ -5673,27 +5673,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>Java9后获取加载的Jar路径</title>
-    <url>/2025/03/29/Java9%E5%90%8E%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E7%9A%84Jar%E8%B7%AF%E5%BE%84/</url>
-    <content><![CDATA[<p>JDK9后，由于模块化，要想获取启动加载的 Jar 包的路径，只有使用代理机制实现，先制作代理 <code>agent.jar</code>，然后在执行目标<code>jar</code>时，加载<code>agent.jar</code>。具体方法如下</p>
-<p>添加代理类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.instrument.Instrumentation;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.security.CodeSource;</span><br><span class="line"><span class="keyword">import</span> java.security.ProtectionDomain;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BootstrapAgent</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">premain</span><span class="params">(String args, Instrumentation inst)</span> &#123;</span><br><span class="line">        Set&lt;String&gt; paths = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        Class&lt;?&gt;[] classes = inst.getAllLoadedClasses();</span><br><span class="line">        <span class="keyword">for</span> (Class&lt;?&gt; clazz : classes) &#123;</span><br><span class="line">            <span class="type">ProtectionDomain</span> <span class="variable">domain</span> <span class="operator">=</span> clazz.getProtectionDomain();</span><br><span class="line">            <span class="keyword">if</span> (domain != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="type">CodeSource</span> <span class="variable">source</span> <span class="operator">=</span> domain.getCodeSource();</span><br><span class="line">                <span class="keyword">if</span> (source != <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="type">URL</span> <span class="variable">location</span> <span class="operator">=</span> source.getLocation();</span><br><span class="line">                    paths.add(location.toString());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;Bootstrap ClassPath JARs:&quot;</span>);</span><br><span class="line">        paths.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>添加<code>MANIFEST.MF</code>，<strong>注意最后要空一行</strong></p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">Manifest-Version: 1.0</span><br><span class="line">Premain-Class: BootstrapAgent</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">javac BootstrapAgent.java</span><br><span class="line">jar cmf MANIFEST.MF agent.jar BootstrapAgent.class</span><br><span class="line">java -javaagent:agent.jar -jar YourApplication.jar</span><br></pre></td></tr></table></figure>
-
-<p>如果有包名，要对应; 打包 <code>agent.jar</code>的时候要到包的根目录去运行程序，以使<code>agent.jar</code>里面的目录结构与包名一致，否则容易出现<code>ClassNotFoundException</code></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java获取当前运行的方法名称</title>
     <url>/2025/03/15/Java%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0/</url>
     <content><![CDATA[<p>在 Java 中，获取当前正在运行的方法名称可以通过 Thread 类中的堆栈信息来实现。具体方法如下：</p>
@@ -5709,6 +5688,27 @@ table th:first-of-type {
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.StackWalker;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        printCurrentMethodName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printCurrentMethodName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> StackWalker.getInstance()</span><br><span class="line">                                       .walk(frames -&gt; frames.skip(<span class="number">1</span>).findFirst().get().getMethodName());</span><br><span class="line">        System.out.println(<span class="string">&quot;当前方法名称: &quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>优势：<br>更高效，且更加灵活。<br>适用于 Java 9 及以上版本。<br>哪个方法更好？<br>如果追求性能，建议使用 StackWalker（Java 9+）。<br>对于简单的调试或兼容性需求，Thread.currentThread().getStackTrace() 更方便。</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java9后获取加载的Jar路径</title>
+    <url>/2025/03/29/Java9%E5%90%8E%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E7%9A%84Jar%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<p>JDK9后，由于模块化，要想获取启动加载的 Jar 包的路径，只有使用代理机制实现，先制作代理 <code>agent.jar</code>，然后在执行目标<code>jar</code>时，加载<code>agent.jar</code>。具体方法如下</p>
+<p>添加代理类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.instrument.Instrumentation;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.security.CodeSource;</span><br><span class="line"><span class="keyword">import</span> java.security.ProtectionDomain;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BootstrapAgent</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">premain</span><span class="params">(String args, Instrumentation inst)</span> &#123;</span><br><span class="line">        Set&lt;String&gt; paths = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        Class&lt;?&gt;[] classes = inst.getAllLoadedClasses();</span><br><span class="line">        <span class="keyword">for</span> (Class&lt;?&gt; clazz : classes) &#123;</span><br><span class="line">            <span class="type">ProtectionDomain</span> <span class="variable">domain</span> <span class="operator">=</span> clazz.getProtectionDomain();</span><br><span class="line">            <span class="keyword">if</span> (domain != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="type">CodeSource</span> <span class="variable">source</span> <span class="operator">=</span> domain.getCodeSource();</span><br><span class="line">                <span class="keyword">if</span> (source != <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="type">URL</span> <span class="variable">location</span> <span class="operator">=</span> source.getLocation();</span><br><span class="line">                    paths.add(location.toString());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;Bootstrap ClassPath JARs:&quot;</span>);</span><br><span class="line">        paths.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>添加<code>MANIFEST.MF</code>，<strong>注意最后要空一行</strong></p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">Manifest-Version: 1.0</span><br><span class="line">Premain-Class: BootstrapAgent</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">javac BootstrapAgent.java</span><br><span class="line">jar cmf MANIFEST.MF agent.jar BootstrapAgent.class</span><br><span class="line">java -javaagent:agent.jar -jar YourApplication.jar</span><br></pre></td></tr></table></figure>
+
+<p>如果有包名，要对应; 打包 <code>agent.jar</code>的时候要到包的根目录去运行程序，以使<code>agent.jar</code>里面的目录结构与包名一致，否则容易出现<code>ClassNotFoundException</code></p>
 ]]></content>
       <categories>
         <category>后端</category>

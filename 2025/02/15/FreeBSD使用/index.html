@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-07-30
+      Edited on:&nbsp;2025-08-03
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -310,7 +310,7 @@
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%wheel ALL=(ALL:ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frank@freebsd:~ % sudo pkg install zsh curl git</span><br><span class="line">frank@freebsd:~ % zsh</span><br><span class="line">frank@freebsd:~ % export all_proxy=http://192.168.1.3:10810</span><br><span class="line">frank@freebsd:~ % sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frank@freebsd:~ % sudo pkg install zsh curl git</span><br><span class="line">frank@freebsd:~ % zsh</span><br><span class="line">frank@freebsd:~ % export all_proxy=socks5://192.168.1.3:10810</span><br><span class="line">frank@freebsd:~ % sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
 
 <p>设置中文</p>
 <p>不同的shell要改不同的配置文件</p>
