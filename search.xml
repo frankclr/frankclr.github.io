@@ -397,6 +397,59 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>Debian使用</title>
+    <url>/2024/07/30/Debian%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><strong>建议使用 DVD 镜像安装。</strong><br><strong>“小型安装镜像”必须联网，由于网络环境，可能系统安装出错而又没有明显的信息提示，然后出现奇怪的问题</strong>【或开启代理】<br><strong>Hyper-V网络使用新建的外部网络， Default Switch和内部网络总会有各种问题。</strong></p>
+<ul>
+<li>出现过，MySQL的docker镜像内存耗尽问题</li>
+</ul>
+<h3 id="Debian-进入单用户模式"><a href="#Debian-进入单用户模式" class="headerlink" title="Debian 进入单用户模式"></a>Debian 进入单用户模式</h3><p>在 Grub 启动界面中按  “e” 进入编辑模式，在以 <code>Linux</code> 开头的倒数第三行的最后添加 <code>init=/bin/bash</code><br>这样，将以只读的方式启动，自动进入 <code>root shell</code>。此时，如果直接执行编辑系统文件、重启、关机等操作，都会告知不允许。要想修改内容，执行<code>mount -o remount,rw /</code>再编辑文件，然后执行<code>exec /sbin/init</code> 进行系统初始化，或者执行 <code>reboot -f</code> 完成重启<br>在没有给 <code>root</code> 设置密码，使用高级启动的 <code>recovery mode</code> 也无法进入担任维护模式</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">setparams &#x27;Debian GNU/Linux&#x27;</span><br><span class="line"></span><br><span class="line">    load_video</span><br><span class="line">    insmod gzio</span><br><span class="line">    if [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi</span><br><span class="line">    insmod part_gpt</span><br><span class="line">    insmod ext2</span><br><span class="line">    set root=&#x27;hd0, gpt2&#x27;</span><br><span class="line">    if [ x$feature_platform_search_hint = xy ]; then</span><br><span class="line">      search -- no-floppy -- fs-uuid -- set=root -- hint-bios=hd0, gpt2 -- hint-efi=hd0, gpt2 -- hint-baremetal=ahcio, gpt2 f2920743-fc03-4be7-8d82-8dcd398395fc</span><br><span class="line">    else</span><br><span class="line">      search -- no-floppy -- fs-uuid -- set=root f2920743-fc03-4be7-8d82-8dcd398395fc</span><br><span class="line">    fi</span><br><span class="line">    echo &#x27;Loading Linux 6.1.0-37-amd64&#x27;</span><br><span class="line">    linux /boot/vmlinuz-6.1.0-37-amd64 root=UUID=f2920743-fc03-4be7-8d82-8dcd398395fc ro quiet</span><br><span class="line">    echo &#x27;Loading initial ramdisk ...&#x27;</span><br><span class="line">    initrd /boot/initrd. img-6.1.0-37-amd64</span><br></pre></td></tr></table></figure>
+
+<h3 id="sudo-配置"><a href="#sudo-配置" class="headerlink" title="sudo 配置"></a>sudo 配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo visudo</span><br><span class="line">sudo vi /etc/sudoers</span><br></pre></td></tr></table></figure>
+
+<p>内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Allow members of group sudo to execute any command</span><br><span class="line"># %sudo   ALL=(ALL:ALL) ALL</span><br><span class="line">%sudo   ALL=(ALL:ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
+
+<p>sudo 会清空大部分环境变量（包括代理设置）以增强安全性</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo env | grep -i proxy</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加 -E 可以继承环境变量</span></span><br><span class="line">sudo -E curl https://www.google.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置静态IP"><a href="#设置静态IP" class="headerlink" title="设置静态IP"></a>设置静态IP</h3><p>备份、编辑 <code>/etc/network/interfaces</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This file describes the network interfaces available on your system</span><br><span class="line"># and how to activate them. For more information, see interfaces(5).</span><br><span class="line"></span><br><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line"># The loopback network interface</span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line"># auto 在系统启动的时候，启动网络接口,无论网络接口有无连接。</span><br><span class="line"># 如果该接口配置了 DHCP，则无论有无网线，系统都会 DHCP; 如果没有插入网线，则等该接口超时后才会继续</span><br><span class="line"></span><br><span class="line"># 只有当内核从网络接口检测到热插拔事件后（检测到有接入网线），才会启用该接口。</span><br><span class="line"># The primary network interface</span><br><span class="line">allow-hotplug eth0</span><br><span class="line">#iface eth0 inet dhcp</span><br><span class="line"># 静态配置 ipv4</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.1.18</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.1.1</span><br><span class="line"></span><br><span class="line"># This is an autoconfigured IPv6 interface</span><br><span class="line">iface eth0 inet6 auto</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>编辑 <code>/etc/resolv.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nameserver 61.139.2.69</span><br><span class="line">nameserver 218.6.200.139</span><br></pre></td></tr></table></figure>
+
+<p>重启网络</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 重启网络服务，IP 改变后， 远程ssh 会掉，等改好后重启</span><br><span class="line">sudo systemctl restart networking.service</span><br><span class="line"># 设置 hostname</span><br><span class="line">sudo hostnamectl set-hostname node1</span><br><span class="line"># 同步 ntp时间</span><br><span class="line">sudo apt install systemd-timesyncd</span><br><span class="line">sudo timedatectl set-ntp true</span><br><span class="line">timedatectl status</span><br></pre></td></tr></table></figure>
+
+<h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ca-certificates支持https</span></span><br><span class="line">sudo apt install curl git ca-certificates</span><br></pre></td></tr></table></figure>
+
+<p>编辑 <code>~/.bashrc</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 使用socket5协议是 socks5:，不是 socket5:</span><br><span class="line">alias set-proxy=&quot;export http_proxy=socks5://192.168.1.3:10810 &amp;&amp; export https_proxy=socks5://192.168.1.3:10810 &amp;&amp; export ftp_proxy=socks5://192.168.1.3:10810 &amp;&amp; export all_proxy=socks5://192.168.1.3:10810 &amp;&amp; export no_proxy=localhost,127.0.0.1,::1&quot;</span><br><span class="line">alias unset-proxy=&quot;unset http_proxy https_proxy ftp_proxy all_proxy no_proxy&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="更换国内源"><a href="#更换国内源" class="headerlink" title="更换国内源"></a>更换国内源</h3><h4 id="使用官方工具-choose-mirror"><a href="#使用官方工具-choose-mirror" class="headerlink" title="使用官方工具 choose-mirror"></a>使用官方工具 choose-mirror</h4><p>choose-mirror 是 Debian 安装器内部调用的标准组件；<br>可以在最小化系统上使用它，重新进入国家选择 &gt; 镜像站点的流程；<br>适用于没有图形界面、仅命令行环境下的主机或虚拟机；</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install choose-mirror</span><br><span class="line">sudo choose-mirror -a amd64 /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-备份"><a href="#1-备份" class="headerlink" title="1. 备份"></a>1. 备份</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.back</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-编辑-etc-apt-sources-list使用国内镜像"><a href="#2-编辑-etc-apt-sources-list使用国内镜像" class="headerlink" title="2. 编辑/etc/apt/sources.list使用国内镜像"></a>2. 编辑<code>/etc/apt/sources.list</code>使用国内镜像</h4><p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/debian/">清华镜像</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware</span><br><span class="line"></span><br><span class="line"># 以下安全更新软件源包含了官方源与镜像站配置，如有需要可自行修改注释切换</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="下载工具"><a href="#下载工具" class="headerlink" title="下载工具"></a>下载工具</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install aria2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-x 16：最多使用 16 个连接下载同一个文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-s 16：最多 16 个服务器来源（通常用于 Metalink 或分片）</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">并发太高可能被服务器限制或封锁，通常 8～16 较稳妥。</span></span><br><span class="line">aria2c -x 16 -s 16 https://example.com/file.iso</span><br><span class="line">sudo apt install vim</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-更新索引"><a href="#3-更新索引" class="headerlink" title="3. 更新索引"></a>3. 更新索引</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除所有已下载的包文件</span></span><br><span class="line">sudo apt clean</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取回更新的软件包列表信息</span></span><br><span class="line">sudo apt update</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进行一次升级</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Debian 默认http源，需要切换到国内源，而国内源使用的是https</span></span><br><span class="line">sudo apt install ca-certificates git</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 docker， docker.io 是 Debian 维护的， 版本较老； docker-ce 是官方维护的，有最新版</span></span><br><span class="line">sudo apt install docker.io</span><br><span class="line">sudo usermod -aG docker $USER</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">应用新组或重新登录</span></span><br><span class="line">newgrp docker</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">sudo</span> 环境似乎不走代理，分两步</span></span><br><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; \</span><br><span class="line"> -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line">curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; \</span><br><span class="line"> -o docker-compose</span><br><span class="line">sudo mv docker-compose /usr/local/bin/</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<p><code>sudo apt update</code> 如果报错 <code>Certificate verification failed: The certificate is NOT trusted. The certificate issuer is unknown.  Could not handshake: Error in the certificate verification.</code>，要么改用<code>http</code>协议，或者创建<code>/etc/apt/apt.conf.d/99verify-peer.conf</code>, 并添加内容<code>Acquire &#123;https::Verify-Peer false&#125;</code></p>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Docker使用</title>
     <url>/2024/07/30/Docker%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p>Debian默认安装即可，指定版本&#x2F;最新版本安装参考docker官方文档<br><a href="https://docs.docker.com/engine/install/debian/">Install Docker Engine on Debian</a></p>
@@ -546,63 +599,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Debian使用</title>
-    <url>/2024/07/30/Debian%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><strong>建议使用 DVD 镜像安装。</strong><br><strong>“小型安装镜像”必须联网，由于网络环境，可能系统安装出错而又没有明显的信息提示，然后出现奇怪的问题</strong>【或开启代理】<br><strong>Hyper-V网络使用新建的外部网络， Default Switch和内部网络总会有各种问题。</strong></p>
-<ul>
-<li>出现过，MySQL的docker镜像内存耗尽问题</li>
-</ul>
-<h3 id="Debian-进入单用户模式"><a href="#Debian-进入单用户模式" class="headerlink" title="Debian 进入单用户模式"></a>Debian 进入单用户模式</h3><p>在 Grub 启动界面中按  “e” 进入编辑模式，在以 <code>Linux</code> 开头的倒数第三行的最后添加 <code>init=/bin/bash</code><br>这样，将以只读的方式启动，自动进入 <code>root shell</code>。此时，如果直接执行编辑系统文件、重启、关机等操作，都会告知不允许。要想修改内容，执行<code>mount -o remount,rw /</code>再编辑文件，然后执行<code>exec /sbin/init</code> 进行系统初始化，或者执行 <code>reboot -f</code> 完成重启<br>在没有给 <code>root</code> 设置密码，使用高级启动的 <code>recovery mode</code> 也无法进入担任维护模式</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">setparams &#x27;Debian GNU/Linux&#x27;</span><br><span class="line"></span><br><span class="line">    load_video</span><br><span class="line">    insmod gzio</span><br><span class="line">    if [ x$grub_platform = xxen ]; then insmod xzio; insmod lzopio; fi</span><br><span class="line">    insmod part_gpt</span><br><span class="line">    insmod ext2</span><br><span class="line">    set root=&#x27;hd0, gpt2&#x27;</span><br><span class="line">    if [ x$feature_platform_search_hint = xy ]; then</span><br><span class="line">      search -- no-floppy -- fs-uuid -- set=root -- hint-bios=hd0, gpt2 -- hint-efi=hd0, gpt2 -- hint-baremetal=ahcio, gpt2 f2920743-fc03-4be7-8d82-8dcd398395fc</span><br><span class="line">    else</span><br><span class="line">      search -- no-floppy -- fs-uuid -- set=root f2920743-fc03-4be7-8d82-8dcd398395fc</span><br><span class="line">    fi</span><br><span class="line">    echo &#x27;Loading Linux 6.1.0-37-amd64&#x27;</span><br><span class="line">    linux /boot/vmlinuz-6.1.0-37-amd64 root=UUID=f2920743-fc03-4be7-8d82-8dcd398395fc ro quiet</span><br><span class="line">    echo &#x27;Loading initial ramdisk ...&#x27;</span><br><span class="line">    initrd /boot/initrd. img-6.1.0-37-amd64</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h3 id="设置静态IP"><a href="#设置静态IP" class="headerlink" title="设置静态IP"></a>设置静态IP</h3><p>备份、编辑 <code>/etc/network/interfaces</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># This file describes the network interfaces available on your system</span><br><span class="line"># and how to activate them. For more information, see interfaces(5).</span><br><span class="line"></span><br><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line"># The loopback network interface</span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line"># auto 在系统启动的时候，启动网络接口,无论网络接口有无连接。</span><br><span class="line"># 如果该接口配置了 DHCP，则无论有无网线，系统都会 DHCP; 如果没有插入网线，则等该接口超时后才会继续</span><br><span class="line"></span><br><span class="line"># 只有当内核从网络接口检测到热插拔事件后（检测到有接入网线），才会启用该接口。</span><br><span class="line"># The primary network interface</span><br><span class="line">allow-hotplug eth0</span><br><span class="line">#iface eth0 inet dhcp</span><br><span class="line"># 静态配置 ipv4</span><br><span class="line">iface eth0 inet static</span><br><span class="line">address 192.168.1.18</span><br><span class="line">netmask 255.255.255.0</span><br><span class="line">gateway 192.168.1.1</span><br><span class="line"></span><br><span class="line"># This is an autoconfigured IPv6 interface</span><br><span class="line">iface eth0 inet6 auto</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>编辑 <code>/etc/resolv.conf</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nameserver 61.139.2.69</span><br><span class="line">nameserver 218.6.200.139</span><br></pre></td></tr></table></figure>
-
-<p>重启网络</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 重启网络服务，IP 改变后， 远程ssh 会掉，等改好后重启</span><br><span class="line">sudo systemctl restart networking.service</span><br><span class="line"># 设置 hostname</span><br><span class="line">sudo hostnamectl set-hostname node1</span><br><span class="line"># 同步 ntp时间</span><br><span class="line">sudo apt install systemd-timesyncd</span><br><span class="line">sudo timedatectl set-ntp true</span><br><span class="line">timedatectl status</span><br></pre></td></tr></table></figure>
-
-<h3 id="sudo-配置"><a href="#sudo-配置" class="headerlink" title="sudo 配置"></a>sudo 配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo visudo</span><br><span class="line">sudo vi /etc/sudoers</span><br></pre></td></tr></table></figure>
-
-<p>内容</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Allow members of group sudo to execute any command</span><br><span class="line"># %sudo   ALL=(ALL:ALL) ALL</span><br><span class="line">%sudo   ALL=(ALL:ALL) NOPASSWD: ALL</span><br></pre></td></tr></table></figure>
-
-<p>sudo 会清空大部分环境变量（包括代理设置）以增强安全性</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo env | grep -i proxy</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加 -E 可以继承环境变量</span></span><br><span class="line">sudo -E curl https://www.google.com</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ca-certificates支持https</span></span><br><span class="line">sudo apt install curl git ca-certificates</span><br></pre></td></tr></table></figure>
-
-<p>编辑 <code>~/.bashrc</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alias set-proxy=&quot;export http_proxy=192.168.1.3:10810 &amp;&amp; export https_proxy=192.168.1.3:10810 &amp;&amp; export ftp_proxy=192.168.1.3:10810 &amp;&amp; export ALL_PROXY=192.168.1.3:10810 &amp;&amp; export no_proxy=localhost,127.0.0.1,::1&quot;</span><br><span class="line">alias unset-proxy=&quot;unset http_proxy https_proxy ftp_proxy ALL_PROXY no_proxy&quot;</span><br></pre></td></tr></table></figure>
-
-<h3 id="更换国内源"><a href="#更换国内源" class="headerlink" title="更换国内源"></a>更换国内源</h3><h4 id="使用官方工具-choose-mirror"><a href="#使用官方工具-choose-mirror" class="headerlink" title="使用官方工具 choose-mirror"></a>使用官方工具 choose-mirror</h4><p>choose-mirror 是 Debian 安装器内部调用的标准组件；<br>可以在最小化系统上使用它，重新进入国家选择 &gt; 镜像站点的流程；<br>适用于没有图形界面、仅命令行环境下的主机或虚拟机；</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install choose-mirror</span><br><span class="line">sudo choose-mirror -a amd64 /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-备份"><a href="#1-备份" class="headerlink" title="1. 备份"></a>1. 备份</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.back</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-编辑-etc-apt-sources-list使用国内镜像"><a href="#2-编辑-etc-apt-sources-list使用国内镜像" class="headerlink" title="2. 编辑/etc/apt/sources.list使用国内镜像"></a>2. 编辑<code>/etc/apt/sources.list</code>使用国内镜像</h4><p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/debian/">清华镜像</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware</span><br><span class="line"></span><br><span class="line"># 以下安全更新软件源包含了官方源与镜像站配置，如有需要可自行修改注释切换</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/debian-security bookworm-security main contrib non-free non-free-firmware</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="下载工具"><a href="#下载工具" class="headerlink" title="下载工具"></a>下载工具</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install aria2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-x 16：最多使用 16 个连接下载同一个文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-s 16：最多 16 个服务器来源（通常用于 Metalink 或分片）</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">并发太高可能被服务器限制或封锁，通常 8～16 较稳妥。</span></span><br><span class="line">aria2c -x 16 -s 16 https://example.com/file.iso</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-更新索引"><a href="#3-更新索引" class="headerlink" title="3. 更新索引"></a>3. 更新索引</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除所有已下载的包文件</span></span><br><span class="line">sudo apt clean</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取回更新的软件包列表信息</span></span><br><span class="line">sudo apt update</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进行一次升级</span></span><br><span class="line">sudo apt upgrade</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Debian 默认http源，需要切换到国内源，而国内源使用的是https</span></span><br><span class="line">sudo apt install ca-certificates git</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装 docker， docker.io 是 Debian 维护的， 版本较老； docker-ce 是官方维护的，有最新版</span></span><br><span class="line">sudo apt install docker.io</span><br><span class="line">sudo usermod -aG docker $USER</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">应用新组或重新登录</span></span><br><span class="line">newgrp docker</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">sudo</span> 环境似乎不走代理，分两步</span></span><br><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; \</span><br><span class="line"> -o /usr/local/bin/docker-compose</span><br><span class="line"></span><br><span class="line">curl -L &quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&quot; \</span><br><span class="line"> -o docker-compose</span><br><span class="line">sudo mv docker-compose /usr/local/bin/</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
-
-<p><code>sudo apt update</code> 如果报错 <code>Certificate verification failed: The certificate is NOT trusted. The certificate issuer is unknown.  Could not handshake: Error in the certificate verification.</code>，要么改用<code>http</code>协议，或者创建<code>/etc/apt/apt.conf.d/99verify-peer.conf</code>, 并添加内容<code>Acquire &#123;https::Verify-Peer false&#125;</code></p>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -1035,6 +1031,17 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>Jackson封装</title>
+    <url>/2024/07/31/Jackson%E5%B0%81%E8%A3%85/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rl.algorithmassistance.common;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.annotation.JsonInclude;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.JsonProcessingException;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.type.TypeReference;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.DeserializationFeature;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.SerializationFeature;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JsonUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ObjectMapper</span> <span class="variable">om</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对象的所有字段全部列入，还是其他的选项，可以忽略null等</span></span><br><span class="line">        om.setSerializationInclusion(JsonInclude.Include.ALWAYS);</span><br><span class="line">        <span class="comment">// 设置Date类型的序列化及反序列化格式</span></span><br><span class="line">        om.setDateFormat(<span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 忽略空Bean转json的错误</span></span><br><span class="line">        om.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, <span class="literal">false</span>);</span><br><span class="line">        <span class="comment">// 忽略未知属性，防止json字符串中存在，java对象中不存在对应属性的情况出现错误</span></span><br><span class="line">        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 注册一个时间序列化及反序列化的处理模块，用于解决jdk8中localDateTime等的序列化问题</span></span><br><span class="line">        om.registerModule(<span class="keyword">new</span> <span class="title class_">JavaTimeModule</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对象 =&gt; json字符串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj 源对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; String <span class="title function_">toJson</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (obj != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                json = om.writeValueAsString(obj);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (JsonProcessingException e) &#123;</span><br><span class="line">                log.warn(e.getMessage(), e);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> json;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json字符串 =&gt; 对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json  源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 对象类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;   泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, Class&lt;T&gt; clazz)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> parse(json, clazz, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json字符串 =&gt; 对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json 源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type 对象类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;  泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, TypeReference type)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> parse(json, <span class="literal">null</span>, type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json =&gt; 对象处理方法</span></span><br><span class="line"><span class="comment">     * &lt;br&gt;</span></span><br><span class="line"><span class="comment">     * 参数clazz和type必须一个为null，另一个不为null</span></span><br><span class="line"><span class="comment">     * &lt;br&gt;</span></span><br><span class="line"><span class="comment">     * 此方法不对外暴露，访问权限为private</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json  源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 对象类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type  对象类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;   泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, Class&lt;T&gt; clazz, TypeReference type)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">T</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.hasText(json)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (clazz != <span class="literal">null</span>) &#123;</span><br><span class="line">                    obj = om.readValue(json, clazz);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    obj = (T) om.readValue(json, type);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                log.warn(e.getMessage(), e);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JWT分析</title>
     <url>/2024/07/31/JWT%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<p><a href="https://learnku.com/articles/17883">原文</a></p>
@@ -1319,17 +1326,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>JWT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Jackson封装</title>
-    <url>/2024/07/31/Jackson%E5%B0%81%E8%A3%85/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rl.algorithmassistance.common;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.annotation.JsonInclude;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.JsonProcessingException;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.type.TypeReference;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.DeserializationFeature;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.SerializationFeature;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JsonUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ObjectMapper</span> <span class="variable">om</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对象的所有字段全部列入，还是其他的选项，可以忽略null等</span></span><br><span class="line">        om.setSerializationInclusion(JsonInclude.Include.ALWAYS);</span><br><span class="line">        <span class="comment">// 设置Date类型的序列化及反序列化格式</span></span><br><span class="line">        om.setDateFormat(<span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 忽略空Bean转json的错误</span></span><br><span class="line">        om.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, <span class="literal">false</span>);</span><br><span class="line">        <span class="comment">// 忽略未知属性，防止json字符串中存在，java对象中不存在对应属性的情况出现错误</span></span><br><span class="line">        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 注册一个时间序列化及反序列化的处理模块，用于解决jdk8中localDateTime等的序列化问题</span></span><br><span class="line">        om.registerModule(<span class="keyword">new</span> <span class="title class_">JavaTimeModule</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对象 =&gt; json字符串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj 源对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; String <span class="title function_">toJson</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (obj != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                json = om.writeValueAsString(obj);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (JsonProcessingException e) &#123;</span><br><span class="line">                log.warn(e.getMessage(), e);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> json;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json字符串 =&gt; 对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json  源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 对象类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;   泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, Class&lt;T&gt; clazz)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> parse(json, clazz, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json字符串 =&gt; 对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json 源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type 对象类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;  泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, TypeReference type)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> parse(json, <span class="literal">null</span>, type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json =&gt; 对象处理方法</span></span><br><span class="line"><span class="comment">     * &lt;br&gt;</span></span><br><span class="line"><span class="comment">     * 参数clazz和type必须一个为null，另一个不为null</span></span><br><span class="line"><span class="comment">     * &lt;br&gt;</span></span><br><span class="line"><span class="comment">     * 此方法不对外暴露，访问权限为private</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json  源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 对象类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type  对象类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;   泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, Class&lt;T&gt; clazz, TypeReference type)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">T</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.hasText(json)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (clazz != <span class="literal">null</span>) &#123;</span><br><span class="line">                    obj = om.readValue(json, clazz);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    obj = (T) om.readValue(json, type);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                log.warn(e.getMessage(), e);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -1717,6 +1713,148 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>JavaScript之五浏览器</title>
+    <url>/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
+    <content><![CDATA[<br />
+  
+<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a href="https://www.liaoxuefeng.com/wiki/1022910821149312">廖雪峰老师—-JavaScript教程</a>，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</h2><br />
+<br />
+<br />
+  
+<p>JavaScript的出现就是为了能在浏览器中运行</p>
+<p>目前主流的浏览器分这么几种：</p>
+<ul>
+<li><p>IE 6~11：国内用得最多的IE浏览器，历来对W3C标准支持差。从IE10开始支持ES6标准；</p>
+</li>
+<li><p>Chrome：Google出品的基于Webkit内核浏览器，内置了非常强悍的JavaScript引擎——V8。由于Chrome一经安装就时刻保持自升级，所以不用管它的版本，最新版早就支持ES6了；</p>
+</li>
+<li><p>Safari：Apple的Mac系统自带的基于Webkit内核的浏览器，从OS X 10.7 Lion自带的6.1版本开始支持ES6，目前最新的OS X 10.11 El Capitan自带的Safari版本是9.x，早已支持ES6；</p>
+</li>
+<li><p>Firefox：Mozilla自己研制的Gecko内核和JavaScript引擎OdinMonkey。早期的Firefox按版本发布，后来终于聪明地学习Chrome的做法进行自升级，时刻保持最新；</p>
+</li>
+<li><p>移动设备上目前iOS和Android两大阵营分别主要使用Apple的Safari和Google的Chrome，由于两者都是Webkit核心，结果HTML5首先在手机上全面普及（桌面绝对是Microsoft拖了后腿），对JavaScript的标准支持也很好，最新版本均支持ES6。</p>
+</li>
+<li><p>其他浏览器如Opera等由于市场份额太小就被自动忽略了。</p>
+</li>
+</ul>
+<p>另外还要注意识别各种国产浏览器，如某某安全浏览器，某某旋风浏览器，它们只是做了一个壳，其核心调用的是IE，也有号称同时支持IE和Webkit的“双核”浏览器。</p>
+<p>不同的浏览器对JavaScript支持的差异主要是，有些API的接口不一样，比如AJAX，File接口。对于ES6标准，不同的浏览器对各个特性支持也不一样。</p>
+<p>在编写JavaScript的时候，就要充分考虑到浏览器的差异，尽量让同一份JavaScript代码能运行在不同的浏览器中。</p>
+<p>浏览器对象</p>
+<p>JavaScript可以获取浏览器提供的很多对象，并进行操作。</p>
+<p><code>window</code><br>充当全局作用域，而且表示浏览器窗口。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">innerWidth</span><br><span class="line">innerHeight</span><br><span class="line">outerWidth</span><br><span class="line">outerHeight</span><br></pre></td></tr></table></figure>
+
+<p><code>navigator</code><br>表示浏览器的信息，最常用的属性包括：</p>
+<ul>
+<li>navigator.appName：浏览器名称；</li>
+<li>navigator.appVersion：浏览器版本；</li>
+<li>navigator.language：浏览器设置的语言；</li>
+<li>navigator.platform：操作系统类型；</li>
+<li>navigator.userAgent：浏览器设定的<code>User-Agent</code>字符串。<br><strong>请注意</strong>，navigator的信息可以很容易地被用户修改，所以JavaScript读取的值不一定是正确的。<br>充分利用JavaScript对不存在属性返回undefined的特性，直接用短路运算符||计算<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var width = window.innerWidth || document.body.clientWidth;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><code>screen</code></p>
+<ul>
+<li>screen.width：屏幕宽度，以像素为单位；</li>
+<li>screen.height：屏幕高度，以像素为单位；</li>
+<li>screen.colorDepth：返回颜色位数，如8、16、24。</li>
+</ul>
+<p><code>location</code><br>表示当前页面的URL信息<br>location.protocol; &#x2F;&#x2F; ‘http’<br>location.host; &#x2F;&#x2F; ‘<a href="http://www.example.com/">www.example.com</a>‘<br>location.port; &#x2F;&#x2F; ‘8080’<br>location.pathname; &#x2F;&#x2F; ‘&#x2F;path&#x2F;index.html’<br>location.search; &#x2F;&#x2F; ‘?a&#x3D;1&amp;b&#x3D;2’<br>location.hash; &#x2F;&#x2F; ‘TOP’</p>
+<p><code>document</code><br><code>document</code>对象表示当前页面。由于HTML在浏览器中以DOM形式表示为树形结构，<code>document</code>对象就是整个DOM树的根节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title</span><br><span class="line">// Cookie是由服务器发送的key-value标示符。</span><br><span class="line">// 因为HTTP协议是无状态的，但是服务器要区分到底是哪个用户发过来的请求，就可以用Cookie来区分。</span><br><span class="line">// 当一个用户成功登录后，服务器发送一个Cookie给浏览器，例如user=ABC123XYZ(加密的字符串)...，此后，浏览器访问该网站时，会在请求头附上这个Cookie，服务器根据Cookie即可区分出用户。</span><br><span class="line">// Cookie还可以存储网站的一些设置，例如，页面显示的语言等等。</span><br><span class="line">cookie  </span><br><span class="line">getElementById()</span><br><span class="line">getElementsByTagName()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>由于JavaScript能读取到页面的Cookie，而用户的登录信息通常也存在Cookie中，这就造成了巨大的安全隐患，这是因为在HTML页面中引入第三方的JavaScript代码是允许的。如果引入的第三方的JavaScript中存在恶意代码，则<a href="http://www.foo.com网站将直接获取到www.example.com网站的用户登录信息./">www.foo.com网站将直接获取到www.example.com网站的用户登录信息。</a><br>为了解决这个问题，服务器在设置Cookie时可以使用httpOnly，设定了httpOnly的Cookie将不能被JavaScript读取。这个行为由浏览器实现，主流浏览器均支持httpOnly选项，IE从IE6 SP1开始支持。<br><em><strong>为了确保安全，服务器端在设置Cookie时，应该始终坚持使用httpOnly</strong></em>。</p>
+<p><code>history</code><br><em><strong>任何情况，你都不应该使用history这个对象了</strong></em>。对于现代Web页面来说，由于大量使用AJAX和页面交互，简单粗暴地调用history.back()可能会让用户感到非常愤怒。</p>
+<h3 id="操作DOM"><a href="#操作DOM" class="headerlink" title="操作DOM"></a>操作DOM</h3><p>DOM是一个树形结构。操作一个DOM节点实际上就是这么几个操作：</p>
+<ul>
+<li>更新：更新该DOM节点的内容，相当于更新了该DOM节点表示的HTML的内容；</li>
+<li>遍历：遍历该DOM节点下的子节点，以便进行进一步操作；</li>
+<li>添加：在该DOM节点下新增一个子节点，相当于动态增加了一个HTML节点；</li>
+<li>删除：将该节点从HTML中删除，相当于删掉了该DOM节点的内容以及它包含的所有子节点。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.getElementById()</span><br><span class="line">document.getElementsByTagName()</span><br><span class="line">document.getElementsByClassName()  //CSS选择器,先定位父节点，再从父节点开始选择，以缩小范围</span><br><span class="line">querySelector()  //低版本的IE&lt;8不支持querySelector和querySelectorAll。IE8仅有限支持</span><br><span class="line">querySelectorAll()</span><br><span class="line">children</span><br><span class="line">firstElementChild</span><br><span class="line">lastElementChild</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>严格地讲，我们这里的DOM节点是指<code>Element</code>，但是DOM节点实际上是<code>Node</code>，在HTML中，<code>Node</code>包括<code>Element</code>、<code>Comment</code>、<code>CDATA_SECTION</code>等很多种，以及根节点<code>Document</code>类型，但是，绝大多数时候我们只关心<code>Element</code>，也就是实际控制页面结构的<code>Node</code>，其他类型的<code>Node</code>忽略即可。根节点<code>Document</code>已经自动绑定为全局变量<code>document</code></p>
+<h4 id="更新DOM"><a href="#更新DOM" class="headerlink" title="更新DOM"></a>更新DOM</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 不但可以修改一个DOM节点的文本内容，还可以直接通过HTML片段修改DOM节点内部的子树</span><br><span class="line">// 用innerHTML时要注意，是否需要写入HTML。如果写入的字符串是通过网络拿到的，要注意对字符编码来避免XSS攻击</span><br><span class="line">innerHTML  </span><br><span class="line">// innerText或textContent属性,自动对字符串进行HTML编码，保证无法设置任何HTML标签</span><br><span class="line">// 区别在于：innerText不返回隐藏元素的文本，而textContent返回所有文本</span><br><span class="line">innerText  </span><br><span class="line">textContent      </span><br></pre></td></tr></table></figure>
+
+<h4 id="插入DOM"><a href="#插入DOM" class="headerlink" title="插入DOM"></a>插入DOM</h4><ul>
+<li>如果这个DOM节点是空的，例如，<code>&lt;div&gt;&lt;/div&gt;</code>，那么，直接使用<code>innerHTML = &#39;&lt;span&gt;child&lt;/span&gt;&#39;</code>就可以修改DOM节点的内容，相当于“插入”了新的DOM节点<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">list.appendChild(js);  // 把一个子节点添加到父节点的最后一个子节点</span><br><span class="line">document.createElement(&#x27;p&#x27;)</span><br><span class="line">// 使用insertBefore重点是要拿到一个“参考子节点”的引用。很多时候，需要循环一个父节点的所有子节点，可以通过迭代children属性实现</span><br><span class="line">parentElement.insertBefore(newElement, referenceElement);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="删除DOM"><a href="#删除DOM" class="headerlink" title="删除DOM"></a>删除DOM</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var removed = parent.removeChild(self);</span><br></pre></td></tr></table></figure>
+<p>当遍历一个父节点的子节点并进行删除操作时，要注意，<code>children</code>属性是一个只读属性，并且它在子节点变化时会实时更新。</p>
+<h4 id="操作表单"><a href="#操作表单" class="headerlink" title="操作表单"></a>操作表单</h4><p>用JavaScript操作表单和操作DOM是类似的，因为表单本身也是DOM树。<br>HTML表单的输入控件主要有以下几种：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">文本框，对应的&lt;input type=&quot;text&quot;&gt;，用于输入文本；</span><br><span class="line">口令框，对应的&lt;input type=&quot;password&quot;&gt;，用于输入口令；</span><br><span class="line">单选框，对应的&lt;input type=&quot;radio&quot;&gt;，用于选择一项；</span><br><span class="line">复选框，对应的&lt;input type=&quot;checkbox&quot;&gt;，用于选择多项；</span><br><span class="line">下拉框，对应的&lt;select&gt;，用于选择一项；</span><br><span class="line">隐藏文本，对应的&lt;input type=&quot;hidden&quot;&gt;，用户不可见，但表单提交时会把隐藏文本发送到服务器。</span><br></pre></td></tr></table></figure>
+
+<p><code>input</code>,<code>text</code>、<code>password</code>、<code>hidden</code>以及<code>select</code>可以直接通过<code>value</code>获取值。。但是，对于单选框和复选框，<code>value</code>属性返回的永远是<code>HTML预设的值</code>，而我们需要获得的实际是用户是否“勾上了”选项，所以应该用<code>checked</code>判断</p>
+<p><code>input</code>,<code>text</code>、<code>password</code>、<code>hidden</code>以及<code>select</code>可以直接设置<code>value</code>；对于单选框和复选框，设置<code>checked</code>为<code>true</code>或<code>false</code>即可。</p>
+<p>HTML5新增了大量标准控件，常用的包括<code>date</code>、<code>datetime</code>、<code>datetime-local</code>、<code>color</code>等，它们都使用<code>&lt;input&gt;</code>标签<br>不支持HTML5的浏览器无法识别新的控件，会把它们当做<code>type=&quot;text&quot;</code>来显示。支持HTML5的浏览器将获得格式化的字符串。例如，<code>type=&quot;date&quot;</code>类型的<code>input</code>的<code>value</code>将保证是一个有效的<code>YYYY-MM-DD</code>格式的日期，或者空字符串。</p>
+<p>提交表单<br>方式一是通过<code>&lt;form&gt;</code>元素的<code>submit()</code>方法提交一个表单,缺点是扰乱了浏览器对form的正常提交</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">&lt;form id=&quot;test-form&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;test&quot;&gt;</span><br><span class="line">    &lt;button type=&quot;button&quot; onclick=&quot;doSubmitForm()&quot;&gt;Submit&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">function doSubmitForm() &#123;</span><br><span class="line">    var form = document.getElementById(&#x27;test-form&#x27;);</span><br><span class="line">    // 可以在此修改form的input...</span><br><span class="line">    // 提交form:</span><br><span class="line">    form.submit();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>浏览器默认点击<code>&lt;button type=&quot;submit&quot;&gt;</code>时提交表单，或者用户在最后一个输入框按回车键.。因此，第二种方式是响应<code>&lt;form&gt;</code>本身的<code>onsubmit</code>事件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">&lt;form id=&quot;test-form&quot; onsubmit=&quot;return checkForm()&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;test&quot;&gt;</span><br><span class="line">    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">function checkForm() &#123;</span><br><span class="line">    var form = document.getElementById(&#x27;test-form&#x27;);</span><br><span class="line">    // 可以在此修改form的input...</span><br><span class="line">    // 继续下一步:</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意要return true来告诉浏览器继续提交，如果return false，浏览器将不会继续提交form，这种情况通常对应用户输入有误，提示用户错误信息后终止提交form。</p>
+<p>要想不改变用户的输入，可以利用<code>&lt;input type=&quot;hidden&quot;&gt;</code>实现。没有name属性的<code>&lt;input&gt;</code>的数据不会被提交</p>
+<h4 id="操作文件"><a href="#操作文件" class="headerlink" title="操作文件"></a>操作文件</h4><p>在HTML表单中，可以上传文件的唯一控件就是<code>&lt;input type=&quot;file&quot;&gt;</code>。</p>
+<p><strong>注意：</strong> 当一个表单包含<code>&lt;input type=&quot;file&quot;&gt;</code>时，表单的<code>enctype</code>必须指定为<code>multipart/form-data</code>，<code>method</code>必须指定为<code>post</code>，浏览器才能正确编码并以<code>multipart/form-data</code>格式发送表单的数据。</p>
+<p>出于安全考虑，浏览器只允许用户点击<code>&lt;input type=&quot;file&quot;&gt;</code>来选择本地文件，用JavaScript对<code>&lt;input type=&quot;file&quot;&gt;</code>的<code>value</code>赋值是没有任何效果的。当用户选择了上传某个文件后，JavaScript也无法获得该文件的真实路径</p>
+<p>由于JavaScript对用户上传的文件操作非常有限，尤其是无法读取文件内容，使得很多需要操作文件的网页不得不用Flash这样的第三方插件来实现。<br>HTML5的File API提供了<code>File</code>和<code>FileReader</code>两个主要对象，可以获得文件信息并读取文件。</p>
+<p>回调<br>上面的代码还演示了JavaScript的一个重要的特性就是单线程执行模式。在JavaScript中，浏览器的JavaScript执行引擎在执行JavaScript代码时，总是以单线程模式执行，也就是说，任何时候，JavaScript代码都不可能同时有多于1个线程在执行。</p>
+<h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><p>AJAX不是JavaScript的规范，它只是一个哥们“发明”的缩写：Asynchronous JavaScript and XML，意思就是用JavaScript执行异步网络请求。<br>AJAX请求是异步执行的，也就是说，要通过回调函数获得响应。在现代浏览器上写AJAX主要依靠<code>XMLHttpRequest</code>对象</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">function success(text) &#123;</span><br><span class="line">    var textarea = document.getElementById(&#x27;test-response-text&#x27;);</span><br><span class="line">    textarea.value = text;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fail(code) &#123;</span><br><span class="line">    var textarea = document.getElementById(&#x27;test-response-text&#x27;);</span><br><span class="line">    textarea.value = &#x27;Error code: &#x27; + code;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象</span><br><span class="line"></span><br><span class="line">request.onreadystatechange = function () &#123; // 状态发生变化时，函数被回调</span><br><span class="line">    if (request.readyState === 4) &#123; // 成功完成</span><br><span class="line">        // 判断响应结果:</span><br><span class="line">        if (request.status === 200) &#123;</span><br><span class="line">            // 成功，通过responseText拿到响应的文本:</span><br><span class="line">            return success(request.responseText);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 失败，根据响应码判断失败原因:</span><br><span class="line">            return fail(request.status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // HTTP请求还在继续...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 发送请求:</span><br><span class="line">request.open(&#x27;GET&#x27;, &#x27;/api/categories&#x27;);</span><br><span class="line">request.send();</span><br><span class="line"></span><br><span class="line">alert(&#x27;请求已发送，请等待响应...&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var request;</span><br><span class="line">if (window.XMLHttpRequest) &#123;</span><br><span class="line">    request = new XMLHttpRequest();</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    request = new ActiveXObject(&#x27;Microsoft.XMLHTTP&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过检测<code>window</code>对象是否有<code>XMLHttpRequest</code>属性来确定浏览器是否支持标准的<code>XMLHttpRequest</code>。<strong>注意</strong>，不要根据浏览器的<code>navigator.userAgent</code>来检测浏览器是否支持某个JavaScript特性，一是因为这个字符串本身可以伪造，二是通过IE版本判断JavaScript特性将非常复杂</p>
+<p><code>XMLHttpRequest</code>对象的<code>open()</code>方法有3个参数，第一个参数指定是<code>GET</code>还是<code>POST</code>，第二个参数指定<code>URL</code>地址，第三个参数指定是否使用异步，默认是<code>true</code>，所以不用写。</p>
+<p><strong>注意</strong>，千万不要把第三个参数指定为<code>false</code>，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。</p>
+<p>最后调用<code>send()</code>方法才真正发送请求。<code>GET</code>请求不需要参数，<code>POST</code>请求需要把<code>body</code>部分以字符串或者<code>FormData</code>对象传进去</p>
+<p>安全限制<br>上面代码的URL使用的是相对路径。如果你把它改为<code>&#39;http://www.sina.com.cn/&#39;</code>，再运行，肯定报错。在Chrome的控制台里，还可以看到错误信息。</p>
+<p>这是因为浏览器的<code>同源策略</code>导致的。<code>默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致</code>。</p>
+<p>完全一致的意思是，<code>域名要相同（www.example.com和example.com不同），协议要相同（http和https不同），端口号要相同（默认是:80端口，它和:8080就不同）</code>。有的浏览器口子松一点，允许端口不同，大多数浏览器都会严格遵守这个限制。</p>
+<p>JavaScript请求外域（就是其他网站）的URL:</p>
+<ul>
+<li>一是通过Flash插件发送HTTP请求，这种方式可以绕过浏览器的安全限制，但必须安装Flash，并且跟Flash交互。</li>
+<li>二是通过在同源域名下架设一个代理服务器来转发，JavaScript负责把请求发送到代理服务器,代理服务器再把结果返回，这样就遵守了浏览器的同源策略。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;/proxy?url=http://www.sina.com.cn&#x27;</span><br></pre></td></tr></table></figure></li>
+<li>第三种方式称为JSONP，它有个限制，只能用GET请求，并且要求返回JavaScript。这种方式跨域实际上是利用了浏览器允许跨域引用JavaScript资源</li>
+</ul>
+<h4 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h4><p>如果浏览器支持HTML5，那么就可以一劳永逸地使用新的跨域策略：CORS了。<br>CORS全称Cross-Origin Resource Sharing，是HTML5规范定义的如何跨域访问资源。<br><code>Origin</code>表示本域，也就是浏览器当前页面的域。当JavaScript向外域（如sina.com）发起请求后，浏览器收到响应后，首先检查<code>Access-Control-Allow-Origin</code>是否包含本域，如果是，则此次跨域请求成功，如果不是，则请求失败，JavaScript将无法获取到响应的任何数据。跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的<code>Access-Control-Allow-Origin</code>，决定权始终在对方手中<br>简单请求包括<code>GET</code>、<code>HEAD</code>和<code>POST</code>（<code>POST</code>的<code>Content-Type</code>类型 仅限<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>和<code>text/plain</code>），并且不能出现任何自定义头（例如，<code>X-Custom: 12345</code>），通常能满足90%的需求。</p>
+<p>对于<code>PUT</code>、<code>DELETE</code>以及其他类型如<code>application/json</code>的<code>POST</code>请求，在发送AJAX请求之前，浏览器会先发送一个<code>OPTIONS</code>请求（称为<code>preflighted</code>请求）到这个<code>URL</code>上，询问目标服务器是否接受</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">OPTIONS /path/to/resource HTTP/1.1</span><br><span class="line">Host: bar.com</span><br><span class="line">Origin: http://my.com</span><br><span class="line">Access-Control-Request-Method: POST</span><br></pre></td></tr></table></figure>
+<p>服务器必须响应并明确指出允许的Method：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: http://my.com</span><br><span class="line">Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS</span><br><span class="line">Access-Control-Max-Age: 86400</span><br></pre></td></tr></table></figure>
+<p>浏览器确认服务器响应的Access-Control-Allow-Methods头确实包含将要发送的AJAX请求的Method，才会继续发送AJAX，否则，抛出一个错误。</p>
+<p>由于以POST、PUT方式传送JSON格式的数据在REST中很常见，所以要跨域正确处理POST和PUT请求，服务器端必须正确响应OPTIONS请求。<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS">CORS文档</a></p>
+<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function callback() &#123;</span><br><span class="line">    console.log(&#x27;Done&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(&#x27;before setTimeout()&#x27;);</span><br><span class="line">setTimeout(callback, 1000); // 1秒钟后调用callback函数</span><br><span class="line">console.log(&#x27;after setTimeout()&#x27;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">new Promise(function (resolve, reject) &#123;</span><br><span class="line">    console.log(&#x27;start new Promise...&#x27;);</span><br><span class="line">    var timeOut = Math.random() * 2;</span><br><span class="line">    console.log(&#x27;set timeout to: &#x27; + timeOut + &#x27; seconds.&#x27;);</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        if (timeOut &lt; 1) &#123;</span><br><span class="line">            console.log(&#x27;call resolve()...&#x27;);</span><br><span class="line">            resolve(&#x27;200 OK&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            console.log(&#x27;call reject()...&#x27;);</span><br><span class="line">            reject(&#x27;timeout in &#x27; + timeOut + &#x27; seconds.&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, timeOut * 1000);</span><br><span class="line">&#125;).then(function (r) &#123;</span><br><span class="line">    console.log(&#x27;Done: &#x27; + r);</span><br><span class="line">&#125;).catch(function (reason) &#123;</span><br><span class="line">    console.log(&#x27;Failed: &#x27; + reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 0.5秒后返回input*input的计算结果:</span><br><span class="line">function multiply(input) &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        console.log(&#x27;calculating &#x27; + input + &#x27; x &#x27; + input + &#x27;...&#x27;);</span><br><span class="line">        setTimeout(resolve, 500, input * input);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 0.5秒后返回input+input的计算结果:</span><br><span class="line">function add(input) &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        console.log(&#x27;calculating &#x27; + input + &#x27; + &#x27; + input + &#x27;...&#x27;);</span><br><span class="line">        setTimeout(resolve, 500, input + input);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    console.log(&#x27;start new Promise...&#x27;);</span><br><span class="line">    resolve(123);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p.then(multiply)</span><br><span class="line"> .then(add)</span><br><span class="line"> .then(multiply)</span><br><span class="line"> .then(add)</span><br><span class="line"> .then(function (result) &#123;</span><br><span class="line">    console.log(&#x27;Got value: &#x27; + result);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">// ajax函数将返回Promise对象:</span><br><span class="line">function ajax(method, url, data) &#123;</span><br><span class="line">    var request = new XMLHttpRequest();</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        request.onreadystatechange = function () &#123;</span><br><span class="line">            if (request.readyState === 4) &#123;</span><br><span class="line">                if (request.status === 200) &#123;</span><br><span class="line">                    resolve(request.responseText);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    reject(request.status);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        request.open(method, url);</span><br><span class="line">        request.send(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Promise还可以并行执行异步任务</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var p1 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 500, &#x27;P1&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">var p2 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 600, &#x27;P2&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">// 同时执行p1和p2，并在它们都完成后执行then:</span><br><span class="line">Promise.all([p1, p2]).then(function (results) &#123;</span><br><span class="line">    console.log(results); // 获得一个Array: [&#x27;P1&#x27;, &#x27;P2&#x27;]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var p1 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 500, &#x27;P1&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">var p2 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 600, &#x27;P2&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">Promise.race([p1, p2]).then(function (result) &#123;</span><br><span class="line">    console.log(result); // &#x27;P1&#x27;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h4><p>Canvas是HTML5新增的组件，它就像一块幕布，可以用JavaScript在上面绘制各种图表、动画等。<br>没有Canvas的年代，绘图只能借助Flash插件实现，页面不得不用JavaScript和Flash进行交互。</p>
+<p>Canvas除了能绘制基本的形状和文本，还可以实现动画、缩放、各种滤镜和像素转换等高级操作。如果要实现非常复杂的操作，考虑以下优化方案：</p>
+<ul>
+<li>通过创建一个不可见的Canvas来绘图，然后将最终绘制结果复制到页面的可见Canvas中；</li>
+<li>尽量使用整数坐标而不是浮点数；</li>
+<li>可以创建多个重叠的Canvas绘制不同的层，而不是在一个Canvas中绘制非常复杂的图；</li>
+<li>背景图片如果不变可以直接用<img>标签并放到最底层。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript之六jQuery</title>
     <url>/2024/07/31/JavaScript%E4%B9%8B%E5%85%ADjQuery/</url>
     <content><![CDATA[<br />
@@ -2010,24 +2148,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>Java读取Properties</title>
-    <url>/2024/07/31/Java%E8%AF%BB%E5%8F%96Properties/</url>
-    <content><![CDATA[<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 上次最后打开的文件:</span></span><br><span class="line"><span class="attr">last_open_file</span>=<span class="string">/data/hello.txt</span></span><br><span class="line"><span class="comment"># 自动保存文件的时间间隔:</span></span><br><span class="line"><span class="attr">auto_save_interval</span>=<span class="string">60</span></span><br></pre></td></tr></table></figure>
-
-<p>方法一: 属性设置必须位于<code>src/main/resources/setting.properties</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;user.dir:   &quot;</span> + System.getProperty(<span class="string">&quot;user.dir&quot;</span>));</span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">resourceAsStream</span> <span class="operator">=</span> App.class.getResourceAsStream(<span class="string">&quot;/setting.properties&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;resourceAsStream path:  &quot;</span>+App.class.getResource(<span class="string">&quot;&quot;</span>).getPath());</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        properties.load(resourceAsStream);</span><br><span class="line">        <span class="type">String</span> <span class="variable">pathField</span> <span class="operator">=</span> properties.getProperty(<span class="string">&quot;last_open_file&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">intervalField</span> <span class="operator">=</span> properties.getProperty(<span class="string">&quot;auto_save_interval&quot;</span>, <span class="string">&quot;120&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;pathField: &quot;</span> + pathField + <span class="string">&quot;,  intervalField: &quot;</span> + intervalField);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>方法二：此时<code>setting.properties</code>需要放在项目根目录，与<code>src</code>目录同级别</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">filePath</span> <span class="operator">=</span> <span class="string">&quot;setting.properties&quot;</span>;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(filePath));</span><br><span class="line">        <span class="type">String</span> <span class="variable">pathField</span> <span class="operator">=</span> properties.getProperty(<span class="string">&quot;last_open_file&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">intervalField</span> <span class="operator">=</span> properties.getProperty(<span class="string">&quot;auto_save_interval&quot;</span>, <span class="string">&quot;120&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;pathField: &quot;</span> + pathField + <span class="string">&quot;, intervalField: &quot;</span> + intervalField);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaScript之四面向对象编程</title>
     <url>/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<br />
@@ -2137,145 +2257,21 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>JavaScript之五浏览器</title>
-    <url>/2024/07/31/JavaScript%E4%B9%8B%E4%BA%94%E6%B5%8F%E8%A7%88%E5%99%A8/</url>
-    <content><![CDATA[<br />
-  
-<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a href="https://www.liaoxuefeng.com/wiki/1022910821149312">廖雪峰老师—-JavaScript教程</a>，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</h2><br />
-<br />
-<br />
-  
-<p>JavaScript的出现就是为了能在浏览器中运行</p>
-<p>目前主流的浏览器分这么几种：</p>
-<ul>
-<li><p>IE 6~11：国内用得最多的IE浏览器，历来对W3C标准支持差。从IE10开始支持ES6标准；</p>
-</li>
-<li><p>Chrome：Google出品的基于Webkit内核浏览器，内置了非常强悍的JavaScript引擎——V8。由于Chrome一经安装就时刻保持自升级，所以不用管它的版本，最新版早就支持ES6了；</p>
-</li>
-<li><p>Safari：Apple的Mac系统自带的基于Webkit内核的浏览器，从OS X 10.7 Lion自带的6.1版本开始支持ES6，目前最新的OS X 10.11 El Capitan自带的Safari版本是9.x，早已支持ES6；</p>
-</li>
-<li><p>Firefox：Mozilla自己研制的Gecko内核和JavaScript引擎OdinMonkey。早期的Firefox按版本发布，后来终于聪明地学习Chrome的做法进行自升级，时刻保持最新；</p>
-</li>
-<li><p>移动设备上目前iOS和Android两大阵营分别主要使用Apple的Safari和Google的Chrome，由于两者都是Webkit核心，结果HTML5首先在手机上全面普及（桌面绝对是Microsoft拖了后腿），对JavaScript的标准支持也很好，最新版本均支持ES6。</p>
-</li>
-<li><p>其他浏览器如Opera等由于市场份额太小就被自动忽略了。</p>
-</li>
-</ul>
-<p>另外还要注意识别各种国产浏览器，如某某安全浏览器，某某旋风浏览器，它们只是做了一个壳，其核心调用的是IE，也有号称同时支持IE和Webkit的“双核”浏览器。</p>
-<p>不同的浏览器对JavaScript支持的差异主要是，有些API的接口不一样，比如AJAX，File接口。对于ES6标准，不同的浏览器对各个特性支持也不一样。</p>
-<p>在编写JavaScript的时候，就要充分考虑到浏览器的差异，尽量让同一份JavaScript代码能运行在不同的浏览器中。</p>
-<p>浏览器对象</p>
-<p>JavaScript可以获取浏览器提供的很多对象，并进行操作。</p>
-<p><code>window</code><br>充当全局作用域，而且表示浏览器窗口。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">innerWidth</span><br><span class="line">innerHeight</span><br><span class="line">outerWidth</span><br><span class="line">outerHeight</span><br></pre></td></tr></table></figure>
+    <title>Java读取Properties</title>
+    <url>/2024/07/31/Java%E8%AF%BB%E5%8F%96Properties/</url>
+    <content><![CDATA[<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 上次最后打开的文件:</span></span><br><span class="line"><span class="attr">last_open_file</span>=<span class="string">/data/hello.txt</span></span><br><span class="line"><span class="comment"># 自动保存文件的时间间隔:</span></span><br><span class="line"><span class="attr">auto_save_interval</span>=<span class="string">60</span></span><br></pre></td></tr></table></figure>
 
-<p><code>navigator</code><br>表示浏览器的信息，最常用的属性包括：</p>
-<ul>
-<li>navigator.appName：浏览器名称；</li>
-<li>navigator.appVersion：浏览器版本；</li>
-<li>navigator.language：浏览器设置的语言；</li>
-<li>navigator.platform：操作系统类型；</li>
-<li>navigator.userAgent：浏览器设定的<code>User-Agent</code>字符串。<br><strong>请注意</strong>，navigator的信息可以很容易地被用户修改，所以JavaScript读取的值不一定是正确的。<br>充分利用JavaScript对不存在属性返回undefined的特性，直接用短路运算符||计算<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var width = window.innerWidth || document.body.clientWidth;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><code>screen</code></p>
-<ul>
-<li>screen.width：屏幕宽度，以像素为单位；</li>
-<li>screen.height：屏幕高度，以像素为单位；</li>
-<li>screen.colorDepth：返回颜色位数，如8、16、24。</li>
-</ul>
-<p><code>location</code><br>表示当前页面的URL信息<br>location.protocol; &#x2F;&#x2F; ‘http’<br>location.host; &#x2F;&#x2F; ‘<a href="http://www.example.com/">www.example.com</a>‘<br>location.port; &#x2F;&#x2F; ‘8080’<br>location.pathname; &#x2F;&#x2F; ‘&#x2F;path&#x2F;index.html’<br>location.search; &#x2F;&#x2F; ‘?a&#x3D;1&amp;b&#x3D;2’<br>location.hash; &#x2F;&#x2F; ‘TOP’</p>
-<p><code>document</code><br><code>document</code>对象表示当前页面。由于HTML在浏览器中以DOM形式表示为树形结构，<code>document</code>对象就是整个DOM树的根节点。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">title</span><br><span class="line">// Cookie是由服务器发送的key-value标示符。</span><br><span class="line">// 因为HTTP协议是无状态的，但是服务器要区分到底是哪个用户发过来的请求，就可以用Cookie来区分。</span><br><span class="line">// 当一个用户成功登录后，服务器发送一个Cookie给浏览器，例如user=ABC123XYZ(加密的字符串)...，此后，浏览器访问该网站时，会在请求头附上这个Cookie，服务器根据Cookie即可区分出用户。</span><br><span class="line">// Cookie还可以存储网站的一些设置，例如，页面显示的语言等等。</span><br><span class="line">cookie  </span><br><span class="line">getElementById()</span><br><span class="line">getElementsByTagName()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>方法一: 属性设置必须位于<code>src/main/resources/setting.properties</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;user.dir:   &quot;</span> + System.getProperty(<span class="string">&quot;user.dir&quot;</span>));</span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">resourceAsStream</span> <span class="operator">=</span> App.class.getResourceAsStream(<span class="string">&quot;/setting.properties&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;resourceAsStream path:  &quot;</span>+App.class.getResource(<span class="string">&quot;&quot;</span>).getPath());</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        properties.load(resourceAsStream);</span><br><span class="line">        <span class="type">String</span> <span class="variable">pathField</span> <span class="operator">=</span> properties.getProperty(<span class="string">&quot;last_open_file&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">intervalField</span> <span class="operator">=</span> properties.getProperty(<span class="string">&quot;auto_save_interval&quot;</span>, <span class="string">&quot;120&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;pathField: &quot;</span> + pathField + <span class="string">&quot;,  intervalField: &quot;</span> + intervalField);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>由于JavaScript能读取到页面的Cookie，而用户的登录信息通常也存在Cookie中，这就造成了巨大的安全隐患，这是因为在HTML页面中引入第三方的JavaScript代码是允许的。如果引入的第三方的JavaScript中存在恶意代码，则<a href="http://www.foo.com网站将直接获取到www.example.com网站的用户登录信息./">www.foo.com网站将直接获取到www.example.com网站的用户登录信息。</a><br>为了解决这个问题，服务器在设置Cookie时可以使用httpOnly，设定了httpOnly的Cookie将不能被JavaScript读取。这个行为由浏览器实现，主流浏览器均支持httpOnly选项，IE从IE6 SP1开始支持。<br><em><strong>为了确保安全，服务器端在设置Cookie时，应该始终坚持使用httpOnly</strong></em>。</p>
-<p><code>history</code><br><em><strong>任何情况，你都不应该使用history这个对象了</strong></em>。对于现代Web页面来说，由于大量使用AJAX和页面交互，简单粗暴地调用history.back()可能会让用户感到非常愤怒。</p>
-<h3 id="操作DOM"><a href="#操作DOM" class="headerlink" title="操作DOM"></a>操作DOM</h3><p>DOM是一个树形结构。操作一个DOM节点实际上就是这么几个操作：</p>
-<ul>
-<li>更新：更新该DOM节点的内容，相当于更新了该DOM节点表示的HTML的内容；</li>
-<li>遍历：遍历该DOM节点下的子节点，以便进行进一步操作；</li>
-<li>添加：在该DOM节点下新增一个子节点，相当于动态增加了一个HTML节点；</li>
-<li>删除：将该节点从HTML中删除，相当于删掉了该DOM节点的内容以及它包含的所有子节点。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.getElementById()</span><br><span class="line">document.getElementsByTagName()</span><br><span class="line">document.getElementsByClassName()  //CSS选择器,先定位父节点，再从父节点开始选择，以缩小范围</span><br><span class="line">querySelector()  //低版本的IE&lt;8不支持querySelector和querySelectorAll。IE8仅有限支持</span><br><span class="line">querySelectorAll()</span><br><span class="line">children</span><br><span class="line">firstElementChild</span><br><span class="line">lastElementChild</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>严格地讲，我们这里的DOM节点是指<code>Element</code>，但是DOM节点实际上是<code>Node</code>，在HTML中，<code>Node</code>包括<code>Element</code>、<code>Comment</code>、<code>CDATA_SECTION</code>等很多种，以及根节点<code>Document</code>类型，但是，绝大多数时候我们只关心<code>Element</code>，也就是实际控制页面结构的<code>Node</code>，其他类型的<code>Node</code>忽略即可。根节点<code>Document</code>已经自动绑定为全局变量<code>document</code></p>
-<h4 id="更新DOM"><a href="#更新DOM" class="headerlink" title="更新DOM"></a>更新DOM</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 不但可以修改一个DOM节点的文本内容，还可以直接通过HTML片段修改DOM节点内部的子树</span><br><span class="line">// 用innerHTML时要注意，是否需要写入HTML。如果写入的字符串是通过网络拿到的，要注意对字符编码来避免XSS攻击</span><br><span class="line">innerHTML  </span><br><span class="line">// innerText或textContent属性,自动对字符串进行HTML编码，保证无法设置任何HTML标签</span><br><span class="line">// 区别在于：innerText不返回隐藏元素的文本，而textContent返回所有文本</span><br><span class="line">innerText  </span><br><span class="line">textContent      </span><br></pre></td></tr></table></figure>
-
-<h4 id="插入DOM"><a href="#插入DOM" class="headerlink" title="插入DOM"></a>插入DOM</h4><ul>
-<li>如果这个DOM节点是空的，例如，<code>&lt;div&gt;&lt;/div&gt;</code>，那么，直接使用<code>innerHTML = &#39;&lt;span&gt;child&lt;/span&gt;&#39;</code>就可以修改DOM节点的内容，相当于“插入”了新的DOM节点<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">list.appendChild(js);  // 把一个子节点添加到父节点的最后一个子节点</span><br><span class="line">document.createElement(&#x27;p&#x27;)</span><br><span class="line">// 使用insertBefore重点是要拿到一个“参考子节点”的引用。很多时候，需要循环一个父节点的所有子节点，可以通过迭代children属性实现</span><br><span class="line">parentElement.insertBefore(newElement, referenceElement);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="删除DOM"><a href="#删除DOM" class="headerlink" title="删除DOM"></a>删除DOM</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var removed = parent.removeChild(self);</span><br></pre></td></tr></table></figure>
-<p>当遍历一个父节点的子节点并进行删除操作时，要注意，<code>children</code>属性是一个只读属性，并且它在子节点变化时会实时更新。</p>
-<h4 id="操作表单"><a href="#操作表单" class="headerlink" title="操作表单"></a>操作表单</h4><p>用JavaScript操作表单和操作DOM是类似的，因为表单本身也是DOM树。<br>HTML表单的输入控件主要有以下几种：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">文本框，对应的&lt;input type=&quot;text&quot;&gt;，用于输入文本；</span><br><span class="line">口令框，对应的&lt;input type=&quot;password&quot;&gt;，用于输入口令；</span><br><span class="line">单选框，对应的&lt;input type=&quot;radio&quot;&gt;，用于选择一项；</span><br><span class="line">复选框，对应的&lt;input type=&quot;checkbox&quot;&gt;，用于选择多项；</span><br><span class="line">下拉框，对应的&lt;select&gt;，用于选择一项；</span><br><span class="line">隐藏文本，对应的&lt;input type=&quot;hidden&quot;&gt;，用户不可见，但表单提交时会把隐藏文本发送到服务器。</span><br></pre></td></tr></table></figure>
-
-<p><code>input</code>,<code>text</code>、<code>password</code>、<code>hidden</code>以及<code>select</code>可以直接通过<code>value</code>获取值。。但是，对于单选框和复选框，<code>value</code>属性返回的永远是<code>HTML预设的值</code>，而我们需要获得的实际是用户是否“勾上了”选项，所以应该用<code>checked</code>判断</p>
-<p><code>input</code>,<code>text</code>、<code>password</code>、<code>hidden</code>以及<code>select</code>可以直接设置<code>value</code>；对于单选框和复选框，设置<code>checked</code>为<code>true</code>或<code>false</code>即可。</p>
-<p>HTML5新增了大量标准控件，常用的包括<code>date</code>、<code>datetime</code>、<code>datetime-local</code>、<code>color</code>等，它们都使用<code>&lt;input&gt;</code>标签<br>不支持HTML5的浏览器无法识别新的控件，会把它们当做<code>type=&quot;text&quot;</code>来显示。支持HTML5的浏览器将获得格式化的字符串。例如，<code>type=&quot;date&quot;</code>类型的<code>input</code>的<code>value</code>将保证是一个有效的<code>YYYY-MM-DD</code>格式的日期，或者空字符串。</p>
-<p>提交表单<br>方式一是通过<code>&lt;form&gt;</code>元素的<code>submit()</code>方法提交一个表单,缺点是扰乱了浏览器对form的正常提交</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">&lt;form id=&quot;test-form&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;test&quot;&gt;</span><br><span class="line">    &lt;button type=&quot;button&quot; onclick=&quot;doSubmitForm()&quot;&gt;Submit&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">function doSubmitForm() &#123;</span><br><span class="line">    var form = document.getElementById(&#x27;test-form&#x27;);</span><br><span class="line">    // 可以在此修改form的input...</span><br><span class="line">    // 提交form:</span><br><span class="line">    form.submit();</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>浏览器默认点击<code>&lt;button type=&quot;submit&quot;&gt;</code>时提交表单，或者用户在最后一个输入框按回车键.。因此，第二种方式是响应<code>&lt;form&gt;</code>本身的<code>onsubmit</code>事件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- HTML --&gt;</span><br><span class="line">&lt;form id=&quot;test-form&quot; onsubmit=&quot;return checkForm()&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;test&quot;&gt;</span><br><span class="line">    &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">function checkForm() &#123;</span><br><span class="line">    var form = document.getElementById(&#x27;test-form&#x27;);</span><br><span class="line">    // 可以在此修改form的input...</span><br><span class="line">    // 继续下一步:</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>注意要return true来告诉浏览器继续提交，如果return false，浏览器将不会继续提交form，这种情况通常对应用户输入有误，提示用户错误信息后终止提交form。</p>
-<p>要想不改变用户的输入，可以利用<code>&lt;input type=&quot;hidden&quot;&gt;</code>实现。没有name属性的<code>&lt;input&gt;</code>的数据不会被提交</p>
-<h4 id="操作文件"><a href="#操作文件" class="headerlink" title="操作文件"></a>操作文件</h4><p>在HTML表单中，可以上传文件的唯一控件就是<code>&lt;input type=&quot;file&quot;&gt;</code>。</p>
-<p><strong>注意：</strong> 当一个表单包含<code>&lt;input type=&quot;file&quot;&gt;</code>时，表单的<code>enctype</code>必须指定为<code>multipart/form-data</code>，<code>method</code>必须指定为<code>post</code>，浏览器才能正确编码并以<code>multipart/form-data</code>格式发送表单的数据。</p>
-<p>出于安全考虑，浏览器只允许用户点击<code>&lt;input type=&quot;file&quot;&gt;</code>来选择本地文件，用JavaScript对<code>&lt;input type=&quot;file&quot;&gt;</code>的<code>value</code>赋值是没有任何效果的。当用户选择了上传某个文件后，JavaScript也无法获得该文件的真实路径</p>
-<p>由于JavaScript对用户上传的文件操作非常有限，尤其是无法读取文件内容，使得很多需要操作文件的网页不得不用Flash这样的第三方插件来实现。<br>HTML5的File API提供了<code>File</code>和<code>FileReader</code>两个主要对象，可以获得文件信息并读取文件。</p>
-<p>回调<br>上面的代码还演示了JavaScript的一个重要的特性就是单线程执行模式。在JavaScript中，浏览器的JavaScript执行引擎在执行JavaScript代码时，总是以单线程模式执行，也就是说，任何时候，JavaScript代码都不可能同时有多于1个线程在执行。</p>
-<h4 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h4><p>AJAX不是JavaScript的规范，它只是一个哥们“发明”的缩写：Asynchronous JavaScript and XML，意思就是用JavaScript执行异步网络请求。<br>AJAX请求是异步执行的，也就是说，要通过回调函数获得响应。在现代浏览器上写AJAX主要依靠<code>XMLHttpRequest</code>对象</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line">function success(text) &#123;</span><br><span class="line">    var textarea = document.getElementById(&#x27;test-response-text&#x27;);</span><br><span class="line">    textarea.value = text;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fail(code) &#123;</span><br><span class="line">    var textarea = document.getElementById(&#x27;test-response-text&#x27;);</span><br><span class="line">    textarea.value = &#x27;Error code: &#x27; + code;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象</span><br><span class="line"></span><br><span class="line">request.onreadystatechange = function () &#123; // 状态发生变化时，函数被回调</span><br><span class="line">    if (request.readyState === 4) &#123; // 成功完成</span><br><span class="line">        // 判断响应结果:</span><br><span class="line">        if (request.status === 200) &#123;</span><br><span class="line">            // 成功，通过responseText拿到响应的文本:</span><br><span class="line">            return success(request.responseText);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 失败，根据响应码判断失败原因:</span><br><span class="line">            return fail(request.status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // HTTP请求还在继续...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 发送请求:</span><br><span class="line">request.open(&#x27;GET&#x27;, &#x27;/api/categories&#x27;);</span><br><span class="line">request.send();</span><br><span class="line"></span><br><span class="line">alert(&#x27;请求已发送，请等待响应...&#x27;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var request;</span><br><span class="line">if (window.XMLHttpRequest) &#123;</span><br><span class="line">    request = new XMLHttpRequest();</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    request = new ActiveXObject(&#x27;Microsoft.XMLHTTP&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过检测<code>window</code>对象是否有<code>XMLHttpRequest</code>属性来确定浏览器是否支持标准的<code>XMLHttpRequest</code>。<strong>注意</strong>，不要根据浏览器的<code>navigator.userAgent</code>来检测浏览器是否支持某个JavaScript特性，一是因为这个字符串本身可以伪造，二是通过IE版本判断JavaScript特性将非常复杂</p>
-<p><code>XMLHttpRequest</code>对象的<code>open()</code>方法有3个参数，第一个参数指定是<code>GET</code>还是<code>POST</code>，第二个参数指定<code>URL</code>地址，第三个参数指定是否使用异步，默认是<code>true</code>，所以不用写。</p>
-<p><strong>注意</strong>，千万不要把第三个参数指定为<code>false</code>，否则浏览器将停止响应，直到AJAX请求完成。如果这个请求耗时10秒，那么10秒内你会发现浏览器处于“假死”状态。</p>
-<p>最后调用<code>send()</code>方法才真正发送请求。<code>GET</code>请求不需要参数，<code>POST</code>请求需要把<code>body</code>部分以字符串或者<code>FormData</code>对象传进去</p>
-<p>安全限制<br>上面代码的URL使用的是相对路径。如果你把它改为<code>&#39;http://www.sina.com.cn/&#39;</code>，再运行，肯定报错。在Chrome的控制台里，还可以看到错误信息。</p>
-<p>这是因为浏览器的<code>同源策略</code>导致的。<code>默认情况下，JavaScript在发送AJAX请求时，URL的域名必须和当前页面完全一致</code>。</p>
-<p>完全一致的意思是，<code>域名要相同（www.example.com和example.com不同），协议要相同（http和https不同），端口号要相同（默认是:80端口，它和:8080就不同）</code>。有的浏览器口子松一点，允许端口不同，大多数浏览器都会严格遵守这个限制。</p>
-<p>JavaScript请求外域（就是其他网站）的URL:</p>
-<ul>
-<li>一是通过Flash插件发送HTTP请求，这种方式可以绕过浏览器的安全限制，但必须安装Flash，并且跟Flash交互。</li>
-<li>二是通过在同源域名下架设一个代理服务器来转发，JavaScript负责把请求发送到代理服务器,代理服务器再把结果返回，这样就遵守了浏览器的同源策略。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;/proxy?url=http://www.sina.com.cn&#x27;</span><br></pre></td></tr></table></figure></li>
-<li>第三种方式称为JSONP，它有个限制，只能用GET请求，并且要求返回JavaScript。这种方式跨域实际上是利用了浏览器允许跨域引用JavaScript资源</li>
-</ul>
-<h4 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h4><p>如果浏览器支持HTML5，那么就可以一劳永逸地使用新的跨域策略：CORS了。<br>CORS全称Cross-Origin Resource Sharing，是HTML5规范定义的如何跨域访问资源。<br><code>Origin</code>表示本域，也就是浏览器当前页面的域。当JavaScript向外域（如sina.com）发起请求后，浏览器收到响应后，首先检查<code>Access-Control-Allow-Origin</code>是否包含本域，如果是，则此次跨域请求成功，如果不是，则请求失败，JavaScript将无法获取到响应的任何数据。跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的<code>Access-Control-Allow-Origin</code>，决定权始终在对方手中<br>简单请求包括<code>GET</code>、<code>HEAD</code>和<code>POST</code>（<code>POST</code>的<code>Content-Type</code>类型 仅限<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>和<code>text/plain</code>），并且不能出现任何自定义头（例如，<code>X-Custom: 12345</code>），通常能满足90%的需求。</p>
-<p>对于<code>PUT</code>、<code>DELETE</code>以及其他类型如<code>application/json</code>的<code>POST</code>请求，在发送AJAX请求之前，浏览器会先发送一个<code>OPTIONS</code>请求（称为<code>preflighted</code>请求）到这个<code>URL</code>上，询问目标服务器是否接受</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">OPTIONS /path/to/resource HTTP/1.1</span><br><span class="line">Host: bar.com</span><br><span class="line">Origin: http://my.com</span><br><span class="line">Access-Control-Request-Method: POST</span><br></pre></td></tr></table></figure>
-<p>服务器必须响应并明确指出允许的Method：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Access-Control-Allow-Origin: http://my.com</span><br><span class="line">Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS</span><br><span class="line">Access-Control-Max-Age: 86400</span><br></pre></td></tr></table></figure>
-<p>浏览器确认服务器响应的Access-Control-Allow-Methods头确实包含将要发送的AJAX请求的Method，才会继续发送AJAX，否则，抛出一个错误。</p>
-<p>由于以POST、PUT方式传送JSON格式的数据在REST中很常见，所以要跨域正确处理POST和PUT请求，服务器端必须正确响应OPTIONS请求。<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS">CORS文档</a></p>
-<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function callback() &#123;</span><br><span class="line">    console.log(&#x27;Done&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">console.log(&#x27;before setTimeout()&#x27;);</span><br><span class="line">setTimeout(callback, 1000); // 1秒钟后调用callback函数</span><br><span class="line">console.log(&#x27;after setTimeout()&#x27;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">new Promise(function (resolve, reject) &#123;</span><br><span class="line">    console.log(&#x27;start new Promise...&#x27;);</span><br><span class="line">    var timeOut = Math.random() * 2;</span><br><span class="line">    console.log(&#x27;set timeout to: &#x27; + timeOut + &#x27; seconds.&#x27;);</span><br><span class="line">    setTimeout(function () &#123;</span><br><span class="line">        if (timeOut &lt; 1) &#123;</span><br><span class="line">            console.log(&#x27;call resolve()...&#x27;);</span><br><span class="line">            resolve(&#x27;200 OK&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            console.log(&#x27;call reject()...&#x27;);</span><br><span class="line">            reject(&#x27;timeout in &#x27; + timeOut + &#x27; seconds.&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, timeOut * 1000);</span><br><span class="line">&#125;).then(function (r) &#123;</span><br><span class="line">    console.log(&#x27;Done: &#x27; + r);</span><br><span class="line">&#125;).catch(function (reason) &#123;</span><br><span class="line">    console.log(&#x27;Failed: &#x27; + reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 0.5秒后返回input*input的计算结果:</span><br><span class="line">function multiply(input) &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        console.log(&#x27;calculating &#x27; + input + &#x27; x &#x27; + input + &#x27;...&#x27;);</span><br><span class="line">        setTimeout(resolve, 500, input * input);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 0.5秒后返回input+input的计算结果:</span><br><span class="line">function add(input) &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        console.log(&#x27;calculating &#x27; + input + &#x27; + &#x27; + input + &#x27;...&#x27;);</span><br><span class="line">        setTimeout(resolve, 500, input + input);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    console.log(&#x27;start new Promise...&#x27;);</span><br><span class="line">    resolve(123);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">p.then(multiply)</span><br><span class="line"> .then(add)</span><br><span class="line"> .then(multiply)</span><br><span class="line"> .then(add)</span><br><span class="line"> .then(function (result) &#123;</span><br><span class="line">    console.log(&#x27;Got value: &#x27; + result);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;use strict&#x27;;</span><br><span class="line"></span><br><span class="line">// ajax函数将返回Promise对象:</span><br><span class="line">function ajax(method, url, data) &#123;</span><br><span class="line">    var request = new XMLHttpRequest();</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        request.onreadystatechange = function () &#123;</span><br><span class="line">            if (request.readyState === 4) &#123;</span><br><span class="line">                if (request.status === 200) &#123;</span><br><span class="line">                    resolve(request.responseText);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    reject(request.status);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        request.open(method, url);</span><br><span class="line">        request.send(data);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Promise还可以并行执行异步任务</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var p1 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 500, &#x27;P1&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">var p2 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 600, &#x27;P2&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">// 同时执行p1和p2，并在它们都完成后执行then:</span><br><span class="line">Promise.all([p1, p2]).then(function (results) &#123;</span><br><span class="line">    console.log(results); // 获得一个Array: [&#x27;P1&#x27;, &#x27;P2&#x27;]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var p1 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 500, &#x27;P1&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">var p2 = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    setTimeout(resolve, 600, &#x27;P2&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line">Promise.race([p1, p2]).then(function (result) &#123;</span><br><span class="line">    console.log(result); // &#x27;P1&#x27;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="Canvas"><a href="#Canvas" class="headerlink" title="Canvas"></a>Canvas</h4><p>Canvas是HTML5新增的组件，它就像一块幕布，可以用JavaScript在上面绘制各种图表、动画等。<br>没有Canvas的年代，绘图只能借助Flash插件实现，页面不得不用JavaScript和Flash进行交互。</p>
-<p>Canvas除了能绘制基本的形状和文本，还可以实现动画、缩放、各种滤镜和像素转换等高级操作。如果要实现非常复杂的操作，考虑以下优化方案：</p>
-<ul>
-<li>通过创建一个不可见的Canvas来绘图，然后将最终绘制结果复制到页面的可见Canvas中；</li>
-<li>尽量使用整数坐标而不是浮点数；</li>
-<li>可以创建多个重叠的Canvas绘制不同的层，而不是在一个Canvas中绘制非常复杂的图；</li>
-<li>背景图片如果不变可以直接用<img>标签并放到最底层。</li>
-</ul>
+<p>方法二：此时<code>setting.properties</code>需要放在项目根目录，与<code>src</code>目录同级别</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">filePath</span> <span class="operator">=</span> <span class="string">&quot;setting.properties&quot;</span>;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        properties.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(filePath));</span><br><span class="line">        <span class="type">String</span> <span class="variable">pathField</span> <span class="operator">=</span> properties.getProperty(<span class="string">&quot;last_open_file&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">intervalField</span> <span class="operator">=</span> properties.getProperty(<span class="string">&quot;auto_save_interval&quot;</span>, <span class="string">&quot;120&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;pathField: &quot;</span> + pathField + <span class="string">&quot;, intervalField: &quot;</span> + intervalField);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>前端</category>
+        <category>后端</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -2852,11 +2848,9 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>SQLServer WMI错误</title>
-    <url>/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<p>以管理员身份在CMD中运行以下命令即可。</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">mofcomp <span class="string">&quot;sqlmgmprovider.mof&quot;</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://support.microsoft.com/zh-cn/help/956013/error-message-when-you-open-sql-server-configuration-manager-in-sql-se">在 SQL Server 中打开 SQL Server 配置管理器时出现错误消息:”无法连接到 WMI 提供程序。您没有权限或该服务器不可用”</a></p>
+    <title>SQLProfiler工具简介</title>
+    <url>/2024/07/31/SQLProfiler%E5%B7%A5%E5%85%B7%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<p>转自<a href="https://www.cnblogs.com/kissdodog/p/3398523.html">SQL Server Profiler工具</a></p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -3013,9 +3007,11 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>SQLProfiler工具简介</title>
-    <url>/2024/07/31/SQLProfiler%E5%B7%A5%E5%85%B7%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<p>转自<a href="https://www.cnblogs.com/kissdodog/p/3398523.html">SQL Server Profiler工具</a></p>
+    <title>SQLServer WMI错误</title>
+    <url>/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p>以管理员身份在CMD中运行以下命令即可。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">mofcomp <span class="string">&quot;sqlmgmprovider.mof&quot;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://support.microsoft.com/zh-cn/help/956013/error-message-when-you-open-sql-server-configuration-manager-in-sql-se">在 SQL Server 中打开 SQL Server 配置管理器时出现错误消息:”无法连接到 WMI 提供程序。您没有权限或该服务器不可用”</a></p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -3077,6 +3073,34 @@ table th:first-of-type {
         <tag>Java</tag>
         <tag>SpringBoot</tag>
         <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SqlServer删除重复记录</title>
+    <url>/2024/07/31/SqlServer%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h3 id="有两个意义上的重复记录"><a href="#有两个意义上的重复记录" class="headerlink" title="有两个意义上的重复记录:"></a>有两个意义上的重复记录:</h3><ul>
+<li>完全重复的记录，也即所有字段均重复的记录；</li>
+<li>部分关键字段重复的记录，比如Name字段重复，而其他字段不一定重复或都重复可以忽略。</li>
+</ul>
+<h4 id="1、对于第一种重复，比较容易解决，使用"><a href="#1、对于第一种重复，比较容易解决，使用" class="headerlink" title="1、对于第一种重复，比较容易解决，使用"></a>1、对于第一种重复，比较容易解决，使用</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT DISTINCT * INTO #TMP FROM TableName</span><br></pre></td></tr></table></figure>
+<p>就可以得到无重复记录的结果集。<br>如果该表需要删除重复的记录（重复记录保留1条），可以按以下方法删除</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT DISTINCT * INTO #TMP FROM TableName </span><br><span class="line">DROP TABLE TableName</span><br><span class="line">SELECT * INTO TableName FROM #TMP</span><br><span class="line">DROP TABLE #TMP</span><br></pre></td></tr></table></figure>
+<p>发生这种重复的原因是表设计不周产生的，增加唯一索引列即可解决。</p>
+<h4 id="2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下"><a href="#2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下" class="headerlink" title="2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下"></a>2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下</h4><p>假设有重复的字段为Name,Address，要求得到这两个字段唯一的结果集，<br>则先利用<code>IDENTITY</code>增加能标识出唯一行的<code>AutoId</code>字段，再利用<code>GROUP BY</code>过滤重复及<code>MIN</code>函数选出最小的<code>AutoID</code>值（相同值即去除了，得到了唯一性），最后利用这个<code>AutoId</code>重建TableName，即可去重</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT IDENTITY(int,1,1) AS AutoId,* INTO #Tmp FROM TableName</span><br><span class="line">SELECT MIN(AutoId) as AutoId INTO #Tmp2 FROM #Tmp GROUP BY Name,Address</span><br><span class="line">DROP TABLE TableName</span><br><span class="line">SELECT [原TableName表所有列名] INTO TableName  FROM #Tmp WHERE autoID IN (SELECT autoID FROM #Tmp2)</span><br><span class="line">DROP TABLE #Tmp,#Tmp2</span><br></pre></td></tr></table></figure>
+<p>注意:倒数第二行的SQL语句，若<code>SELECT</code>后面跟<code>*</code>则会在原TabeName表多出<code>AutoId</code>字段</p>
+<h4 id="3、部分关键字段重复，且记录中有ID"><a href="#3、部分关键字段重复，且记录中有ID" class="headerlink" title="3、部分关键字段重复，且记录中有ID"></a>3、部分关键字段重复，且记录中有ID</h4><p>A、第一种方法可一次删除所有重复的..(只保留重复中ID最小的记录)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE FROM TableName WHERE Id NOT IN (SELECT MIN(ID) FROM TableName GROUP BY Name)</span><br></pre></td></tr></table></figure>
+<p>B、每次只删除重复中ID最大的一条记录(如果含有关键字段的行大于一行，则删除删除一行;相反，如果含有关键字段的行没有大于一行，则不进行删除操作)。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE FROM TableName WHERE Id IN (SELECT MAX(ID) FROM TableName GROUP BY Name HAVING COUNT(*)&gt;1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="4、其他方法"><a href="#4、其他方法" class="headerlink" title="4、其他方法"></a>4、其他方法</h4><p>参见<a href="http://www.cnblogs.com/luohoufu/archive/2008/06/05/1214286.html">Sql server 删除重复记录的SQL语句</a>，感谢博主的分享！</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>SQL Server</tag>
       </tags>
   </entry>
   <entry>
@@ -3549,49 +3573,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>WSL使用</title>
-    <url>/2024/07/31/WSL%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>开机启动</p>
-<p>WSL2中创建执行脚本<code>sudo vim /etc/init.wsl</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#! /bin/sh</span><br><span class="line">/etc/init.d/ssh start</span><br></pre></td></tr></table></figure>
-<p>给予脚本执行权限 <code>sudo chmod +x /etc/init.wsl</code></p>
-<p>在Windows中创建脚本 <code>linux-start.vbs</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Set ws = WScript.CreateObject(&quot;WScript.Shell&quot;)</span><br><span class="line">ws.run &quot;wsl -d ubuntu -u root /etc/init.wsl&quot;</span><br></pre></td></tr></table></figure>
-
-<p>移动到Windows开机启动项<br><code>Win+R</code>—&gt;<code>shell:startup</code></p>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>WSL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows Socket错误</title>
-    <url>/2024/07/31/Windows-Socket%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<p><a href="http://help.socketlabs.com/docs/how-to-fix-error-only-one-usage-of-each-socket-address-protocolnetwork-addressport-is-normally-permitted">How To Fix Error “Only one usage of each socket address (protocol&#x2F;network address&#x2F;port) is normally permitted”</a></p>
-<p>错误信息</p>
-<blockquote>
-<p>Only one usage of each socket address (protocol&#x2F;network address&#x2F;port) is normally permitted</p>
-</blockquote>
-<p>此错误意味着机器上所有可用的端口都已耗尽。 </p>
-<p>默认情况下，操作系统只有大约 4000 个未被系统保留的可用端口。当任何网络连接关闭时，它会进入 TIME_WAIT 状态 240 秒，并且在此等待状态结束之前无法重新使用。</p>
-<p>例如，如果 4 分钟内每秒有 16 个连接（16<em>4</em>60&#x3D;3840），那么不久之后所有端口就会耗尽。如果 HAS 和 MTA 位于同一台机器上，则耗尽端口会更快发生。这是因为除了它们相互通信并占用两个端口之外，MTA 还使用大量端口来发送邮件。 </p>
-<p>该如何解决这个错误？<br>您可以通过修改以下值来解决此问题。</p>
-<p>增加动态端口范围。默认情况下最大值为 5000。您可以将其设置为 65534。HKLMSystemCurrentControlSetServicesTcpipParametersMaxUserPort 是<br>使用的关键。</p>
-<p>减少 TIME_WAIT 状态。默认设置为 4 分钟，但您可以将其设置为 30 秒。HKLMSystemCurrentControlSetServicesTcpipParametersTCPTimedWaitDelay 是使用的关键。</p>
-<p>完成这些更改后，必须重新启动系统。</p>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VisualStudio常用快捷键</title>
     <url>/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
     <content><![CDATA[<h3 id="项目相关的快捷键"><a href="#项目相关的快捷键" class="headerlink" title="项目相关的快捷键"></a>项目相关的快捷键</h3><p><code>Ctrl + Shift + B</code> &#x3D;  生成项目(可能与Sougou拼音冲突)</p>
@@ -3674,6 +3655,49 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>WSL使用</title>
+    <url>/2024/07/31/WSL%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>开机启动</p>
+<p>WSL2中创建执行脚本<code>sudo vim /etc/init.wsl</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#! /bin/sh</span><br><span class="line">/etc/init.d/ssh start</span><br></pre></td></tr></table></figure>
+<p>给予脚本执行权限 <code>sudo chmod +x /etc/init.wsl</code></p>
+<p>在Windows中创建脚本 <code>linux-start.vbs</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Set ws = WScript.CreateObject(&quot;WScript.Shell&quot;)</span><br><span class="line">ws.run &quot;wsl -d ubuntu -u root /etc/init.wsl&quot;</span><br></pre></td></tr></table></figure>
+
+<p>移动到Windows开机启动项<br><code>Win+R</code>—&gt;<code>shell:startup</code></p>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>WSL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows Socket错误</title>
+    <url>/2024/07/31/Windows-Socket%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p><a href="http://help.socketlabs.com/docs/how-to-fix-error-only-one-usage-of-each-socket-address-protocolnetwork-addressport-is-normally-permitted">How To Fix Error “Only one usage of each socket address (protocol&#x2F;network address&#x2F;port) is normally permitted”</a></p>
+<p>错误信息</p>
+<blockquote>
+<p>Only one usage of each socket address (protocol&#x2F;network address&#x2F;port) is normally permitted</p>
+</blockquote>
+<p>此错误意味着机器上所有可用的端口都已耗尽。 </p>
+<p>默认情况下，操作系统只有大约 4000 个未被系统保留的可用端口。当任何网络连接关闭时，它会进入 TIME_WAIT 状态 240 秒，并且在此等待状态结束之前无法重新使用。</p>
+<p>例如，如果 4 分钟内每秒有 16 个连接（16<em>4</em>60&#x3D;3840），那么不久之后所有端口就会耗尽。如果 HAS 和 MTA 位于同一台机器上，则耗尽端口会更快发生。这是因为除了它们相互通信并占用两个端口之外，MTA 还使用大量端口来发送邮件。 </p>
+<p>该如何解决这个错误？<br>您可以通过修改以下值来解决此问题。</p>
+<p>增加动态端口范围。默认情况下最大值为 5000。您可以将其设置为 65534。HKLMSystemCurrentControlSetServicesTcpipParametersMaxUserPort 是<br>使用的关键。</p>
+<p>减少 TIME_WAIT 状态。默认设置为 4 分钟，但您可以将其设置为 30 秒。HKLMSystemCurrentControlSetServicesTcpipParametersTCPTimedWaitDelay 是使用的关键。</p>
+<p>完成这些更改后，必须重新启动系统。</p>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows删不掉的文件处理</title>
     <url>/2024/07/31/Windows%E5%88%A0%E4%B8%8D%E6%8E%89%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">PS</span> D:\ProgramFiles\UltraEdit.<span class="number">26.0</span>.<span class="number">0.72</span>.x32&gt; tasklist /m ue64ctmn.dll</span><br><span class="line"><span class="built_in">PS</span> D:\ProgramFiles\UltraEdit.<span class="number">26.0</span>.<span class="number">0.72</span>.x32&gt; taskkill /f  /pid <span class="number">6664</span></span><br><span class="line"><span class="built_in">PS</span> D:\ProgramFiles\UltraEdit.<span class="number">26.0</span>.<span class="number">0.72</span>.x32&gt; <span class="built_in">del</span> .\ue64ctmn.dll</span><br></pre></td></tr></table></figure>
@@ -3691,34 +3715,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SqlServer删除重复记录</title>
-    <url>/2024/07/31/SqlServer%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h3 id="有两个意义上的重复记录"><a href="#有两个意义上的重复记录" class="headerlink" title="有两个意义上的重复记录:"></a>有两个意义上的重复记录:</h3><ul>
-<li>完全重复的记录，也即所有字段均重复的记录；</li>
-<li>部分关键字段重复的记录，比如Name字段重复，而其他字段不一定重复或都重复可以忽略。</li>
-</ul>
-<h4 id="1、对于第一种重复，比较容易解决，使用"><a href="#1、对于第一种重复，比较容易解决，使用" class="headerlink" title="1、对于第一种重复，比较容易解决，使用"></a>1、对于第一种重复，比较容易解决，使用</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT DISTINCT * INTO #TMP FROM TableName</span><br></pre></td></tr></table></figure>
-<p>就可以得到无重复记录的结果集。<br>如果该表需要删除重复的记录（重复记录保留1条），可以按以下方法删除</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT DISTINCT * INTO #TMP FROM TableName </span><br><span class="line">DROP TABLE TableName</span><br><span class="line">SELECT * INTO TableName FROM #TMP</span><br><span class="line">DROP TABLE #TMP</span><br></pre></td></tr></table></figure>
-<p>发生这种重复的原因是表设计不周产生的，增加唯一索引列即可解决。</p>
-<h4 id="2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下"><a href="#2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下" class="headerlink" title="2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下"></a>2、这类重复问题通常要求保留重复记录中的第一条记录，操作方法如下</h4><p>假设有重复的字段为Name,Address，要求得到这两个字段唯一的结果集，<br>则先利用<code>IDENTITY</code>增加能标识出唯一行的<code>AutoId</code>字段，再利用<code>GROUP BY</code>过滤重复及<code>MIN</code>函数选出最小的<code>AutoID</code>值（相同值即去除了，得到了唯一性），最后利用这个<code>AutoId</code>重建TableName，即可去重</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT IDENTITY(int,1,1) AS AutoId,* INTO #Tmp FROM TableName</span><br><span class="line">SELECT MIN(AutoId) as AutoId INTO #Tmp2 FROM #Tmp GROUP BY Name,Address</span><br><span class="line">DROP TABLE TableName</span><br><span class="line">SELECT [原TableName表所有列名] INTO TableName  FROM #Tmp WHERE autoID IN (SELECT autoID FROM #Tmp2)</span><br><span class="line">DROP TABLE #Tmp,#Tmp2</span><br></pre></td></tr></table></figure>
-<p>注意:倒数第二行的SQL语句，若<code>SELECT</code>后面跟<code>*</code>则会在原TabeName表多出<code>AutoId</code>字段</p>
-<h4 id="3、部分关键字段重复，且记录中有ID"><a href="#3、部分关键字段重复，且记录中有ID" class="headerlink" title="3、部分关键字段重复，且记录中有ID"></a>3、部分关键字段重复，且记录中有ID</h4><p>A、第一种方法可一次删除所有重复的..(只保留重复中ID最小的记录)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE FROM TableName WHERE Id NOT IN (SELECT MIN(ID) FROM TableName GROUP BY Name)</span><br></pre></td></tr></table></figure>
-<p>B、每次只删除重复中ID最大的一条记录(如果含有关键字段的行大于一行，则删除删除一行;相反，如果含有关键字段的行没有大于一行，则不进行删除操作)。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DELETE FROM TableName WHERE Id IN (SELECT MAX(ID) FROM TableName GROUP BY Name HAVING COUNT(*)&gt;1)</span><br></pre></td></tr></table></figure>
-
-<h4 id="4、其他方法"><a href="#4、其他方法" class="headerlink" title="4、其他方法"></a>4、其他方法</h4><p>参见<a href="http://www.cnblogs.com/luohoufu/archive/2008/06/05/1214286.html">Sql server 删除重复记录的SQL语句</a>，感谢博主的分享！</p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>SQL Server</tag>
       </tags>
   </entry>
   <entry>
@@ -3964,6 +3960,18 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>rm参数列表过长</title>
+    <url>/2024/07/31/rm%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8%E8%BF%87%E9%95%BF/</url>
+    <content><![CDATA[<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frank@1_60:# <span class="built_in">rm</span>  -rf *</span><br><span class="line">-bash: /bin/rm: 参数列表过长</span><br><span class="line">frank@1_60:# find . -name <span class="string">&quot;*&quot;</span>  |xargs <span class="built_in">rm</span>  -rf  <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>return语句不影响using释放对象</title>
     <url>/2024/07/31/return%E8%AF%AD%E5%8F%A5%E4%B8%8D%E5%BD%B1%E5%93%8Dusing%E9%87%8A%E6%94%BE%E5%AF%B9%E8%B1%A1/</url>
     <content><![CDATA[<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (A a = <span class="keyword">new</span> A())</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主程序开始执行。&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">            <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;</span></span><br><span class="line">            Console.WriteLine(<span class="string">&quot;using内&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;,以下语句都不会执行 ???</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;using外&quot;</span>);</span><br><span class="line">        Console.ReadLine();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">IDisposable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Dispose</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;执行了Dispose方法。&quot;</span>);</span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -3978,18 +3986,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>C#</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rm参数列表过长</title>
-    <url>/2024/07/31/rm%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8%E8%BF%87%E9%95%BF/</url>
-    <content><![CDATA[<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frank@1_60:# <span class="built_in">rm</span>  -rf *</span><br><span class="line">-bash: /bin/rm: 参数列表过长</span><br><span class="line">frank@1_60:# find . -name <span class="string">&quot;*&quot;</span>  |xargs <span class="built_in">rm</span>  -rf  <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -4166,6 +4162,41 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>搭建Git服务器</title>
+    <url>/2024/07/31/%E6%90%AD%E5%BB%BAGit%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<p>说明：此文是在FreeBSD系统下的处理过程，未来得及修改</p>
+<h3 id="安装-Git-并创建Git仓储目录"><a href="#安装-Git-并创建Git仓储目录" class="headerlink" title="安装 Git 并创建Git仓储目录"></a>安装 Git 并创建Git仓储目录</h3><pre><code><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">pkg install git</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<h3 id="添加-git-用户"><a href="#添加-git-用户" class="headerlink" title="添加 git 用户"></a>添加 git 用户</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pw groupadd -n git -g 9418</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pw useradd -n git -u 9418 -g git -c git -d /home/git -s /usr/local/libexec/git-core/git-shell -h -</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">passwd git</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建仓库根目录，并确认权限正确"><a href="#创建仓库根目录，并确认权限正确" class="headerlink" title="创建仓库根目录，并确认权限正确"></a>创建仓库根目录，并确认权限正确</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir /home/git</span><br><span class="line">chown git:git /home/git</span><br><span class="line">mkdir /home/git/base</span><br><span class="line">chown git:git /home/git/base</span><br><span class="line">chmode 775 /home/git/base</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加能够访问-home-git-base建立仓库的用户到git用户组"><a href="#添加能够访问-home-git-base建立仓库的用户到git用户组" class="headerlink" title="添加能够访问&#x2F;home&#x2F;git&#x2F;base建立仓库的用户到git用户组"></a>添加能够访问&#x2F;home&#x2F;git&#x2F;base建立仓库的用户到git用户组</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vi /etc/group</span></span><br><span class="line">git:*:9418:user1,user2</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用SSH-keys认证"><a href="#使用SSH-keys认证" class="headerlink" title="使用SSH keys认证"></a>使用SSH keys认证</h3><p>  首先，收集所有需要有提交权限的用户的public keys。然后把这些public keys添加到<code>/home/git/.ssh/</code>目录下面。对应的客户端比如Windows10，在<code>C:\Users\Frank\.ssh\</code>下面应包含此公约和对应的私钥，如果只包含私钥，在push或pull时会一直提示输入密码，即ssh配置失败。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">mkdir</span> /home/git/.ssh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chmod</span> 700 /git/.ssh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">touch</span> /git/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chmod</span> 600 /home/git/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Put the public keys into authorized_keys,one per line)</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chown</span> -R git:git /home/git/.ssh/</span></span><br></pre></td></tr></table></figure>
+
+<p>现在创建一个仓库来测试</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> /git/base/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /git/base/test.git &amp;&amp; git init --bare</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">chown</span> -R git:git /home/git/</span></span><br></pre></td></tr></table></figure>
+
+<p>在客户机创建本地仓库，并提交</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> ~/test</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> ~/test &amp;&amp; git init</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;123456&#x27;</span> &gt; foo</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add .</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit</span></span><br></pre></td></tr></table></figure>
+
+<p>push到远程仓库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git remote add origin git@git.example.com:base/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git push -u origin master</span></span><br></pre></td></tr></table></figure>
+
+<p>关于Git使用ssh协议免密</p>
+<p>附：<br><a href="https://git-scm.com/book/zh/v2">Git使用手册</a></p>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>怎样看公司财务报表</title>
     <url>/2024/07/31/%E6%80%8E%E6%A0%B7%E7%9C%8B%E5%85%AC%E5%8F%B8%E8%B4%A2%E5%8A%A1%E6%8A%A5%E8%A1%A8/</url>
     <content><![CDATA[<p>拿到一份财务报表，很多人不知道如何下手，其实分析企业财务一般从企业偿债能力、营运能力和盈利能力等方面分析以下一张图涵盖了财务分析的各维度，各指标。</p>
@@ -4224,41 +4255,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>投机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建Git服务器</title>
-    <url>/2024/07/31/%E6%90%AD%E5%BB%BAGit%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<p>说明：此文是在FreeBSD系统下的处理过程，未来得及修改</p>
-<h3 id="安装-Git-并创建Git仓储目录"><a href="#安装-Git-并创建Git仓储目录" class="headerlink" title="安装 Git 并创建Git仓储目录"></a>安装 Git 并创建Git仓储目录</h3><pre><code><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">pkg install git</span></span><br></pre></td></tr></table></figure>
-</code></pre>
-<h3 id="添加-git-用户"><a href="#添加-git-用户" class="headerlink" title="添加 git 用户"></a>添加 git 用户</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pw groupadd -n git -g 9418</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pw useradd -n git -u 9418 -g git -c git -d /home/git -s /usr/local/libexec/git-core/git-shell -h -</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">passwd git</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建仓库根目录，并确认权限正确"><a href="#创建仓库根目录，并确认权限正确" class="headerlink" title="创建仓库根目录，并确认权限正确"></a>创建仓库根目录，并确认权限正确</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir /home/git</span><br><span class="line">chown git:git /home/git</span><br><span class="line">mkdir /home/git/base</span><br><span class="line">chown git:git /home/git/base</span><br><span class="line">chmode 775 /home/git/base</span><br></pre></td></tr></table></figure>
-
-<h3 id="添加能够访问-home-git-base建立仓库的用户到git用户组"><a href="#添加能够访问-home-git-base建立仓库的用户到git用户组" class="headerlink" title="添加能够访问&#x2F;home&#x2F;git&#x2F;base建立仓库的用户到git用户组"></a>添加能够访问&#x2F;home&#x2F;git&#x2F;base建立仓库的用户到git用户组</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vi /etc/group</span></span><br><span class="line">git:*:9418:user1,user2</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用SSH-keys认证"><a href="#使用SSH-keys认证" class="headerlink" title="使用SSH keys认证"></a>使用SSH keys认证</h3><p>  首先，收集所有需要有提交权限的用户的public keys。然后把这些public keys添加到<code>/home/git/.ssh/</code>目录下面。对应的客户端比如Windows10，在<code>C:\Users\Frank\.ssh\</code>下面应包含此公约和对应的私钥，如果只包含私钥，在push或pull时会一直提示输入密码，即ssh配置失败。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">mkdir</span> /home/git/.ssh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chmod</span> 700 /git/.ssh</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">touch</span> /git/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chmod</span> 600 /home/git/.ssh/authorized_keys</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Put the public keys into authorized_keys,one per line)</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">chown</span> -R git:git /home/git/.ssh/</span></span><br></pre></td></tr></table></figure>
-
-<p>现在创建一个仓库来测试</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> /git/base/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /git/base/test.git &amp;&amp; git init --bare</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">chown</span> -R git:git /home/git/</span></span><br></pre></td></tr></table></figure>
-
-<p>在客户机创建本地仓库，并提交</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">mkdir</span> ~/test</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> ~/test &amp;&amp; git init</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">echo</span> <span class="string">&#x27;123456&#x27;</span> &gt; foo</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add .</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit</span></span><br></pre></td></tr></table></figure>
-
-<p>push到远程仓库</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git remote add origin git@git.example.com:base/test.git</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git push -u origin master</span></span><br></pre></td></tr></table></figure>
-
-<p>关于Git使用ssh协议免密</p>
-<p>附：<br><a href="https://git-scm.com/book/zh/v2">Git使用手册</a></p>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -4524,20 +4520,6 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Debian</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gradle项目不能启动</title>
-    <url>/2024/08/02/Gradle%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<p>在<code>build.gradle</code>添加</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;application&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">application &#123;</span><br><span class="line">    mainClass= <span class="string">&#x27;org.frank.Main&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.jar&#123;</span><br><span class="line">    manifest &#123;</span><br><span class="line">        attributes[<span class="string">&quot;Main-Class&quot;</span>]=<span class="string">&#x27;org.frank.Main&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Gradle</tag>
       </tags>
   </entry>
   <entry>
@@ -4832,6 +4814,20 @@ table th:first-of-type {
 
 <p>这样就等于设置了默认的仓库配置，那么每次执行<code>gradle</code>的时候都会从我希望的镜像站中去寻找依赖并下载了</p>
 <p>但需要注意的是由于<code>plugins &#123;&#125; DSL</code>目前不使用<code>buildscript &#123;&#125;</code>配置，也无法通过<code>init script</code>定制的方式传入<code>settings.gradle</code>中，所以这种方式是不起作用的。不过好在这个<code>DSL</code>官方还在完善中，也许未来会支持也说不定。<br>参考<a href="https://my.oschina.net/abcfy2/blog/783743">gradle使用maven镜像仓库的方法</a><br>参考<a href="http://www.souvc.com/?p=2573">《Gradle实战》如何配置利用Maven本地仓库</a></p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Gradle</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gradle项目不能启动</title>
+    <url>/2024/08/02/Gradle%E9%A1%B9%E7%9B%AE%E4%B8%8D%E8%83%BD%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<p>在<code>build.gradle</code>添加</p>
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;application&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">application &#123;</span><br><span class="line">    mainClass= <span class="string">&#x27;org.frank.Main&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.jar&#123;</span><br><span class="line">    manifest &#123;</span><br><span class="line">        attributes[<span class="string">&quot;Main-Class&quot;</span>]=<span class="string">&#x27;org.frank.Main&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -5408,6 +5404,44 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>IntelliJ IDEA之External tools</title>
+    <url>/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/</url>
+    <content><![CDATA[<h2 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h2><p><code>Ctrl + Alt + S</code> ——&gt; <code>External Tools</code> ——&gt; <code>Add</code> ,在添加页面的 <code>Tool Setting</code>部分分别设置</p>
+<ol>
+<li><code>Program</code> 填 <code>$JDKPath$\bin\javap</code><br>  <code>javap</code> 使用 JVM 选项 <code>-J-Dfile.encoding=GB2312</code></li>
+<li><code>Arguments</code> 填 <code>-v -c -l -s -p $FileClass$</code></li>
+<li><code>Working directory</code> 填 <code>$OutputPath$</code></li>
+</ol>
+<h2 id="jconsole"><a href="#jconsole" class="headerlink" title="jconsole"></a>jconsole</h2><ol>
+<li><code>Program</code> 填 <code>$JDKPath$\bin\jconsole</code></li>
+</ol>
+<h2 id="protoc"><a href="#protoc" class="headerlink" title="protoc"></a>protoc</h2><ol>
+<li><code>Program</code> 填 <code>protoc</code></li>
+<li><code>Arguments</code> 填 <code>--java_out=$SourcepathEntry$ $FileNameWithoutExtension$.proto</code><br>  <code>--java_out=</code> 指定输出文件的目录。如果使用宏<code>$SourcepathEntry$</code>,则在编写<code>xx.proto</code>文件时，最好指定正确的包名，结果会输出到相应的位置。或者指定为<code>.</code>,即输出到<code>xx.proto</code>文件所在的文件夹，然后复制到正确位置。</li>
+<li><code>Working directory</code> 填 <code>$FileDir$</code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot项目启动</title>
+    <url>/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="不使用spring-boot-starter-parent"><a href="#不使用spring-boot-starter-parent" class="headerlink" title="不使用spring-boot-starter-parent"></a>不使用<code>spring-boot-starter-parent</code></h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>FreeBSD使用</title>
     <url>/2025/02/15/FreeBSD%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>切换国内源</p>
@@ -5610,167 +5644,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>IntelliJ IDEA之External tools</title>
-    <url>/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/</url>
-    <content><![CDATA[<h2 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h2><p><code>Ctrl + Alt + S</code> ——&gt; <code>External Tools</code> ——&gt; <code>Add</code> ,在添加页面的 <code>Tool Setting</code>部分分别设置</p>
-<ol>
-<li><code>Program</code> 填 <code>$JDKPath$\bin\javap</code><br>  <code>javap</code> 使用 JVM 选项 <code>-J-Dfile.encoding=GB2312</code></li>
-<li><code>Arguments</code> 填 <code>-v -c -l -s -p $FileClass$</code></li>
-<li><code>Working directory</code> 填 <code>$OutputPath$</code></li>
-</ol>
-<h2 id="jconsole"><a href="#jconsole" class="headerlink" title="jconsole"></a>jconsole</h2><ol>
-<li><code>Program</code> 填 <code>$JDKPath$\bin\jconsole</code></li>
-</ol>
-<h2 id="protoc"><a href="#protoc" class="headerlink" title="protoc"></a>protoc</h2><ol>
-<li><code>Program</code> 填 <code>protoc</code></li>
-<li><code>Arguments</code> 填 <code>--java_out=$SourcepathEntry$ $FileNameWithoutExtension$.proto</code><br>  <code>--java_out=</code> 指定输出文件的目录。如果使用宏<code>$SourcepathEntry$</code>,则在编写<code>xx.proto</code>文件时，最好指定正确的包名，结果会输出到相应的位置。或者指定为<code>.</code>,即输出到<code>xx.proto</code>文件所在的文件夹，然后复制到正确位置。</li>
-<li><code>Working directory</code> 填 <code>$FileDir$</code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot项目启动</title>
-    <url>/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="不使用spring-boot-starter-parent"><a href="#不使用spring-boot-starter-parent" class="headerlink" title="不使用spring-boot-starter-parent"></a>不使用<code>spring-boot-starter-parent</code></h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hyper-V管理器显示的内存和虚拟机查看的内存不一致问题</title>
-    <url>/2025/04/19/Hyper-V%E7%AE%A1%E7%90%86%E5%99%A8%E6%98%BE%E7%A4%BA%E7%9A%84%E5%86%85%E5%AD%98%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9F%A5%E7%9C%8B%E7%9A%84%E5%86%85%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="一、问题现象总结"><a href="#一、问题现象总结" class="headerlink" title="一、问题现象总结"></a>一、问题现象总结</h2><ul>
-<li>Hyper-V 管理器显示内存占用：12 GB</li>
-<li>Debian 12 系统内部（htop）看到内存总量：约 893 MB</li>
-<li>使用了 动态内存配置：1 GB ~ 12 GB</li>
-</ul>
-<h2 id="二、原因解析"><a href="#二、原因解析" class="headerlink" title="二、原因解析"></a>二、原因解析</h2><ol>
-<li>Hyper-V 的动态内存机制<br>Hyper-V 的动态内存技术会根据虚拟机的实际需求动态地：</li>
-</ol>
-<ul>
-<li><p>分配或回收主机内存；</p>
-</li>
-<li><p>它不会马上告诉 Guest OS（这里是 Debian）完整的可用最大内存；</p>
-</li>
-<li><p>Guest OS 启动时，仅看到“启动分配的初始内存”（如你配置的是初始 1 GB）；</p>
-</li>
-<li><p>Hyper-V 会在后台 透明增加内存页，但 Guest OS 并不直接更新 total memory 的数字。</p>
-</li>
-<li><p>➤ 换句话说：<br>Hyper-V 分配了更多内存，但 Linux 默认并不更新 &#x2F;proc&#x2F;meminfo 或 htop 显示的 总内存值，因为：</p>
-<ul>
-<li>Linux 只认启动时的 e820 BIOS 内存映射；</li>
-<li>热添加内存后，Linux 内核默认不刷新 total RAM（除非支持 memory hotplug 并启用 memhp_default_state&#x3D;online）。</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>为什么 htop 显示只有 893 MB？<br>这是启动时初始内存（可能略低于 1G），并未反映 Hyper-V 后续增加的内存。</li>
-</ol>
-<h2 id="三、如何验证是否真的内存增加？"><a href="#三、如何验证是否真的内存增加？" class="headerlink" title="三、如何验证是否真的内存增加？"></a>三、如何验证是否真的内存增加？</h2><p>用以下命令确认系统是否收到了 Hyper-V 分配的额外内存：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -r . /sys/devices/system/memory/ | grep state</span><br></pre></td></tr></table></figure>
-
-<p>如果看到 <code>/sys/devices/system/memory/memory*/state</code> 中有 多个 <code>memory block</code>，并且状态是 <code>online</code>，说明内存确实被添加，但可能未被正确统计。</p>
-<h2 id="四、怎么让-Linux-识别这些新内存？"><a href="#四、怎么让-Linux-识别这些新内存？" class="headerlink" title="四、怎么让 Linux 识别这些新内存？"></a>四、怎么让 Linux 识别这些新内存？</h2><p>尝试以下方法让 Linux 正确识别增加的内存：</p>
-<h3 id="方法一：开机参数添加自动上线热插内存"><a href="#方法一：开机参数添加自动上线热插内存" class="headerlink" title="方法一：开机参数添加自动上线热插内存"></a>方法一：开机参数添加自动上线热插内存</h3><p>编辑 <code>/etc/default/grub</code> 配置：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=<span class="string">&quot;quiet splash memhp_default_state=online&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>然后更新 grub 并重启：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="built_in">sudo</span> reboot</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二：手动上线热插内存"><a href="#方法二：手动上线热插内存" class="headerlink" title="方法二：手动上线热插内存"></a>方法二：手动上线热插内存</h3><p>在系统运行后，可以执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> block <span class="keyword">in</span> /sys/devices/system/memory/memory*/state; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> online | <span class="built_in">sudo</span> <span class="built_in">tee</span> <span class="variable">$block</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-
-<p>然后再执行 <code>free -h</code> 或 <code>htop</code> 看是否更新。</p>
-<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>Hyper-V 显示使用了 12 GB，但 Linux 只看到 893 MB Hyper-V 动态分配了更多内存，但 Linux 没自动识别 启用内存热插拔自动上线，或手动上线 memory block</p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SSH连接Docker中的MySQL</title>
-    <url>/2025/04/23/SSH%E8%BF%9E%E6%8E%A5Docker%E4%B8%AD%E7%9A%84MySQL/</url>
-    <content><![CDATA[<h2 id="🐳💻-SSH-连接-Docker-中的-MySQL-容器-—-速查表"><a href="#🐳💻-SSH-连接-Docker-中的-MySQL-容器-—-速查表" class="headerlink" title="🐳💻 SSH 连接 Docker 中的 MySQL 容器 — 速查表"></a>🐳💻 SSH 连接 Docker 中的 MySQL 容器 — 速查表</h2><table>
-<thead>
-<tr>
-<th>方式</th>
-<th>命令</th>
-<th>是否推荐</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>✅ 一次登录</td>
-<td><code>ssh user@host -t &quot;sudo docker exec -it mysql mysql -uroot -p&quot;</code></td>
-<td>⭐⭐⭐</td>
-<td>成功率高，适合快速连接（注意 <code>-t</code> 位置！）</td>
-</tr>
-<tr>
-<td>✅ 最推荐（稳！）</td>
-<td><code>ssh -t user@host &quot;sudo docker exec -it mysql bash&quot;</code><br>（然后容器内手动 <code>mysql -uroot -p</code>）</td>
-<td>⭐⭐⭐⭐</td>
-<td>稳定、安全、适配性强，适合所有情况</td>
-</tr>
-<tr>
-<td>🚀 快速执行 SQL</td>
-<td><code>ssh user@host &quot;docker exec -i mysql mysql -uroot -p你的密码 -e &#39;SHOW DATABASES;&#39;&quot;</code></td>
-<td>⭐⭐</td>
-<td>自动化脚本、批处理时用；明文密码⚠️</td>
-</tr>
-<tr>
-<td>✅ 正统方法（推荐）</td>
-<td>SSH 隧道 + 本地客户端<br>1. <code>ssh -L 3307:127.0.0.1:3306 user@host</code><br>2. 本地连接 <code>mysql -h 127.0.0.1 -P 3307 -uroot -p</code></td>
-<td>⭐⭐⭐⭐</td>
-<td>安全、稳定、兼容图形工具</td>
-</tr>
-<tr>
-<td>🚫 容易卡死的写法</td>
-<td><code>ssh user@host &quot;docker exec -it mysql mysql -uroot -p&quot;</code></td>
-<td>❌</td>
-<td>没有 <code>-t</code>，会卡住或 stdin 无效</td>
-</tr>
-<tr>
-<td>🚫 明文密码（仅测试）</td>
-<td><code>ssh user@host &quot;docker exec -i mysql mysql -uroot -p你的密码&quot;</code></td>
-<td>❌</td>
-<td>密码暴露在命令行中，危险</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="🧠-小贴士"><a href="#🧠-小贴士" class="headerlink" title="🧠 小贴士"></a>🧠 小贴士</h3><ul>
-<li><code>-t</code>：请求伪终端，<strong>必须有才能安全交互</strong></li>
-<li><code>-i</code>：保持标准输入，不然 <code>mysql</code> 接收不到你键盘输入</li>
-<li>多层 SSH &#x2F; 跳板机？可以加 <code>-tt</code> 强制 tty</li>
-</ul>
-<hr>
-<h3 id="🛠-推荐别名（Alias）"><a href="#🛠-推荐别名（Alias）" class="headerlink" title="🛠 推荐别名（Alias）"></a>🛠 推荐别名（Alias）</h3><p>写到 <code>~/.bashrc</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql-remote=<span class="string">&#x27;ssh -t user@host &quot;sudo docker exec -it mysql bash&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>下次只需要：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql-remote</span><br><span class="line"><span class="comment"># 然后容器里 mysql -uroot -p</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker运行Nexus</title>
     <url>/2025/03/04/Docker%E8%BF%90%E8%A1%8CNexus/</url>
     <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> /data/nexus</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span>  <span class="built_in">chown</span> -R 200 /data/nexus</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sudo</span> docker run -d \</span></span><br><span class="line"><span class="language-bash">--name nexus \</span></span><br><span class="line"><span class="language-bash">--restart=always \</span></span><br><span class="line"><span class="language-bash">-p 18081:8081 \</span></span><br><span class="line"><span class="language-bash">-e INSTALL4J_ADD_VM_PARAMS=<span class="string">&quot;-Xms32m -Xmx1024m -XX:MaxDirectMemorySize=1024m&quot;</span> \</span></span><br><span class="line"><span class="language-bash">--env-file ~/.docker/proxy \</span></span><br><span class="line"><span class="language-bash">-v /data/nexus:/nexus-data \</span></span><br><span class="line"><span class="language-bash">sonatype/nexus3</span></span><br></pre></td></tr></table></figure>
@@ -5791,30 +5664,6 @@ table th:first-of-type {
     <url>/2025/03/28/Eclipse%E7%B3%BB%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AEJavaHome/</url>
     <content><![CDATA[<p>一般在可执行文件(如<code>MemoryAnalyzer.exe</code>)对应的配置文件(<code>MemoryAnalyzer.ini</code>)中的<code>-vmargs</code>参数前添加如下内容，且“要换行”</p>
 <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">-vm</span><br><span class="line">/path/to/java/home/bin</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java获取当前运行的方法名称</title>
-    <url>/2025/03/15/Java%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0/</url>
-    <content><![CDATA[<p>在 Java 中，获取当前正在运行的方法名称可以通过 Thread 类中的堆栈信息来实现。具体方法如下：</p>
-<p>方法一：使用 <code>Thread.currentThread().getStackTrace()</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        printCurrentMethodName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printCurrentMethodName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> Thread.currentThread().getStackTrace()[<span class="number">1</span>].getMethodName();</span><br><span class="line">        System.out.println(<span class="string">&quot;当前方法名称: &quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>方法解释：<br><code>Thread.currentThread()</code>：获取当前线程。<br><code>getStackTrace()</code>：获取当前线程的堆栈跟踪信息。<br><code>getStackTrace()[1]</code>：索引 <code>[0]</code> 是 <code>getStackTrace</code> 方法本身，索引 <code>[1]</code> 是当前方法。<br><code>getMethodName()</code>：获取方法名称。</p>
-<p>方法二：使用 <code>new Exception().getStackTrace()</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        printCurrentMethodName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printCurrentMethodName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Exception</span>().getStackTrace()[<span class="number">0</span>].getMethodName();</span><br><span class="line">        System.out.println(<span class="string">&quot;当前方法名称: &quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>⚠️ 注意：此方法性能略低，因为创建了一个异常对象。</p>
-<p>方法三：使用 <code>StackWalker</code>（Java 9+）</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.StackWalker;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        printCurrentMethodName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printCurrentMethodName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> StackWalker.getInstance()</span><br><span class="line">                                       .walk(frames -&gt; frames.skip(<span class="number">1</span>).findFirst().get().getMethodName());</span><br><span class="line">        System.out.println(<span class="string">&quot;当前方法名称: &quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>优势：<br>更高效，且更加灵活。<br>适用于 Java 9 及以上版本。<br>哪个方法更好？<br>如果追求性能，建议使用 StackWalker（Java 9+）。<br>对于简单的调试或兼容性需求，Thread.currentThread().getStackTrace() 更方便。</p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -5845,43 +5694,21 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>使用SSH登陆git服务器</title>
-    <url>/2025/03/16/%E4%BD%BF%E7%94%A8SSH%E7%99%BB%E9%99%86git%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<p>生成 ssh_key</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-t</span> rsa <span class="operator">-f</span> <span class="string">&quot;.\.ssh\github&quot;</span> <span class="literal">-C</span> <span class="string">&quot;email&quot;</span></span><br><span class="line"><span class="comment"># Visual Studio 登录</span></span><br><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-m</span> pem <span class="literal">-t</span> ecdsa <span class="operator">-f</span> &lt;key<span class="literal">-name</span>&gt;</span><br></pre></td></tr></table></figure>
+    <title>Java获取当前运行的方法名称</title>
+    <url>/2025/03/15/Java%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0/</url>
+    <content><![CDATA[<p>在 Java 中，获取当前正在运行的方法名称可以通过 Thread 类中的堆栈信息来实现。具体方法如下：</p>
+<p>方法一：使用 <code>Thread.currentThread().getStackTrace()</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        printCurrentMethodName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printCurrentMethodName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> Thread.currentThread().getStackTrace()[<span class="number">1</span>].getMethodName();</span><br><span class="line">        System.out.println(<span class="string">&quot;当前方法名称: &quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Visual Studio 使用密钥远程登录，加密方法有<a href="https://learn.microsoft.com/zh-cn/cpp/linux/connect-to-your-remote-linux-computer?view=msvc-170#supported-ssh-algorithms">限制</a></p>
-<p>编辑<code>~\.ssh\config</code>,配置ssh</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">Host</span> <span class="string">github.com</span></span><br><span class="line">  <span class="attr">HostName</span> <span class="string">github.com</span></span><br><span class="line">  <span class="attr">User</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">IdentityFile</span> <span class="string">~/.ssh/github</span></span><br></pre></td></tr></table></figure>
+<p>方法解释：<br><code>Thread.currentThread()</code>：获取当前线程。<br><code>getStackTrace()</code>：获取当前线程的堆栈跟踪信息。<br><code>getStackTrace()[1]</code>：索引 <code>[0]</code> 是 <code>getStackTrace</code> 方法本身，索引 <code>[1]</code> 是当前方法。<br><code>getMethodName()</code>：获取方法名称。</p>
+<p>方法二：使用 <code>new Exception().getStackTrace()</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        printCurrentMethodName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printCurrentMethodName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Exception</span>().getStackTrace()[<span class="number">0</span>].getMethodName();</span><br><span class="line">        System.out.println(<span class="string">&quot;当前方法名称: &quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>将生成的 <code>github.pub</code> 内容添加到 github 网站的 ssh 设置里。如果是登录Debian 等 Linux 系统，需要将 <code>github.pub</code> 内容添加到 <code>~/.ssh/authorized_keys</code> 文件中。</p>
-<p>要注意<code>Host</code>和<code>HostName</code>设置：</p>
-<ul>
-<li><p><code>HostName</code>只能是网站的域名,如果<code>github.com</code></p>
-</li>
-<li><p><code>Host</code>一般也设置为网站域名，如<code>github.com</code>,这样在git操作的时候，能与官方给的 <code>ssh</code>地址(如<code>git@github.com:username/repo.git</code>)保持一致，方便。<br>也可以自定义设置，如设置为<code>github</code>或者<code>1.github.com</code>,但这个时候，官方给的<code>ssh</code>地址</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">git@github.com</span>:<span class="string">username/repo.git</span></span><br></pre></td></tr></table></figure>
+<p>⚠️ 注意：此方法性能略低，因为创建了一个异常对象。</p>
+<p>方法三：使用 <code>StackWalker</code>（Java 9+）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.StackWalker;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        printCurrentMethodName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printCurrentMethodName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">methodName</span> <span class="operator">=</span> StackWalker.getInstance()</span><br><span class="line">                                       .walk(frames -&gt; frames.skip(<span class="number">1</span>).findFirst().get().getMethodName());</span><br><span class="line">        System.out.println(<span class="string">&quot;当前方法名称: &quot;</span> + methodName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>需要调整为</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">git@github</span>:<span class="string">username/repo.git</span></span><br></pre></td></tr></table></figure>
-
-<p>使用<code>ssh -T</code>验证的时候，也要使用<code>Host</code>的设置<code>github</code>进行验证。</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>测试</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br></pre></td></tr></table></figure>
-
-<p>对于重装系统后，可能出现的错误</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">PS</span> F:\&gt; ssh <span class="literal">-T</span> git@gitee.com</span><br><span class="line">Bad permissions. <span class="keyword">Try</span> removing permissions <span class="keyword">for</span> user: BUILTIN\\Users (S<span class="literal">-1-5-32-545</span>) on file C:/Users/xxxx/.ssh/gitee.</span><br><span class="line"><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span></span><br><span class="line"><span class="selector-tag">@</span>         WARNING: UNPROTECTED PRIVATE KEY FILE!          <span class="selector-tag">@</span></span><br><span class="line"><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span></span><br><span class="line">Permissions <span class="keyword">for</span> <span class="string">&#x27;C:\\Users\\xxxx/.ssh/gitee&#x27;</span> are too open.</span><br><span class="line">It is required that your private key files are NOT accessible by others.</span><br><span class="line">This private key will be ignored.</span><br><span class="line">Load key <span class="string">&quot;C:\\Users\\xxxx/.ssh/gitee&quot;</span>: bad permissions</span><br><span class="line">git@gitee.com: Permission denied (publickey).</span><br></pre></td></tr></table></figure>
-
-<p>执行以下命令修复</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\Users\someone\.ssh</span><br><span class="line"><span class="comment"># 重置权限</span></span><br><span class="line">icacls gitee /reset</span><br><span class="line"><span class="comment"># 移除继承的权限</span></span><br><span class="line">icacls gitee /inheritance:<span class="built_in">r</span></span><br><span class="line"><span class="comment"># 只授予当前用户读取权限（Read）</span></span><br><span class="line">icacls gitee /grant:<span class="built_in">r</span> <span class="string">&quot;%USERNAME%:R&quot;</span></span><br><span class="line"><span class="comment"># 验证当前权限（可选）</span></span><br><span class="line">icacls gitee</span><br></pre></td></tr></table></figure>
-
-<p>补充说明</p>
-<ol>
-<li>Windows 上 BUILTIN\Users 是一个用户组，默认包含所有本地用户。如果 SSH 私钥对这个组开放，OpenSSH 会认为不安全，从而报错。</li>
-<li>在 Linux&#x2F;macOS 上同类错误通常表现为 Permissions 0644 for ‘xxx’ are too open，解决方法是 chmod 600 your_key。</li>
-</ol>
+<p>优势：<br>更高效，且更加灵活。<br>适用于 Java 9 及以上版本。<br>哪个方法更好？<br>如果追求性能，建议使用 StackWalker（Java 9+）。<br>对于简单的调试或兼容性需求，Thread.currentThread().getStackTrace() 更方便。</p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -6008,6 +5835,52 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>使用SSH登陆git服务器</title>
+    <url>/2025/03/16/%E4%BD%BF%E7%94%A8SSH%E7%99%BB%E9%99%86git%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<p>生成 ssh_key</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-t</span> rsa <span class="operator">-f</span> <span class="string">&quot;.\.ssh\github&quot;</span> <span class="literal">-C</span> <span class="string">&quot;email&quot;</span></span><br><span class="line"><span class="comment"># Visual Studio 登录</span></span><br><span class="line">ssh<span class="literal">-keygen</span> <span class="literal">-m</span> pem <span class="literal">-t</span> ecdsa <span class="operator">-f</span> &lt;key<span class="literal">-name</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Visual Studio 使用密钥远程登录，加密方法有<a href="https://learn.microsoft.com/zh-cn/cpp/linux/connect-to-your-remote-linux-computer?view=msvc-170#supported-ssh-algorithms">限制</a></p>
+<p>编辑<code>~\.ssh\config</code>,配置ssh</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">Host</span> <span class="string">github.com</span></span><br><span class="line">  <span class="attr">HostName</span> <span class="string">github.com</span></span><br><span class="line">  <span class="attr">User</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">IdentityFile</span> <span class="string">~/.ssh/github</span></span><br></pre></td></tr></table></figure>
+
+<p>将生成的 <code>github.pub</code> 内容添加到 github 网站的 ssh 设置里。如果是登录Debian 等 Linux 系统，需要将 <code>github.pub</code> 内容添加到 <code>~/.ssh/authorized_keys</code> 文件中。</p>
+<p>要注意<code>Host</code>和<code>HostName</code>设置：</p>
+<ul>
+<li><p><code>HostName</code>只能是网站的域名,如果<code>github.com</code></p>
+</li>
+<li><p><code>Host</code>一般也设置为网站域名，如<code>github.com</code>,这样在git操作的时候，能与官方给的 <code>ssh</code>地址(如<code>git@github.com:username/repo.git</code>)保持一致，方便。<br>也可以自定义设置，如设置为<code>github</code>或者<code>1.github.com</code>,但这个时候，官方给的<code>ssh</code>地址</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">git@github.com</span>:<span class="string">username/repo.git</span></span><br></pre></td></tr></table></figure>
+
+<p>需要调整为</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">git@github</span>:<span class="string">username/repo.git</span></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>ssh -T</code>验证的时候，也要使用<code>Host</code>的设置<code>github</code>进行验证。</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>测试</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>对于重装系统后，可能出现的错误</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">PS</span> F:\&gt; ssh <span class="literal">-T</span> git@gitee.com</span><br><span class="line">Bad permissions. <span class="keyword">Try</span> removing permissions <span class="keyword">for</span> user: BUILTIN\\Users (S<span class="literal">-1-5-32-545</span>) on file C:/Users/xxxx/.ssh/gitee.</span><br><span class="line"><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span></span><br><span class="line"><span class="selector-tag">@</span>         WARNING: UNPROTECTED PRIVATE KEY FILE!          <span class="selector-tag">@</span></span><br><span class="line"><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span><span class="selector-tag">@</span></span><br><span class="line">Permissions <span class="keyword">for</span> <span class="string">&#x27;C:\\Users\\xxxx/.ssh/gitee&#x27;</span> are too open.</span><br><span class="line">It is required that your private key files are NOT accessible by others.</span><br><span class="line">This private key will be ignored.</span><br><span class="line">Load key <span class="string">&quot;C:\\Users\\xxxx/.ssh/gitee&quot;</span>: bad permissions</span><br><span class="line">git@gitee.com: Permission denied (publickey).</span><br></pre></td></tr></table></figure>
+
+<p>执行以下命令修复</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\Users\someone\.ssh</span><br><span class="line"><span class="comment"># 重置权限</span></span><br><span class="line">icacls gitee /reset</span><br><span class="line"><span class="comment"># 移除继承的权限</span></span><br><span class="line">icacls gitee /inheritance:<span class="built_in">r</span></span><br><span class="line"><span class="comment"># 只授予当前用户读取权限（Read）</span></span><br><span class="line">icacls gitee /grant:<span class="built_in">r</span> <span class="string">&quot;%USERNAME%:R&quot;</span></span><br><span class="line"><span class="comment"># 验证当前权限（可选）</span></span><br><span class="line">icacls gitee</span><br></pre></td></tr></table></figure>
+
+<p>补充说明</p>
+<ol>
+<li>Windows 上 BUILTIN\Users 是一个用户组，默认包含所有本地用户。如果 SSH 私钥对这个组开放，OpenSSH 会认为不安全，从而报错。</li>
+<li>在 Linux&#x2F;macOS 上同类错误通常表现为 Permissions 0644 for ‘xxx’ are too open，解决方法是 chmod 600 your_key。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>制作U盘Linux系统</title>
     <url>/2025/03/03/%E5%88%B6%E4%BD%9CU%E7%9B%98Linux%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<p>注意两点:</p>
@@ -6104,6 +5977,129 @@ table th:first-of-type {
 <ul>
 <li><input disabled="" type="checkbox"> IntelliJ IDEA 怎么支持？</li>
 </ul>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hyper-V管理器显示的内存和虚拟机查看的内存不一致问题</title>
+    <url>/2025/04/19/Hyper-V%E7%AE%A1%E7%90%86%E5%99%A8%E6%98%BE%E7%A4%BA%E7%9A%84%E5%86%85%E5%AD%98%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9F%A5%E7%9C%8B%E7%9A%84%E5%86%85%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="一、问题现象总结"><a href="#一、问题现象总结" class="headerlink" title="一、问题现象总结"></a>一、问题现象总结</h2><ul>
+<li>Hyper-V 管理器显示内存占用：12 GB</li>
+<li>Debian 12 系统内部（htop）看到内存总量：约 893 MB</li>
+<li>使用了 动态内存配置：1 GB ~ 12 GB</li>
+</ul>
+<h2 id="二、原因解析"><a href="#二、原因解析" class="headerlink" title="二、原因解析"></a>二、原因解析</h2><ol>
+<li>Hyper-V 的动态内存机制<br>Hyper-V 的动态内存技术会根据虚拟机的实际需求动态地：</li>
+</ol>
+<ul>
+<li><p>分配或回收主机内存；</p>
+</li>
+<li><p>它不会马上告诉 Guest OS（这里是 Debian）完整的可用最大内存；</p>
+</li>
+<li><p>Guest OS 启动时，仅看到“启动分配的初始内存”（如你配置的是初始 1 GB）；</p>
+</li>
+<li><p>Hyper-V 会在后台 透明增加内存页，但 Guest OS 并不直接更新 total memory 的数字。</p>
+</li>
+<li><p>➤ 换句话说：<br>Hyper-V 分配了更多内存，但 Linux 默认并不更新 &#x2F;proc&#x2F;meminfo 或 htop 显示的 总内存值，因为：</p>
+<ul>
+<li>Linux 只认启动时的 e820 BIOS 内存映射；</li>
+<li>热添加内存后，Linux 内核默认不刷新 total RAM（除非支持 memory hotplug 并启用 memhp_default_state&#x3D;online）。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>为什么 htop 显示只有 893 MB？<br>这是启动时初始内存（可能略低于 1G），并未反映 Hyper-V 后续增加的内存。</li>
+</ol>
+<h2 id="三、如何验证是否真的内存增加？"><a href="#三、如何验证是否真的内存增加？" class="headerlink" title="三、如何验证是否真的内存增加？"></a>三、如何验证是否真的内存增加？</h2><p>用以下命令确认系统是否收到了 Hyper-V 分配的额外内存：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -r . /sys/devices/system/memory/ | grep state</span><br></pre></td></tr></table></figure>
+
+<p>如果看到 <code>/sys/devices/system/memory/memory*/state</code> 中有 多个 <code>memory block</code>，并且状态是 <code>online</code>，说明内存确实被添加，但可能未被正确统计。</p>
+<h2 id="四、怎么让-Linux-识别这些新内存？"><a href="#四、怎么让-Linux-识别这些新内存？" class="headerlink" title="四、怎么让 Linux 识别这些新内存？"></a>四、怎么让 Linux 识别这些新内存？</h2><p>尝试以下方法让 Linux 正确识别增加的内存：</p>
+<h3 id="方法一：开机参数添加自动上线热插内存"><a href="#方法一：开机参数添加自动上线热插内存" class="headerlink" title="方法一：开机参数添加自动上线热插内存"></a>方法一：开机参数添加自动上线热插内存</h3><p>编辑 <code>/etc/default/grub</code> 配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=<span class="string">&quot;quiet splash memhp_default_state=online&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后更新 grub 并重启：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="built_in">sudo</span> reboot</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二：手动上线热插内存"><a href="#方法二：手动上线热插内存" class="headerlink" title="方法二：手动上线热插内存"></a>方法二：手动上线热插内存</h3><p>在系统运行后，可以执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> block <span class="keyword">in</span> /sys/devices/system/memory/memory*/state; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> online | <span class="built_in">sudo</span> <span class="built_in">tee</span> <span class="variable">$block</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>然后再执行 <code>free -h</code> 或 <code>htop</code> 看是否更新。</p>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>Hyper-V 显示使用了 12 GB，但 Linux 只看到 893 MB Hyper-V 动态分配了更多内存，但 Linux 没自动识别 启用内存热插拔自动上线，或手动上线 memory block</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSH连接Docker中的MySQL</title>
+    <url>/2025/04/23/SSH%E8%BF%9E%E6%8E%A5Docker%E4%B8%AD%E7%9A%84MySQL/</url>
+    <content><![CDATA[<h2 id="🐳💻-SSH-连接-Docker-中的-MySQL-容器-—-速查表"><a href="#🐳💻-SSH-连接-Docker-中的-MySQL-容器-—-速查表" class="headerlink" title="🐳💻 SSH 连接 Docker 中的 MySQL 容器 — 速查表"></a>🐳💻 SSH 连接 Docker 中的 MySQL 容器 — 速查表</h2><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>命令</th>
+<th>是否推荐</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ 一次登录</td>
+<td><code>ssh user@host -t &quot;sudo docker exec -it mysql mysql -uroot -p&quot;</code></td>
+<td>⭐⭐⭐</td>
+<td>成功率高，适合快速连接（注意 <code>-t</code> 位置！）</td>
+</tr>
+<tr>
+<td>✅ 最推荐（稳！）</td>
+<td><code>ssh -t user@host &quot;sudo docker exec -it mysql bash&quot;</code><br>（然后容器内手动 <code>mysql -uroot -p</code>）</td>
+<td>⭐⭐⭐⭐</td>
+<td>稳定、安全、适配性强，适合所有情况</td>
+</tr>
+<tr>
+<td>🚀 快速执行 SQL</td>
+<td><code>ssh user@host &quot;docker exec -i mysql mysql -uroot -p你的密码 -e &#39;SHOW DATABASES;&#39;&quot;</code></td>
+<td>⭐⭐</td>
+<td>自动化脚本、批处理时用；明文密码⚠️</td>
+</tr>
+<tr>
+<td>✅ 正统方法（推荐）</td>
+<td>SSH 隧道 + 本地客户端<br>1. <code>ssh -L 3307:127.0.0.1:3306 user@host</code><br>2. 本地连接 <code>mysql -h 127.0.0.1 -P 3307 -uroot -p</code></td>
+<td>⭐⭐⭐⭐</td>
+<td>安全、稳定、兼容图形工具</td>
+</tr>
+<tr>
+<td>🚫 容易卡死的写法</td>
+<td><code>ssh user@host &quot;docker exec -it mysql mysql -uroot -p&quot;</code></td>
+<td>❌</td>
+<td>没有 <code>-t</code>，会卡住或 stdin 无效</td>
+</tr>
+<tr>
+<td>🚫 明文密码（仅测试）</td>
+<td><code>ssh user@host &quot;docker exec -i mysql mysql -uroot -p你的密码&quot;</code></td>
+<td>❌</td>
+<td>密码暴露在命令行中，危险</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🧠-小贴士"><a href="#🧠-小贴士" class="headerlink" title="🧠 小贴士"></a>🧠 小贴士</h3><ul>
+<li><code>-t</code>：请求伪终端，<strong>必须有才能安全交互</strong></li>
+<li><code>-i</code>：保持标准输入，不然 <code>mysql</code> 接收不到你键盘输入</li>
+<li>多层 SSH &#x2F; 跳板机？可以加 <code>-tt</code> 强制 tty</li>
+</ul>
+<hr>
+<h3 id="🛠-推荐别名（Alias）"><a href="#🛠-推荐别名（Alias）" class="headerlink" title="🛠 推荐别名（Alias）"></a>🛠 推荐别名（Alias）</h3><p>写到 <code>~/.bashrc</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> mysql-remote=<span class="string">&#x27;ssh -t user@host &quot;sudo docker exec -it mysql bash&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>下次只需要：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql-remote</span><br><span class="line"><span class="comment"># 然后容器里 mysql -uroot -p</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>后端</category>
