@@ -142,8 +142,8 @@
 
   <aside id="sidebar" class="mdui-drawer">
     <div class="mdui-tab" mdui-tab>
-        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
-        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
     </div>
 
     
@@ -155,7 +155,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-home"></i>
                     </div>
-                    <div class="mdui-list-item-content">主页</div>
+                    <div class="mdui-list-item-content">Home</div>
                 </a>
             
                 
@@ -163,7 +163,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-bookmark"></i>
                     </div>
-                    <div class="mdui-list-item-content">标签</div>
+                    <div class="mdui-list-item-content">Tags</div>
                 </a>
             
                 
@@ -171,7 +171,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-folder"></i>
                     </div>
-                    <div class="mdui-list-item-content">分类</div>
+                    <div class="mdui-list-item-content">Categories</div>
                 </a>
             
                 
@@ -179,7 +179,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-archive"></i>
                     </div>
-                    <div class="mdui-list-item-content">归档</div>
+                    <div class="mdui-list-item-content">Archives</div>
                 </a>
             
                 
@@ -195,14 +195,14 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-user"></i>
                     </div>
-                    <div class="mdui-list-item-content">关于</div>
+                    <div class="mdui-list-item-content">About</div>
                 </a>
             
             <div class="mdui-list-item mdui-ripple">
                 <div class="mdui-list-item-icon">
                     <i class="iconfont icon-moon"></i>
                 </div>
-                <div class="mdui-list-item-content">夜间模式</div>
+                <div class="mdui-list-item-content">Night Mode</div>
                 <label class="mdui-switch" id="darkmode">
                   <input type="checkbox" id="nightmode_switch"/>
                   <i class="mdui-switch-icon"></i>
@@ -255,7 +255,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-link"></i>
                     </div>
-                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-list-item-content">Links</div>
                     <div class="mdui-collapse-item-arrow">
                         <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
                     </div>
@@ -286,15 +286,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-07-30
+      Posted on:&nbsp;2025-07-30
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-07-30
+      Edited on:&nbsp;2025-07-30
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -334,7 +334,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/07/30/Debian%E5%90%AF%E7%94%A8%E5%86%85%E5%AD%98%E5%8E%8B%E7%BC%A9/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/07/30/Debian%E5%90%AF%E7%94%A8%E5%86%85%E5%AD%98%E5%8E%8B%E7%BC%A9/">Read More</a>
         </div>
       </div>
     </article>
@@ -347,15 +347,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-07-24
+      Posted on:&nbsp;2025-07-24
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-07-24
+      Edited on:&nbsp;2025-08-10
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -381,12 +381,12 @@
             <blockquote>
 <p>在Hyper-V中安装了Debian 10测试K8S，Debian 10重启后都会自动加载 swap 分区，即使已经注释了 <code>/etc/fstab</code> 中swap行，导致K8S启动失败。这是因为 <code>initramfs</code> 内硬编码了 swap 分区信息（设备名或 UUID）</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 找到 swap 分区设备名：</span></span><br><span class="line">swapon --show</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 屏蔽设备 swap unit。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.1 假设输出： /dev/sda2</span></span><br><span class="line">sudo systemctl mask dev-sda2.swap</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2.2 如果名字是 dev-disk-by-uuid-xxxxxx.swap，则 mask 那个 unit：</span></span><br><span class="line">sudo systemctl mask &quot;dev-disk-by-uuid-&lt;your-uuid&gt;.swap&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 重新构建 initramfs</span></span><br><span class="line">sudo update-initramfs -u</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4. 重启验证</span></span><br><span class="line">sudo reboot</span><br><span class="line">swapon --show</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 找到 swap 分区设备名：</span></span><br><span class="line">swapon --show</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 禁用自动挂载</span></span><br><span class="line">sudo sed -i &#x27;/ swap / s/^/#/&#x27; /etc/fstab</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 屏蔽设备 swap unit。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.1 假设输出： /dev/sda2</span></span><br><span class="line">sudo systemctl mask dev-sda2.swap</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.2 如果名字是 dev-disk-by-uuid-xxxxxx.swap，则 mask 那个 unit：</span></span><br><span class="line">sudo systemctl mask &quot;dev-disk-by-uuid-&lt;your-uuid&gt;.swap&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4. 重新构建 initramfs</span></span><br><span class="line">sudo update-initramfs -u</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5. 重启验证</span></span><br><span class="line">sudo reboot</span><br><span class="line">swapon --show</span><br></pre></td></tr></table></figure>
           
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/07/24/%E5%9C%A8Hyper-V%E5%AE%89%E8%A3%85%E7%9A%84Debian10%E7%A6%81%E7%94%A8swap/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/07/24/%E5%9C%A8Hyper-V%E5%AE%89%E8%A3%85%E7%9A%84Debian10%E7%A6%81%E7%94%A8swap/">Read More</a>
         </div>
       </div>
     </article>
@@ -399,15 +399,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-07-23
+      Posted on:&nbsp;2025-07-23
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-07-23
+      Edited on:&nbsp;2025-07-23
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -437,7 +437,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/07/23/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%8D%A0%E7%94%A8CPU%E7%9A%84Java%E7%BA%BF%E7%A8%8B/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/07/23/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%8D%A0%E7%94%A8CPU%E7%9A%84Java%E7%BA%BF%E7%A8%8B/">Read More</a>
         </div>
       </div>
     </article>
@@ -450,15 +450,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-04-23
+      Posted on:&nbsp;2025-04-23
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-04-23
+      Edited on:&nbsp;2025-04-23
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -495,7 +495,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/04/23/SSH%E8%BF%9E%E6%8E%A5Docker%E4%B8%AD%E7%9A%84MySQL/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/04/23/SSH%E8%BF%9E%E6%8E%A5Docker%E4%B8%AD%E7%9A%84MySQL/">Read More</a>
         </div>
       </div>
     </article>
@@ -508,15 +508,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-04-19
+      Posted on:&nbsp;2025-04-19
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-04-19
+      Edited on:&nbsp;2025-04-19
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -549,7 +549,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/04/19/Hyper-V%E7%AE%A1%E7%90%86%E5%99%A8%E6%98%BE%E7%A4%BA%E7%9A%84%E5%86%85%E5%AD%98%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9F%A5%E7%9C%8B%E7%9A%84%E5%86%85%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/04/19/Hyper-V%E7%AE%A1%E7%90%86%E5%99%A8%E6%98%BE%E7%A4%BA%E7%9A%84%E5%86%85%E5%AD%98%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%9F%A5%E7%9C%8B%E7%9A%84%E5%86%85%E5%AD%98%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98/">Read More</a>
         </div>
       </div>
     </article>
@@ -562,15 +562,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-03-29
+      Posted on:&nbsp;2025-03-29
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-03-29
+      Edited on:&nbsp;2025-03-29
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -600,7 +600,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/29/Java9%E5%90%8E%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E7%9A%84Jar%E8%B7%AF%E5%BE%84/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/29/Java9%E5%90%8E%E8%8E%B7%E5%8F%96%E5%8A%A0%E8%BD%BD%E7%9A%84Jar%E8%B7%AF%E5%BE%84/">Read More</a>
         </div>
       </div>
     </article>
@@ -613,15 +613,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-03-28
+      Posted on:&nbsp;2025-03-28
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-03-28
+      Edited on:&nbsp;2025-03-28
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -650,7 +650,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/28/Eclipse%E7%B3%BB%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AEJavaHome/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/28/Eclipse%E7%B3%BB%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AEJavaHome/">Read More</a>
         </div>
       </div>
     </article>
@@ -663,15 +663,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-03-16
+      Posted on:&nbsp;2025-03-16
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-08-02
+      Edited on:&nbsp;2025-08-02
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -700,7 +700,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/16/%E4%BD%BF%E7%94%A8SSH%E7%99%BB%E9%99%86git%E6%9C%8D%E5%8A%A1%E5%99%A8/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/16/%E4%BD%BF%E7%94%A8SSH%E7%99%BB%E9%99%86git%E6%9C%8D%E5%8A%A1%E5%99%A8/">Read More</a>
         </div>
       </div>
     </article>
@@ -713,15 +713,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-03-15
+      Posted on:&nbsp;2025-03-15
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-03-15
+      Edited on:&nbsp;2025-03-15
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -751,7 +751,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/15/Java%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/15/Java%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E6%96%B9%E6%B3%95%E5%90%8D%E7%A7%B0/">Read More</a>
         </div>
       </div>
     </article>
@@ -764,15 +764,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2025-03-15
+      Posted on:&nbsp;2025-03-15
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-03-15
+      Edited on:&nbsp;2025-03-15
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -803,7 +803,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/15/%E5%A4%9A%E7%89%88%E6%9C%ACJar/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2025/03/15/%E5%A4%9A%E7%89%88%E6%9C%ACJar/">Read More</a>
         </div>
       </div>
     </article>
@@ -833,10 +833,10 @@
     <div class="mdui-row">
       
         <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
         </div>
         <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
         </div>
       
     </div>
