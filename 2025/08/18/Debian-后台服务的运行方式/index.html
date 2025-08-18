@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Debian 后台服务的运行方式 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/">Debian 后台服务的运行方式</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2025-08-18
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2025-08-18
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Debian 后台服务的运行方式&url=https://frankclr.github.io/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/&pic=https://frankclr.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Debian 后台服务的运行方式&url=https://frankclr.github.io/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/&via=Frank" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankclr.github.io/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankclr.github.io/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankclr.github.io/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/&title=Debian 后台服务的运行方式" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=Debian 后台服务的运行方式&summary=&pics=https://frankclr.github.io/null&url=https://frankclr.github.io/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankclr.github.io/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/&text=Debian 后台服务的运行方式" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>在 Debian 里，一个服务可能由不同的方式运行，不是所有服务都一定挂在 systemd 下。</p>
+<h2 id="判断是否以-systemd-管理"><a href="#判断是否以-systemd-管理" class="headerlink" title="判断是否以 systemd 管理"></a>判断是否以 systemd 管理</h2><h3 id="systemctl-查询"><a href="#systemctl-查询" class="headerlink" title="systemctl 查询"></a>systemctl 查询</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status &lt;service-name&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果有输出并显示 <code>Loaded</code>、<code>Active</code> 等信息，就说明该服务是 systemd 管理的。</li>
+<li>如果提示 <code>Unit not found</code>，可能不是 <code>systemd</code> 管理的（或者服务名不对）。</li>
+</ul>
+<h3 id="ps-查看进程树"><a href="#ps-查看进程树" class="headerlink" title="ps 查看进程树"></a>ps 查看进程树</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -o pid,ppid,cmd -p $(pidof &lt;进程名&gt;)</span><br></pre></td></tr></table></figure>
+
+<p>看 PPID（父进程 ID）是不是 systemd (PID 1)</p>
+<ul>
+<li>如果是，那它是 systemd 启动的。例：sshd 的 PPID&#x3D;1 → systemd 管理;</li>
+<li>如果 PPID 是 init.d 脚本或 shell，那就是其它方式。</li>
+</ul>
+<h3 id="journalctl-日志"><a href="#journalctl-日志" class="headerlink" title="journalctl 日志"></a>journalctl 日志</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl -u &lt;服务名&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>能查到日志 → systemd 管理。</li>
+<li>查不到 → 可能不是。</li>
+</ul>
+<h2 id="Debian-上的服务运行方式"><a href="#Debian-上的服务运行方式" class="headerlink" title="Debian 上的服务运行方式"></a>Debian 上的服务运行方式</h2><ol>
+<li><p><code>systemd</code></p>
+</li>
+<li><p>System V init 脚本 (<code>/etc/init.d/</code>)<br>传统方式，Debian 早期一直用这个。<br>启动方法：<br><code>/etc/init.d/&lt;服务名&gt; start|stop|restart|status</code><br>现在 <code>systemd</code> 会兼容执行这些脚本，但不是原生 <code>systemd unit</code>。</p>
+</li>
+<li><p>Supervisor、PM2 等进程管理器<br> 用来守护某些应用（特别是 Python、Node.js、Go 写的服务）。<br> 常用命令：</p>
+<ul>
+<li><code>supervisorctl status</code></li>
+<li><code>pm2 list</code></li>
+</ul>
+</li>
+<li><p>直接 <code>nohup</code>&#x2F;<code>screen</code>&#x2F;<code>tmux</code> 起的后台进程<br>没有统一的管理，自己用 ps -ef | grep xxx 找。<br>常见：</p>
+<ul>
+<li><code>nohup ./app &amp;</code></li>
+<li><code>disown</code></li>
+</ul>
+</li>
+<li><p><code>cron</code> 启动的定时任务<br>在 <code>/etc/cron.*</code> 或 <code>crontab -e</code> 里。<br>适合周期性执行的任务，不是真正的“服务”。</p>
+</li>
+<li><p><code>docker</code> &#x2F; <code>containerd</code> 里运行的服务<br>容器化场景下，服务不归系统 <code>init</code> 管理，而是容器 <code>runtime</code> 管理。<br>查方法：</p>
+<ul>
+<li><code>docker ps</code></li>
+<li><code>sudo ctr containers list</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ul>
+<li>系统级服务（nginx、sshd、mysql） → 用 <code>systemd</code> 管理。</li>
+<li>应用级守护进程（自写脚本、Python&#x2F;Node app） → 建议写成 <code>systemd unit</code>，别用 <code>nohup</code> 乱放后台，方便统一管理和日志收集。</li>
+</ul>
+<p><code>systemd unit</code> 示例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/systemd/system/myapp.service</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">刷新 systemd</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动</span></span><br><span class="line">sudo systemctl start myapp</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止</span></span><br><span class="line">sudo systemctl stop myapp</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看状态</span></span><br><span class="line">systemctl status myapp</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开机自启</span></span><br><span class="line">sudo systemctl enable myapp</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看日志</span></span><br><span class="line">journalctl -u myapp -f</span><br></pre></td></tr></table></figure>
+
+<p><code>myapp.service</code> 内容</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=My Custom App Service</span><br><span class="line"><span class="attr">After</span>=network.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="comment"># 运行脚本</span></span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/myapp.sh</span><br><span class="line"><span class="comment"># 工作目录（可选）</span></span><br><span class="line"><span class="attr">WorkingDirectory</span>=/usr/local/bin</span><br><span class="line"><span class="comment"># 挂掉时自动重启</span></span><br><span class="line"><span class="attr">Restart</span>=always</span><br><span class="line"><span class="comment"># 日志输出到 journald</span></span><br><span class="line"><span class="attr">StandardOutput</span>=journal</span><br><span class="line"><span class="attr">StandardError</span>=journal</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果脚本需要 环境变量，非必须</span></span><br><span class="line"><span class="attr">Environment</span>=<span class="string">&quot;JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要用 非 root 用户运行</span></span><br><span class="line"><span class="attr">User</span>=debian</span><br><span class="line"><span class="attr">Group</span>=debian</span><br></pre></td></tr></table></figure>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2025/08/18/ZooKeeper%E4%BD%BF%E7%94%A8/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>ZooKeeper使用</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2025/08/15/Git%E5%90%88%E5%B9%B6%E6%9C%80%E8%BF%91%E5%A4%9A%E4%B8%AA%E6%8F%90%E4%BA%A4/">
+        <span>Git合并最近多个提交</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%BB%A5-systemd-%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">判断是否以 systemd 管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#systemctl-%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.1.</span> <span class="toc-text">systemctl 查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ps-%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E6%A0%91"><span class="toc-number">1.2.</span> <span class="toc-text">ps 查看进程树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#journalctl-%E6%97%A5%E5%BF%97"><span class="toc-number">1.3.</span> <span class="toc-text">journalctl 日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debian-%E4%B8%8A%E7%9A%84%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">Debian 上的服务运行方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="toc-number">3.</span> <span class="toc-text">最佳实践</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

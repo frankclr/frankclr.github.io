@@ -142,8 +142,8 @@
 
   <aside id="sidebar" class="mdui-drawer">
     <div class="mdui-tab" mdui-tab>
-        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
-        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
     </div>
 
     
@@ -155,7 +155,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-home"></i>
                     </div>
-                    <div class="mdui-list-item-content">Home</div>
+                    <div class="mdui-list-item-content">主页</div>
                 </a>
             
                 
@@ -163,7 +163,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-bookmark"></i>
                     </div>
-                    <div class="mdui-list-item-content">Tags</div>
+                    <div class="mdui-list-item-content">标签</div>
                 </a>
             
                 
@@ -171,7 +171,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-folder"></i>
                     </div>
-                    <div class="mdui-list-item-content">Categories</div>
+                    <div class="mdui-list-item-content">分类</div>
                 </a>
             
                 
@@ -179,7 +179,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-archive"></i>
                     </div>
-                    <div class="mdui-list-item-content">Archives</div>
+                    <div class="mdui-list-item-content">归档</div>
                 </a>
             
                 
@@ -195,14 +195,14 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-user"></i>
                     </div>
-                    <div class="mdui-list-item-content">About</div>
+                    <div class="mdui-list-item-content">关于</div>
                 </a>
             
             <div class="mdui-list-item mdui-ripple">
                 <div class="mdui-list-item-icon">
                     <i class="iconfont icon-moon"></i>
                 </div>
-                <div class="mdui-list-item-content">Night Mode</div>
+                <div class="mdui-list-item-content">夜间模式</div>
                 <label class="mdui-switch" id="darkmode">
                   <input type="checkbox" id="nightmode_switch"/>
                   <i class="mdui-switch-icon"></i>
@@ -255,7 +255,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-link"></i>
                     </div>
-                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-list-item-content">友情链接</div>
                     <div class="mdui-collapse-item-arrow">
                         <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
                     </div>
@@ -282,19 +282,117 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/Unicode%E4%B8%AD%E6%96%87%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%B1%89%E5%AD%97/">Unicode中文转换为汉字</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Unicode转 汉字字符串</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> str \u6728</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#x27;木&#x27; 26408</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">convertUnicodeToZhString</span><span class="params">(String str)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">Pattern</span> <span class="variable">pattern</span> <span class="operator">=</span> Pattern.compile(<span class="string">&quot;(\\\\u(\\p&#123;XDigit&#125;&#123;4&#125;))&quot;</span>);</span><br><span class="line">    <span class="type">Matcher</span> <span class="variable">matcher</span> <span class="operator">=</span> pattern.matcher(str);</span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    <span class="keyword">while</span> (matcher.find()) &#123;</span><br><span class="line">        <span class="comment">//group 6728</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">group</span> <span class="operator">=</span> matcher.group(<span class="number">2</span>);</span><br><span class="line">        <span class="comment">//ch:&#x27;木&#x27; 26408</span></span><br><span class="line">        ch = (<span class="type">char</span>) Integer.parseInt(group, <span class="number">16</span>);</span><br><span class="line">        <span class="comment">//group1 \u6728</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">group1</span> <span class="operator">=</span> matcher.group(<span class="number">1</span>);</span><br><span class="line">        str = str.replace(group1, ch + <span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Unicode%E4%B8%AD%E6%96%87%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%B1%89%E5%AD%97/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/return%E8%AF%AD%E5%8F%A5%E4%B8%8D%E5%BD%B1%E5%93%8Dusing%E9%87%8A%E6%94%BE%E5%AF%B9%E8%B1%A1/">return语句不影响using释放对象</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">using</span> (A a = <span class="keyword">new</span> A())</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;主程序开始执行。&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">            <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;</span></span><br><span class="line">            Console.WriteLine(<span class="string">&quot;using内&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//VS提示&quot;检测到无法访问的代码&quot;,以下语句都不会执行 ???</span></span><br><span class="line">        Console.WriteLine(<span class="string">&quot;using外&quot;</span>);</span><br><span class="line">        Console.ReadLine();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">A</span> : <span class="title">IDisposable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Dispose</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">&quot;执行了Dispose方法。&quot;</span>);</span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/return%E8%AF%AD%E5%8F%A5%E4%B8%8D%E5%BD%B1%E5%93%8Dusing%E9%87%8A%E6%94%BE%E5%AF%B9%E8%B1%A1/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">VisualStudio常用快捷键</a>
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
+      发布于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
+      更新于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -325,7 +423,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">Read More</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/VisualStudio%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">阅读更多</a>
         </div>
       </div>
     </article>
@@ -338,15 +436,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
+      发布于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-08-12
+      更新于:&nbsp;2025-08-12
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -374,7 +472,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/VSCode%E8%AE%BE%E7%BD%AE/">Read More</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/VSCode%E8%AE%BE%E7%BD%AE/">阅读更多</a>
         </div>
       </div>
     </article>
@@ -387,15 +485,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
+      发布于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
+      更新于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -424,7 +522,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E6%96%87%E4%BB%B6%E5%90%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99/">Read More</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E6%96%87%E4%BB%B6%E5%90%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99/">阅读更多</a>
         </div>
       </div>
     </article>
@@ -437,15 +535,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
+      发布于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
+      更新于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -479,7 +577,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/WSL%E4%BD%BF%E7%94%A8/">Read More</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/WSL%E4%BD%BF%E7%94%A8/">阅读更多</a>
         </div>
       </div>
     </article>
@@ -492,15 +590,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
+      发布于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-08-12
+      更新于:&nbsp;2025-08-12
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -532,7 +630,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E/">Read More</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E/">阅读更多</a>
         </div>
       </div>
     </article>
@@ -545,15 +643,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
+      发布于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-08-04
+      更新于:&nbsp;2024-08-04
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -581,7 +679,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E5%88%A0%E4%B8%8D%E6%8E%89%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/">Read More</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E5%88%A0%E4%B8%8D%E6%8E%89%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/">阅读更多</a>
         </div>
       </div>
     </article>
@@ -594,15 +692,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
+      发布于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
+      更新于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -662,7 +760,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89/">Read More</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89/">阅读更多</a>
         </div>
       </div>
     </article>
@@ -675,15 +773,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
+      发布于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
+      更新于:&nbsp;2024-07-31
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -712,109 +810,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%83%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">JavaScript之七错误处理</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <br />
-  
-<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a href="https://www.liaoxuefeng.com/wiki/102291082114931...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/JavaScript%E4%B9%8B%E4%B8%83%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/">Read More</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/JavaScript%E4%B9%8B%E5%85%ADjQuery/">JavaScript之六jQuery</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      Posted on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      In:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/JavaScript/ >JavaScript</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <br />
-  
-<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a href="https://www.liaoxuefeng.com/wiki/102291082114931...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/JavaScript%E4%B9%8B%E5%85%ADjQuery/">Read More</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/">阅读更多</a>
         </div>
       </div>
     </article>
@@ -844,10 +840,10 @@
     <div class="mdui-row">
       
         <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
         </div>
         <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
         </div>
       
     </div>
