@@ -364,13 +364,12 @@
 </tr>
 </tbody></table>
 <p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/security/threat-protection/windows-defender-antivirus/configure-remediation-windows-defender-antivirus">Windows Defender</a></p>
-<h2 id="组策略配置"><a href="#组策略配置" class="headerlink" title="组策略配置"></a>组策略配置</h2><h3 id="更新管理"><a href="#更新管理" class="headerlink" title="更新管理"></a>更新管理</h3><p>禁用驱动更新</p>
-<ol>
+<h2 id="组策略配置"><a href="#组策略配置" class="headerlink" title="组策略配置"></a>组策略配置</h2><h3 id="更新管理"><a href="#更新管理" class="headerlink" title="更新管理"></a>更新管理</h3><ol>
 <li>运行<code>gpedit.msc</code></li>
 <li><code>计算机配置</code>——》<code>管理模板</code>——》<code>Windows组件</code>——》<code>Windows更新</code>——》<code>管理从Windows 更新提供的更新</code><ol>
-<li>——》<code>Windows更新不包括驱动程序</code>——》<code>已启用</code></li>
-<li>——》<code>选择何时接收质量更新</code>——》<code>已启用</code> ——》<code>延期天数：30</code></li>
-<li>——》<code>选择何时接收预览版和功能更新</code>——》<code>已启用</code> ——》<code>延期天数：30</code></li>
+<li>——》<code>Windows更新不包括驱动程序</code>——》<code>已启用</code>  【禁用驱动更新】</li>
+<li>——》<code>选择何时接收质量更新</code>——》<code>已启用</code> ——》<code>延期天数：30</code> 【避免更新Bug】</li>
+<li>——》<code>选择何时接收预览版和功能更新</code>——》<code>已启用</code> ——》<code>延期天数：30</code> 【避免更新Bug】</li>
 </ol>
 </li>
 </ol>
