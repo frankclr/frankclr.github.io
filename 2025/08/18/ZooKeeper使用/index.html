@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2025-08-18
+      Edited on:&nbsp;2025-08-21
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -329,7 +329,7 @@
 <li>文件系统的树形结构便于为不同的应用分配独立的命名空间（namespace）。</li>
 </ol>
 <p>ZooKeeper 的层次模型称作 data tree。Data tree 的每个节点叫做 znode。不同于文件系统，每个节点都可以保存数据。每个节点都有一个版本(version)，版本从 0 开始计数。</p>
-<p><img src="/./ZooKeeper%E4%BD%BF%E7%94%A8/20250818222724197.png" alt="ZooKeeper 的数据模型"></p>
+<p><img src="/2025/08/18/ZooKeeper%E4%BD%BF%E7%94%A8/20250818222724197.png" alt="ZooKeeper 的数据模型"></p>
 <p>如上图所示的 data tree 中有两个子树，一个用于应用 1（&#x2F;app1）和另一个用于应用 2（&#x2F;app2）。</p>
 <p>应用 1 的子树实现了一个简单的组成员协议：每个客户端进程 pi 创建一个 znode p_i 在 &#x2F;app1 下，只要 &#x2F;app1&#x2F;p_i 存在就代表进程 pi 在正常运行。</p>
 <h3 id="data-tree-接口"><a href="#data-tree-接口" class="headerlink" title="data tree 接口"></a>data tree 接口</h3><p>ZooKeeper 对外提供一个用来访问 data tree的简化文件系统 API：</p>
