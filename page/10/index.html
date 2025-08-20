@@ -282,6 +282,107 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/Swagger%E6%98%BE%E7%A4%BA%E9%BB%98%E8%AE%A4%E5%80%BC/">Swagger显示默认值</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/C/ >C#</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <ol>
+<li>增加<code>SchemaFilter.cs</code></li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SchemaFilter</span> : <span class="title">ISchemaFilter</span></span><br><span class="line">  &#123;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Apply</span>(<span class="params">Schema schema, SchemaFilterContext context</span>)</span></span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">if</span> (schema.Properties == <span class="literal">null</span>)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">foreach</span> (PropertyInfo propertyInfo <span class="keyword">in</span> context.SystemType.GetProperties())</span><br><span class="line">          &#123;</span><br><span class="line"></span><br><span class="line">              <span class="comment">// Look for class attributes that have been decorated with &quot;[DefaultAttribute(...)]&quot;.</span></span><br><span class="line">              DefaultValueAttribute defaultAttribute = propertyInfo.GetCustomAttribute&lt;DefaultValueAttribute&gt;();</span><br><span class="line"></span><br><span class="line">              <span class="keyword">if</span> (defaultAttribute != <span class="literal">null</span>)</span><br><span class="line">              &#123;</span><br><span class="line">                  <span class="keyword">foreach</span> (KeyValuePair&lt;<span class="built_in">string</span>, Schema&gt; property <span class="keyword">in</span> schema.Properties)</span><br><span class="line">                  &#123;</span><br><span class="line"></span><br><span class="line">                      <span class="comment">// Only assign default value to the proper element.</span></span><br><span class="line">                      <span class="keyword">if</span> (propertyInfo.Name.ToLower() == property.Key.Replace(<span class="string">&quot;_&quot;</span>, <span class="string">&quot;&quot;</span>).ToLower())</span><br><span class="line">                      &#123;</span><br><span class="line">                          property.Value.Example = defaultAttribute.Value;</span><br><span class="line">                          <span class="keyword">break</span>;</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Swagger%E6%98%BE%E7%A4%BA%E9%BB%98%E8%AE%A4%E5%80%BC/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/07/31/ThinkPadNEO14%E5%90%88%E7%9B%96%E5%90%8E%E9%A3%8E%E6%89%87%E4%BB%8D%E7%84%B6%E9%AB%98%E9%80%9F%E8%BD%AC%E5%8A%A8/">ThinkPadNEO14合盖后风扇仍然高速转动</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2024-07-31
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E7%A1%AC%E4%BB%B6/">硬件</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Windows/ >Windows</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <p><code>控制面板</code>——》<code>系统和安全</code>——》<code>电源选项</code>——》<code>选择电源按钮的功能</code>——》<code>更改当前不可用的设置</code>——》取消勾选<code>启用快速启动（推荐）</code>——》<code>保存修改</code></p>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/ThinkPadNEO14%E5%90%88%E7%9B%96%E5%90%8E%E9%A3%8E%E6%89%87%E4%BB%8D%E7%84%B6%E9%AB%98%E9%80%9F%E8%BD%AC%E5%8A%A8/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/07/31/Ubuntu%E4%BD%BF%E7%94%A8/">Ubuntu使用</a>
   <div class="post-header-meta">
     <span>
@@ -588,7 +689,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-08-12
+      更新于:&nbsp;2025-08-20
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -674,137 +775,6 @@
         
         <div style="text-align:center;">
           <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E5%88%A0%E4%B8%8D%E6%8E%89%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/">阅读更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/Windows%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89/">Windows注册表参数含义</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Windows/ >Windows</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <table>
-<thead>
-<tr>
-<th>参数</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>%1</td>
-<td>文件路径</td>
-</tr>
-<tr>
-<td>%2</td>
-<td>系统默认的打印机</td>
-</tr>
-<tr>
-<td>%3</td>
-<td>文件扇区</td>
-</tr>
-<tr>
-<td>%4</td>
-<td>端口</td>
-</tr>
-<tr>
-<td>%D</td>
-<td>文件路径</td>
-</tr>
-<tr>
-<td>%L</td>
-<td>文件长路径</td>
-</tr>
-<tr>
-...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/Windows%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8F%82%E6%95%B0%E5%90%AB%E4%B9%89/">阅读更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/">SQLServer WMI错误</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-07-31
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/SQL-Server/ >SQL Server</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>以管理员身份在CMD中运行以下命令即可。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mofcomp <span class="string">&quot;sqlmgmprovider.mof&quot;</span></span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/07/31/SQLServer-WMI%E9%94%99%E8%AF%AF/">阅读更多</a>
         </div>
       </div>
     </article>
