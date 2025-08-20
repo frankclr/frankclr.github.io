@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>IDEA运行同样代码多次后挂起</title>
-    <url>/2025/02/22/IDEA%E8%BF%90%E8%A1%8C%E5%90%8C%E6%A0%B7%E4%BB%A3%E7%A0%81%E5%A4%9A%E6%AC%A1%E5%90%8E%E6%8C%82%E8%B5%B7/</url>
-    <content><![CDATA[<p>IDEA 在运行同样的代码多次(11-20次)后，<code>运行</code> 按钮一直挂起, 可以设置 <code>Main Menu</code> –&gt; <code>Help</code> –&gt; <code>Find Action</code>(快捷键<code>Ctrl + Shift + A</code>) –&gt; <code>输入 &quot;Registry...&quot;</code> –&gt; <code>禁用&quot;profiler.widget.in.run.console&quot;</code></p>
-<p><a href="https://youtrack.jetbrains.com/issue/IDEA-363384/IDE-hangs-after-running-same-Java-code-several-times-Run-button-shows-a-spinner-forever">IDE hangs after running same Java code several times; Run button shows a spinner forever</a></p>
+    <title>LMDE安装xrdp</title>
+    <url>/2025/02/19/LMDE%E5%AE%89%E8%A3%85xrdp/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install xrdp xorgxrdp -y</span><br><span class="line">echo env -u SESSION_MANAGER -u DBUS_SESSION_BUS_ADDRESS cinnamon-session&gt;~/.xsession</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -74,9 +73,10 @@
       </tags>
   </entry>
   <entry>
-    <title>LMDE安装xrdp</title>
-    <url>/2025/02/19/LMDE%E5%AE%89%E8%A3%85xrdp/</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install xrdp xorgxrdp -y</span><br><span class="line">echo env -u SESSION_MANAGER -u DBUS_SESSION_BUS_ADDRESS cinnamon-session&gt;~/.xsession</span><br></pre></td></tr></table></figure>
+    <title>IDEA运行同样代码多次后挂起</title>
+    <url>/2025/02/22/IDEA%E8%BF%90%E8%A1%8C%E5%90%8C%E6%A0%B7%E4%BB%A3%E7%A0%81%E5%A4%9A%E6%AC%A1%E5%90%8E%E6%8C%82%E8%B5%B7/</url>
+    <content><![CDATA[<p>IDEA 在运行同样的代码多次(11-20次)后，<code>运行</code> 按钮一直挂起, 可以设置 <code>Main Menu</code> –&gt; <code>Help</code> –&gt; <code>Find Action</code>(快捷键<code>Ctrl + Shift + A</code>) –&gt; <code>输入 &quot;Registry...&quot;</code> –&gt; <code>禁用&quot;profiler.widget.in.run.console&quot;</code></p>
+<p><a href="https://youtrack.jetbrains.com/issue/IDEA-363384/IDE-hangs-after-running-same-Java-code-several-times-Run-button-shows-a-spinner-forever">IDE hangs after running same Java code several times; Run button shows a spinner forever</a></p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -682,6 +682,102 @@
       </tags>
   </entry>
   <entry>
+    <title>Debian启用内存压缩</title>
+    <url>/2025/07/30/Debian%E5%90%AF%E7%94%A8%E5%86%85%E5%AD%98%E5%8E%8B%E7%BC%A9/</url>
+    <content><![CDATA[<h2 id="zswap-和-zram-的作用"><a href="#zswap-和-zram-的作用" class="headerlink" title="zswap 和 zram 的作用"></a>zswap 和 zram 的作用</h2><h3 id="zswap"><a href="#zswap" class="headerlink" title="zswap"></a>zswap</h3><p>作用：zswap 是 Linux 内核的一个功能，用于压缩交换页面（swap pages）以减少 I&#x2F;O 操作<br>工作原理：在将页面写入磁盘交换空间之前，先在内存中对其进行压缩<br>优势：</p>
+<ul>
+<li>减少交换 I&#x2F;O，提高系统性能</li>
+<li>降低磁盘磨损（特别是 SSD）</li>
+<li>更高效地利用内存资源</li>
+</ul>
+<h3 id="zram"><a href="#zram" class="headerlink" title="zram"></a>zram</h3><p>作用：zram 是一个虚拟的块设备，它将内存的一部分用作压缩块设备<br>工作原理：创建一个压缩的内存块设备，可以作为交换空间或临时存储使用<br>特点：</p>
+<ul>
+<li>无需物理存储设备</li>
+<li>数据在内存中压缩存储</li>
+<li>常用于内存受限的系统（如嵌入式设备、Chrome OS 等）</li>
+</ul>
+<h3 id="两者关系"><a href="#两者关系" class="headerlink" title="两者关系"></a>两者关系</h3><p>zram 可以与 zswap 配合使用，提供更高效的内存管理方案<br>在某些场景下，zram 可以作为 zswap 的后端存储<br>都旨在通过压缩技术优化内存使用和系统性能</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="临时启用"><a href="#临时启用" class="headerlink" title="临时启用"></a>临时启用</h3><ol>
+<li><p>启用 zswap</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 临时启用 zswap（重启后失效）</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/module/zswap/parameters/enabled</span><br><span class="line"></span><br><span class="line"><span class="comment"># 永久启用 zswap，编辑 GRUB 配置</span></span><br><span class="line"><span class="built_in">sudo</span> vi /etc/default/grub</span><br><span class="line"><span class="comment"># 在 GRUB_CMDLINE_LINUX 行添加 zswap.enabled=1</span></span><br><span class="line"><span class="comment"># 例如：GRUB_CMDLINE_LINUX=&quot;... zswap.enabled=1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新 GRUB 配置</span></span><br><span class="line"><span class="built_in">sudo</span> update-grub</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 zswap 参数（可选）</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置压缩算法（默认通常是 lz4）</span></span><br><span class="line"><span class="built_in">echo</span> lz4 &gt; /sys/module/zswap/parameters/compressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置内存池最大占用比例（默认 20%）</span></span><br><span class="line"><span class="built_in">echo</span> 25 &gt; /sys/module/zswap/parameters/max_pool_percent</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 zram 设备</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 加载 zram 内核模块</span></span><br><span class="line"><span class="built_in">sudo</span> modprobe zram</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 zram 设备（例如创建一个 1GB 的设备）</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/class/zram-control/hot_add</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 zram 设备参数</span></span><br><span class="line"><span class="built_in">echo</span> 1G &gt; /sys/block/zram0/disksize</span><br><span class="line"><span class="built_in">echo</span> lz4 &gt; /sys/block/zram0/comp_algorithm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将 zram 用作交换空间</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 格式化 zram 为交换空间</span></span><br><span class="line"><span class="built_in">sudo</span> mkswap /dev/zram0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用交换空间</span></span><br><span class="line"><span class="built_in">sudo</span> swapon /dev/zram0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看交换空间状态</span></span><br><span class="line">swapon --show</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="永久配置"><a href="#永久配置" class="headerlink" title="永久配置"></a>永久配置</h3><h4 id="方法一：使用-systemd-配置"><a href="#方法一：使用-systemd-配置" class="headerlink" title="方法一：使用 systemd 配置"></a>方法一：使用 systemd 配置</h4><ol>
+<li><p>创建 zram 配置服务：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建配置脚本</span></span><br><span class="line"><span class="built_in">sudo</span> vi /usr/local/bin/setup-zram.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>set-up-zram.sh 内容：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">modprobe zram</span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/class/zram-control/hot_add</span><br><span class="line"><span class="built_in">echo</span> 1G &gt; /sys/block/zram0/disksize</span><br><span class="line"><span class="built_in">echo</span> lz4 &gt; /sys/block/zram0/comp_algorithm</span><br><span class="line">mkswap /dev/zram0</span><br><span class="line">swapon /dev/zram0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 给脚本添加执行权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/setup-zram.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 systemd 服务</span></span><br><span class="line"><span class="built_in">sudo</span> vi /etc/systemd/system/zram.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>zram.service 内容：</p>
+ <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Setup ZRAM</span><br><span class="line"><span class="attr">After</span>=multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=<span class="literal">on</span>eshot</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/setup-zram.sh</span><br><span class="line"><span class="attr">RemainAfterExit</span>=<span class="literal">yes</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启用服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> zram.service</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="方法二：使用-zram-tools-包"><a href="#方法二：使用-zram-tools-包" class="headerlink" title="方法二：使用 zram-tools 包"></a>方法二：使用 zram-tools 包</h4><ol>
+<li><p>安装 zram-tools 包</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 zram-tools</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install zram-tools</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 zram-tools</span></span><br><span class="line"><span class="built_in">sudo</span> vi /etc/default/zramswap</span><br></pre></td></tr></table></figure>
+
+<p> 在配置文件中设置参数：</p>
+ <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">ALGO</span>=lz4</span><br><span class="line"><span class="comment"># DEVICE_SIZE=1G</span></span><br><span class="line"><span class="attr">PERCENT</span>=<span class="number">50</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启用并启动 zramswap 服务</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> zramswap</span><br><span class="line"><span class="built_in">sudo</span> systemctl start zramswap</span><br><span class="line"><span class="comment"># 查看交换空间，包括优先级</span></span><br><span class="line"><span class="built_in">cat</span> /proc/swaps</span><br><span class="line"><span class="comment"># 查看 zram-tools 包安装了哪些服务</span></span><br><span class="line">dpkg -L zram-tools | grep systemd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者查找系统中所有与 zram 相关的服务</span></span><br><span class="line">systemctl list-unit-files | grep zram</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查 zswap 状态</span></span><br><span class="line"><span class="built_in">cat</span> /sys/module/zswap/parameters/enabled</span><br><span class="line"><span class="built_in">cat</span> /sys/module/zswap/parameters/compressor</span><br><span class="line"><span class="built_in">cat</span> /sys/module/zswap/parameters/max_pool_percen</span><br><span class="line"><span class="comment"># 检查 zram 状态</span></span><br><span class="line"><span class="built_in">cat</span> /sys/block/zram0/disksize</span><br><span class="line"><span class="built_in">cat</span> /sys/block/zram0/comp_algorith</span><br><span class="line"><span class="comment"># 查看内存和交换使用情况</span></span><br><span class="line">free -h</span><br><span class="line">swapon --sho</span><br><span class="line"><span class="comment"># 查看 zswap 统计信息</span></span><br><span class="line">grep -R . /sys/kernel/debug/zswap/</span><br></pre></td></tr></table></figure>
+
+<p>注意事项</p>
+<ul>
+<li>根据系统内存大小调整 zram 设备大小（通常为物理内存的 25-50%）</li>
+<li>选择合适的压缩算法（lz4 速度快，zstd 压缩比高）</li>
+<li>监控系统性能，避免过度使用导致系统变慢</li>
+<li>在内存充足的系统中，效果可能不明显</li>
+</ul>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Debian12</tag>
+        <tag>zram</tag>
+        <tag>zswap</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用命令查看占用CPU的Java线程</title>
+    <url>/2025/07/23/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%8D%A0%E7%94%A8CPU%E7%9A%84Java%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<ol>
+<li><p>找到 <code>%CPU</code> 最高的进程 PID</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找到占用CPU高的 线程ID</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top -H -p PID </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看占用CPU的Java线程的堆栈</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-A 20 显示 20行信息</span></span><br><span class="line">jstack 进程PID | grep 线程ID -A 20</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Debian 后台服务的运行方式</title>
     <url>/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<p>在 Debian 里，一个服务可能由不同的方式运行，不是所有服务都一定挂在 systemd 下。</p>
@@ -745,6 +841,23 @@
       </categories>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Hyper-V安装的Debian10禁用swap</title>
+    <url>/2025/07/24/%E5%9C%A8Hyper-V%E5%AE%89%E8%A3%85%E7%9A%84Debian10%E7%A6%81%E7%94%A8swap/</url>
+    <content><![CDATA[<blockquote>
+<p>在Hyper-V中安装了Debian 10测试K8S，Debian 10重启后都会自动加载 swap 分区，即使已经注释了 <code>/etc/fstab</code> 中swap行，导致K8S启动失败。这是因为 <code>initramfs</code> 内硬编码了 swap 分区信息（设备名或 UUID）</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 找到 swap 分区设备名：</span></span><br><span class="line">swapon --show</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 禁用自动挂载</span></span><br><span class="line">sudo sed -i &#x27;/ swap / s/^/#/&#x27; /etc/fstab</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 屏蔽设备 swap unit。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.1 假设输出： /dev/sda2</span></span><br><span class="line">sudo systemctl mask dev-sda2.swap</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.2 如果名字是 dev-disk-by-uuid-xxxxxx.swap，则 mask 那个 unit：</span></span><br><span class="line">sudo systemctl mask &quot;dev-disk-by-uuid-&lt;your-uuid&gt;.swap&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4. 重新构建 initramfs</span></span><br><span class="line">sudo update-initramfs -u</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5. 重启验证</span></span><br><span class="line">sudo reboot</span><br><span class="line">swapon --show</span><br></pre></td></tr></table></figure>
+
+<p>或者使用 <code>fdisk</code> 删除 <code>swap</code> 分区</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Linux,Debian</tag>
       </tags>
   </entry>
   <entry>
@@ -865,119 +978,6 @@
       <tags>
         <tag>Java</tag>
         <tag>ZooKeeper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Debian启用内存压缩</title>
-    <url>/2025/07/30/Debian%E5%90%AF%E7%94%A8%E5%86%85%E5%AD%98%E5%8E%8B%E7%BC%A9/</url>
-    <content><![CDATA[<h2 id="zswap-和-zram-的作用"><a href="#zswap-和-zram-的作用" class="headerlink" title="zswap 和 zram 的作用"></a>zswap 和 zram 的作用</h2><h3 id="zswap"><a href="#zswap" class="headerlink" title="zswap"></a>zswap</h3><p>作用：zswap 是 Linux 内核的一个功能，用于压缩交换页面（swap pages）以减少 I&#x2F;O 操作<br>工作原理：在将页面写入磁盘交换空间之前，先在内存中对其进行压缩<br>优势：</p>
-<ul>
-<li>减少交换 I&#x2F;O，提高系统性能</li>
-<li>降低磁盘磨损（特别是 SSD）</li>
-<li>更高效地利用内存资源</li>
-</ul>
-<h3 id="zram"><a href="#zram" class="headerlink" title="zram"></a>zram</h3><p>作用：zram 是一个虚拟的块设备，它将内存的一部分用作压缩块设备<br>工作原理：创建一个压缩的内存块设备，可以作为交换空间或临时存储使用<br>特点：</p>
-<ul>
-<li>无需物理存储设备</li>
-<li>数据在内存中压缩存储</li>
-<li>常用于内存受限的系统（如嵌入式设备、Chrome OS 等）</li>
-</ul>
-<h3 id="两者关系"><a href="#两者关系" class="headerlink" title="两者关系"></a>两者关系</h3><p>zram 可以与 zswap 配合使用，提供更高效的内存管理方案<br>在某些场景下，zram 可以作为 zswap 的后端存储<br>都旨在通过压缩技术优化内存使用和系统性能</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="临时启用"><a href="#临时启用" class="headerlink" title="临时启用"></a>临时启用</h3><ol>
-<li><p>启用 zswap</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 临时启用 zswap（重启后失效）</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/module/zswap/parameters/enabled</span><br><span class="line"></span><br><span class="line"><span class="comment"># 永久启用 zswap，编辑 GRUB 配置</span></span><br><span class="line"><span class="built_in">sudo</span> vi /etc/default/grub</span><br><span class="line"><span class="comment"># 在 GRUB_CMDLINE_LINUX 行添加 zswap.enabled=1</span></span><br><span class="line"><span class="comment"># 例如：GRUB_CMDLINE_LINUX=&quot;... zswap.enabled=1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新 GRUB 配置</span></span><br><span class="line"><span class="built_in">sudo</span> update-grub</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置 zswap 参数（可选）</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置压缩算法（默认通常是 lz4）</span></span><br><span class="line"><span class="built_in">echo</span> lz4 &gt; /sys/module/zswap/parameters/compressor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置内存池最大占用比例（默认 20%）</span></span><br><span class="line"><span class="built_in">echo</span> 25 &gt; /sys/module/zswap/parameters/max_pool_percent</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建 zram 设备</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 加载 zram 内核模块</span></span><br><span class="line"><span class="built_in">sudo</span> modprobe zram</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 zram 设备（例如创建一个 1GB 的设备）</span></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/class/zram-control/hot_add</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 zram 设备参数</span></span><br><span class="line"><span class="built_in">echo</span> 1G &gt; /sys/block/zram0/disksize</span><br><span class="line"><span class="built_in">echo</span> lz4 &gt; /sys/block/zram0/comp_algorithm</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将 zram 用作交换空间</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 格式化 zram 为交换空间</span></span><br><span class="line"><span class="built_in">sudo</span> mkswap /dev/zram0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用交换空间</span></span><br><span class="line"><span class="built_in">sudo</span> swapon /dev/zram0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看交换空间状态</span></span><br><span class="line">swapon --show</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="永久配置"><a href="#永久配置" class="headerlink" title="永久配置"></a>永久配置</h3><h4 id="方法一：使用-systemd-配置"><a href="#方法一：使用-systemd-配置" class="headerlink" title="方法一：使用 systemd 配置"></a>方法一：使用 systemd 配置</h4><ol>
-<li><p>创建 zram 配置服务：</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建配置脚本</span></span><br><span class="line"><span class="built_in">sudo</span> vi /usr/local/bin/setup-zram.sh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>set-up-zram.sh 内容：</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">modprobe zram</span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/class/zram-control/hot_add</span><br><span class="line"><span class="built_in">echo</span> 1G &gt; /sys/block/zram0/disksize</span><br><span class="line"><span class="built_in">echo</span> lz4 &gt; /sys/block/zram0/comp_algorithm</span><br><span class="line">mkswap /dev/zram0</span><br><span class="line">swapon /dev/zram0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行命令</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 给脚本添加执行权限</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> +x /usr/local/bin/setup-zram.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 systemd 服务</span></span><br><span class="line"><span class="built_in">sudo</span> vi /etc/systemd/system/zram.service</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>zram.service 内容：</p>
- <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Setup ZRAM</span><br><span class="line"><span class="attr">After</span>=multi-user.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=<span class="literal">on</span>eshot</span><br><span class="line"><span class="attr">ExecStart</span>=/usr/local/bin/setup-zram.sh</span><br><span class="line"><span class="attr">RemainAfterExit</span>=<span class="literal">yes</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动服务</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启用服务</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> zram.service</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="方法二：使用-zram-tools-包"><a href="#方法二：使用-zram-tools-包" class="headerlink" title="方法二：使用 zram-tools 包"></a>方法二：使用 zram-tools 包</h4><ol>
-<li><p>安装 zram-tools 包</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 zram-tools</span></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install zram-tools</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置 zram-tools</span></span><br><span class="line"><span class="built_in">sudo</span> vi /etc/default/zramswap</span><br></pre></td></tr></table></figure>
-
-<p> 在配置文件中设置参数：</p>
- <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">ALGO</span>=lz4</span><br><span class="line"><span class="comment"># DEVICE_SIZE=1G</span></span><br><span class="line"><span class="attr">PERCENT</span>=<span class="number">50</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启用并启动 zramswap 服务</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> zramswap</span><br><span class="line"><span class="built_in">sudo</span> systemctl start zramswap</span><br><span class="line"><span class="comment"># 查看交换空间，包括优先级</span></span><br><span class="line"><span class="built_in">cat</span> /proc/swaps</span><br><span class="line"><span class="comment"># 查看 zram-tools 包安装了哪些服务</span></span><br><span class="line">dpkg -L zram-tools | grep systemd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者查找系统中所有与 zram 相关的服务</span></span><br><span class="line">systemctl list-unit-files | grep zram</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查 zswap 状态</span></span><br><span class="line"><span class="built_in">cat</span> /sys/module/zswap/parameters/enabled</span><br><span class="line"><span class="built_in">cat</span> /sys/module/zswap/parameters/compressor</span><br><span class="line"><span class="built_in">cat</span> /sys/module/zswap/parameters/max_pool_percen</span><br><span class="line"><span class="comment"># 检查 zram 状态</span></span><br><span class="line"><span class="built_in">cat</span> /sys/block/zram0/disksize</span><br><span class="line"><span class="built_in">cat</span> /sys/block/zram0/comp_algorith</span><br><span class="line"><span class="comment"># 查看内存和交换使用情况</span></span><br><span class="line">free -h</span><br><span class="line">swapon --sho</span><br><span class="line"><span class="comment"># 查看 zswap 统计信息</span></span><br><span class="line">grep -R . /sys/kernel/debug/zswap/</span><br></pre></td></tr></table></figure>
-
-<p>注意事项</p>
-<ul>
-<li>根据系统内存大小调整 zram 设备大小（通常为物理内存的 25-50%）</li>
-<li>选择合适的压缩算法（lz4 速度快，zstd 压缩比高）</li>
-<li>监控系统性能，避免过度使用导致系统变慢</li>
-<li>在内存充足的系统中，效果可能不明显</li>
-</ul>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Debian12</tag>
-        <tag>zram</tag>
-        <tag>zswap</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用命令查看占用CPU的Java线程</title>
-    <url>/2025/07/23/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%8D%A0%E7%94%A8CPU%E7%9A%84Java%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<ol>
-<li><p>找到 <code>%CPU</code> 最高的进程 PID</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>找到占用CPU高的 线程ID</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">top -H -p PID </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看占用CPU的Java线程的堆栈</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-A 20 显示 20行信息</span></span><br><span class="line">jstack 进程PID | grep 线程ID -A 20</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在Hyper-V安装的Debian10禁用swap</title>
-    <url>/2025/07/24/%E5%9C%A8Hyper-V%E5%AE%89%E8%A3%85%E7%9A%84Debian10%E7%A6%81%E7%94%A8swap/</url>
-    <content><![CDATA[<blockquote>
-<p>在Hyper-V中安装了Debian 10测试K8S，Debian 10重启后都会自动加载 swap 分区，即使已经注释了 <code>/etc/fstab</code> 中swap行，导致K8S启动失败。这是因为 <code>initramfs</code> 内硬编码了 swap 分区信息（设备名或 UUID）</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 找到 swap 分区设备名：</span></span><br><span class="line">swapon --show</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 禁用自动挂载</span></span><br><span class="line">sudo sed -i &#x27;/ swap / s/^/#/&#x27; /etc/fstab</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 屏蔽设备 swap unit。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.1 假设输出： /dev/sda2</span></span><br><span class="line">sudo systemctl mask dev-sda2.swap</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3.2 如果名字是 dev-disk-by-uuid-xxxxxx.swap，则 mask 那个 unit：</span></span><br><span class="line">sudo systemctl mask &quot;dev-disk-by-uuid-&lt;your-uuid&gt;.swap&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4. 重新构建 initramfs</span></span><br><span class="line">sudo update-initramfs -u</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">5. 重启验证</span></span><br><span class="line">sudo reboot</span><br><span class="line">swapon --show</span><br></pre></td></tr></table></figure>
-
-<p>或者使用 <code>fdisk</code> 删除 <code>swap</code> 分区</p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Linux,Debian</tag>
       </tags>
   </entry>
   <entry>
@@ -1399,6 +1399,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Java官方文档使用</title>
+    <url>/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>进入<a href="https://docs.oracle.com/en/java/javase/21/index.html">Oracal Help Center</a>选择对应 JDK 版本，然后分类选择。<br>如查询 <code>java</code> 命令选项，进入<a href="https://docs.oracle.com/en/java/javase/21/docs/specs/man/index.html">JDK Tool Specifications</a>，<br>再进入<a href="https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html">java</a>信息页面。</p>
+<p>如查看系统环境</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">PS</span> D:\Temp\Java&gt; java <span class="literal">-XshowSettings</span></span><br><span class="line">VM settings:</span><br><span class="line">    Max. Heap Size (Estimated): <span class="number">7.96</span>G</span><br><span class="line">    <span class="keyword">Using</span> VM: OpenJDK 64-Bit Server VM</span><br><span class="line"></span><br><span class="line">Property settings:</span><br><span class="line">    file.encoding = UTF<span class="literal">-8</span></span><br><span class="line">    file.separator = \</span><br><span class="line">    java.class.path =</span><br><span class="line">    java.class.version = <span class="number">65.0</span></span><br><span class="line">    java.home = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span></span><br><span class="line">    java.io.tmpdir = C:\Users\FRANK\AppData\Local\Temp\</span><br><span class="line">    java.library.path = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line">        C:\Windows\Sun\Java\bin</span><br><span class="line">        C:\Windows\system32</span><br><span class="line">        C:\Windows</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\MSBuild\Current\bin\Roslyn</span><br><span class="line">        C:\Program Files (x86)\Microsoft SDKs\Windows\v10.<span class="number">0</span>A\bin\NETFX <span class="number">4.8</span> Tools\x64\</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Team Tools\DiagnosticsHub\Collector</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\\MSBuild\Current\Bin\amd64</span><br><span class="line">        C:\Windows\Microsoft.NET\Framework64\v4.<span class="number">0.30319</span></span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\Tools\</span><br><span class="line">        C:\Windows\system32</span><br><span class="line">        D:\ProgramFiles\Utils</span><br><span class="line">        D:\ProgramFiles\nvm<span class="literal">-noinstall</span></span><br><span class="line">        D:\ProgramFiles\nvm<span class="literal">-noinstall</span>\Node.js</span><br><span class="line">        C:\Program Files (x86)\Windows Kits\<span class="number">10</span>\Windows Performance Toolkit\</span><br><span class="line">        D:\ProgramFiles\Git\bin</span><br><span class="line">        C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\<span class="number">170</span>\Tools\Binn\</span><br><span class="line">        C:\Program Files\Microsoft SQL Server\<span class="number">150</span>\Tools\Binn\</span><br><span class="line">        C:\Program Files\dotnet\</span><br><span class="line">        C:\Program Files\TortoiseGit\bin</span><br><span class="line">        C:\Windows\System32\WindowsPowerShell\v1.<span class="number">0</span></span><br><span class="line">        C:\Windows\System32\OpenSSH</span><br><span class="line">        C:\Users\FRANK\.cargo\bin</span><br><span class="line">        C:\Users\FRANK\AppData\Local\Microsoft\WindowsApps</span><br><span class="line">        C:\Users\FRANK\.dotnet\tools</span><br><span class="line">        D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line"></span><br><span class="line">        .</span><br><span class="line">    java.runtime.name = OpenJDK Runtime Environment</span><br><span class="line">    java.runtime.version = <span class="number">21.0</span>.<span class="number">3</span>+<span class="number">12</span><span class="literal">-LTS</span></span><br><span class="line">    java.specification.name = Java Platform API Specification</span><br><span class="line">    java.specification.vendor = Oracle Corporation</span><br><span class="line">    java.specification.version = <span class="number">21</span></span><br><span class="line">    java.vendor = BellSoft</span><br><span class="line">    java.vendor.url = https://bell<span class="literal">-sw</span>.com/</span><br><span class="line">    java.vendor.url.bug = https://bell<span class="literal">-sw</span>.com/support</span><br><span class="line">    java.version = <span class="number">21.0</span>.<span class="number">3</span></span><br><span class="line">    java.version.date = <span class="number">2024</span><span class="literal">-04-16</span></span><br><span class="line">    java.vm.compressedOopsMode = Zero based</span><br><span class="line">    java.vm.info = mixed mode, sharing</span><br><span class="line">    java.vm.name = OpenJDK <span class="number">64</span><span class="literal">-Bit</span> Server VM</span><br><span class="line">    java.vm.specification.name = Java Virtual Machine Specification</span><br><span class="line">    java.vm.specification.vendor = Oracle Corporation</span><br><span class="line">    java.vm.specification.version = <span class="number">21</span></span><br><span class="line">    java.vm.vendor = BellSoft</span><br><span class="line">    java.vm.version = <span class="number">21.0</span>.<span class="number">3</span>+<span class="number">12</span><span class="literal">-LTS</span></span><br><span class="line">    jdk.debug = release</span><br><span class="line">    line.separator = \r \n</span><br><span class="line">    native.encoding = GBK</span><br><span class="line">    os.arch = amd64</span><br><span class="line">    os.name = Windows <span class="number">11</span></span><br><span class="line">    os.version = <span class="number">10.0</span></span><br><span class="line">    path.separator = ;</span><br><span class="line">    stderr.encoding = ms936</span><br><span class="line">    stdout.encoding = ms936</span><br><span class="line">    sun.arch.data.model = <span class="number">64</span></span><br><span class="line">    sun.boot.library.path = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line">    sun.cpu.endian = little</span><br><span class="line">    sun.cpu.isalist = amd64</span><br><span class="line">    sun.io.unicode.encoding = UnicodeLittle</span><br><span class="line">    sun.java.launcher = SUN_STANDARD</span><br><span class="line">    sun.jnu.encoding = GBK</span><br><span class="line">    sun.management.compiler = HotSpot <span class="number">64</span><span class="literal">-Bit</span> Tiered Compilers</span><br><span class="line">    sun.os.patch.level =</span><br><span class="line">    user.country = CN</span><br><span class="line">    user.dir = D:\Temp\Java</span><br><span class="line">    user.home = C:\Users\FRANK</span><br><span class="line">    user.language = zh</span><br><span class="line">    user.name = FRANK</span><br><span class="line">    user.script =</span><br><span class="line">    user.variant =</span><br><span class="line"></span><br><span class="line">Locale settings:</span><br><span class="line">    default locale = 中文 (中国)</span><br><span class="line">    default display locale = 中文 (中国)</span><br><span class="line">    default format locale = 中文 (中国)</span><br><span class="line">    tzdata version = <span class="number">2024</span>a</span><br><span class="line">    available locales = , af, af_NA, af_ZA, af_ZA_<span class="comment">#Latn, agq, agq_CM, agq_CM_#Latn,</span></span><br><span class="line">        ak, ak_GH, ak_GH_<span class="comment">#Latn, am, am_ET, am_ET_#Ethi, ann, ann_NG,</span></span><br><span class="line">        ann_NG_<span class="comment">#Latn, ar, ar_001, ar_AE, ar_BH, ar_DJ, ar_DZ, ar_EG,</span></span><br><span class="line">        ar_EG_<span class="comment">#Arab, ar_EH, ar_ER, ar_IL, ar_IQ, ar_JO, ar_KM, ar_KW,</span></span><br><span class="line">        ar_LB, ar_LY, ar_MA, ar_MR, ar_OM, ar_PS, ar_QA, ar_SA,</span><br><span class="line">        ar_SD, ar_SO, ar_SS, ar_SY, ar_TD, ar_TN, ar_YE, as,</span><br><span class="line">        as_IN, as_IN_<span class="comment">#Beng, asa, asa_TZ, asa_TZ_#Latn, ast, ast_ES, ast_ES_#Latn,</span></span><br><span class="line">        az, az_AZ, az_AZ_<span class="comment">#Cyrl, az_AZ_#Latn, az__#Cyrl, az__#Latn, bas, bas_CM,</span></span><br><span class="line">        bas_CM_<span class="comment">#Latn, be, be_BY, be_BY_#Cyrl, be__TARASK, bem, bem_ZM, bem_ZM_#Latn,</span></span><br><span class="line">        bez, bez_TZ, bez_TZ_<span class="comment">#Latn, bg, bg_BG, bg_BG_#Cyrl, bgc, bgc_IN,</span></span><br><span class="line">        bgc_IN_<span class="comment">#Deva, bho, bho_IN, bho_IN_#Deva, bm, bm_ML, bm_ML_#Latn, bn,</span></span><br><span class="line">        bn_BD, bn_BD_<span class="comment">#Beng, bn_IN, bo, bo_CN, bo_CN_#Tibt, bo_IN, br,</span></span><br><span class="line">        br_FR, br_FR_<span class="comment">#Latn, brx, brx_IN, brx_IN_#Deva, bs, bs_BA, bs_BA_#Cyrl,</span></span><br><span class="line">        bs_BA_<span class="comment">#Latn, bs__#Cyrl, bs__#Latn, ca, ca_AD, ca_ES, ca_ES_#Latn, ca_ES_VALENCIA,</span></span><br><span class="line">        ca_FR, ca_IT, ccp, ccp_BD, ccp_BD_<span class="comment">#Cakm, ccp_IN, ce, ce_RU,</span></span><br><span class="line">        ce_RU_<span class="comment">#Cyrl, ceb, ceb_PH, ceb_PH_#Latn, cgg, cgg_UG, cgg_UG_#Latn, chr,</span></span><br><span class="line">        chr_US, chr_US_<span class="comment">#Cher, ckb, ckb_IQ, ckb_IQ_#Arab, ckb_IR, cs, cs_CZ,</span></span><br><span class="line">        cs_CZ_<span class="comment">#Latn, cv, cv_RU, cv_RU_#Cyrl, cy, cy_GB, cy_GB_#Latn, da,</span></span><br><span class="line">        da_DK, da_DK_<span class="comment">#Latn, da_GL, dav, dav_KE, dav_KE_#Latn, de, de_AT,</span></span><br><span class="line">        de_BE, de_CH, de_DE, de_DE_<span class="comment">#Latn, de_IT, de_LI, de_LU, dje,</span></span><br><span class="line">        dje_NE, dje_NE_<span class="comment">#Latn, doi, doi_IN, doi_IN_#Deva, dsb, dsb_DE, dsb_DE_#Latn,</span></span><br><span class="line">        dua, dua_CM, dua_CM_<span class="comment">#Latn, dyo, dyo_SN, dyo_SN_#Latn, dz, dz_BT,</span></span><br><span class="line">        dz_BT_<span class="comment">#Tibt, ebu, ebu_KE, ebu_KE_#Latn, ee, ee_GH, ee_GH_#Latn, ee_TG,</span></span><br><span class="line">        el, el_CY, el_GR, el_GR_<span class="comment">#Grek, el__POLYTON, en, en_001, en_150,</span></span><br><span class="line">        en_AE, en_AG, en_AI, en_AS, en_AT, en_AU, en_BB, en_BE,</span><br><span class="line">        en_BI, en_BM, en_BS, en_BW, en_BZ, en_CA, en_CC, en_CH,</span><br><span class="line">        en_CK, en_CM, en_CX, en_CY, en_DE, en_DG, en_DK, en_DM,</span><br><span class="line">        en_ER, en_FI, en_FJ, en_FK, en_FM, en_GB, en_GD, en_GG,</span><br><span class="line">        en_GH, en_GI, en_GM, en_GU, en_GY, en_HK, en_IE, en_IL,</span><br><span class="line">        en_IM, en_IN, en_IO, en_JE, en_JM, en_KE, en_KI, en_KN,</span><br><span class="line">        en_KY, en_LC, en_LR, en_LS, en_MG, en_MH, en_MO, en_MP,</span><br><span class="line">        en_MS, en_MT, en_MU, en_MV, en_MW, en_MY, en_NA, en_NF,</span><br><span class="line">        en_NG, en_NL, en_NR, en_NU, en_NZ, en_PG, en_PH, en_PK,</span><br><span class="line">        en_PN, en_PR, en_PW, en_RW, en_SB, en_SC, en_SD, en_SE,</span><br><span class="line">        en_SG, en_SH, en_SI, en_SL, en_SS, en_SX, en_SZ, en_TC,</span><br><span class="line">        en_TK, en_TO, en_TT, en_TV, en_TZ, en_UG, en_UM, en_US,</span><br><span class="line">        en_US_<span class="comment">#Latn, en_US_POSIX, en_VC, en_VG, en_VI, en_VU, en_WS, en_ZA,</span></span><br><span class="line">        en_ZM, en_ZW, eo, eo_001, eo_001_<span class="comment">#Latn, es, es_419, es_AR,</span></span><br><span class="line">        es_BO, es_BR, es_BZ, es_CL, es_CO, es_CR, es_CU, es_DO,</span><br><span class="line">        es_EA, es_EC, es_ES, es_ES_<span class="comment">#Latn, es_GQ, es_GT, es_HN, es_IC,</span></span><br><span class="line">        es_MX, es_NI, es_PA, es_PE, es_PH, es_PR, es_PY, es_SV,</span><br><span class="line">        es_US, es_UY, es_VE, et, et_EE, et_EE_<span class="comment">#Latn, eu, eu_ES,</span></span><br><span class="line">        eu_ES_<span class="comment">#Latn, ewo, ewo_CM, ewo_CM_#Latn, fa, fa_AF, fa_IR, fa_IR_#Arab,</span></span><br><span class="line">        ff, ff_BF_<span class="comment">#Adlm, ff_BF_#Latn, ff_CM_#Adlm, ff_CM_#Latn, ff_GH_#Adlm, ff_GH_#Latn, ff_GM_#Adlm,</span></span><br><span class="line">        ff_GM_<span class="comment">#Latn, ff_GN, ff_GN_#Adlm, ff_GN_#Latn, ff_GW_#Adlm, ff_GW_#Latn, ff_LR_#Adlm, ff_LR_#Latn,</span></span><br><span class="line">        ff_MR_<span class="comment">#Adlm, ff_MR_#Latn, ff_NE_#Adlm, ff_NE_#Latn, ff_NG_#Adlm, ff_NG_#Latn, ff_SL_#Adlm, ff_SL_#Latn,</span></span><br><span class="line">        ff_SN, ff_SN_<span class="comment">#Adlm, ff_SN_#Latn, ff__#Adlm, ff__#Latn, fi, fi_FI, fi_FI_#Latn,</span></span><br><span class="line">        fil, fil_PH, fil_PH_<span class="comment">#Latn, fo, fo_DK, fo_FO, fo_FO_#Latn, fr,</span></span><br><span class="line">        fr_BE, fr_BF, fr_BI, fr_BJ, fr_BL, fr_CA, fr_CD, fr_CF,</span><br><span class="line">        fr_CG, fr_CH, fr_CI, fr_CM, fr_DJ, fr_DZ, fr_FR, fr_FR_<span class="comment">#Latn,</span></span><br><span class="line">        fr_GA, fr_GF, fr_GN, fr_GP, fr_GQ, fr_HT, fr_KM, fr_LU,</span><br><span class="line">        fr_MA, fr_MC, fr_MF, fr_MG, fr_ML, fr_MQ, fr_MR, fr_MU,</span><br><span class="line">        fr_NC, fr_NE, fr_PF, fr_PM, fr_RE, fr_RW, fr_SC, fr_SN,</span><br><span class="line">        fr_SY, fr_TD, fr_TG, fr_TN, fr_VU, fr_WF, fr_YT, frr,</span><br><span class="line">        frr_DE, frr_DE_<span class="comment">#Latn, fur, fur_IT, fur_IT_#Latn, fy, fy_NL, fy_NL_#Latn,</span></span><br><span class="line">        ga, ga_GB, ga_IE, ga_IE_<span class="comment">#Latn, gd, gd_GB, gd_GB_#Latn, gl,</span></span><br><span class="line">        gl_ES, gl_ES_<span class="comment">#Latn, gsw, gsw_CH, gsw_CH_#Latn, gsw_FR, gsw_LI, gu,</span></span><br><span class="line">        gu_IN, gu_IN_<span class="comment">#Gujr, guz, guz_KE, guz_KE_#Latn, gv, gv_IM, gv_IM_#Latn,</span></span><br><span class="line">        ha, ha_GH, ha_NE, ha_NG, ha_NG_<span class="comment">#Latn, haw, haw_US, haw_US_#Latn,</span></span><br><span class="line">        he, he_IL, he_IL_<span class="comment">#Hebr, hi, hi_IN, hi_IN_#Deva, hi_IN_#Latn, hi__#Latn,</span></span><br><span class="line">        hr, hr_BA, hr_HR, hr_HR_<span class="comment">#Latn, hsb, hsb_DE, hsb_DE_#Latn, hu,</span></span><br><span class="line">        hu_HU, hu_HU_<span class="comment">#Latn, hy, hy_AM, hy_AM_#Armn, ia, ia_001, ia_001_#Latn,</span></span><br><span class="line">        id, id_ID, id_ID_<span class="comment">#Latn, ig, ig_NG, ig_NG_#Latn, ii, ii_CN,</span></span><br><span class="line">        ii_CN_<span class="comment">#Yiii, is, is_IS, is_IS_#Latn, it, it_CH, it_IT, it_IT_#Latn,</span></span><br><span class="line">        it_SM, it_VA, ja, ja_JP, ja_JP_<span class="comment">#Jpan, ja_JP_JP_#u-ca-japanese, jgo, jgo_CM,</span></span><br><span class="line">        jgo_CM_<span class="comment">#Latn, jmc, jmc_TZ, jmc_TZ_#Latn, jv, jv_ID, jv_ID_#Latn, ka,</span></span><br><span class="line">        ka_GE, ka_GE_<span class="comment">#Geor, kab, kab_DZ, kab_DZ_#Latn, kam, kam_KE, kam_KE_#Latn,</span></span><br><span class="line">        kde, kde_TZ, kde_TZ_<span class="comment">#Latn, kea, kea_CV, kea_CV_#Latn, kgp, kgp_BR,</span></span><br><span class="line">        kgp_BR_<span class="comment">#Latn, khq, khq_ML, khq_ML_#Latn, ki, ki_KE, ki_KE_#Latn, kk,</span></span><br><span class="line">        kk_KZ, kk_KZ_<span class="comment">#Cyrl, kkj, kkj_CM, kkj_CM_#Latn, kl, kl_GL, kl_GL_#Latn,</span></span><br><span class="line">        kln, kln_KE, kln_KE_<span class="comment">#Latn, km, km_KH, km_KH_#Khmr, kn, kn_IN,</span></span><br><span class="line">        kn_IN_<span class="comment">#Knda, ko, ko_KP, ko_KR, ko_KR_#Kore, kok, kok_IN, kok_IN_#Deva,</span></span><br><span class="line">        ks, ks_IN, ks_IN_<span class="comment">#Arab, ks_IN_#Deva, ks__#Arab, ks__#Deva, ksb, ksb_TZ,</span></span><br><span class="line">        ksb_TZ_<span class="comment">#Latn, ksf, ksf_CM, ksf_CM_#Latn, ksh, ksh_DE, ksh_DE_#Latn, ku,</span></span><br><span class="line">        ku_TR, ku_TR_<span class="comment">#Latn, kw, kw_GB, kw_GB_#Latn, ky, ky_KG, ky_KG_#Cyrl,</span></span><br><span class="line">        lag, lag_TZ, lag_TZ_<span class="comment">#Latn, lb, lb_LU, lb_LU_#Latn, lg, lg_UG,</span></span><br><span class="line">        lg_UG_<span class="comment">#Latn, lkt, lkt_US, lkt_US_#Latn, ln, ln_AO, ln_CD, ln_CD_#Latn,</span></span><br><span class="line">        ln_CF, ln_CG, lo, lo_LA, lo_LA_<span class="comment">#Laoo, lrc, lrc_IQ, lrc_IR,</span></span><br><span class="line">        lrc_IR_<span class="comment">#Arab, lt, lt_LT, lt_LT_#Latn, lu, lu_CD, lu_CD_#Latn, luo,</span></span><br><span class="line">        luo_KE, luo_KE_<span class="comment">#Latn, luy, luy_KE, luy_KE_#Latn, lv, lv_LV, lv_LV_#Latn,</span></span><br><span class="line">        mai, mai_IN, mai_IN_<span class="comment">#Deva, mas, mas_KE, mas_KE_#Latn, mas_TZ, mdf,</span></span><br><span class="line">        mdf_RU, mdf_RU_<span class="comment">#Cyrl, mer, mer_KE, mer_KE_#Latn, mfe, mfe_MU, mfe_MU_#Latn,</span></span><br><span class="line">        mg, mg_MG, mg_MG_<span class="comment">#Latn, mgh, mgh_MZ, mgh_MZ_#Latn, mgo, mgo_CM,</span></span><br><span class="line">        mgo_CM_<span class="comment">#Latn, mi, mi_NZ, mi_NZ_#Latn, mk, mk_MK, mk_MK_#Cyrl, ml,</span></span><br><span class="line">        ml_IN, ml_IN_<span class="comment">#Mlym, mn, mn_MN, mn_MN_#Cyrl, mni, mni_IN, mni_IN_#Beng,</span></span><br><span class="line">        mni__<span class="comment">#Beng, mr, mr_IN, mr_IN_#Deva, ms, ms_BN, ms_ID, ms_MY,</span></span><br><span class="line">        ms_MY_<span class="comment">#Latn, ms_SG, mt, mt_MT, mt_MT_#Latn, mua, mua_CM, mua_CM_#Latn,</span></span><br><span class="line">        my, my_MM, my_MM_<span class="comment">#Mymr, mzn, mzn_IR, mzn_IR_#Arab, naq, naq_NA,</span></span><br><span class="line">        naq_NA_<span class="comment">#Latn, nb, nb_NO, nb_NO_#Latn, nb_SJ, nd, nd_ZW, nd_ZW_#Latn,</span></span><br><span class="line">        nds, nds_DE, nds_DE_<span class="comment">#Latn, nds_NL, ne, ne_IN, ne_NP, ne_NP_#Deva,</span></span><br><span class="line">        nl, nl_AW, nl_BE, nl_BQ, nl_CW, nl_NL, nl_NL_<span class="comment">#Latn, nl_SR,</span></span><br><span class="line">        nl_SX, nmg, nmg_CM, nmg_CM_<span class="comment">#Latn, nn, nn_NO, nn_NO_#Latn, nnh,</span></span><br><span class="line">        nnh_CM, nnh_CM_<span class="comment">#Latn, no, no_NO, no_NO_#Latn, no_NO_NY, nus, nus_SS,</span></span><br><span class="line">        nus_SS_<span class="comment">#Latn, nyn, nyn_UG, nyn_UG_#Latn, oc, oc_ES, oc_FR, oc_FR_#Latn,</span></span><br><span class="line">        om, om_ET, om_ET_<span class="comment">#Latn, om_KE, or, or_IN, or_IN_#Orya, os,</span></span><br><span class="line">        os_GE, os_GE_<span class="comment">#Cyrl, os_RU, pa, pa_IN, pa_IN_#Guru, pa_PK, pa_PK_#Arab,</span></span><br><span class="line">        pa__<span class="comment">#Arab, pa__#Guru, pcm, pcm_NG, pcm_NG_#Latn, pis, pis_SB, pis_SB_#Latn,</span></span><br><span class="line">        pl, pl_PL, pl_PL_<span class="comment">#Latn, ps, ps_AF, ps_AF_#Arab, ps_PK, pt,</span></span><br><span class="line">        pt_AO, pt_BR, pt_BR_<span class="comment">#Latn, pt_CH, pt_CV, pt_GQ, pt_GW, pt_LU,</span></span><br><span class="line">        pt_MO, pt_MZ, pt_PT, pt_ST, pt_TL, qu, qu_BO, qu_EC,</span><br><span class="line">        qu_PE, qu_PE_<span class="comment">#Latn, raj, raj_IN, raj_IN_#Deva, rm, rm_CH, rm_CH_#Latn,</span></span><br><span class="line">        rn, rn_BI, rn_BI_<span class="comment">#Latn, ro, ro_MD, ro_RO, ro_RO_#Latn, rof,</span></span><br><span class="line">        rof_TZ, rof_TZ_<span class="comment">#Latn, ru, ru_BY, ru_KG, ru_KZ, ru_MD, ru_RU,</span></span><br><span class="line">        ru_RU_<span class="comment">#Cyrl, ru_UA, rw, rw_RW, rw_RW_#Latn, rwk, rwk_TZ, rwk_TZ_#Latn,</span></span><br><span class="line">        sa, sa_IN, sa_IN_<span class="comment">#Deva, sah, sah_RU, sah_RU_#Cyrl, saq, saq_KE,</span></span><br><span class="line">        saq_KE_<span class="comment">#Latn, sat, sat_IN, sat_IN_#Olck, sat__#Olck, sbp, sbp_TZ, sbp_TZ_#Latn,</span></span><br><span class="line">        <span class="built_in">sc</span>, sc_IT, sc_IT_<span class="comment">#Latn, sd, sd_IN, sd_IN_#Deva, sd_PK, sd_PK_#Arab,</span></span><br><span class="line">        sd__<span class="comment">#Arab, sd__#Deva, se, se_FI, se_NO, se_NO_#Latn, se_SE, seh,</span></span><br><span class="line">        seh_MZ, seh_MZ_<span class="comment">#Latn, ses, ses_ML, ses_ML_#Latn, sg, sg_CF, sg_CF_#Latn,</span></span><br><span class="line">        shi, shi_MA, shi_MA_<span class="comment">#Latn, shi_MA_#Tfng, shi__#Latn, shi__#Tfng, si, si_LK,</span></span><br><span class="line">        si_LK_<span class="comment">#Sinh, sk, sk_SK, sk_SK_#Latn, sl, sl_SI, sl_SI_#Latn, smn,</span></span><br><span class="line">        smn_FI, smn_FI_<span class="comment">#Latn, sms, sms_FI, sms_FI_#Latn, sn, sn_ZW, sn_ZW_#Latn,</span></span><br><span class="line">        so, so_DJ, so_ET, so_KE, so_SO, so_SO_<span class="comment">#Latn, sq, sq_AL,</span></span><br><span class="line">        sq_AL_<span class="comment">#Latn, sq_MK, sq_XK, sr, sr_BA, sr_BA_#Cyrl, sr_BA_#Latn, sr_CS,</span></span><br><span class="line">        sr_ME, sr_ME_<span class="comment">#Cyrl, sr_ME_#Latn, sr_RS, sr_RS_#Cyrl, sr_RS_#Latn, sr_XK_#Cyrl, sr_XK_#Latn,</span></span><br><span class="line">        sr__<span class="comment">#Cyrl, sr__#Latn, su, su_ID, su_ID_#Latn, su__#Latn, sv, sv_AX,</span></span><br><span class="line">        sv_FI, sv_SE, sv_SE_<span class="comment">#Latn, sw, sw_CD, sw_KE, sw_TZ, sw_TZ_#Latn,</span></span><br><span class="line">        sw_UG, ta, ta_IN, ta_IN_<span class="comment">#Taml, ta_LK, ta_MY, ta_SG, te,</span></span><br><span class="line">        te_IN, te_IN_<span class="comment">#Telu, teo, teo_KE, teo_UG, teo_UG_#Latn, tg, tg_TJ,</span></span><br><span class="line">        tg_TJ_<span class="comment">#Cyrl, th, th_TH, th_TH_#Thai, th_TH_TH_#u-nu-thai, ti, ti_ER, ti_ET,</span></span><br><span class="line">        ti_ET_<span class="comment">#Ethi, tk, tk_TM, tk_TM_#Latn, to, to_TO, to_TO_#Latn, tok,</span></span><br><span class="line">        tok_001, tok_001_<span class="comment">#Latn, tr, tr_CY, tr_TR, tr_TR_#Latn, tt, tt_RU,</span></span><br><span class="line">        tt_RU_<span class="comment">#Cyrl, twq, twq_NE, twq_NE_#Latn, tzm, tzm_MA, tzm_MA_#Latn, ug,</span></span><br><span class="line">        ug_CN, ug_CN_<span class="comment">#Arab, uk, uk_UA, uk_UA_#Cyrl, ur, ur_IN, ur_PK,</span></span><br><span class="line">        ur_PK_<span class="comment">#Arab, uz, uz_AF, uz_AF_#Arab, uz_UZ, uz_UZ_#Cyrl, uz_UZ_#Latn, uz__#Arab,</span></span><br><span class="line">        uz__<span class="comment">#Cyrl, uz__#Latn, vai, vai_LR, vai_LR_#Latn, vai_LR_#Vaii, vai__#Latn, vai__#Vaii,</span></span><br><span class="line">        vi, vi_VN, vi_VN_<span class="comment">#Latn, vun, vun_TZ, vun_TZ_#Latn, wae, wae_CH,</span></span><br><span class="line">        wae_CH_<span class="comment">#Latn, wo, wo_SN, wo_SN_#Latn, xh, xh_ZA, xh_ZA_#Latn, xog,</span></span><br><span class="line">        xog_UG, xog_UG_<span class="comment">#Latn, yav, yav_CM, yav_CM_#Latn, yi, yi_001, yi_001_#Hebr,</span></span><br><span class="line">        yo, yo_BJ, yo_NG, yo_NG_<span class="comment">#Latn, yrl, yrl_BR, yrl_BR_#Latn, yrl_CO,</span></span><br><span class="line">        yrl_VE, yue, yue_CN, yue_CN_<span class="comment">#Hans, yue_HK, yue_HK_#Hant, yue__#Hans, yue__#Hant,</span></span><br><span class="line">        zgh, zgh_MA, zgh_MA_<span class="comment">#Tfng, zh, zh_CN, zh_CN_#Hans, zh_HK, zh_HK_#Hans,</span></span><br><span class="line">        zh_HK_<span class="comment">#Hant, zh_MO, zh_MO_#Hans, zh_MO_#Hant, zh_SG, zh_SG_#Hans, zh_TW, zh_TW_#Hant,</span></span><br><span class="line">        zh__<span class="comment">#Hans, zh__#Hant, zu, zu_ZA, zu_ZA_#Latn</span></span><br><span class="line">用法：java [<span class="type">options</span>] &lt;主类&gt; [<span class="type">args...</span>]</span><br><span class="line">           （执行类）</span><br><span class="line">   或  java [<span class="type">options</span>] <span class="literal">-jar</span> &lt;jar 文件&gt; [<span class="type">args...</span>]</span><br><span class="line">           （执行 jar 文件）</span><br><span class="line">   或  java [<span class="type">options</span>] <span class="literal">-m</span> &lt;模块&gt;[/&lt;主类&gt;] [<span class="type">args...</span>]</span><br><span class="line">       java [<span class="type">options</span>] <span class="literal">--module</span> &lt;模块&gt;[/&lt;主类&gt;] [<span class="type">args...</span>]</span><br><span class="line">           （执行模块中的主类）</span><br><span class="line">   或  java [<span class="type">options</span>] &lt;源文件&gt; [<span class="type">args</span>]</span><br><span class="line">           （执行单个源文件程序）</span><br><span class="line"></span><br><span class="line"> 将主类、源文件、<span class="literal">-jar</span> &lt;jar 文件&gt;、<span class="literal">-m</span> 或</span><br><span class="line"> <span class="literal">--module</span> &lt;模块&gt;/&lt;主类&gt; 后的参数作为参数</span><br><span class="line"> 传递到主类。</span><br><span class="line"></span><br><span class="line"> 其中，选项包括：</span><br><span class="line"></span><br><span class="line">    <span class="literal">-client</span>       选择 <span class="string">&quot;client&quot;</span> VM</span><br><span class="line">    <span class="literal">-cp</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">    <span class="literal">-classpath</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">    <span class="literal">--class-path</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">                  使用 ; 分隔的, 用于搜索类文件的目录, JAR 档案</span><br><span class="line">                  和 ZIP 档案列表。</span><br><span class="line">    <span class="literal">-p</span> &lt;模块路径&gt;</span><br><span class="line">    <span class="literal">--module-path</span> &lt;模块路径&gt;...</span><br><span class="line">                  ; 分隔的元素列表，每个元素都是</span><br><span class="line">                  模块或包含模块的目录的文件路径。每个模块都是</span><br><span class="line">                  模块化 JAR 或展开的模块目录。</span><br><span class="line">    <span class="literal">--upgrade-module-path</span> &lt;模块路径&gt;...</span><br><span class="line">                  ; 分隔的元素列表，每个元素都是</span><br><span class="line">                  模块或包含模块（用于替换运行时映像中的</span><br><span class="line">                  可升级模块）的目录的文件路径。每个模块都是</span><br><span class="line">                  模块化 JAR 或展开的模块目录。</span><br><span class="line">    <span class="literal">--add-modules</span> &lt;模块名称&gt;[,&lt;模块名称&gt;<span class="type">...</span>]</span><br><span class="line">                  除了初始模块之外要解析的根模块。</span><br><span class="line">                  &lt;模块名称&gt; 还可以为 ALL<span class="literal">-DEFAULT</span>, ALL<span class="literal">-SYSTEM</span>,</span><br><span class="line">                  ALL<span class="literal">-MODULE-PATH</span>.</span><br><span class="line">    <span class="literal">--enable-native-access</span> &lt;module name&gt;[,&lt;<span class="type">module</span> <span class="type">name</span>&gt;<span class="type">...</span>]</span><br><span class="line">                  允许执行受限本机操作的模块。</span><br><span class="line">                  &lt;module name&gt; 还可以为 ALL<span class="literal">-UNNAMED</span>。</span><br><span class="line">    <span class="literal">--list-modules</span></span><br><span class="line">                  列出可观察模块并退出</span><br><span class="line">    <span class="literal">-d</span> &lt;module name&gt;</span><br><span class="line">    <span class="literal">--describe-module</span> &lt;模块名称&gt;</span><br><span class="line">                  描述模块并退出</span><br><span class="line">    <span class="literal">--dry-run</span>     创建 VM 并加载主类, 但不执行 main 方法。</span><br><span class="line">                  此 <span class="literal">--dry-run</span> 选项对于验证诸如</span><br><span class="line">                  模块系统配置这样的命令行选项可能非常有用。</span><br><span class="line">    <span class="literal">--validate-modules</span></span><br><span class="line">                  验证所有模块并退出</span><br><span class="line">                  <span class="literal">--validate-modules</span> 选项对于查找</span><br><span class="line">                  模块路径中模块的冲突及其他错误可能非常有用。</span><br><span class="line">    <span class="literal">-D</span>&lt;名称&gt;=&lt;值&gt;</span><br><span class="line">                  设置系统属性</span><br><span class="line">    <span class="literal">-verbose</span>:[<span class="type">class</span>|<span class="type">module</span>|<span class="type">gc</span>|<span class="type">jni</span>]</span><br><span class="line">                  为给定子系统启用详细输出</span><br><span class="line">    <span class="literal">-version</span>      将产品版本输出到错误流并退出</span><br><span class="line">    <span class="literal">--version</span>     将产品版本输出到输出流并退出</span><br><span class="line">    <span class="literal">-showversion</span>  将产品版本输出到错误流并继续</span><br><span class="line">    <span class="literal">--show-version</span></span><br><span class="line">                  将产品版本输出到输出流并继续</span><br><span class="line">    <span class="literal">--show-module-resolution</span></span><br><span class="line">                  在启动过程中显示模块解析输出</span><br><span class="line">    -? <span class="literal">-h</span> <span class="literal">-help</span></span><br><span class="line">                  将此帮助消息输出到错误流</span><br><span class="line">    <span class="literal">--help</span>        将此帮助消息输出到输出流</span><br><span class="line">    <span class="literal">-X</span>            将额外选项的帮助输出到错误流</span><br><span class="line">    <span class="literal">--help-extra</span>  将额外选项的帮助输出到输出流</span><br><span class="line">    <span class="literal">-ea</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">    <span class="literal">-enableassertions</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">                  按指定的粒度启用断言</span><br><span class="line">    <span class="literal">-da</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">    <span class="literal">-disableassertions</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">                  按指定的粒度禁用断言</span><br><span class="line">    <span class="literal">-esa</span> | <span class="literal">-enablesystemassertions</span></span><br><span class="line">                  启用系统断言</span><br><span class="line">    <span class="literal">-dsa</span> | <span class="literal">-disablesystemassertions</span></span><br><span class="line">                  禁用系统断言</span><br><span class="line">    <span class="literal">-agentlib</span>:&lt;库名&gt;[=&lt;选项&gt;]</span><br><span class="line">                  加载本机代理库 &lt;库名&gt;, 例如 <span class="literal">-agentlib</span>:jdwp</span><br><span class="line">                  另请参阅 <span class="literal">-agentlib</span>:jdwp=help</span><br><span class="line">    <span class="literal">-agentpath</span>:&lt;路径名&gt;[=&lt;选项&gt;]</span><br><span class="line">                  按完整路径名加载本机代理库</span><br><span class="line">    <span class="literal">-javaagent</span>:&lt;jar 路径&gt;[=&lt;选项&gt;]</span><br><span class="line">                  加载 Java 编程语言代理, 请参阅 java.lang.instrument</span><br><span class="line">    <span class="literal">-splash</span>:&lt;图像路径&gt;</span><br><span class="line">                  使用指定的图像显示启动屏幕</span><br><span class="line">                  自动支持和使用 HiDPI 缩放图像</span><br><span class="line">                  (如果可用)。应始终将未缩放的图像文件名 (例如, image.ext)</span><br><span class="line">                  作为参数传递给 <span class="literal">-splash</span> 选项。</span><br><span class="line">                  将自动选取提供的最合适的缩放</span><br><span class="line">                  图像。</span><br><span class="line">                  有关详细信息, 请参阅 SplashScreen API 文档</span><br><span class="line">    @argument 文件</span><br><span class="line">                  一个或多个包含选项的参数文件</span><br><span class="line">    <span class="literal">--disable-</span>@files</span><br><span class="line">                  阻止进一步扩展参数文件</span><br><span class="line">    <span class="literal">--enable-preview</span></span><br><span class="line">                  允许类依赖于此发行版的预览功能</span><br><span class="line">要为长选项指定参数, 可以使用 <span class="literal">--</span>&lt;名称&gt;=&lt;值&gt; 或</span><br><span class="line"><span class="literal">--</span>&lt;名称&gt; &lt;值&gt;。</span><br><span class="line"></span><br><span class="line"><span class="built_in">PS</span> D:\Temp\Java&gt;</span><br></pre></td></tr></table></figure>
+
+<p>目前只找到 Oracle 官网有此文档，其他发布版本，不一定有。</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java之PrintAssembly</title>
     <url>/2024/08/31/Java%E4%B9%8BPrintAssembly/</url>
     <content><![CDATA[<h2 id="PrintAssembly是什么"><a href="#PrintAssembly是什么" class="headerlink" title="PrintAssembly是什么?"></a><code>PrintAssembly</code>是什么?</h2><p><code>PrintAssembly</code> 是JDK 7 以来才有的，用于查看 Java 编译后生成的汇编代码的选项。但要查看汇编代码，需要反汇编插件。插件目前有2种实现: 一种是依赖于Gnu <code>disassembler</code>的，一种是Kenai的项目<a href="http://kenai.com/projects/base-hsdis">base-hsdis</a>，<a href="https://github.com/drazzib/base-hsdis">GitHub地址</a></p>
@@ -1434,22 +1450,6 @@
 <h2 id="阅读编译器的细节"><a href="#阅读编译器的细节" class="headerlink" title="阅读编译器的细节"></a>阅读编译器的细节</h2><p>使用<code>-XX:+LogCompilation</code> 选项会生成一个有关编译器和运行时决策的低级 <code>XML</code> 文件，这可能对某些人来说很有趣。这个选项也必须和<code>-XX:+UnlockDiagnosticVMOptions</code>一起使用。默认日志位于当前目录的<code>hotspot.log</code>;也可以使用选项指定位置，如<code>-XX:LogFile=jit.log</code>。</p>
 <h2 id="JITWatch"><a href="#JITWatch" class="headerlink" title="JITWatch"></a>JITWatch</h2><p><a href="https://github.com/AdoptOpenJDK/jitwatch">JITWatch</a>是对<code>PrintAssembly</code>打印出的汇编代码进行可视化分析工具。因此，需要添加<code>-Xcomp</code>、<code>-XX:+LogCompilation</code>和选项<code>-XX:LogFile=jit.log</code>打印出汇编代码。</p>
 <p>参考<br><a href="https://wiki.openjdk.org/display/HotSpot/PrintAssembly">PrintAssembly</a><br><a href="https://xyzghio.xyz/HSDISAndJITWatch/">Java 反汇编：HSDIS、JITWatch</a><br><a href="https://dropzone.nfshost.com/hsdis/">How to build hsdis-amd64.dll and hsdis-i386.dll on Windows</a><br><a href="https://blogs.oracle.com/javamagazine/post/java-hotspot-hsdis-disassembler">Developers disassemble! Use Java and hsdis to see it all.</a><br><a href="https://github.com/openjdk/jdk/tree/master/src/utils/hsdis">hsdis源码</a><br><a href="https://jornvernee.github.io/hsdis/2022/04/30/hsdis.html">Building hsdis in 2022</a></p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java官方文档使用</title>
-    <url>/2024/08/01/Java%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>进入<a href="https://docs.oracle.com/en/java/javase/21/index.html">Oracal Help Center</a>选择对应 JDK 版本，然后分类选择。<br>如查询 <code>java</code> 命令选项，进入<a href="https://docs.oracle.com/en/java/javase/21/docs/specs/man/index.html">JDK Tool Specifications</a>，<br>再进入<a href="https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html">java</a>信息页面。</p>
-<p>如查看系统环境</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">PS</span> D:\Temp\Java&gt; java <span class="literal">-XshowSettings</span></span><br><span class="line">VM settings:</span><br><span class="line">    Max. Heap Size (Estimated): <span class="number">7.96</span>G</span><br><span class="line">    <span class="keyword">Using</span> VM: OpenJDK 64-Bit Server VM</span><br><span class="line"></span><br><span class="line">Property settings:</span><br><span class="line">    file.encoding = UTF<span class="literal">-8</span></span><br><span class="line">    file.separator = \</span><br><span class="line">    java.class.path =</span><br><span class="line">    java.class.version = <span class="number">65.0</span></span><br><span class="line">    java.home = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span></span><br><span class="line">    java.io.tmpdir = C:\Users\FRANK\AppData\Local\Temp\</span><br><span class="line">    java.library.path = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line">        C:\Windows\Sun\Java\bin</span><br><span class="line">        C:\Windows\system32</span><br><span class="line">        C:\Windows</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\MSBuild\Current\bin\Roslyn</span><br><span class="line">        C:\Program Files (x86)\Microsoft SDKs\Windows\v10.<span class="number">0</span>A\bin\NETFX <span class="number">4.8</span> Tools\x64\</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\CommonExtensions\Microsoft\FSharp\Tools</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Team Tools\DiagnosticsHub\Collector</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\Extensions\Microsoft\CodeCoverage.Console</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\\MSBuild\Current\Bin\amd64</span><br><span class="line">        C:\Windows\Microsoft.NET\Framework64\v4.<span class="number">0.30319</span></span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\IDE\</span><br><span class="line">        C:\Program Files\Microsoft Visual Studio\<span class="number">2022</span>\Enterprise\Common7\Tools\</span><br><span class="line">        C:\Windows\system32</span><br><span class="line">        D:\ProgramFiles\Utils</span><br><span class="line">        D:\ProgramFiles\nvm<span class="literal">-noinstall</span></span><br><span class="line">        D:\ProgramFiles\nvm<span class="literal">-noinstall</span>\Node.js</span><br><span class="line">        C:\Program Files (x86)\Windows Kits\<span class="number">10</span>\Windows Performance Toolkit\</span><br><span class="line">        D:\ProgramFiles\Git\bin</span><br><span class="line">        C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\<span class="number">170</span>\Tools\Binn\</span><br><span class="line">        C:\Program Files\Microsoft SQL Server\<span class="number">150</span>\Tools\Binn\</span><br><span class="line">        C:\Program Files\dotnet\</span><br><span class="line">        C:\Program Files\TortoiseGit\bin</span><br><span class="line">        C:\Windows\System32\WindowsPowerShell\v1.<span class="number">0</span></span><br><span class="line">        C:\Windows\System32\OpenSSH</span><br><span class="line">        C:\Users\FRANK\.cargo\bin</span><br><span class="line">        C:\Users\FRANK\AppData\Local\Microsoft\WindowsApps</span><br><span class="line">        C:\Users\FRANK\.dotnet\tools</span><br><span class="line">        D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line"></span><br><span class="line">        .</span><br><span class="line">    java.runtime.name = OpenJDK Runtime Environment</span><br><span class="line">    java.runtime.version = <span class="number">21.0</span>.<span class="number">3</span>+<span class="number">12</span><span class="literal">-LTS</span></span><br><span class="line">    java.specification.name = Java Platform API Specification</span><br><span class="line">    java.specification.vendor = Oracle Corporation</span><br><span class="line">    java.specification.version = <span class="number">21</span></span><br><span class="line">    java.vendor = BellSoft</span><br><span class="line">    java.vendor.url = https://bell<span class="literal">-sw</span>.com/</span><br><span class="line">    java.vendor.url.bug = https://bell<span class="literal">-sw</span>.com/support</span><br><span class="line">    java.version = <span class="number">21.0</span>.<span class="number">3</span></span><br><span class="line">    java.version.date = <span class="number">2024</span><span class="literal">-04-16</span></span><br><span class="line">    java.vm.compressedOopsMode = Zero based</span><br><span class="line">    java.vm.info = mixed mode, sharing</span><br><span class="line">    java.vm.name = OpenJDK <span class="number">64</span><span class="literal">-Bit</span> Server VM</span><br><span class="line">    java.vm.specification.name = Java Virtual Machine Specification</span><br><span class="line">    java.vm.specification.vendor = Oracle Corporation</span><br><span class="line">    java.vm.specification.version = <span class="number">21</span></span><br><span class="line">    java.vm.vendor = BellSoft</span><br><span class="line">    java.vm.version = <span class="number">21.0</span>.<span class="number">3</span>+<span class="number">12</span><span class="literal">-LTS</span></span><br><span class="line">    jdk.debug = release</span><br><span class="line">    line.separator = \r \n</span><br><span class="line">    native.encoding = GBK</span><br><span class="line">    os.arch = amd64</span><br><span class="line">    os.name = Windows <span class="number">11</span></span><br><span class="line">    os.version = <span class="number">10.0</span></span><br><span class="line">    path.separator = ;</span><br><span class="line">    stderr.encoding = ms936</span><br><span class="line">    stdout.encoding = ms936</span><br><span class="line">    sun.arch.data.model = <span class="number">64</span></span><br><span class="line">    sun.boot.library.path = D:\ProgramFiles\Java\Jabba\jdk\system@<span class="number">21.0</span>.<span class="number">3</span><span class="literal">-full-liberica</span>\bin</span><br><span class="line">    sun.cpu.endian = little</span><br><span class="line">    sun.cpu.isalist = amd64</span><br><span class="line">    sun.io.unicode.encoding = UnicodeLittle</span><br><span class="line">    sun.java.launcher = SUN_STANDARD</span><br><span class="line">    sun.jnu.encoding = GBK</span><br><span class="line">    sun.management.compiler = HotSpot <span class="number">64</span><span class="literal">-Bit</span> Tiered Compilers</span><br><span class="line">    sun.os.patch.level =</span><br><span class="line">    user.country = CN</span><br><span class="line">    user.dir = D:\Temp\Java</span><br><span class="line">    user.home = C:\Users\FRANK</span><br><span class="line">    user.language = zh</span><br><span class="line">    user.name = FRANK</span><br><span class="line">    user.script =</span><br><span class="line">    user.variant =</span><br><span class="line"></span><br><span class="line">Locale settings:</span><br><span class="line">    default locale = 中文 (中国)</span><br><span class="line">    default display locale = 中文 (中国)</span><br><span class="line">    default format locale = 中文 (中国)</span><br><span class="line">    tzdata version = <span class="number">2024</span>a</span><br><span class="line">    available locales = , af, af_NA, af_ZA, af_ZA_<span class="comment">#Latn, agq, agq_CM, agq_CM_#Latn,</span></span><br><span class="line">        ak, ak_GH, ak_GH_<span class="comment">#Latn, am, am_ET, am_ET_#Ethi, ann, ann_NG,</span></span><br><span class="line">        ann_NG_<span class="comment">#Latn, ar, ar_001, ar_AE, ar_BH, ar_DJ, ar_DZ, ar_EG,</span></span><br><span class="line">        ar_EG_<span class="comment">#Arab, ar_EH, ar_ER, ar_IL, ar_IQ, ar_JO, ar_KM, ar_KW,</span></span><br><span class="line">        ar_LB, ar_LY, ar_MA, ar_MR, ar_OM, ar_PS, ar_QA, ar_SA,</span><br><span class="line">        ar_SD, ar_SO, ar_SS, ar_SY, ar_TD, ar_TN, ar_YE, as,</span><br><span class="line">        as_IN, as_IN_<span class="comment">#Beng, asa, asa_TZ, asa_TZ_#Latn, ast, ast_ES, ast_ES_#Latn,</span></span><br><span class="line">        az, az_AZ, az_AZ_<span class="comment">#Cyrl, az_AZ_#Latn, az__#Cyrl, az__#Latn, bas, bas_CM,</span></span><br><span class="line">        bas_CM_<span class="comment">#Latn, be, be_BY, be_BY_#Cyrl, be__TARASK, bem, bem_ZM, bem_ZM_#Latn,</span></span><br><span class="line">        bez, bez_TZ, bez_TZ_<span class="comment">#Latn, bg, bg_BG, bg_BG_#Cyrl, bgc, bgc_IN,</span></span><br><span class="line">        bgc_IN_<span class="comment">#Deva, bho, bho_IN, bho_IN_#Deva, bm, bm_ML, bm_ML_#Latn, bn,</span></span><br><span class="line">        bn_BD, bn_BD_<span class="comment">#Beng, bn_IN, bo, bo_CN, bo_CN_#Tibt, bo_IN, br,</span></span><br><span class="line">        br_FR, br_FR_<span class="comment">#Latn, brx, brx_IN, brx_IN_#Deva, bs, bs_BA, bs_BA_#Cyrl,</span></span><br><span class="line">        bs_BA_<span class="comment">#Latn, bs__#Cyrl, bs__#Latn, ca, ca_AD, ca_ES, ca_ES_#Latn, ca_ES_VALENCIA,</span></span><br><span class="line">        ca_FR, ca_IT, ccp, ccp_BD, ccp_BD_<span class="comment">#Cakm, ccp_IN, ce, ce_RU,</span></span><br><span class="line">        ce_RU_<span class="comment">#Cyrl, ceb, ceb_PH, ceb_PH_#Latn, cgg, cgg_UG, cgg_UG_#Latn, chr,</span></span><br><span class="line">        chr_US, chr_US_<span class="comment">#Cher, ckb, ckb_IQ, ckb_IQ_#Arab, ckb_IR, cs, cs_CZ,</span></span><br><span class="line">        cs_CZ_<span class="comment">#Latn, cv, cv_RU, cv_RU_#Cyrl, cy, cy_GB, cy_GB_#Latn, da,</span></span><br><span class="line">        da_DK, da_DK_<span class="comment">#Latn, da_GL, dav, dav_KE, dav_KE_#Latn, de, de_AT,</span></span><br><span class="line">        de_BE, de_CH, de_DE, de_DE_<span class="comment">#Latn, de_IT, de_LI, de_LU, dje,</span></span><br><span class="line">        dje_NE, dje_NE_<span class="comment">#Latn, doi, doi_IN, doi_IN_#Deva, dsb, dsb_DE, dsb_DE_#Latn,</span></span><br><span class="line">        dua, dua_CM, dua_CM_<span class="comment">#Latn, dyo, dyo_SN, dyo_SN_#Latn, dz, dz_BT,</span></span><br><span class="line">        dz_BT_<span class="comment">#Tibt, ebu, ebu_KE, ebu_KE_#Latn, ee, ee_GH, ee_GH_#Latn, ee_TG,</span></span><br><span class="line">        el, el_CY, el_GR, el_GR_<span class="comment">#Grek, el__POLYTON, en, en_001, en_150,</span></span><br><span class="line">        en_AE, en_AG, en_AI, en_AS, en_AT, en_AU, en_BB, en_BE,</span><br><span class="line">        en_BI, en_BM, en_BS, en_BW, en_BZ, en_CA, en_CC, en_CH,</span><br><span class="line">        en_CK, en_CM, en_CX, en_CY, en_DE, en_DG, en_DK, en_DM,</span><br><span class="line">        en_ER, en_FI, en_FJ, en_FK, en_FM, en_GB, en_GD, en_GG,</span><br><span class="line">        en_GH, en_GI, en_GM, en_GU, en_GY, en_HK, en_IE, en_IL,</span><br><span class="line">        en_IM, en_IN, en_IO, en_JE, en_JM, en_KE, en_KI, en_KN,</span><br><span class="line">        en_KY, en_LC, en_LR, en_LS, en_MG, en_MH, en_MO, en_MP,</span><br><span class="line">        en_MS, en_MT, en_MU, en_MV, en_MW, en_MY, en_NA, en_NF,</span><br><span class="line">        en_NG, en_NL, en_NR, en_NU, en_NZ, en_PG, en_PH, en_PK,</span><br><span class="line">        en_PN, en_PR, en_PW, en_RW, en_SB, en_SC, en_SD, en_SE,</span><br><span class="line">        en_SG, en_SH, en_SI, en_SL, en_SS, en_SX, en_SZ, en_TC,</span><br><span class="line">        en_TK, en_TO, en_TT, en_TV, en_TZ, en_UG, en_UM, en_US,</span><br><span class="line">        en_US_<span class="comment">#Latn, en_US_POSIX, en_VC, en_VG, en_VI, en_VU, en_WS, en_ZA,</span></span><br><span class="line">        en_ZM, en_ZW, eo, eo_001, eo_001_<span class="comment">#Latn, es, es_419, es_AR,</span></span><br><span class="line">        es_BO, es_BR, es_BZ, es_CL, es_CO, es_CR, es_CU, es_DO,</span><br><span class="line">        es_EA, es_EC, es_ES, es_ES_<span class="comment">#Latn, es_GQ, es_GT, es_HN, es_IC,</span></span><br><span class="line">        es_MX, es_NI, es_PA, es_PE, es_PH, es_PR, es_PY, es_SV,</span><br><span class="line">        es_US, es_UY, es_VE, et, et_EE, et_EE_<span class="comment">#Latn, eu, eu_ES,</span></span><br><span class="line">        eu_ES_<span class="comment">#Latn, ewo, ewo_CM, ewo_CM_#Latn, fa, fa_AF, fa_IR, fa_IR_#Arab,</span></span><br><span class="line">        ff, ff_BF_<span class="comment">#Adlm, ff_BF_#Latn, ff_CM_#Adlm, ff_CM_#Latn, ff_GH_#Adlm, ff_GH_#Latn, ff_GM_#Adlm,</span></span><br><span class="line">        ff_GM_<span class="comment">#Latn, ff_GN, ff_GN_#Adlm, ff_GN_#Latn, ff_GW_#Adlm, ff_GW_#Latn, ff_LR_#Adlm, ff_LR_#Latn,</span></span><br><span class="line">        ff_MR_<span class="comment">#Adlm, ff_MR_#Latn, ff_NE_#Adlm, ff_NE_#Latn, ff_NG_#Adlm, ff_NG_#Latn, ff_SL_#Adlm, ff_SL_#Latn,</span></span><br><span class="line">        ff_SN, ff_SN_<span class="comment">#Adlm, ff_SN_#Latn, ff__#Adlm, ff__#Latn, fi, fi_FI, fi_FI_#Latn,</span></span><br><span class="line">        fil, fil_PH, fil_PH_<span class="comment">#Latn, fo, fo_DK, fo_FO, fo_FO_#Latn, fr,</span></span><br><span class="line">        fr_BE, fr_BF, fr_BI, fr_BJ, fr_BL, fr_CA, fr_CD, fr_CF,</span><br><span class="line">        fr_CG, fr_CH, fr_CI, fr_CM, fr_DJ, fr_DZ, fr_FR, fr_FR_<span class="comment">#Latn,</span></span><br><span class="line">        fr_GA, fr_GF, fr_GN, fr_GP, fr_GQ, fr_HT, fr_KM, fr_LU,</span><br><span class="line">        fr_MA, fr_MC, fr_MF, fr_MG, fr_ML, fr_MQ, fr_MR, fr_MU,</span><br><span class="line">        fr_NC, fr_NE, fr_PF, fr_PM, fr_RE, fr_RW, fr_SC, fr_SN,</span><br><span class="line">        fr_SY, fr_TD, fr_TG, fr_TN, fr_VU, fr_WF, fr_YT, frr,</span><br><span class="line">        frr_DE, frr_DE_<span class="comment">#Latn, fur, fur_IT, fur_IT_#Latn, fy, fy_NL, fy_NL_#Latn,</span></span><br><span class="line">        ga, ga_GB, ga_IE, ga_IE_<span class="comment">#Latn, gd, gd_GB, gd_GB_#Latn, gl,</span></span><br><span class="line">        gl_ES, gl_ES_<span class="comment">#Latn, gsw, gsw_CH, gsw_CH_#Latn, gsw_FR, gsw_LI, gu,</span></span><br><span class="line">        gu_IN, gu_IN_<span class="comment">#Gujr, guz, guz_KE, guz_KE_#Latn, gv, gv_IM, gv_IM_#Latn,</span></span><br><span class="line">        ha, ha_GH, ha_NE, ha_NG, ha_NG_<span class="comment">#Latn, haw, haw_US, haw_US_#Latn,</span></span><br><span class="line">        he, he_IL, he_IL_<span class="comment">#Hebr, hi, hi_IN, hi_IN_#Deva, hi_IN_#Latn, hi__#Latn,</span></span><br><span class="line">        hr, hr_BA, hr_HR, hr_HR_<span class="comment">#Latn, hsb, hsb_DE, hsb_DE_#Latn, hu,</span></span><br><span class="line">        hu_HU, hu_HU_<span class="comment">#Latn, hy, hy_AM, hy_AM_#Armn, ia, ia_001, ia_001_#Latn,</span></span><br><span class="line">        id, id_ID, id_ID_<span class="comment">#Latn, ig, ig_NG, ig_NG_#Latn, ii, ii_CN,</span></span><br><span class="line">        ii_CN_<span class="comment">#Yiii, is, is_IS, is_IS_#Latn, it, it_CH, it_IT, it_IT_#Latn,</span></span><br><span class="line">        it_SM, it_VA, ja, ja_JP, ja_JP_<span class="comment">#Jpan, ja_JP_JP_#u-ca-japanese, jgo, jgo_CM,</span></span><br><span class="line">        jgo_CM_<span class="comment">#Latn, jmc, jmc_TZ, jmc_TZ_#Latn, jv, jv_ID, jv_ID_#Latn, ka,</span></span><br><span class="line">        ka_GE, ka_GE_<span class="comment">#Geor, kab, kab_DZ, kab_DZ_#Latn, kam, kam_KE, kam_KE_#Latn,</span></span><br><span class="line">        kde, kde_TZ, kde_TZ_<span class="comment">#Latn, kea, kea_CV, kea_CV_#Latn, kgp, kgp_BR,</span></span><br><span class="line">        kgp_BR_<span class="comment">#Latn, khq, khq_ML, khq_ML_#Latn, ki, ki_KE, ki_KE_#Latn, kk,</span></span><br><span class="line">        kk_KZ, kk_KZ_<span class="comment">#Cyrl, kkj, kkj_CM, kkj_CM_#Latn, kl, kl_GL, kl_GL_#Latn,</span></span><br><span class="line">        kln, kln_KE, kln_KE_<span class="comment">#Latn, km, km_KH, km_KH_#Khmr, kn, kn_IN,</span></span><br><span class="line">        kn_IN_<span class="comment">#Knda, ko, ko_KP, ko_KR, ko_KR_#Kore, kok, kok_IN, kok_IN_#Deva,</span></span><br><span class="line">        ks, ks_IN, ks_IN_<span class="comment">#Arab, ks_IN_#Deva, ks__#Arab, ks__#Deva, ksb, ksb_TZ,</span></span><br><span class="line">        ksb_TZ_<span class="comment">#Latn, ksf, ksf_CM, ksf_CM_#Latn, ksh, ksh_DE, ksh_DE_#Latn, ku,</span></span><br><span class="line">        ku_TR, ku_TR_<span class="comment">#Latn, kw, kw_GB, kw_GB_#Latn, ky, ky_KG, ky_KG_#Cyrl,</span></span><br><span class="line">        lag, lag_TZ, lag_TZ_<span class="comment">#Latn, lb, lb_LU, lb_LU_#Latn, lg, lg_UG,</span></span><br><span class="line">        lg_UG_<span class="comment">#Latn, lkt, lkt_US, lkt_US_#Latn, ln, ln_AO, ln_CD, ln_CD_#Latn,</span></span><br><span class="line">        ln_CF, ln_CG, lo, lo_LA, lo_LA_<span class="comment">#Laoo, lrc, lrc_IQ, lrc_IR,</span></span><br><span class="line">        lrc_IR_<span class="comment">#Arab, lt, lt_LT, lt_LT_#Latn, lu, lu_CD, lu_CD_#Latn, luo,</span></span><br><span class="line">        luo_KE, luo_KE_<span class="comment">#Latn, luy, luy_KE, luy_KE_#Latn, lv, lv_LV, lv_LV_#Latn,</span></span><br><span class="line">        mai, mai_IN, mai_IN_<span class="comment">#Deva, mas, mas_KE, mas_KE_#Latn, mas_TZ, mdf,</span></span><br><span class="line">        mdf_RU, mdf_RU_<span class="comment">#Cyrl, mer, mer_KE, mer_KE_#Latn, mfe, mfe_MU, mfe_MU_#Latn,</span></span><br><span class="line">        mg, mg_MG, mg_MG_<span class="comment">#Latn, mgh, mgh_MZ, mgh_MZ_#Latn, mgo, mgo_CM,</span></span><br><span class="line">        mgo_CM_<span class="comment">#Latn, mi, mi_NZ, mi_NZ_#Latn, mk, mk_MK, mk_MK_#Cyrl, ml,</span></span><br><span class="line">        ml_IN, ml_IN_<span class="comment">#Mlym, mn, mn_MN, mn_MN_#Cyrl, mni, mni_IN, mni_IN_#Beng,</span></span><br><span class="line">        mni__<span class="comment">#Beng, mr, mr_IN, mr_IN_#Deva, ms, ms_BN, ms_ID, ms_MY,</span></span><br><span class="line">        ms_MY_<span class="comment">#Latn, ms_SG, mt, mt_MT, mt_MT_#Latn, mua, mua_CM, mua_CM_#Latn,</span></span><br><span class="line">        my, my_MM, my_MM_<span class="comment">#Mymr, mzn, mzn_IR, mzn_IR_#Arab, naq, naq_NA,</span></span><br><span class="line">        naq_NA_<span class="comment">#Latn, nb, nb_NO, nb_NO_#Latn, nb_SJ, nd, nd_ZW, nd_ZW_#Latn,</span></span><br><span class="line">        nds, nds_DE, nds_DE_<span class="comment">#Latn, nds_NL, ne, ne_IN, ne_NP, ne_NP_#Deva,</span></span><br><span class="line">        nl, nl_AW, nl_BE, nl_BQ, nl_CW, nl_NL, nl_NL_<span class="comment">#Latn, nl_SR,</span></span><br><span class="line">        nl_SX, nmg, nmg_CM, nmg_CM_<span class="comment">#Latn, nn, nn_NO, nn_NO_#Latn, nnh,</span></span><br><span class="line">        nnh_CM, nnh_CM_<span class="comment">#Latn, no, no_NO, no_NO_#Latn, no_NO_NY, nus, nus_SS,</span></span><br><span class="line">        nus_SS_<span class="comment">#Latn, nyn, nyn_UG, nyn_UG_#Latn, oc, oc_ES, oc_FR, oc_FR_#Latn,</span></span><br><span class="line">        om, om_ET, om_ET_<span class="comment">#Latn, om_KE, or, or_IN, or_IN_#Orya, os,</span></span><br><span class="line">        os_GE, os_GE_<span class="comment">#Cyrl, os_RU, pa, pa_IN, pa_IN_#Guru, pa_PK, pa_PK_#Arab,</span></span><br><span class="line">        pa__<span class="comment">#Arab, pa__#Guru, pcm, pcm_NG, pcm_NG_#Latn, pis, pis_SB, pis_SB_#Latn,</span></span><br><span class="line">        pl, pl_PL, pl_PL_<span class="comment">#Latn, ps, ps_AF, ps_AF_#Arab, ps_PK, pt,</span></span><br><span class="line">        pt_AO, pt_BR, pt_BR_<span class="comment">#Latn, pt_CH, pt_CV, pt_GQ, pt_GW, pt_LU,</span></span><br><span class="line">        pt_MO, pt_MZ, pt_PT, pt_ST, pt_TL, qu, qu_BO, qu_EC,</span><br><span class="line">        qu_PE, qu_PE_<span class="comment">#Latn, raj, raj_IN, raj_IN_#Deva, rm, rm_CH, rm_CH_#Latn,</span></span><br><span class="line">        rn, rn_BI, rn_BI_<span class="comment">#Latn, ro, ro_MD, ro_RO, ro_RO_#Latn, rof,</span></span><br><span class="line">        rof_TZ, rof_TZ_<span class="comment">#Latn, ru, ru_BY, ru_KG, ru_KZ, ru_MD, ru_RU,</span></span><br><span class="line">        ru_RU_<span class="comment">#Cyrl, ru_UA, rw, rw_RW, rw_RW_#Latn, rwk, rwk_TZ, rwk_TZ_#Latn,</span></span><br><span class="line">        sa, sa_IN, sa_IN_<span class="comment">#Deva, sah, sah_RU, sah_RU_#Cyrl, saq, saq_KE,</span></span><br><span class="line">        saq_KE_<span class="comment">#Latn, sat, sat_IN, sat_IN_#Olck, sat__#Olck, sbp, sbp_TZ, sbp_TZ_#Latn,</span></span><br><span class="line">        <span class="built_in">sc</span>, sc_IT, sc_IT_<span class="comment">#Latn, sd, sd_IN, sd_IN_#Deva, sd_PK, sd_PK_#Arab,</span></span><br><span class="line">        sd__<span class="comment">#Arab, sd__#Deva, se, se_FI, se_NO, se_NO_#Latn, se_SE, seh,</span></span><br><span class="line">        seh_MZ, seh_MZ_<span class="comment">#Latn, ses, ses_ML, ses_ML_#Latn, sg, sg_CF, sg_CF_#Latn,</span></span><br><span class="line">        shi, shi_MA, shi_MA_<span class="comment">#Latn, shi_MA_#Tfng, shi__#Latn, shi__#Tfng, si, si_LK,</span></span><br><span class="line">        si_LK_<span class="comment">#Sinh, sk, sk_SK, sk_SK_#Latn, sl, sl_SI, sl_SI_#Latn, smn,</span></span><br><span class="line">        smn_FI, smn_FI_<span class="comment">#Latn, sms, sms_FI, sms_FI_#Latn, sn, sn_ZW, sn_ZW_#Latn,</span></span><br><span class="line">        so, so_DJ, so_ET, so_KE, so_SO, so_SO_<span class="comment">#Latn, sq, sq_AL,</span></span><br><span class="line">        sq_AL_<span class="comment">#Latn, sq_MK, sq_XK, sr, sr_BA, sr_BA_#Cyrl, sr_BA_#Latn, sr_CS,</span></span><br><span class="line">        sr_ME, sr_ME_<span class="comment">#Cyrl, sr_ME_#Latn, sr_RS, sr_RS_#Cyrl, sr_RS_#Latn, sr_XK_#Cyrl, sr_XK_#Latn,</span></span><br><span class="line">        sr__<span class="comment">#Cyrl, sr__#Latn, su, su_ID, su_ID_#Latn, su__#Latn, sv, sv_AX,</span></span><br><span class="line">        sv_FI, sv_SE, sv_SE_<span class="comment">#Latn, sw, sw_CD, sw_KE, sw_TZ, sw_TZ_#Latn,</span></span><br><span class="line">        sw_UG, ta, ta_IN, ta_IN_<span class="comment">#Taml, ta_LK, ta_MY, ta_SG, te,</span></span><br><span class="line">        te_IN, te_IN_<span class="comment">#Telu, teo, teo_KE, teo_UG, teo_UG_#Latn, tg, tg_TJ,</span></span><br><span class="line">        tg_TJ_<span class="comment">#Cyrl, th, th_TH, th_TH_#Thai, th_TH_TH_#u-nu-thai, ti, ti_ER, ti_ET,</span></span><br><span class="line">        ti_ET_<span class="comment">#Ethi, tk, tk_TM, tk_TM_#Latn, to, to_TO, to_TO_#Latn, tok,</span></span><br><span class="line">        tok_001, tok_001_<span class="comment">#Latn, tr, tr_CY, tr_TR, tr_TR_#Latn, tt, tt_RU,</span></span><br><span class="line">        tt_RU_<span class="comment">#Cyrl, twq, twq_NE, twq_NE_#Latn, tzm, tzm_MA, tzm_MA_#Latn, ug,</span></span><br><span class="line">        ug_CN, ug_CN_<span class="comment">#Arab, uk, uk_UA, uk_UA_#Cyrl, ur, ur_IN, ur_PK,</span></span><br><span class="line">        ur_PK_<span class="comment">#Arab, uz, uz_AF, uz_AF_#Arab, uz_UZ, uz_UZ_#Cyrl, uz_UZ_#Latn, uz__#Arab,</span></span><br><span class="line">        uz__<span class="comment">#Cyrl, uz__#Latn, vai, vai_LR, vai_LR_#Latn, vai_LR_#Vaii, vai__#Latn, vai__#Vaii,</span></span><br><span class="line">        vi, vi_VN, vi_VN_<span class="comment">#Latn, vun, vun_TZ, vun_TZ_#Latn, wae, wae_CH,</span></span><br><span class="line">        wae_CH_<span class="comment">#Latn, wo, wo_SN, wo_SN_#Latn, xh, xh_ZA, xh_ZA_#Latn, xog,</span></span><br><span class="line">        xog_UG, xog_UG_<span class="comment">#Latn, yav, yav_CM, yav_CM_#Latn, yi, yi_001, yi_001_#Hebr,</span></span><br><span class="line">        yo, yo_BJ, yo_NG, yo_NG_<span class="comment">#Latn, yrl, yrl_BR, yrl_BR_#Latn, yrl_CO,</span></span><br><span class="line">        yrl_VE, yue, yue_CN, yue_CN_<span class="comment">#Hans, yue_HK, yue_HK_#Hant, yue__#Hans, yue__#Hant,</span></span><br><span class="line">        zgh, zgh_MA, zgh_MA_<span class="comment">#Tfng, zh, zh_CN, zh_CN_#Hans, zh_HK, zh_HK_#Hans,</span></span><br><span class="line">        zh_HK_<span class="comment">#Hant, zh_MO, zh_MO_#Hans, zh_MO_#Hant, zh_SG, zh_SG_#Hans, zh_TW, zh_TW_#Hant,</span></span><br><span class="line">        zh__<span class="comment">#Hans, zh__#Hant, zu, zu_ZA, zu_ZA_#Latn</span></span><br><span class="line">用法：java [<span class="type">options</span>] &lt;主类&gt; [<span class="type">args...</span>]</span><br><span class="line">           （执行类）</span><br><span class="line">   或  java [<span class="type">options</span>] <span class="literal">-jar</span> &lt;jar 文件&gt; [<span class="type">args...</span>]</span><br><span class="line">           （执行 jar 文件）</span><br><span class="line">   或  java [<span class="type">options</span>] <span class="literal">-m</span> &lt;模块&gt;[/&lt;主类&gt;] [<span class="type">args...</span>]</span><br><span class="line">       java [<span class="type">options</span>] <span class="literal">--module</span> &lt;模块&gt;[/&lt;主类&gt;] [<span class="type">args...</span>]</span><br><span class="line">           （执行模块中的主类）</span><br><span class="line">   或  java [<span class="type">options</span>] &lt;源文件&gt; [<span class="type">args</span>]</span><br><span class="line">           （执行单个源文件程序）</span><br><span class="line"></span><br><span class="line"> 将主类、源文件、<span class="literal">-jar</span> &lt;jar 文件&gt;、<span class="literal">-m</span> 或</span><br><span class="line"> <span class="literal">--module</span> &lt;模块&gt;/&lt;主类&gt; 后的参数作为参数</span><br><span class="line"> 传递到主类。</span><br><span class="line"></span><br><span class="line"> 其中，选项包括：</span><br><span class="line"></span><br><span class="line">    <span class="literal">-client</span>       选择 <span class="string">&quot;client&quot;</span> VM</span><br><span class="line">    <span class="literal">-cp</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">    <span class="literal">-classpath</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">    <span class="literal">--class-path</span> &lt;目录和 zip/jar 文件的类搜索路径&gt;</span><br><span class="line">                  使用 ; 分隔的, 用于搜索类文件的目录, JAR 档案</span><br><span class="line">                  和 ZIP 档案列表。</span><br><span class="line">    <span class="literal">-p</span> &lt;模块路径&gt;</span><br><span class="line">    <span class="literal">--module-path</span> &lt;模块路径&gt;...</span><br><span class="line">                  ; 分隔的元素列表，每个元素都是</span><br><span class="line">                  模块或包含模块的目录的文件路径。每个模块都是</span><br><span class="line">                  模块化 JAR 或展开的模块目录。</span><br><span class="line">    <span class="literal">--upgrade-module-path</span> &lt;模块路径&gt;...</span><br><span class="line">                  ; 分隔的元素列表，每个元素都是</span><br><span class="line">                  模块或包含模块（用于替换运行时映像中的</span><br><span class="line">                  可升级模块）的目录的文件路径。每个模块都是</span><br><span class="line">                  模块化 JAR 或展开的模块目录。</span><br><span class="line">    <span class="literal">--add-modules</span> &lt;模块名称&gt;[,&lt;模块名称&gt;<span class="type">...</span>]</span><br><span class="line">                  除了初始模块之外要解析的根模块。</span><br><span class="line">                  &lt;模块名称&gt; 还可以为 ALL<span class="literal">-DEFAULT</span>, ALL<span class="literal">-SYSTEM</span>,</span><br><span class="line">                  ALL<span class="literal">-MODULE-PATH</span>.</span><br><span class="line">    <span class="literal">--enable-native-access</span> &lt;module name&gt;[,&lt;<span class="type">module</span> <span class="type">name</span>&gt;<span class="type">...</span>]</span><br><span class="line">                  允许执行受限本机操作的模块。</span><br><span class="line">                  &lt;module name&gt; 还可以为 ALL<span class="literal">-UNNAMED</span>。</span><br><span class="line">    <span class="literal">--list-modules</span></span><br><span class="line">                  列出可观察模块并退出</span><br><span class="line">    <span class="literal">-d</span> &lt;module name&gt;</span><br><span class="line">    <span class="literal">--describe-module</span> &lt;模块名称&gt;</span><br><span class="line">                  描述模块并退出</span><br><span class="line">    <span class="literal">--dry-run</span>     创建 VM 并加载主类, 但不执行 main 方法。</span><br><span class="line">                  此 <span class="literal">--dry-run</span> 选项对于验证诸如</span><br><span class="line">                  模块系统配置这样的命令行选项可能非常有用。</span><br><span class="line">    <span class="literal">--validate-modules</span></span><br><span class="line">                  验证所有模块并退出</span><br><span class="line">                  <span class="literal">--validate-modules</span> 选项对于查找</span><br><span class="line">                  模块路径中模块的冲突及其他错误可能非常有用。</span><br><span class="line">    <span class="literal">-D</span>&lt;名称&gt;=&lt;值&gt;</span><br><span class="line">                  设置系统属性</span><br><span class="line">    <span class="literal">-verbose</span>:[<span class="type">class</span>|<span class="type">module</span>|<span class="type">gc</span>|<span class="type">jni</span>]</span><br><span class="line">                  为给定子系统启用详细输出</span><br><span class="line">    <span class="literal">-version</span>      将产品版本输出到错误流并退出</span><br><span class="line">    <span class="literal">--version</span>     将产品版本输出到输出流并退出</span><br><span class="line">    <span class="literal">-showversion</span>  将产品版本输出到错误流并继续</span><br><span class="line">    <span class="literal">--show-version</span></span><br><span class="line">                  将产品版本输出到输出流并继续</span><br><span class="line">    <span class="literal">--show-module-resolution</span></span><br><span class="line">                  在启动过程中显示模块解析输出</span><br><span class="line">    -? <span class="literal">-h</span> <span class="literal">-help</span></span><br><span class="line">                  将此帮助消息输出到错误流</span><br><span class="line">    <span class="literal">--help</span>        将此帮助消息输出到输出流</span><br><span class="line">    <span class="literal">-X</span>            将额外选项的帮助输出到错误流</span><br><span class="line">    <span class="literal">--help-extra</span>  将额外选项的帮助输出到输出流</span><br><span class="line">    <span class="literal">-ea</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">    <span class="literal">-enableassertions</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">                  按指定的粒度启用断言</span><br><span class="line">    <span class="literal">-da</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">    <span class="literal">-disableassertions</span>[:&lt;程序包名称&gt;<span class="type">...</span>|:&lt;类名&gt;]</span><br><span class="line">                  按指定的粒度禁用断言</span><br><span class="line">    <span class="literal">-esa</span> | <span class="literal">-enablesystemassertions</span></span><br><span class="line">                  启用系统断言</span><br><span class="line">    <span class="literal">-dsa</span> | <span class="literal">-disablesystemassertions</span></span><br><span class="line">                  禁用系统断言</span><br><span class="line">    <span class="literal">-agentlib</span>:&lt;库名&gt;[=&lt;选项&gt;]</span><br><span class="line">                  加载本机代理库 &lt;库名&gt;, 例如 <span class="literal">-agentlib</span>:jdwp</span><br><span class="line">                  另请参阅 <span class="literal">-agentlib</span>:jdwp=help</span><br><span class="line">    <span class="literal">-agentpath</span>:&lt;路径名&gt;[=&lt;选项&gt;]</span><br><span class="line">                  按完整路径名加载本机代理库</span><br><span class="line">    <span class="literal">-javaagent</span>:&lt;jar 路径&gt;[=&lt;选项&gt;]</span><br><span class="line">                  加载 Java 编程语言代理, 请参阅 java.lang.instrument</span><br><span class="line">    <span class="literal">-splash</span>:&lt;图像路径&gt;</span><br><span class="line">                  使用指定的图像显示启动屏幕</span><br><span class="line">                  自动支持和使用 HiDPI 缩放图像</span><br><span class="line">                  (如果可用)。应始终将未缩放的图像文件名 (例如, image.ext)</span><br><span class="line">                  作为参数传递给 <span class="literal">-splash</span> 选项。</span><br><span class="line">                  将自动选取提供的最合适的缩放</span><br><span class="line">                  图像。</span><br><span class="line">                  有关详细信息, 请参阅 SplashScreen API 文档</span><br><span class="line">    @argument 文件</span><br><span class="line">                  一个或多个包含选项的参数文件</span><br><span class="line">    <span class="literal">--disable-</span>@files</span><br><span class="line">                  阻止进一步扩展参数文件</span><br><span class="line">    <span class="literal">--enable-preview</span></span><br><span class="line">                  允许类依赖于此发行版的预览功能</span><br><span class="line">要为长选项指定参数, 可以使用 <span class="literal">--</span>&lt;名称&gt;=&lt;值&gt; 或</span><br><span class="line"><span class="literal">--</span>&lt;名称&gt; &lt;值&gt;。</span><br><span class="line"></span><br><span class="line"><span class="built_in">PS</span> D:\Temp\Java&gt;</span><br></pre></td></tr></table></figure>
-
-<p>目前只找到 Oracle 官网有此文档，其他发布版本，不一定有。</p>
 ]]></content>
       <categories>
         <category>后端</category>
@@ -1898,19 +1898,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot项目启动</title>
-    <url>/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/</url>
-    <content><![CDATA[<h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="不使用spring-boot-starter-parent"><a href="#不使用spring-boot-starter-parent" class="headerlink" title="不使用spring-boot-starter-parent"></a>不使用<code>spring-boot-starter-parent</code></h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IntelliJ IDEA之External tools</title>
     <url>/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/</url>
     <content><![CDATA[<h2 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h2><p><code>Ctrl + Alt + S</code> ——&gt; <code>External Tools</code> ——&gt; <code>Add</code> ,在添加页面的 <code>Tool Setting</code>部分分别设置</p>
@@ -1928,6 +1915,19 @@
 <li><code>Working directory</code> 填 <code>$FileDir$</code></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot项目启动</title>
+    <url>/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="不使用spring-boot-starter-parent"><a href="#不使用spring-boot-starter-parent" class="headerlink" title="不使用spring-boot-starter-parent"></a>不使用<code>spring-boot-starter-parent</code></h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>后端</category>
       </categories>
@@ -2892,51 +2892,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>IntelliJ-IDEA之一键Docker部署Java程序</title>
-    <url>/2024/07/30/IntelliJ-IDEA%E4%B9%8B%E4%B8%80%E9%94%AEDocker%E9%83%A8%E7%BD%B2Java%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<p>在完成打包好<code>jar</code>步骤后<br>检查docker 服务器</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br><span class="line"># 在ExecStart=/usr/bin/dockerd追加 `-H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock`</span><br><span class="line"># 重新启动</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
-<p>给idea安装JetBrains出的<code>Docker</code>插件，<br>配置idea的插件<code>Docker</code>,设置为上面的地址<code>tcp://xxx.xxx.xxx.xxx:2375</code></p>
-<p>针对java项目，不建议使用&#96;&#96;插件，因其需要本地安装docker，并且无人维护。建议如下两种方式：</p>
-<ol>
-<li><p>使用<code>docker-maven-plugin</code>。复制以下代码到<code>pom.xml</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">  &lt;groupId&gt;com.spotify&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0.0&lt;/version&gt;</span><br><span class="line">  &lt;executions&gt;</span><br><span class="line">    &lt;!--执行mvn package,即执行 mvn clean package docker:build--&gt;</span><br><span class="line">    &lt;execution&gt;</span><br><span class="line">      &lt;id&gt;build-image&lt;/id&gt;</span><br><span class="line">      &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">      &lt;goals&gt;</span><br><span class="line">        &lt;goal&gt;build&lt;/goal&gt;</span><br><span class="line">      &lt;/goals&gt;</span><br><span class="line">    &lt;/execution&gt;</span><br><span class="line">  &lt;/executions&gt;</span><br><span class="line"></span><br><span class="line">  &lt;configuration&gt;</span><br><span class="line">    &lt;!-- 镜像名称 --&gt;</span><br><span class="line">    &lt;imageName&gt;$&#123;project.artifactId&#125;&lt;/imageName&gt;</span><br><span class="line">    &lt;!-- 指定标签 --&gt;</span><br><span class="line">    &lt;imageTags&gt;</span><br><span class="line">      &lt;imageTag&gt;latest&lt;/imageTag&gt;</span><br><span class="line">    &lt;/imageTags&gt;</span><br><span class="line">    &lt;!-- 基础镜像--&gt;</span><br><span class="line">    &lt;baseImage&gt;openjdk:8-jdk-alpine&lt;/baseImage&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 切换到容器工作目录--&gt;</span><br><span class="line">    &lt;workdir&gt;/ROOT&lt;/workdir&gt;</span><br><span class="line"></span><br><span class="line">    &lt;entryPoint&gt;[&quot;java&quot;,&quot;-jar&quot;,&quot;$&#123;project.build.finalName&#125;.jar&quot;]&lt;/entryPoint&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 指定远程 Docker API地址  --&gt;</span><br><span class="line">    &lt;dockerHost&gt;http://192.168.1.20:2375&lt;/dockerHost&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 复制 jar包到docker容器指定目录--&gt;</span><br><span class="line">    &lt;resources&gt;</span><br><span class="line">      &lt;resource&gt;</span><br><span class="line">        &lt;targetPath&gt;/ROOT&lt;/targetPath&gt;</span><br><span class="line">        &lt;!-- 用于指定需要复制的根目录，$&#123;project.build.directory&#125;表示target目录 --&gt;</span><br><span class="line">        &lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt;</span><br><span class="line">        &lt;!-- 用于指定需要复制的文件，$&#123;project.build.finalName&#125;.jar就是打包后的target目录下的jar包名称　--&gt;</span><br><span class="line">        &lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt;</span><br><span class="line">      &lt;/resource&gt;</span><br><span class="line">    &lt;/resources&gt;</span><br><span class="line">  &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-<p>然后再次执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn clean package</span><br></pre></td></tr></table></figure>
-<p>选择<code>server</code>,找到生成的镜像，右键<code>创建容器</code>，就能看到docker运行结果。或者到容器里，创建容器运行该image。</p>
-</li>
-<li><p>使用<code>jib</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.cloud.tools&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jib-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.1.4&lt;/version&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;from&gt;</span><br><span class="line">            &lt;!-- 注意：`docker`官方地址要填`docker.io/username/image-name:version`，如下。 --&gt;</span><br><span class="line">            &lt;!-- 如果把 `docker.io`更换为 `registry.hub.docker.com`(JetBrain插件里面填写的地址)或`hub.docker.com`（网页访问的地址）或`index.docker.io/v1/`(`docker info`显示的仓库)都不能成功--&gt;</span><br><span class="line">            &lt;image&gt;docker.io/frankbsd/openjdk8:v1&lt;/image&gt;</span><br><span class="line">            &lt;auth&gt;</span><br><span class="line">                &lt;username&gt;username&lt;/username&gt;</span><br><span class="line">                &lt;password&gt;password&lt;/password&gt;</span><br><span class="line">            &lt;/auth&gt;</span><br><span class="line">        &lt;/from&gt;</span><br><span class="line">        &lt;to&gt;</span><br><span class="line">            &lt;image&gt;docker.io/frankbsd/test-docker&lt;/image&gt;</span><br><span class="line">            &lt;auth&gt;</span><br><span class="line">                &lt;username&gt;username&lt;/username&gt;</span><br><span class="line">                &lt;password&gt;password&lt;/password&gt;</span><br><span class="line">            &lt;/auth&gt;</span><br><span class="line">        &lt;/to&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;build&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>然后执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker run frankbsd/test-docker -it /bin/bash</span><br></pre></td></tr></table></figure>
-<p>或spring-boot类web应用</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name test-docker -p 8080:8080 -it frankbsd/test-docker  </span><br></pre></td></tr></table></figure>
-
-<p>设置私有仓库</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">    -p 5000:5000 \</span><br><span class="line">    -v /opt/data/registry:/var/lib/registry \</span><br><span class="line">    registry</span><br></pre></td></tr></table></figure>
-<p>此时，只能使用<code>127.0.0.1:5000</code>访问<br>要局域网可以访问，须配置非<code>https</code>仓库地址。编辑<code>/etc/docker/daemon.json</code>(位于docker安装的机器，非<code>registry</code>镜像中的文件)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;insecure-registries&quot;: [</span><br><span class="line">    &quot;192.168.199.100:5000&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>查看私有仓库有的镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 查看私有仓库所有镜像名</span><br><span class="line">curl ip:port/v2/_catalog</span><br><span class="line"># 查看某个镜像的标签列表</span><br><span class="line">curl ip:port/v2/image-name/tags/list</span><br></pre></td></tr></table></figure>
-<p>要在<code>jib</code>中使用非<code>https</code>的私有仓库，需要配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;allowInsecureRegistries&gt;true&lt;/allowInsecureRegistries&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-
-<p>官方没有直接提供删除命令，但有api，可参考<a href="https://github.com/burnettk/delete-docker-registry-image">delete-docker-registry-image</a></p>
-<p><a href="https://yeasy.gitbook.io/docker_practice/repository/registry">在私有仓库上传、搜索、下载镜像</a></p>
-<p>设置私有仓库后，使用<code>docker pull</code>不能再直接从docker hub拉取镜像，要使用如下方式</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull docker.io/username/image-name:tag</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>IntelliJ IDEA</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>IntelliJ IDEA使用</title>
     <url>/2024/07/30/IntelliJ-IDEA%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="设置IDEA的配置文件"><a href="#设置IDEA的配置文件" class="headerlink" title="设置IDEA的配置文件"></a>设置IDEA的配置文件</h2><p>a. <code>C:\Users\FRANK\AppData\Roaming\JetBrains\IntelliJIdea2021.3\idea.properties</code></p>
@@ -3113,14 +3068,48 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>Jackson封装</title>
-    <url>/2024/07/31/Jackson%E5%B0%81%E8%A3%85/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rl.algorithmassistance.common;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.annotation.JsonInclude;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.JsonProcessingException;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.type.TypeReference;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.DeserializationFeature;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.SerializationFeature;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JsonUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ObjectMapper</span> <span class="variable">om</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对象的所有字段全部列入，还是其他的选项，可以忽略null等</span></span><br><span class="line">        om.setSerializationInclusion(JsonInclude.Include.ALWAYS);</span><br><span class="line">        <span class="comment">// 设置Date类型的序列化及反序列化格式</span></span><br><span class="line">        om.setDateFormat(<span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 忽略空Bean转json的错误</span></span><br><span class="line">        om.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, <span class="literal">false</span>);</span><br><span class="line">        <span class="comment">// 忽略未知属性，防止json字符串中存在，java对象中不存在对应属性的情况出现错误</span></span><br><span class="line">        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 注册一个时间序列化及反序列化的处理模块，用于解决jdk8中localDateTime等的序列化问题</span></span><br><span class="line">        om.registerModule(<span class="keyword">new</span> <span class="title class_">JavaTimeModule</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对象 =&gt; json字符串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj 源对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; String <span class="title function_">toJson</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (obj != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                json = om.writeValueAsString(obj);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (JsonProcessingException e) &#123;</span><br><span class="line">                log.warn(e.getMessage(), e);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> json;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json字符串 =&gt; 对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json  源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 对象类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;   泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, Class&lt;T&gt; clazz)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> parse(json, clazz, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json字符串 =&gt; 对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json 源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type 对象类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;  泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, TypeReference type)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> parse(json, <span class="literal">null</span>, type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json =&gt; 对象处理方法</span></span><br><span class="line"><span class="comment">     * &lt;br&gt;</span></span><br><span class="line"><span class="comment">     * 参数clazz和type必须一个为null，另一个不为null</span></span><br><span class="line"><span class="comment">     * &lt;br&gt;</span></span><br><span class="line"><span class="comment">     * 此方法不对外暴露，访问权限为private</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json  源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 对象类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type  对象类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;   泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, Class&lt;T&gt; clazz, TypeReference type)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">T</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.hasText(json)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (clazz != <span class="literal">null</span>) &#123;</span><br><span class="line">                    obj = om.readValue(json, clazz);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    obj = (T) om.readValue(json, type);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                log.warn(e.getMessage(), e);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>IntelliJ-IDEA之一键Docker部署Java程序</title>
+    <url>/2024/07/30/IntelliJ-IDEA%E4%B9%8B%E4%B8%80%E9%94%AEDocker%E9%83%A8%E7%BD%B2Java%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<p>在完成打包好<code>jar</code>步骤后<br>检查docker 服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br><span class="line"># 在ExecStart=/usr/bin/dockerd追加 `-H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock`</span><br><span class="line"># 重新启动</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+<p>给idea安装JetBrains出的<code>Docker</code>插件，<br>配置idea的插件<code>Docker</code>,设置为上面的地址<code>tcp://xxx.xxx.xxx.xxx:2375</code></p>
+<p>针对java项目，不建议使用&#96;&#96;插件，因其需要本地安装docker，并且无人维护。建议如下两种方式：</p>
+<ol>
+<li><p>使用<code>docker-maven-plugin</code>。复制以下代码到<code>pom.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">  &lt;groupId&gt;com.spotify&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0.0&lt;/version&gt;</span><br><span class="line">  &lt;executions&gt;</span><br><span class="line">    &lt;!--执行mvn package,即执行 mvn clean package docker:build--&gt;</span><br><span class="line">    &lt;execution&gt;</span><br><span class="line">      &lt;id&gt;build-image&lt;/id&gt;</span><br><span class="line">      &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">      &lt;goals&gt;</span><br><span class="line">        &lt;goal&gt;build&lt;/goal&gt;</span><br><span class="line">      &lt;/goals&gt;</span><br><span class="line">    &lt;/execution&gt;</span><br><span class="line">  &lt;/executions&gt;</span><br><span class="line"></span><br><span class="line">  &lt;configuration&gt;</span><br><span class="line">    &lt;!-- 镜像名称 --&gt;</span><br><span class="line">    &lt;imageName&gt;$&#123;project.artifactId&#125;&lt;/imageName&gt;</span><br><span class="line">    &lt;!-- 指定标签 --&gt;</span><br><span class="line">    &lt;imageTags&gt;</span><br><span class="line">      &lt;imageTag&gt;latest&lt;/imageTag&gt;</span><br><span class="line">    &lt;/imageTags&gt;</span><br><span class="line">    &lt;!-- 基础镜像--&gt;</span><br><span class="line">    &lt;baseImage&gt;openjdk:8-jdk-alpine&lt;/baseImage&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 切换到容器工作目录--&gt;</span><br><span class="line">    &lt;workdir&gt;/ROOT&lt;/workdir&gt;</span><br><span class="line"></span><br><span class="line">    &lt;entryPoint&gt;[&quot;java&quot;,&quot;-jar&quot;,&quot;$&#123;project.build.finalName&#125;.jar&quot;]&lt;/entryPoint&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 指定远程 Docker API地址  --&gt;</span><br><span class="line">    &lt;dockerHost&gt;http://192.168.1.20:2375&lt;/dockerHost&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 复制 jar包到docker容器指定目录--&gt;</span><br><span class="line">    &lt;resources&gt;</span><br><span class="line">      &lt;resource&gt;</span><br><span class="line">        &lt;targetPath&gt;/ROOT&lt;/targetPath&gt;</span><br><span class="line">        &lt;!-- 用于指定需要复制的根目录，$&#123;project.build.directory&#125;表示target目录 --&gt;</span><br><span class="line">        &lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt;</span><br><span class="line">        &lt;!-- 用于指定需要复制的文件，$&#123;project.build.finalName&#125;.jar就是打包后的target目录下的jar包名称　--&gt;</span><br><span class="line">        &lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt;</span><br><span class="line">      &lt;/resource&gt;</span><br><span class="line">    &lt;/resources&gt;</span><br><span class="line">  &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+<p>然后再次执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn clean package</span><br></pre></td></tr></table></figure>
+<p>选择<code>server</code>,找到生成的镜像，右键<code>创建容器</code>，就能看到docker运行结果。或者到容器里，创建容器运行该image。</p>
+</li>
+<li><p>使用<code>jib</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.cloud.tools&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jib-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.1.4&lt;/version&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;from&gt;</span><br><span class="line">            &lt;!-- 注意：`docker`官方地址要填`docker.io/username/image-name:version`，如下。 --&gt;</span><br><span class="line">            &lt;!-- 如果把 `docker.io`更换为 `registry.hub.docker.com`(JetBrain插件里面填写的地址)或`hub.docker.com`（网页访问的地址）或`index.docker.io/v1/`(`docker info`显示的仓库)都不能成功--&gt;</span><br><span class="line">            &lt;image&gt;docker.io/frankbsd/openjdk8:v1&lt;/image&gt;</span><br><span class="line">            &lt;auth&gt;</span><br><span class="line">                &lt;username&gt;username&lt;/username&gt;</span><br><span class="line">                &lt;password&gt;password&lt;/password&gt;</span><br><span class="line">            &lt;/auth&gt;</span><br><span class="line">        &lt;/from&gt;</span><br><span class="line">        &lt;to&gt;</span><br><span class="line">            &lt;image&gt;docker.io/frankbsd/test-docker&lt;/image&gt;</span><br><span class="line">            &lt;auth&gt;</span><br><span class="line">                &lt;username&gt;username&lt;/username&gt;</span><br><span class="line">                &lt;password&gt;password&lt;/password&gt;</span><br><span class="line">            &lt;/auth&gt;</span><br><span class="line">        &lt;/to&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;phase&gt;package&lt;/phase&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;build&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>然后执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker run frankbsd/test-docker -it /bin/bash</span><br></pre></td></tr></table></figure>
+<p>或spring-boot类web应用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo docker run -d --name test-docker -p 8080:8080 -it frankbsd/test-docker  </span><br></pre></td></tr></table></figure>
+
+<p>设置私有仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">    -p 5000:5000 \</span><br><span class="line">    -v /opt/data/registry:/var/lib/registry \</span><br><span class="line">    registry</span><br></pre></td></tr></table></figure>
+<p>此时，只能使用<code>127.0.0.1:5000</code>访问<br>要局域网可以访问，须配置非<code>https</code>仓库地址。编辑<code>/etc/docker/daemon.json</code>(位于docker安装的机器，非<code>registry</code>镜像中的文件)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;insecure-registries&quot;: [</span><br><span class="line">    &quot;192.168.199.100:5000&quot;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查看私有仓库有的镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 查看私有仓库所有镜像名</span><br><span class="line">curl ip:port/v2/_catalog</span><br><span class="line"># 查看某个镜像的标签列表</span><br><span class="line">curl ip:port/v2/image-name/tags/list</span><br></pre></td></tr></table></figure>
+<p>要在<code>jib</code>中使用非<code>https</code>的私有仓库，需要配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;allowInsecureRegistries&gt;true&lt;/allowInsecureRegistries&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<p>官方没有直接提供删除命令，但有api，可参考<a href="https://github.com/burnettk/delete-docker-registry-image">delete-docker-registry-image</a></p>
+<p><a href="https://yeasy.gitbook.io/docker_practice/repository/registry">在私有仓库上传、搜索、下载镜像</a></p>
+<p>设置私有仓库后，使用<code>docker pull</code>不能再直接从docker hub拉取镜像，要使用如下方式</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull docker.io/username/image-name:tag</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>后端</category>
       </categories>
       <tags>
         <tag>Java</tag>
+        <tag>IntelliJ IDEA</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -3408,6 +3397,17 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>JWT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Jackson封装</title>
+    <url>/2024/07/31/Jackson%E5%B0%81%E8%A3%85/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rl.algorithmassistance.common;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.annotation.JsonInclude;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.JsonProcessingException;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.type.TypeReference;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.DeserializationFeature;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.SerializationFeature;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JsonUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ObjectMapper</span> <span class="variable">om</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对象的所有字段全部列入，还是其他的选项，可以忽略null等</span></span><br><span class="line">        om.setSerializationInclusion(JsonInclude.Include.ALWAYS);</span><br><span class="line">        <span class="comment">// 设置Date类型的序列化及反序列化格式</span></span><br><span class="line">        om.setDateFormat(<span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 忽略空Bean转json的错误</span></span><br><span class="line">        om.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, <span class="literal">false</span>);</span><br><span class="line">        <span class="comment">// 忽略未知属性，防止json字符串中存在，java对象中不存在对应属性的情况出现错误</span></span><br><span class="line">        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 注册一个时间序列化及反序列化的处理模块，用于解决jdk8中localDateTime等的序列化问题</span></span><br><span class="line">        om.registerModule(<span class="keyword">new</span> <span class="title class_">JavaTimeModule</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对象 =&gt; json字符串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj 源对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; String <span class="title function_">toJson</span><span class="params">(T obj)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">json</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (obj != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                json = om.writeValueAsString(obj);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (JsonProcessingException e) &#123;</span><br><span class="line">                log.warn(e.getMessage(), e);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> json;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json字符串 =&gt; 对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json  源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 对象类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;   泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, Class&lt;T&gt; clazz)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> parse(json, clazz, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json字符串 =&gt; 对象</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json 源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type 对象类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;  泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, TypeReference type)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> parse(json, <span class="literal">null</span>, type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * json =&gt; 对象处理方法</span></span><br><span class="line"><span class="comment">     * &lt;br&gt;</span></span><br><span class="line"><span class="comment">     * 参数clazz和type必须一个为null，另一个不为null</span></span><br><span class="line"><span class="comment">     * &lt;br&gt;</span></span><br><span class="line"><span class="comment">     * 此方法不对外暴露，访问权限为private</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> json  源json串</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz 对象类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> type  对象类型</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;   泛型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; T <span class="title function_">parse</span><span class="params">(String json, Class&lt;T&gt; clazz, TypeReference type)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">T</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.hasText(json)) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (clazz != <span class="literal">null</span>) &#123;</span><br><span class="line">                    obj = om.readValue(json, clazz);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    obj = (T) om.readValue(json, type);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                log.warn(e.getMessage(), e);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(e.getMessage());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -3937,6 +3937,115 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>JavaScript之四面向对象编程</title>
+    <url>/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<br />
+  
+<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a href="https://www.liaoxuefeng.com/wiki/1022910821149312">廖雪峰老师—-JavaScript教程</a>，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</h2><br />
+<br />
+<br />
+  
+<ol>
+<li><p>标准对象<br>在JavaScript的世界里，一切都是对象。<br>用<code>typeof</code>操作符获取对象的类型，它总是返回一个字符串<br>特别注意<code>null</code>的类型是<code>object</code>，<code>Array</code>的类型也是<code>object</code>，如果我们用<code>typeof</code>将无法区分出<code>null</code>、<code>Array</code>和通常意义上的<code>object</code>——<code>&#123;&#125;</code>。</p>
+</li>
+<li><p>包装对象<br>在JavaScript中，也区分标准类型和它的包装类型。包装对象用<code>new</code>创建，即类型<code>object</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var n = new Number(123); // 123,生成了新的包装类型</span><br><span class="line">var b = new Boolean(true); // true,生成了新的包装类型</span><br><span class="line">var s = new String(&#x27;str&#x27;); // &#x27;str&#x27;,生成了新的包装类型</span><br></pre></td></tr></table></figure>
+<p>所以闲的蛋疼也不要使用包装对象！尤其是针对<code>string</code>类型！！！<br>如果我们在使用<code>Number</code>、<code>Boolean</code>和<code>String</code>时，没有写<code>new</code>，此时，<code>Number()</code>、<code>Boolean</code>和<code>String()</code>被当做普通函数，把任何类型的数据转换为<code>number</code>、<code>boolean</code>和<code>string</code>类型（注意不是其包装类型）</p>
+</li>
+</ol>
+<p>总结一下，有这么几条规则需要遵守：</p>
+<ul>
+<li>不要使用<code>new Number()</code>、<code>new Boolean()</code>、<code>new String()</code>创建包装对象；</li>
+<li>用<code>parseInt()</code>或<code>parseFloat()</code>来转换任意类型到<code>number</code>；</li>
+<li>用<code>String()</code>来转换任意类型到<code>string</code>，或者直接调用某个对象的<code>toString()</code>方法；</li>
+<li>通常不必把任意类型转换为<code>boolean</code>再判断，因为可以直接写<code>if (myVar) &#123;...&#125;</code>；</li>
+<li><code>typeof</code>操作符可以判断出<code>number</code>、<code>boolean</code>、<code>string</code>、<code>function</code>和<code>undefined</code>；</li>
+<li>判断<code>Array</code>要使用<code>Array.isArray(arr)</code>；</li>
+<li>判断<code>null</code>请使用<code>myVar === null</code>；</li>
+<li>判断某个全局变量是否存在用<code>typeof window.myVar === &#39;undefined&#39;</code>；</li>
+<li>函数内部判断某个变量是否存在用<code>typeof myVar === &#39;undefined&#39;</code>。</li>
+</ul>
+<p>最后有细心的同学指出，任何对象都有<code>toString()</code>方法吗？<code>null</code>和<code>undefined</code>就没有！确实如此，这两个特殊值要除外，虽然<code>null</code>还伪装成了<code>object</code>类型。<br><code>number</code>对象调用<code>toString()</code>报<code>SyntaxError</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123.toString(); // SyntaxError</span><br></pre></td></tr></table></figure>
+<p>遇到这种情况，要特殊处理一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123..toString(); // &#x27;123&#x27;, 注意是两个点！</span><br><span class="line">(123).toString(); // &#x27;123&#x27;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Date</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var d1 = new Date(2015, 5, 19, 20, 15, 30, 123);</span><br><span class="line">var d2 = Date.parse(&#x27;2015-06-24T19:49:22.875+08:00&#x27;);  // 1435146562875</span><br><span class="line">var d3 = new Date(d2); // Wed Jun 24 2015 19:49:22 GMT+0800 (CST)</span><br></pre></td></tr></table></figure>
+<p>JavaScript的月份范围用整数表示是0~11，0表示一月，1表示二月……<br>Date对象表示的时间总是按浏览器所在时区显示的<br>时间戳是一个自增的整数，它表示从1970年1月1日零时整的GMT时区开始的那一刻，到现在的毫秒数。时间戳可以精确地表示一个时刻，并且与时区无关。</p>
+<ol start="4">
+<li>RegExp<br>单个字符</li>
+</ol>
+<ul>
+<li><code>\d</code>可以匹配一个数字，</li>
+<li><code>\w</code>可以匹配一个字母或数字,</li>
+<li><code>.</code>可以匹配任意字符,</li>
+<li><code>\s</code>可以匹配一个空格（也包括Tab等空白符）</li>
+</ul>
+<p>变长的字符</p>
+<ul>
+<li><code>*</code>表示任意个字符（包括0个），</li>
+<li><code>+</code>表示至少一个字符，</li>
+<li><code>?</code>表示0个或1个字符，</li>
+<li><code>&#123;n&#125;</code>表示n个字符，</li>
+<li><code>&#123;n,m&#125;</code>表示n-m个字符</li>
+</ul>
+<p>特殊字符，在正则表达式中，要用<code>&#39;\&#39;</code>转义</p>
+<ul>
+<li><code>&#39;-&#39;</code></li>
+</ul>
+<p>进阶  </p>
+<ul>
+<li><code>[]</code>表示范围</li>
+<li><code>A|B</code>可以匹配A或B</li>
+<li><code>^</code>表示行的开头</li>
+<li><code>$</code>表示行的结束</li>
+<li><code>()</code>表示的就是要提取的分组（Group）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//匹配&#x27;ABC-001&#x27;或者&#x27;ABC\-001&#x27;,re1=/ABC-001/也可以匹配这两项</span><br><span class="line">var re1 = /ABC\-001/;  //  &quot;/正则表达式/&quot;写出来</span><br><span class="line">var re2 = new RegExp(&#x27;ABC\\-001&#x27;);  // new RegExp(&#x27;正则表达式&#x27;)创建一个RegExp对象。</span><br><span class="line">re1 .test(&#x27;ABC-001&#x27;)    // true</span><br><span class="line">re1 .test(&#x27;ABC\-001&#x27;)  // true</span><br><span class="line">&#x27;a,b;; c  d&#x27;.split(/[\s\,\;]+/); // [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;]</span><br><span class="line">var re = /^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$/;</span><br><span class="line">re.exec(&#x27;010-12345&#x27;); // [&#x27;010-12345&#x27;, &#x27;010&#x27;, &#x27;12345&#x27;]，也可以分组&#x27;010\-12345&#x27;</span><br><span class="line">re.exec(&#x27;010 12345&#x27;); // null</span><br></pre></td></tr></table></figure>
+
+<p>贪婪匹配和非贪婪匹配</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var re = /^(\d+)(0*)$/;</span><br><span class="line">re.exec(&#x27;102300&#x27;); // [&#x27;102300&#x27;, &#x27;102300&#x27;, &#x27;&#x27;],贪婪匹配</span><br><span class="line">var re = /^(\d+?)(0*)$/;</span><br><span class="line">re.exec(&#x27;102300&#x27;); // [&#x27;102300&#x27;, &#x27;1023&#x27;, &#x27;00&#x27;]，加个?可以让\d+采用非贪婪匹配</span><br></pre></td></tr></table></figure>
+
+<p>特殊标志</p>
+<ul>
+<li>g标志，表示全局匹配</li>
+<li>i标志，表示忽略大小写，</li>
+<li>m标志，表示执行多行匹配</li>
+</ul>
+<p>多次执行exec()方法来搜索一个匹配的字符串。每次运行exec()，正则表达式本身会更新lastIndex属性，表示上次匹配到的最后索引<br>使用<code>/^...$/</code>，那样只会最多匹配一次</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var r1 = /test/g;</span><br><span class="line">var r2 = new RegExp(&#x27;test&#x27;, &#x27;g&#x27;);</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>JSON<br>JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。为道格拉斯·克罗克福特（Douglas Crockford）2002年发明。<br>字符集必须是<code>UTF-8</code>，JSON的字符串也规定必须用双引号<code>&quot;&quot;</code>，<code>Object</code>的键也必须用双引号<code>&quot;&quot;</code>。</li>
+</ol>
+<p>数据类型：</p>
+<ul>
+<li><code>number</code>：和JavaScript的<code>number</code>完全一致；</li>
+<li><code>boolean</code>：就是JavaScript的<code>true</code>或<code>false</code>；</li>
+<li><code>string</code>：就是JavaScript的<code>string</code>；</li>
+<li><code>null</code>：就是JavaScript的<code>null</code>；</li>
+<li><code>array</code>：就是JavaScript的Array表示方式——<code>[]</code>；</li>
+<li><code>object</code>：就是JavaScript的<code>&#123; ... &#125;</code>表示方式。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(JSON.stringify(xiaoming));</span><br><span class="line"></span><br><span class="line">// 第二个参数用于控制如何筛选对象的键值</span><br><span class="line">console.log(JSON.stringify(xiaoming, null, &#x27;  &#x27;));</span><br><span class="line">// 传入Array,输出指定的属性</span><br><span class="line">console.log(JSON.stringify(xiaoming, [&#x27;name&#x27;, &#x27;skills&#x27;], &#x27;  &#x27;));</span><br><span class="line">// 传入一个函数</span><br><span class="line">function convert(key, value) &#123;</span><br><span class="line">    if (typeof value === &#x27;string&#x27;) &#123;</span><br><span class="line">        return value.toUpperCase();</span><br><span class="line">    &#125;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br><span class="line">console.log(JSON.stringify(xiaoming, convert, &#x27;  &#x27;));</span><br></pre></td></tr></table></figure>
+
+<p>自定义<code>toJSON()</code>方法</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    age: 14,</span><br><span class="line">    gender: true,</span><br><span class="line">    height: 1.65,</span><br><span class="line">    grade: null,</span><br><span class="line">    &#x27;middle-school&#x27;: &#x27;\&quot;W3C\&quot; Middle School&#x27;,</span><br><span class="line">    skills: [&#x27;JavaScript&#x27;, &#x27;Java&#x27;, &#x27;Python&#x27;, &#x27;Lisp&#x27;],</span><br><span class="line">    toJSON: function () &#123;</span><br><span class="line">        return &#123; // 只输出name和age，并且改变了key：</span><br><span class="line">            &#x27;Name&#x27;: this.name,</span><br><span class="line">            &#x27;Age&#x27;: this.age</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(JSON.stringify(xiaoming)); // &#x27;&#123;&quot;Name&quot;:&quot;小明&quot;,&quot;Age&quot;:14&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>反序列化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JSON.parse(&#x27;&#123;&quot;name&quot;:&quot;小明&quot;,&quot;age&quot;:14&#125;&#x27;)</span><br><span class="line">JSON.parse(&#x27;true&#x27;); </span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaScript之六jQuery</title>
     <url>/2024/07/31/JavaScript%E4%B9%8B%E5%85%ADjQuery/</url>
     <content><![CDATA[<br />
@@ -4230,115 +4339,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>JavaScript之四面向对象编程</title>
-    <url>/2024/07/31/JavaScript%E4%B9%8B%E5%9B%9B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<br />
-  
-<h2 id="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录"><a href="#说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录" class="headerlink" title="说明，该学习内容来自廖雪峰老师—-JavaScript教程，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!"></a>说明，该学习内容来自<a href="https://www.liaoxuefeng.com/wiki/1022910821149312">廖雪峰老师—-JavaScript教程</a>，欢迎访问原创者网站，本处仅仅作为防止自己遗忘的记录!</h2><br />
-<br />
-<br />
-  
-<ol>
-<li><p>标准对象<br>在JavaScript的世界里，一切都是对象。<br>用<code>typeof</code>操作符获取对象的类型，它总是返回一个字符串<br>特别注意<code>null</code>的类型是<code>object</code>，<code>Array</code>的类型也是<code>object</code>，如果我们用<code>typeof</code>将无法区分出<code>null</code>、<code>Array</code>和通常意义上的<code>object</code>——<code>&#123;&#125;</code>。</p>
-</li>
-<li><p>包装对象<br>在JavaScript中，也区分标准类型和它的包装类型。包装对象用<code>new</code>创建，即类型<code>object</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var n = new Number(123); // 123,生成了新的包装类型</span><br><span class="line">var b = new Boolean(true); // true,生成了新的包装类型</span><br><span class="line">var s = new String(&#x27;str&#x27;); // &#x27;str&#x27;,生成了新的包装类型</span><br></pre></td></tr></table></figure>
-<p>所以闲的蛋疼也不要使用包装对象！尤其是针对<code>string</code>类型！！！<br>如果我们在使用<code>Number</code>、<code>Boolean</code>和<code>String</code>时，没有写<code>new</code>，此时，<code>Number()</code>、<code>Boolean</code>和<code>String()</code>被当做普通函数，把任何类型的数据转换为<code>number</code>、<code>boolean</code>和<code>string</code>类型（注意不是其包装类型）</p>
-</li>
-</ol>
-<p>总结一下，有这么几条规则需要遵守：</p>
-<ul>
-<li>不要使用<code>new Number()</code>、<code>new Boolean()</code>、<code>new String()</code>创建包装对象；</li>
-<li>用<code>parseInt()</code>或<code>parseFloat()</code>来转换任意类型到<code>number</code>；</li>
-<li>用<code>String()</code>来转换任意类型到<code>string</code>，或者直接调用某个对象的<code>toString()</code>方法；</li>
-<li>通常不必把任意类型转换为<code>boolean</code>再判断，因为可以直接写<code>if (myVar) &#123;...&#125;</code>；</li>
-<li><code>typeof</code>操作符可以判断出<code>number</code>、<code>boolean</code>、<code>string</code>、<code>function</code>和<code>undefined</code>；</li>
-<li>判断<code>Array</code>要使用<code>Array.isArray(arr)</code>；</li>
-<li>判断<code>null</code>请使用<code>myVar === null</code>；</li>
-<li>判断某个全局变量是否存在用<code>typeof window.myVar === &#39;undefined&#39;</code>；</li>
-<li>函数内部判断某个变量是否存在用<code>typeof myVar === &#39;undefined&#39;</code>。</li>
-</ul>
-<p>最后有细心的同学指出，任何对象都有<code>toString()</code>方法吗？<code>null</code>和<code>undefined</code>就没有！确实如此，这两个特殊值要除外，虽然<code>null</code>还伪装成了<code>object</code>类型。<br><code>number</code>对象调用<code>toString()</code>报<code>SyntaxError</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123.toString(); // SyntaxError</span><br></pre></td></tr></table></figure>
-<p>遇到这种情况，要特殊处理一下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123..toString(); // &#x27;123&#x27;, 注意是两个点！</span><br><span class="line">(123).toString(); // &#x27;123&#x27;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>Date</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var d1 = new Date(2015, 5, 19, 20, 15, 30, 123);</span><br><span class="line">var d2 = Date.parse(&#x27;2015-06-24T19:49:22.875+08:00&#x27;);  // 1435146562875</span><br><span class="line">var d3 = new Date(d2); // Wed Jun 24 2015 19:49:22 GMT+0800 (CST)</span><br></pre></td></tr></table></figure>
-<p>JavaScript的月份范围用整数表示是0~11，0表示一月，1表示二月……<br>Date对象表示的时间总是按浏览器所在时区显示的<br>时间戳是一个自增的整数，它表示从1970年1月1日零时整的GMT时区开始的那一刻，到现在的毫秒数。时间戳可以精确地表示一个时刻，并且与时区无关。</p>
-<ol start="4">
-<li>RegExp<br>单个字符</li>
-</ol>
-<ul>
-<li><code>\d</code>可以匹配一个数字，</li>
-<li><code>\w</code>可以匹配一个字母或数字,</li>
-<li><code>.</code>可以匹配任意字符,</li>
-<li><code>\s</code>可以匹配一个空格（也包括Tab等空白符）</li>
-</ul>
-<p>变长的字符</p>
-<ul>
-<li><code>*</code>表示任意个字符（包括0个），</li>
-<li><code>+</code>表示至少一个字符，</li>
-<li><code>?</code>表示0个或1个字符，</li>
-<li><code>&#123;n&#125;</code>表示n个字符，</li>
-<li><code>&#123;n,m&#125;</code>表示n-m个字符</li>
-</ul>
-<p>特殊字符，在正则表达式中，要用<code>&#39;\&#39;</code>转义</p>
-<ul>
-<li><code>&#39;-&#39;</code></li>
-</ul>
-<p>进阶  </p>
-<ul>
-<li><code>[]</code>表示范围</li>
-<li><code>A|B</code>可以匹配A或B</li>
-<li><code>^</code>表示行的开头</li>
-<li><code>$</code>表示行的结束</li>
-<li><code>()</code>表示的就是要提取的分组（Group）</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//匹配&#x27;ABC-001&#x27;或者&#x27;ABC\-001&#x27;,re1=/ABC-001/也可以匹配这两项</span><br><span class="line">var re1 = /ABC\-001/;  //  &quot;/正则表达式/&quot;写出来</span><br><span class="line">var re2 = new RegExp(&#x27;ABC\\-001&#x27;);  // new RegExp(&#x27;正则表达式&#x27;)创建一个RegExp对象。</span><br><span class="line">re1 .test(&#x27;ABC-001&#x27;)    // true</span><br><span class="line">re1 .test(&#x27;ABC\-001&#x27;)  // true</span><br><span class="line">&#x27;a,b;; c  d&#x27;.split(/[\s\,\;]+/); // [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;]</span><br><span class="line">var re = /^(\d&#123;3&#125;)-(\d&#123;3,8&#125;)$/;</span><br><span class="line">re.exec(&#x27;010-12345&#x27;); // [&#x27;010-12345&#x27;, &#x27;010&#x27;, &#x27;12345&#x27;]，也可以分组&#x27;010\-12345&#x27;</span><br><span class="line">re.exec(&#x27;010 12345&#x27;); // null</span><br></pre></td></tr></table></figure>
-
-<p>贪婪匹配和非贪婪匹配</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var re = /^(\d+)(0*)$/;</span><br><span class="line">re.exec(&#x27;102300&#x27;); // [&#x27;102300&#x27;, &#x27;102300&#x27;, &#x27;&#x27;],贪婪匹配</span><br><span class="line">var re = /^(\d+?)(0*)$/;</span><br><span class="line">re.exec(&#x27;102300&#x27;); // [&#x27;102300&#x27;, &#x27;1023&#x27;, &#x27;00&#x27;]，加个?可以让\d+采用非贪婪匹配</span><br></pre></td></tr></table></figure>
-
-<p>特殊标志</p>
-<ul>
-<li>g标志，表示全局匹配</li>
-<li>i标志，表示忽略大小写，</li>
-<li>m标志，表示执行多行匹配</li>
-</ul>
-<p>多次执行exec()方法来搜索一个匹配的字符串。每次运行exec()，正则表达式本身会更新lastIndex属性，表示上次匹配到的最后索引<br>使用<code>/^...$/</code>，那样只会最多匹配一次</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var r1 = /test/g;</span><br><span class="line">var r2 = new RegExp(&#x27;test&#x27;, &#x27;g&#x27;);</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>JSON<br>JSON是JavaScript Object Notation的缩写，它是一种数据交换格式。为道格拉斯·克罗克福特（Douglas Crockford）2002年发明。<br>字符集必须是<code>UTF-8</code>，JSON的字符串也规定必须用双引号<code>&quot;&quot;</code>，<code>Object</code>的键也必须用双引号<code>&quot;&quot;</code>。</li>
-</ol>
-<p>数据类型：</p>
-<ul>
-<li><code>number</code>：和JavaScript的<code>number</code>完全一致；</li>
-<li><code>boolean</code>：就是JavaScript的<code>true</code>或<code>false</code>；</li>
-<li><code>string</code>：就是JavaScript的<code>string</code>；</li>
-<li><code>null</code>：就是JavaScript的<code>null</code>；</li>
-<li><code>array</code>：就是JavaScript的Array表示方式——<code>[]</code>；</li>
-<li><code>object</code>：就是JavaScript的<code>&#123; ... &#125;</code>表示方式。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">console.log(JSON.stringify(xiaoming));</span><br><span class="line"></span><br><span class="line">// 第二个参数用于控制如何筛选对象的键值</span><br><span class="line">console.log(JSON.stringify(xiaoming, null, &#x27;  &#x27;));</span><br><span class="line">// 传入Array,输出指定的属性</span><br><span class="line">console.log(JSON.stringify(xiaoming, [&#x27;name&#x27;, &#x27;skills&#x27;], &#x27;  &#x27;));</span><br><span class="line">// 传入一个函数</span><br><span class="line">function convert(key, value) &#123;</span><br><span class="line">    if (typeof value === &#x27;string&#x27;) &#123;</span><br><span class="line">        return value.toUpperCase();</span><br><span class="line">    &#125;</span><br><span class="line">    return value;</span><br><span class="line">&#125;</span><br><span class="line">console.log(JSON.stringify(xiaoming, convert, &#x27;  &#x27;));</span><br></pre></td></tr></table></figure>
-
-<p>自定义<code>toJSON()</code>方法</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &#x27;小明&#x27;,</span><br><span class="line">    age: 14,</span><br><span class="line">    gender: true,</span><br><span class="line">    height: 1.65,</span><br><span class="line">    grade: null,</span><br><span class="line">    &#x27;middle-school&#x27;: &#x27;\&quot;W3C\&quot; Middle School&#x27;,</span><br><span class="line">    skills: [&#x27;JavaScript&#x27;, &#x27;Java&#x27;, &#x27;Python&#x27;, &#x27;Lisp&#x27;],</span><br><span class="line">    toJSON: function () &#123;</span><br><span class="line">        return &#123; // 只输出name和age，并且改变了key：</span><br><span class="line">            &#x27;Name&#x27;: this.name,</span><br><span class="line">            &#x27;Age&#x27;: this.age</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(JSON.stringify(xiaoming)); // &#x27;&#123;&quot;Name&quot;:&quot;小明&quot;,&quot;Age&quot;:14&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>反序列化</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">JSON.parse(&#x27;&#123;&quot;name&quot;:&quot;小明&quot;,&quot;age&quot;:14&#125;&#x27;)</span><br><span class="line">JSON.parse(&#x27;true&#x27;); </span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java读取Properties</title>
     <url>/2024/07/31/Java%E8%AF%BB%E5%8F%96Properties/</url>
     <content><![CDATA[<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 上次最后打开的文件:</span></span><br><span class="line"><span class="attr">last_open_file</span>=<span class="string">/data/hello.txt</span></span><br><span class="line"><span class="comment"># 自动保存文件的时间间隔:</span></span><br><span class="line"><span class="attr">auto_save_interval</span>=<span class="string">60</span></span><br></pre></td></tr></table></figure>
@@ -4544,6 +4544,26 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>MySQL之GroupBy</title>
+    <url>/2024/07/31/MySQL%E4%B9%8BGroupBy/</url>
+    <content><![CDATA[<p>SQL 标准中不允许 <code>SELECT</code> 列表，<code>HAVING</code> 条件语句，或 <code>ORDER BY</code> 语句中出现 <code>GROUP BY</code> 中未列表的可聚合列。而 MySQL 中有一个状态 <code>ONLY_FULL_GROUP_BY</code> 来标识是否遵从这一标准，默认为开启状态。</p>
+<p>查看变更前的<code>sql_mode</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@sql_mode</span>;</span><br></pre></td></tr></table></figure>
+
+<p>会话停用<code>ONLY_FULL_GROUP_BY</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> SESSION sql_mode<span class="operator">=</span>(<span class="keyword">SELECT</span> REPLACE(@<span class="variable">@sql_mode</span>,<span class="string">&#x27;ONLY_FULL_GROUP_BY,&#x27;</span>,<span class="string">&#x27;&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>全局配置，编辑<code>/etc/my.cnf</code>文件</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">sql_mode<span class="operator">=</span>STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MyBatis打印SQL日志</title>
     <url>/2024/07/31/MyBatis%E6%89%93%E5%8D%B0SQL%E6%97%A5%E5%BF%97/</url>
     <content><![CDATA[<ol>
@@ -4562,26 +4582,6 @@ table th:first-of-type {
       <tags>
         <tag>Java</tag>
         <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL之GroupBy</title>
-    <url>/2024/07/31/MySQL%E4%B9%8BGroupBy/</url>
-    <content><![CDATA[<p>SQL 标准中不允许 <code>SELECT</code> 列表，<code>HAVING</code> 条件语句，或 <code>ORDER BY</code> 语句中出现 <code>GROUP BY</code> 中未列表的可聚合列。而 MySQL 中有一个状态 <code>ONLY_FULL_GROUP_BY</code> 来标识是否遵从这一标准，默认为开启状态。</p>
-<p>查看变更前的<code>sql_mode</code></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@sql_mode</span>;</span><br></pre></td></tr></table></figure>
-
-<p>会话停用<code>ONLY_FULL_GROUP_BY</code></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SET</span> SESSION sql_mode<span class="operator">=</span>(<span class="keyword">SELECT</span> REPLACE(@<span class="variable">@sql_mode</span>,<span class="string">&#x27;ONLY_FULL_GROUP_BY,&#x27;</span>,<span class="string">&#x27;&#x27;</span>));</span><br></pre></td></tr></table></figure>
-
-<p>全局配置，编辑<code>/etc/my.cnf</code>文件</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">sql_mode<span class="operator">=</span>STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -5884,29 +5884,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>Windows调整系统MTU值</title>
-    <url>/2024/07/31/Windows%E8%B0%83%E6%95%B4%E7%B3%BB%E7%BB%9FMTU%E5%80%BC/</url>
-    <content><![CDATA[<p>首先需要以【管理员】模式运行<code>cmd.exe</code>或<code>PowerShell</code></p>
-<p>以如下命令查看目前网卡MTU设置</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh interface ipv4 show interfaces</span><br></pre></td></tr></table></figure>
-
-<p>以如下命令确认最佳MTU的数据包大小</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ping <span class="literal">-l</span> <span class="number">1464</span> <span class="operator">-f</span> www.microsoft.com</span><br></pre></td></tr></table></figure>
-
-<p>在测试成功的数据包值上加上用于数据包包头28字节，即1464+28&#x3D;1492，这就是最佳MTU值<br>然后，以如下命令进行设置</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh interface ipv4 <span class="built_in">set</span> subinterface <span class="string">&quot;以太网&quot;</span> mtu=<span class="number">1492</span> store=persistent</span><br></pre></td></tr></table></figure>
-
-<p>Wifi6 无线局域网传输速度受限解除</p>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh int tcp <span class="built_in">set</span> global autotuninglevel=restricted</span><br><span class="line">netsh interface tcp <span class="built_in">set</span> heuristics disabled</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows重装系统后</title>
     <url>/2024/07/31/Windows%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E/</url>
     <content><![CDATA[<h2 id="组策略配置"><a href="#组策略配置" class="headerlink" title="组策略配置"></a>组策略配置</h2><ol>
@@ -5962,6 +5939,29 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
+    <title>Windows调整系统MTU值</title>
+    <url>/2024/07/31/Windows%E8%B0%83%E6%95%B4%E7%B3%BB%E7%BB%9FMTU%E5%80%BC/</url>
+    <content><![CDATA[<p>首先需要以【管理员】模式运行<code>cmd.exe</code>或<code>PowerShell</code></p>
+<p>以如下命令查看目前网卡MTU设置</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh interface ipv4 show interfaces</span><br></pre></td></tr></table></figure>
+
+<p>以如下命令确认最佳MTU的数据包大小</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">ping <span class="literal">-l</span> <span class="number">1464</span> <span class="operator">-f</span> www.microsoft.com</span><br></pre></td></tr></table></figure>
+
+<p>在测试成功的数据包值上加上用于数据包包头28字节，即1464+28&#x3D;1492，这就是最佳MTU值<br>然后，以如下命令进行设置</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh interface ipv4 <span class="built_in">set</span> subinterface <span class="string">&quot;以太网&quot;</span> mtu=<span class="number">1492</span> store=persistent</span><br></pre></td></tr></table></figure>
+
+<p>Wifi6 无线局域网传输速度受限解除</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">netsh int tcp <span class="built_in">set</span> global autotuninglevel=restricted</span><br><span class="line">netsh interface tcp <span class="built_in">set</span> heuristics disabled</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>grep使用</title>
     <url>/2024/07/30/grep%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">满足任意条件（word1、word2和word3之一）将匹配。</span></span><br><span class="line">cat info.log|grep -E &quot;word1|word2|word3&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">必须同时满足三个条件（word1、word2和word3）才匹配。</span></span><br><span class="line">cat info.log |grep word1 |grep word2|grep word3</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">排除关键字</span></span><br><span class="line">ifconfig |grep inet |grep -v inet6</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">排除多个关键字</span></span><br><span class="line">ifconfig |grep inet |grep -v &#x27;inet6\|127.0.0.1&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-a 将二进制当做文本处理,防止有时候编码乱码或者其他</span></span><br><span class="line">cat info.log|grep -a &quot;text&quot;</span><br></pre></td></tr></table></figure>]]></content>
@@ -5990,18 +5990,6 @@ table th:first-of-type {
       </tags>
   </entry>
   <entry>
-    <title>rm参数列表过长</title>
-    <url>/2024/07/31/rm%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8%E8%BF%87%E9%95%BF/</url>
-    <content><![CDATA[<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frank@1_60:# <span class="built_in">rm</span>  -rf *</span><br><span class="line">-bash: /bin/rm: 参数列表过长</span><br><span class="line">frank@1_60:# find . -name <span class="string">&quot;*&quot;</span>  |xargs <span class="built_in">rm</span>  -rf  <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>系统</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>保持fork之后的项目和上游同步</title>
     <url>/2024/07/31/%E4%BF%9D%E6%8C%81fork%E4%B9%8B%E5%90%8E%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%92%8C%E4%B8%8A%E6%B8%B8%E5%90%8C%E6%AD%A5/</url>
     <content><![CDATA[<ol>
@@ -6024,6 +6012,18 @@ table th:first-of-type {
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rm参数列表过长</title>
+    <url>/2024/07/31/rm%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8%E8%BF%87%E9%95%BF/</url>
+    <content><![CDATA[<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frank@1_60:# <span class="built_in">rm</span>  -rf *</span><br><span class="line">-bash: /bin/rm: 参数列表过长</span><br><span class="line">frank@1_60:# find . -name <span class="string">&quot;*&quot;</span>  |xargs <span class="built_in">rm</span>  -rf  <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>系统</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -6500,142 +6500,5 @@ table th:first-of-type {
         <tag>C</tag>
         <tag>CPP</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2025/08/19/doc/README/</url>
-    <content><![CDATA[<h1 id="���������˵��"><a href="#���������˵��" class="headerlink" title="���������˵��"></a>���������˵��</h1><p>����������� ��.Net Core 2022��Ƶ�̳̣����п������� ����Ƶ��ϰ</p>
-<h2 id="NET-Frameworko��"><a href="#NET-Frameworko��" class="headerlink" title=".NET Frameworkȱ��:"></a>.NET Frameworkȱ��:</h2><ol>
-<li>ϵͳ����İ�װ,����Ӱ��</li>
-<li>�޷���������</li>
-<li>ASP.NET ��IIS������</li>
-<li>ASP.NET��Դ���Ĵ�</li>
-<li>����ԭ��</li>
-<li>.NET Framework��ʷ����:<ol>
-<li>�����������ͳ����ASP.NET MVC</li>
-<li>ASP.NET�ײ㲻֧�ֺܺõĵ�Ԫ����</li>
-</ol>
-</li>
-</ol>
-<h2 id="NET-Core���w�"><a href="#NET-Core���w�" class="headerlink" title="NET Core���ŵ�"></a>NET Core���ŵ�</h2><ol>
-<li>֧�ֶ�������,������Ӱ��;</li>
-<li>����ģ�黯;</li>
-<li>û����ʷ����,����Ч�ʸ�</li>
-<li>��������IIS</li>
-<li>��ƽ̨</li>
-<li>�����ִ���������:����ע�롢��Ԫ���Ե�</li>
-</ol>
-<h2 id="NET-CoreN-NET-Framework��ͬ"><a href="#NET-CoreN-NET-Framework��ͬ" class="headerlink" title=".NET CoreN. NET Framework��ͬ"></a>.NET CoreN. NET Framework��ͬ</h2><ol>
-<li>��֧��:ASP.NET��WebForms��WCF�������ˡ�WF��.NET Remoting��Appdomain</li>
-<li>����Windows-Only�����ԣ�.NET core ֧�֣������޷���ƽ̨:WinForm��WPF��ע�����Event Log��AD�ȡ�</li>
-</ol>
-<h2 id="�ҵ���L������-NET-Core������"><a href="#�ҵ���L������-NET-Core������" class="headerlink" title="�ҵ���Ŀ������.NET Core������?"></a>�ҵ���Ŀ������.NET Core������?</h2><ol>
-<li>��.NET Framework��Ŀû��Ҫ��;</li>
-<li>�õ���.NET Core�в�֧�ֵ����ԵĲ��ܶ�;</li>
-<li>������Ŀ��������.NET Core,�Ѿ��㹻����,����Ҳ��ȫ��ת��.NET Core.</li>
-</ol>
-<h2 id="NET-Standard"><a href="#NET-Standard" class="headerlink" title=".NET Standard"></a>.NET Standard</h2><p><img src="/./images/20250819130415815.png" alt=".NET Standard"></p>
-<p>��֤ :. NET Standardֻ�Ǳ�׼,����ʵ��;ֻ�ж��壬û��ʵ��</p>
-<p>1)��<code>.NET Standard</code>�����Ŀ,ȷ�ϰ汾�� <code>2.0</code>,��һ����,�����д�ӡ <code>typeof(FileStream).Assembly.Location</code>.<br>2)�ֱ�<code>.NET Framework</code>�� <code>.NET Core</code>�Ŀ���̨��Ŀ,���Ӷ������Ŀ����,���ҵ���<br>3)�÷����빤�� ILSpy(���ܿ�Դ)�ֱ𷴱��� VS �� <code>FileStream</code>��<code>.NET Framework</code>�� <code>.NET Core</code> �����е�<code>BeginRead</code>����ʵ���Լ�������<br>��ͬ��</p>
-<p>.NET Standardֻ�ǹ淶,һ��.NET Standard�����Ա�֧����汾��.NET Framework��NET Core��Xamarin�����á�<br>��.NET Core��⡢.NET Framework����򲻿��ԡ�<br>�����дһ�����õ����,����ѡ��.NET Standard,���Ҿ����õͰ汾��</p>
-<p>�汾�����Բ�ѯ<br>TFM &#x3D; Target Framework, Ŀ����<br><a href="https://learn.microsoft.com/zh-cn/dotnet/standard/net-standard?tabs=net-standard-1-0">.NET Standard</a></p>
-<p>.NET Standard �������ٸ��£��� .NET5+��ʹ�����µĽ������</p>
-<h2 id="NET-Standard-������"><a href="#NET-Standard-������" class="headerlink" title="NET Standard ������"></a>NET Standard ������</h2><p>������һЩ���� .NET Standard �����⣬��Щ���������ڽ���Ϊʲô���ʹ�� .NET 5 �����߰汾����ƽ̨�͹������ع������룺</p>
-<ul>
-<li><p>������ API ���ٶȻ���</p>
-<p>.NET Standard ����Ϊ���� .NET ʵ�ֶ�����֧�ֵ� API �������ģ���˻�������� API �Ľ��������ˡ� Ŀ���ǽ���׼���������е�ǰ��δ���� .NET ƽ̨��ʵ�ֵ� API�� ��ˣ����ĳ�����ܴ������ض��汾�����������Ҫ�ȴ����꣬�ù��ܲŻᱻ���ӵ� Standard �汾�С� Ȼ������Ҫ�ȴ�������ʱ�䣬�°汾�� .NET Standard �����ܵ��㷺֧�֡�</p>
-<p>.NET 5+ �еĽ��������ʵ��ĳ���ʱ���ù��ܱ��ѿɹ����� .NET 5+ Ӧ�úͿ�ʹ�ã���Ϊ��������ǹ����ġ� ���� API �淶����ʵ��֮��û��������������ʹ�� .NET Standard������Ը���������¹��ܡ�</p>
-</li>
-<li><p>���ӵİ汾����</p>
-<p>API �淶����ʵ�ֵķ��뵼�� API �淶�汾��ʵ�ְ汾֮����ָ��ӵ�ӳ�䡣 ���ָ������ڱ���ǰ����ʾ�ı��Լ�����ͷ�ʽ˵�����Զ��׼���</p>
-<p>.NET 5+ �еĽ��������.NET 5+ API �淶����ʵ��֮�䲻�����κη��롣 �ɴ�ʵ����һ���򻯵� TFM ������ �ṩ��һ�����������й������ص� TFM ǰ׺��net9.0 ���ڿ⡢����̨Ӧ�ú� Web Ӧ�á� Ψһ�ı仯������ض�ƽָ̨���ض���ƽ̨�� API �ĺ�׺������ net9.0-windows�� ���ڴ� TFM ����Լ��������������жϸ���Ӧ���Ƿ����ʹ�ø����Ŀ⡣ ����Ҫ�汾�ŵ�Ч������ .NET Standard �İ汾�ŵ�Ч������</p>
-</li>
-<li><p>����ʱ���ֲ���ƽ̨֧�ֵ��쳣</p>
-<p>.NET Standard �������ض���ƽ̨�� API�� �����ڱ���ʱ���ܲ�����������ҿ�����������ֲ���κ�ƽ̨�����ô��벻����ֲҲ����ˣ��� �����ڲ����и��� API ʵ�ֵ�ƽ̨������ʱ�����������ʱ����</p>
-<p>.NET 5+ �еĽ��������.NET 5+ SDK ����Ĭ�����õĴ���������� ƽ̨�����Է������������������������е�ƽ̨����֧�ֵ� API ������ʹ������� �й���ϸ��Ϣ�������ƽ̨�����Է�������</p>
-</li>
-</ul>
-<p>##��.NET 5��������</p>
-<ol>
-<li>.NET CLI:������</li>
-<li>Visual Studio: Windows-Only(�Ƽ�)</li>
-<li>Visual Studio for Mac</li>
-<li>Jetbrains Rider: �շ�</li>
-<li>VS Code (Visual Studio Code) (��ƽ̨)</li>
-</ol>
-<h2 id="�ڶ�����"><a href="#�ڶ�����" class="headerlink" title="�ڶ�����"></a>�ڶ�����</h2><ol>
-<li>NuGet</li>
-<li>�첽���:async��await</li>
-<li>lambda��LINQ</li>
-<li>����ע�� DI</li>
-<li>����ϵͳConfiguration</li>
-<li>��־Logging</li>
-</ol>
-<h3 id="NuGet"><a href="#NuGet" class="headerlink" title="NuGet"></a>NuGet</h3><p><a href="https://www.nuget.org/">NuGet����</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2025/08/19/doc/S02Async/</url>
-    <content><![CDATA[<h1 id="�����첽"><a href="#�����첽" class="headerlink" title="�����첽"></a>�����첽</h1><ul>
-<li>�첽���ܼӿ쵥������Ĵ����ٶ�</li>
-<li>ֻ����� Web������ͬʱ�������������</li>
-<li><code>async</code>,<code>await</code> �����ڶ��߳�</li>
-</ul>
-<h2 id="�첽����"><a href="#�첽����" class="headerlink" title="�첽����"></a>�첽����</h2><p>��async�ؼ������εķ���</p>
-<ol>
-<li>�첽�����ķ���ֵһ����<code>Task&lt;T&gt;</code>,T�������ķ���ֵ����,<code>Task&lt;int&gt;</code>������:�첽����������<code>Asyn</code>��β��</li>
-<li>��ʹ����û�з���ֵ,Ҳ��ðѷ���ֵ����Ϊ<em>�Ƿ���</em>��<code>Task</code>��</li>
-<li>���÷��ͷ���ʱ,һ���ڷ���ǰ����<code>await</code>��,�����õ��ķ���ֵ���Ƿ���ָ����<code>T</code>����;</li>
-<li>�첽�����ġ���Ⱦ�ԡ�:һ�������������<code>await</code>����,���������Ҳ��������Ϊ<code>async</code></li>
-<li>���ͬ���Ĺ���,����ͬ������,�����첽����,��ô����ʹ���첽������<br>.NET ���еķ���Ҳ��֧���첽: Main��WinForm�¼�����������</li>
-<li>���ڲ�֧�ֵ��첽������ô��?<br>Wait()(�޷���ֵ); Result(�з���ֵ)������: �������������á�</li>
-</ol>
-<p><code>async</code>�ķ����ᱻC#�����������һ����,����Ҫ����<code>awat</code>���ý����з�Ϊ���״̬,��<code>async</code>�����ĵ��ûᱻ���Ϊ��<code>MoveNext</code>�ĵ��á�<br>��<code>await</code>�����ǡ��ȴ���,���������,��ʵû��<code>wait</code>��</p>
-<p>ΪʲôҪ��һ��async�������Ϊ���״̬Ȼ���Ϊ��ε���?</p>
-<p>���첽�Ŀ��Ա����̵߳ȴ���ʱ����������await���ǵȴ�ѽ?</p>
-<p><code>await</code>���õĵȴ��ڼ�,.NET��ѵ�ǰ���̷߳��ظ��̳߳�,���첽��������ִ����Ϻ�,��ܻ���̳߳���ȡ����һ���߳�ִ�к����Ĵ��롣</p>
-<p>���Ʒ���Ա��ͣ�</p>
-<ul>
-<li>ͬ������: ���ſͻ�����Ͳ��뿪</li>
-<li>�첽����: ����Ա���˲˵���ֽ�ʣ��ȿͻ������ˣ�����ȡ</li>
-</ul>
-<p>�����Ż�:</p>
-<p>��Ҫ�ȴ���ʱ��,��������Ѿ�ִ�н�����,�Ǿ�û��Ҫ���л��߳���,ʣ�µĴ���ͼ�����֮ǰ���߳��ϼ���ִ���ˡ�</p>
-<ul>
-<li>�첽���������ڶ��߳�</li>
-</ul>
-<ol>
-<li><code>async</code>&#x2F;<code>await</code> �������Զ��¿��߳�</li>
-</ol>
-<ul>
-<li><code>async</code> &#x2F; <code>await</code> �������� �첽״̬�������Ƕ��̹߳��ߡ�</li>
-<li>���������û����ʽ�Ķ��̲߳��������� Task.Run��ThreadPool.QueueUserWorkItem������ֻ���ڵ����߳��ϡ����� �� �ָ�����������������ܵ����̡߳�</li>
-</ul>
-<ol>
-<li>await ������������ִ�У�ȡ���� SynchronizationContext &#x2F; TaskScheduler<br>�� SynchronizationContext ����������� WinForms��WPF��ASP.NET��</li>
-</ol>
-<p>await ǰ�󣬻Ჶ��ǰ�� SynchronizationContext���ָ�ʱ���Ȼ���������ġ�</p>
-<p>���� WinForms�����÷����� UI �̣߳�await ���������� UI �̡߳�</p>
-<p>û�� SynchronizationContext ����������� Console ����ASP.NET Core����ͨ�̳߳��̣߳�</p>
-<p>Ĭ���� TaskScheduler.Default���̳߳ص��ȣ���</p>
-<p>await ��������ᱻ�Ż��̳߳�ִ�У�������ԭ�����̣߳�Ҳ��������һ���̣߳�û�б�֤��</p>
-<ol start="3">
-<li>�������</li>
-</ol>
-<p>ͬ����ɣ������ await �������Ѿ���ɣ�Task.IsCompleted &#x3D;&#x3D; true������ô await ��ֱ���ڵ�ǰ�����̼߳���ִ�У������л�������&#x2F;�̡߳�</p>
-<p>await Task.FromResult(1); &#x2F;&#x2F; �������̣߳�ֱ���ڵ�ǰ�̼߳���</p>
-<p>ConfigureAwait(false)����ʾ����Ҫ���� SynchronizationContext�����ָ�ʱ������ TaskScheduler.Default���̳߳أ��ϵ��ȡ������ڿ������⿨ UI��</p>
-<p>Task.Run(…)����ʽ�ѹ��������̳߳ء����� await �� continuation ��Ȼ��ѭ�����������򣨲���򲻲��������ģ���</p>
-<ol start="4">
-<li>�ܽ��׼</li>
-</ol>
-<p>await ������ �������� �� �ڵ�ǰ�̼߳�����</p>
-<p>await ������ δ��� �� ���𣬻ָ�ʱ��</p>
-<p>�� SynchronizationContext �� �ص��������ģ�ͨ���� UI �̣߳���</p>
-<p>û�� SynchronizationContext �� ���̳߳أ�TaskScheduler.Default�����̲߳�ȷ����</p>
-<p>ʹ�� ConfigureAwait(false) �� ���������ģ�ǿ�����̳߳ػָ���</p>
-<p>Ҫ����ǣ�async&#x2F;await �Ӳ���֤���̣߳�ֻ�Ǳ�֤�ָ��߼��ġ�������һ���ԡ������߳����ȡ�������ò��� Task.Run����û�������ģ��Լ������Ƿ�ͬ����ɡ�</p>
-]]></content>
   </entry>
 </search>
