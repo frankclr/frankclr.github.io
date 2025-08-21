@@ -418,11 +418,11 @@
       </i>
     
       <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Docker/ >Docker</a>
+        <a rel="tag" href = /tags/IntelliJ-IDEA/ >IntelliJ IDEA</a>
       </i>
     
       <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/IntelliJ-IDEA/ >IntelliJ IDEA</a>
+        <a rel="tag" href = /tags/Docker/ >Docker</a>
       </i>
     
   </div>
@@ -637,8 +637,8 @@
       <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
         <div class="post-abstract mdui-typo ">
           
-            <h3 id="一、下载Git-的Windows客户端"><a href="#一、下载Git-的Windows客户端" class="headerlink" title="一、下载Git 的Windows客户端"></a>一、下载Git 的Windows客户端</h3><p>从<a target="_blank" rel="noopener" href="https://github.com/git-for-windows/git/releases">Git下载地址</a>下载，并安装。</p>
-<h3 id="二、初始配置"><a href="#二、初始配置" class="headerlink" title="二、初始配置"></a>二、初始配...
+            <p><a target="_blank" rel="noopener" href="https://github.com/git-for-windows/git/releases">Git下载地址</a></p>
+<h2 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;Your Name&quot;</span><br><span class="line">git config --global user.email &quot;email@example.com&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定全局http代理</span></span><br><span class="line">git config --global http.proxy &#x27;http://127.0.0.1:10808&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定全局https代理</span></span><br><span class="line">git config --global https.proxy &#x27;http://127.0.0.1:10808&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取消代理</span></span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅仅指定`https://github.com`才使用代理</span></span><br><span class="line">git config --global http.https://github.com.proxy http://127.0.0.1:10808</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">支持长文件名</span></span><br><span class="line">git config --system core.longpaths true</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解决重装系统后，出现的<span class="string">&quot;fatal: detected dubious ownership in repository Error&quot;</span>错误</span></span><br><span class="line">git config --global --add safe.directory &#x27;*&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认使用变基</span></span><br><span class="line">git config --global pull.rebase true</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置 Git 记住密码（HTTP/HTTPS）</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">no helper 不使用任何凭据管理程序，每次操作都会要求输入用户名和密码。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">wincred 使用 Windows Credential Manager（Windows 凭据管理器），它会帮你保存用户名和密码，后续操作自动使用，免去重复输入。</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">manager	指 Git Credential Manager (GCM)，这是 Git 官方推荐的跨平台凭据管理工具，功能更强，支持多种身份验证方式（包括 OAuth、PAT、MFA等）。在新版 Git <span class="keyword">for</span> Windows 中默认启用。</span></span><br><span class="line">git config --global credential.helper manager</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置默认主分支为 main, 新版为 main, 老版为 master</span></span><br><span class="line">git config --global init.defaultBranch main</span><br></pre></td></tr></table></figure>
           
         </div>
         
