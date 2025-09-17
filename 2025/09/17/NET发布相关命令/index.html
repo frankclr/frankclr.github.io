@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            .NET发布相关命令 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">.NET发布相关命令</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2025-09-17
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2025-09-18
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=.NET发布相关命令&url=https://frankclr.github.io/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/&pic=https://frankclr.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=.NET发布相关命令&url=https://frankclr.github.io/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankclr.github.io/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankclr.github.io/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankclr.github.io/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/&title=.NET发布相关命令" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=.NET发布相关命令&summary=&pics=https://frankclr.github.io/null&url=https://frankclr.github.io/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankclr.github.io/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/&text=.NET发布相关命令" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/NET/ >.NET</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="build-VS-publish"><a href="#build-VS-publish" class="headerlink" title="build VS publish"></a>build VS publish</h2><p><code>dotnet build</code></p>
+<ul>
+<li>把项目源码编译成 IL（*.dll &#x2F; *.exe），产物放到 <code>bin/&lt;Configuration&gt;/&lt;TFM&gt;/</code>，主要用于开发的“inner-loop”。它不会做 publish 阶段的拷贝&#x2F;打包&#x2F;转译&#x2F;修剪等发布特定操作（除非你显式配置）。</li>
+</ul>
+<p><code>dotnet publish</code></p>
+<ul>
+<li>做编译（除非你加 –no-build），再把运行时&#x2F;依赖&#x2F;内容文件整理到一个可以部署的文件夹，并在发布时触发发布相关的 MSBuild 目标（Razor 编译、single-file 打包、trim、ReadyToRun、AOT 等，取决于项目属性和命令行参数）。也会生成 .deps.json、.runtimeconfig.json，这些是运行时决定如何加载依赖的重要文件。</li>
+</ul>
+<h2 id="debug-vs-release"><a href="#debug-vs-release" class="headerlink" title="debug vs release"></a>debug vs release</h2><ul>
+<li><p>编译器 &amp; MSBuild 属性<br>Configuration 会影响项目文件中有条件的 PropertyGroup，常见不同点包括 Optimize（Release 常为 true）、是否定义 DEBUG 常量、以及是否生成&#x2F;怎样生成 PDB（DebugType&#x2F;DebugSymbols）等。Visual Studio &#x2F; SDK-style 项目把这些作为不同配置的默认属性植入。</p>
+</li>
+<li><p>调试信息（PDB）<br>现代 SDK-style 项目默认使用 portable PDB，默认 DebugType 在 SDK 中是 portable（这意味着 Release 下也可能生成 PDB，取决于项目设置）。如果你想在 Release 环境仍保留 PDB（便于线上符号&#x2F;崩溃分析），可以在 csproj 或命令行开启 DebugSymbols&#x3D;true&#x2F;DebugType&#x3D;portable。</p>
+</li>
+<li><p>运行时优化<br>注意：.NET 的很多最终优化是在 JIT（运行时）阶段完成，而不是编译时。但 Release&#x2F;Debug 的差别仍会影响代码可读性、局部变量保留、内联&#x2F;优化提示、以及 MSBuild 在发布阶段是否启用额外功能（如 PublishTrimmed、PublishReadyToRun 等）。调试时要注意 JIT 优化会影响断点&#x2F;变量显示等。</p>
+</li>
+</ul>
+<h2 id="实际建议（基于上面结论）"><a href="#实际建议（基于上面结论）" class="headerlink" title="实际建议（基于上面结论）"></a>实际建议（基于上面结论）</h2><ol>
+<li><p>生产环境用 Release 去 publish<br>  <code>dotnet publish -c Release -r &lt;RID&gt; [--self-contained true/false]</code><br>  Release 是为部署&#x2F;生产优化的默认路径（且 .NET9 的 dotnet publish 默认就是 Release）。</p>
+</li>
+<li><p>如果需要线上调试（保留 PDB）：不要用 Debug 发布到生产；用 Release 发布但保留符号，例如：<br>  <code>dotnet publish -c Release -p:DebugType=portable -p:DebugSymbols=true -o ./publish</code><br>  这样既保留 Release 的行为（更贴近生产运行），又能产生 PDB 供崩溃分析&#x2F;符号服务器使用。DebugType&#x3D;portable 是 SDK-style 的现代默认，可用来生成跨平台 PDB。</p>
+</li>
+<li><p>当使用 single-file &#x2F; trim &#x2F; ReadyToRun &#x2F; AOT 时<br>  知道这些通常只在 publish 阶段起作用（并且在不同配置可能有不同默认值）。先在 CI 上用 Release 做一次完整的 publish，并在预生产环境里彻底跑通（尤其对反射&#x2F;动态加载依赖的代码）。如果遇到奇怪的运行时异常，检查 PublishTrimmed &#x2F; PublishSingleFile 等是否启用并尝试临时关闭以定位问题。</p>
+</li>
+<li><p>如果在脚本里以前隐式依赖 dotnet publish 会用 Debug 输出<br>  注意在 net8+&#x2F;net9 项目上 dotnet publish 默认已改为 Release，CI&#x2F;脚本需要显式 -c Debug（如果你确实想 Debug 的 publish）或调整输出路径</p>
+</li>
+<li><p>调试发布问题的排查清单（遇到你说的「.NET 6 用 Debug 发布出问题」时常用的检查项）：</p>
+</li>
+</ol>
+<ul>
+<li>查看 publish 目录内容（是否有 PDB、.deps.json、.runtimeconfig.json）</li>
+<li>检查是否启用了 PublishTrimmed、PublishSingleFile、PublishReadyToRun 等<br>在 Debug&#x2F;Release 下它们是否有不同值</li>
+<li>对于 ASP.NET Core，确认 RazorCompileOnPublish 等属性是否按预期（缺少视图通常是因为 publish 时&#x2F;构建时 Razor 的编译配置不一致）</li>
+<li>尝试 <code>dotnet publish -c Release</code> 看问题是否消失（若消失，说明可能由 Debug&#x2F;Release 的配置差异或 publish-only task 导致）。</li>
+<li>如果使用 single-file + Debug 符号出现 “image mismatch”&#x2F;无法加载 PDB，尝试在发布时不要打包为 single-file 或在 Release 中保留符号以定位</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build">dotnet build</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish">dotnet publish</a></p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2025/08/28/IDEA%E9%A1%B9%E7%9B%AE%E6%8A%A5%E7%BA%A2/">
+        <span>IDEA项目报红</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2025/09/17/NET%E5%8F%91%E5%B8%83%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#build-VS-publish"><span class="toc-number">1.</span> <span class="toc-text">build VS publish</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#debug-vs-release"><span class="toc-number">2.</span> <span class="toc-text">debug vs release</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E5%BB%BA%E8%AE%AE%EF%BC%88%E5%9F%BA%E4%BA%8E%E4%B8%8A%E9%9D%A2%E7%BB%93%E8%AE%BA%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">实际建议（基于上面结论）</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2025 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >
