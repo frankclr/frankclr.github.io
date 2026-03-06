@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Windows开发Java时的各种乱码 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/">Windows开发Java时的各种乱码</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2026-03-07
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2026-03-07
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Windows开发Java时的各种乱码&url=https://frankclr.github.io/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/&pic=https://frankclr.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Windows开发Java时的各种乱码&url=https://frankclr.github.io/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankclr.github.io/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankclr.github.io/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankclr.github.io/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/&title=Windows开发Java时的各种乱码" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=Windows开发Java时的各种乱码&summary=&pics=https://frankclr.github.io/null&url=https://frankclr.github.io/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankclr.github.io/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/&text=Windows开发Java时的各种乱码" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Gradle/ >Gradle</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Maven/ >Maven</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <ol>
+<li><p>Powershell 配置文件</p>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加在配置文件的最后，防止其他插件修改</span></span><br><span class="line"><span class="comment"># 从 PowerShell 5.1 开始，重定向作符（&gt; 和 &gt;&gt;）调用了 Out-File 指令</span></span><br><span class="line"><span class="variable">$PSDefaultParameterValues</span>[<span class="string">&#x27;Out-File:Encoding&#x27;</span>] = <span class="string">&#x27;utf8&#x27;</span></span><br><span class="line"><span class="comment"># 更改所有带有编码参数的 cmdlet 的默认编码</span></span><br><span class="line"><span class="comment"># 将此命令放入 PowerShell 配置文件后，优先设置会变成会话全局设置，影响所有未明确指定编码的命令和脚本。</span></span><br><span class="line"><span class="comment"># 同样，你应该在脚本或模块中包含你希望以相同方式表现的命令。使用这些命令可以确保 cmdlet 即使被其他用户、在不同计算机或不同版本的 PowerShell 中运行，行为依然相同。</span></span><br><span class="line"><span class="variable">$PSDefaultParameterValues</span>[<span class="string">&#x27;*:Encoding&#x27;</span>] = <span class="string">&#x27;utf8&#x27;</span></span><br><span class="line">[<span class="type">Console</span>]::InputEncoding  = [<span class="type">System.Text.UTF8Encoding</span>]::new()</span><br><span class="line"><span class="comment"># 影响 PowerShell 用于与外部程序通信的编码。它不影响输出重定向作符和 PowerShell 命令子用来保存到文件的编码方式</span></span><br><span class="line">[<span class="type">Console</span>]::OutputEncoding = [<span class="type">System.Text.UTF8Encoding</span>]::new()</span><br><span class="line">chcp <span class="number">65001</span> &gt; <span class="variable">$null</span></span><br></pre></td></tr></table></figure></li>
+<li><p>配置环境变量 <code>JAVA_TOOL_OPTIONS</code></p>
+ <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setx JAVA_TOOL_OPTIONS <span class="string">&quot;-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8&quot;</span></span><br><span class="line"><span class="comment"># 新开终端验证</span></span><br><span class="line">pwsh</span><br><span class="line">java <span class="literal">-XshowSettings</span>:properties <span class="literal">-version</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> | findstr encoding</span><br><span class="line"><span class="built_in">Get-ChildItem</span> Env:|<span class="built_in">Select-String</span> opt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Gradle</p>
+<ol>
+<li><p><code>~\gradle\gradle.properties</code> 配置</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 防止乱码，彻底关闭 Jansi。</span></span><br><span class="line">org.gradle.console=plain</span><br><span class="line"><span class="comment"># jvmargs 把可能涉及编码都配上，因为不同版本 JDK 实现方式可能改变</span></span><br><span class="line">org.gradle.jvmargs=-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -    Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>正常情况下，有上面 3 步的配置，不会再出现乱码。<br> 额外还可以考虑</p>
+<ul>
+<li>配置环境变量 <code>GRADLE_OPTS</code></li>
+<li>在项目 <code>build.gradle.kts</code> 中指定编码 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tasks.withType&lt;JavaExec&gt;().configureEach &#123;</span><br><span class="line">    jvmArgs = listOf(</span><br><span class="line">        <span class="string">&quot;-Dfile.encoding=UTF-8&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-Dstdout.encoding=UTF-8&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-Dstderr.encoding=UTF-8&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-Dsun.stderr.encoding=UTF-8&quot;</span>,</span><br><span class="line">        <span class="string">&quot;-Dsun.stdout.encoding=UTF-8&quot;</span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Maven</p>
+<ol>
+<li>正常情况下，由上面的1和2，也应该正常工作<br> 额外还可以考虑<ul>
+<li>配置环境变量 <code>MAVEN_OPTS</code> 和 <code>MVND_JAVA_OPTS</code></li>
+<li>项目新建 <code>.mvn\jvm.config</code> 和 <code>.mvn/maven.config</code>,内容都是下面的内容<ul>
+<li><code>.mvn\jvm.config</code> 等价于：<code>MAVEN_OPTS=&quot;这里的内容&quot;</code><ul>
+<li>它只影响：启动 Maven 进程本身的 JVM(<code>org.apache.maven.cli.MavenCli</code>)</li>
+<li>不会影响：<ul>
+<li>maven-surefire-plugin fork 出来的测试 JVM</li>
+<li>IDEA 里点 ▶ 运行的那个 JVM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>.mvn/maven.config</code> 等价于：<code>mvn &lt;这里的内容&gt;</code><ul>
+<li>它只影响：启动 Maven 进程本身的 JVM(<code>org.apache.maven.cli.MavenCli</code>)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-Dfile.encoding=UTF-8</span><br><span class="line">-Dstdout.encoding=UTF-8</span><br><span class="line">-Dstderr.encoding=UTF-8</span><br><span class="line">-Dsun.stderr.encoding=UTF-8</span><br><span class="line">-Dsun.stdout.encoding=UTF-8</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>mvn</code> 和 <code>mvnd</code> 有 <code>-l x.log</code>(或者 <code>--logfile x.log</code>) 把构建日志打印到文件</li>
+</ol>
+</li>
+<li><p>IntelliJ IDEA 在上面配置的基础上，基本只需要在 <code>idea64.exe.vmoptions</code> 配置 <code>-Dfile.encoding=UTF-8</code></p>
+<ul>
+<li>IntelliJ IDEA 需要重启才能读取环境变量等配置</li>
+<li>如果还有问题，就把其他编码全部加上</li>
+</ul>
+</li>
+<li><p>CMD</p>
+<ol>
+<li>特别注意 Windows 的 <code>CodePage</code>, 命令 <code>chcp 65001</code></li>
+<li>正常情况下，在上面配置了 <code>JAVA_TOOL_OPTIONS</code> 和 Gradle + Maven 相关配置后，也应该正常了</li>
+</ol>
+</li>
+<li><p>Windows 上命令行永远可能乱码，唯一可靠的方式是输出到文件 + 统一 JVM &#x2F;插件 UTF-8 编码，IDEA &#x2F; CI 上直接看英文报错。</p>
+</li>
+<li><p>修改系统的编码为 <code>UTF-8</code> ,Windows 10和Windows 11支持。<br> 此方法最为彻底，方便！但<strong>影响大量不支持UTF-8的程序</strong>;<br> 修改路径: <code>设置-&gt;时间和语言-&gt;管理语言设置-&gt;非 Unicode程序的语言-&gt;更改系统区域设置-&gt;勾选Beta版: 使用Unicode UTF-8 提供全球语言支持-&gt;确定</code></p>
+</li>
+</ol>
+<p>资料:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_character_encoding">更改默认编码</a></li>
+<li><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_profiles">PowerShell Profiles</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.codenong.com/cs106124420/">深入浅出了解Java程序中的乱码</a></li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2026/02/08/%E5%85%B3%E4%BA%8EMaven%E9%85%8D%E7%BD%AE/">
+        <span>关于Maven配置</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%812/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2026 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

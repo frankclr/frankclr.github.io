@@ -142,8 +142,8 @@
 
   <aside id="sidebar" class="mdui-drawer">
     <div class="mdui-tab" mdui-tab>
-        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
-        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
     </div>
 
     
@@ -155,7 +155,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-home"></i>
                     </div>
-                    <div class="mdui-list-item-content">主页</div>
+                    <div class="mdui-list-item-content">Home</div>
                 </a>
             
                 
@@ -163,7 +163,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-bookmark"></i>
                     </div>
-                    <div class="mdui-list-item-content">标签</div>
+                    <div class="mdui-list-item-content">Tags</div>
                 </a>
             
                 
@@ -171,7 +171,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-folder"></i>
                     </div>
-                    <div class="mdui-list-item-content">分类</div>
+                    <div class="mdui-list-item-content">Categories</div>
                 </a>
             
                 
@@ -179,7 +179,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-archive"></i>
                     </div>
-                    <div class="mdui-list-item-content">归档</div>
+                    <div class="mdui-list-item-content">Archives</div>
                 </a>
             
                 
@@ -195,14 +195,14 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-user"></i>
                     </div>
-                    <div class="mdui-list-item-content">关于</div>
+                    <div class="mdui-list-item-content">About</div>
                 </a>
             
             <div class="mdui-list-item mdui-ripple">
                 <div class="mdui-list-item-icon">
                     <i class="iconfont icon-moon"></i>
                 </div>
-                <div class="mdui-list-item-content">夜间模式</div>
+                <div class="mdui-list-item-content">Night Mode</div>
                 <label class="mdui-switch" id="darkmode">
                   <input type="checkbox" id="nightmode_switch"/>
                   <i class="mdui-switch-icon"></i>
@@ -255,7 +255,7 @@
                     <div class="mdui-list-item-icon">
                         <i class="iconfont icon-link"></i>
                     </div>
-                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-list-item-content">Links</div>
                     <div class="mdui-collapse-item-arrow">
                         <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
                     </div>
@@ -282,19 +282,119 @@
       
       
         <div class="post-header"> 
+  <a class="post-header-title" href="/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/">SpringBoot项目启动</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-09-03
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2024-09-03
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h2 id="官方脚手架模式"><a href="#官方脚手架模式" class="headerlink" title="官方脚手架模式"></a>官方脚手架模式</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/09/03/SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%AF%E5%8A%A8/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/">IntelliJ IDEA之External tools</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2024-09-01
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2025-02-22
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Java/ >Java</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h2 id="javap"><a href="#javap" class="headerlink" title="javap"></a>javap</h2><p><code>Ctrl + Alt + S</code> ——&gt; <code>External Tools</code> ——&gt; <code>Add</code> ,在添加页面的 <code>Tool Setting</code>部分分别设置</p>
+<ol>
+<li><code>Program</code> 填 <code>$JDKPath$\bin\javap</code><br>  <code>javap</c...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/09/01/IntelliJ-IDEA%E4%B9%8BExternal-tools/">Read More</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
   <a class="post-header-title" href="/2024/08/31/Java%E4%B9%8BPrintAssembly/">Java之PrintAssembly</a>
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-31
+      Posted on:&nbsp;2024-08-31
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-03-28
+      Edited on:&nbsp;2025-03-28
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -322,7 +422,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/31/Java%E4%B9%8BPrintAssembly/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/31/Java%E4%B9%8BPrintAssembly/">Read More</a>
         </div>
       </div>
     </article>
@@ -335,15 +435,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-17
+      Posted on:&nbsp;2024-08-17
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-09-17
+      Edited on:&nbsp;2024-09-17
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
     </span>
     
   </div>
@@ -375,7 +475,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/17/JVM%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/17/JVM%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AF%B4%E6%98%8E/">Read More</a>
         </div>
       </div>
     </article>
@@ -388,15 +488,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-17
+      Posted on:&nbsp;2024-08-17
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-08-09
+      Edited on:&nbsp;2025-08-09
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
     </span>
     
   </div>
@@ -424,7 +524,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/17/Hexo%E4%BD%BF%E7%94%A8/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/17/Hexo%E4%BD%BF%E7%94%A8/">Read More</a>
         </div>
       </div>
     </article>
@@ -437,15 +537,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-17
+      Posted on:&nbsp;2024-08-17
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-09-12
+      Edited on:&nbsp;2024-09-12
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -475,7 +575,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/17/Chrome%E8%87%AA%E5%AE%9A%E4%B9%89%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/17/Chrome%E8%87%AA%E5%AE%9A%E4%B9%89%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">Read More</a>
         </div>
       </div>
     </article>
@@ -488,15 +588,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-17
+      Posted on:&nbsp;2024-08-17
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2025-08-07
+      Edited on:&nbsp;2025-08-07
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;
+      In:&nbsp;
     </span>
     
   </div>
@@ -530,7 +630,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/17/Python%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88%E9%85%8D%E7%BD%AE/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/17/Python%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88%E9%85%8D%E7%BD%AE/">Read More</a>
         </div>
       </div>
     </article>
@@ -543,15 +643,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-14
+      Posted on:&nbsp;2024-08-14
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-08-14
+      Edited on:&nbsp;2026-03-07
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -580,7 +680,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/14/Windows%E7%A6%81%E7%94%A8%E5%88%AB%E5%90%8Dcurl/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/14/Windows%E7%A6%81%E7%94%A8%E5%88%AB%E5%90%8Dcurl/">Read More</a>
         </div>
       </div>
     </article>
@@ -593,15 +693,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-09
+      Posted on:&nbsp;2024-08-09
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-08-09
+      Edited on:&nbsp;2024-08-09
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -630,7 +730,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/09/Windows%E5%88%A0%E9%99%A4%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/09/Windows%E5%88%A0%E9%99%A4%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6/">Read More</a>
         </div>
       </div>
     </article>
@@ -643,15 +743,15 @@
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-08
+      Posted on:&nbsp;2024-08-08
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-08-08
+      Edited on:&nbsp;2024-08-08
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
+      In:&nbsp;<a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F/">系统</a>
     </span>
     
   </div>
@@ -680,113 +780,7 @@
         </div>
         
         <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/08/Debian%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85grub%E5%BC%95%E5%AF%BC/">阅读更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/08/08/POM%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0JAR/">POM中使用本地JAR</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-08
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-08-08
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Maven/ >Maven</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>假定<code>lib</code>位于项目根目录，与<code>pom.xml</code>同级别</p>
-<p>错误: 使用项目的相关变量，子项目找不到，编译也会错误提醒，但似乎可以执行。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jdk.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jconsole<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>$&#123;pom.basedir&#125;/lib/jconsole.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/08/POM%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0JAR/">阅读更多</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
-      
-      
-        <div class="post-header"> 
-  <a class="post-header-title" href="/2024/08/04/Linux%E4%B8%AD%E6%96%87%E4%BB%B6%E5%91%BD%E5%90%8D%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">Linux中文件命名的最佳实践</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2024-08-04
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2024-08-04
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
-    </span>
-    
-  </div>
-</div>   
-    
-
-
-
-      
-      
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Java/ >Java</a>
-      </i>
-    
-  </div>
-
-      
-      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
-        <div class="post-abstract mdui-typo ">
-          
-            <p>转自<a target="_blank" rel="noopener" href="https://www.inmotionhosting.com/support/server/linux/best-practice-for-naming-files-in-linux/">Best practice for naming files in Linux</a></p>
-<p>如果您正在开发您的网站，但无法找出为什么您的页面、图像、JavaScript 和其他网络数据导致404 未找到错误，则您可能遇到了大小写敏感问题。</p>
-<p>Linux 服务器区分大小写。Windows 服务器不区分大小写，因此如果您将文件从 Windows 开发平台移...
-          
-        </div>
-        
-        <div style="text-align:center;">
-          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/04/Linux%E4%B8%AD%E6%96%87%E4%BB%B6%E5%91%BD%E5%90%8D%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">阅读更多</a>
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/08/08/Debian%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85grub%E5%BC%95%E5%AF%BC/">Read More</a>
         </div>
       </div>
     </article>
@@ -795,7 +789,7 @@
 
   <nav style="text-align: center;">
     <div class="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-angle-right"></i></a>
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-angle-right"></i></a>
     </div>
   </nav>
 
@@ -816,10 +810,10 @@
     <div class="mdui-row">
       
         <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
         </div>
         <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
         </div>
       
     </div>
