@@ -295,11 +295,11 @@
       </i>
     
       <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Maven/ >Maven</a>
+        <a rel="tag" href = /tags/Gradle/ >Gradle</a>
       </i>
     
       <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Gradle/ >Gradle</a>
+        <a rel="tag" href = /tags/Maven/ >Maven</a>
       </i>
     
   </div>
@@ -350,11 +350,21 @@
 <li><code>mvn</code> 和 <code>mvnd</code> 有 <code>-l x.log</code>(或者 <code>--logfile x.log</code>) 把构建日志打印到文件</li>
 </ol>
 </li>
-<li><p>IntelliJ IDEA 在上面配置的基础上，基本只需要在 <code>idea64.exe.vmoptions</code> 配置 <code>-Dfile.encoding=UTF-8</code></p>
-<ul>
+<li><p>IntelliJ IDEA 在上面设置了 PowerShell 和 <code>JAVA_TOOL_OPTIONS</code> 后</p>
+<ol>
+<li><code>idea64.exe.vmoptions</code> 配置 <code>-Dfile.encoding=UTF-8</code></li>
+<li><code>构建、执行、部署</code> -&gt; <code>构建工具</code> -&gt; <code>Maven</code> -&gt; <code>运行程序</code> -&gt; <code>虚拟机选项</code>填写 <code>-Dfile.encoding=UTF-8</code><ul>
+<li>这是为了参数最小配置，才这么处理的。<ul>
+<li>如果 <code>JAVA_TOOL_OPTIONS</code> 按照前面的配置，不包含 <code>-Dfile.encoding=UTF-8</code>，IntelliJ IDEA 会读取系统的 <code>-Dfile.encoding=GBK</code>,中文又要乱码。</li>
+<li>如果 <code>JAVA_TOOL_OPTIONS</code> 包含 <code>-Dfile.encoding=UTF-8</code>, 影响又太大；</li>
+</ul>
+</li>
+<li>也可以考虑设置 <code>MAVEN_OPTS</code> 环境变量</li>
+</ul>
+</li>
 <li>IntelliJ IDEA 需要重启才能读取环境变量等配置</li>
 <li>如果还有问题，就把其他编码全部加上</li>
-</ul>
+</ol>
 </li>
 <li><p>CMD</p>
 <ol>
