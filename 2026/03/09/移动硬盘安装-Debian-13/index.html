@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            移动硬盘安装 Debian 13 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/">移动硬盘安装 Debian 13</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2026-03-09
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2026-03-09
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=移动硬盘安装 Debian 13&url=https://frankclr.github.io/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/&pic=https://frankclr.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=移动硬盘安装 Debian 13&url=https://frankclr.github.io/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankclr.github.io/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankclr.github.io/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankclr.github.io/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/&title=移动硬盘安装 Debian 13" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=移动硬盘安装 Debian 13&summary=&pics=https://frankclr.github.io/null&url=https://frankclr.github.io/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankclr.github.io/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/&text=移动硬盘安装 Debian 13" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Linux/ >Linux</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Debian/ >Debian</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="一、Linux-适配多台机器的硬件"><a href="#一、Linux-适配多台机器的硬件" class="headerlink" title="一、Linux 适配多台机器的硬件"></a>一、Linux 适配多台机器的硬件</h2><h3 id="1-1-Linux-驱动模型"><a href="#1-1-Linux-驱动模型" class="headerlink" title="1.1 Linux 驱动模型"></a>1.1 Linux 驱动模型</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>Linux kernel 的驱动是 模块化（module） 的。</p>
+<p>系统启动流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">initramfs</span><br><span class="line">   ↓</span><br><span class="line">udev</span><br><span class="line">   ↓</span><br><span class="line">根据 PCI/USB ID 自动加载模块</span><br></pre></td></tr></table></figure>
+<p>比如, 有下面的硬件，内核会自动加载 i915,r8169</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lspci</span></span><br><span class="line">00:02.0 VGA Intel</span><br><span class="line">03:00.0 Network Realtek</span><br></pre></td></tr></table></figure>
+<p>因此：同一个系统换机器只会加载不同模块。这也是为什么：</p>
+<ul>
+<li>Linux Live USB 能在任何机器启动(rescue disk)</li>
+<li>服务器镜像可以在各种硬件上跑</li>
+<li>portable dev disk</div></li>
+</ul>
+<h3 id="1-2-可能出现问题的地方"><a href="#1-2-可能出现问题的地方" class="headerlink" title="1.2 可能出现问题的地方"></a>1.2 可能出现问题的地方</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>只有三个常见风险：</p>
+<h4 id="1-2-1-GPU"><a href="#1-2-1-GPU" class="headerlink" title="1.2.1 GPU"></a>1.2.1 GPU</h4><p>桌面环境会受 GPU 影响,但服务器机器 没有 GUI 就没问题</p>
+<div style="margin-left: 30px;  width: fit-content;">
+
+<table>
+<thead>
+<tr>
+<th>GPU</th>
+<th>桌面稳定性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Intel</td>
+<td>很稳定</td>
+</tr>
+<tr>
+<td>AMD</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>NVIDIA</td>
+<td>偶尔坑</td>
+</tr>
+</tbody></table>
+</div>
+
+<h4 id="1-2-2-WiFi"><a href="#1-2-2-WiFi" class="headerlink" title="1.2.2 WiFi"></a>1.2.2 WiFi</h4><p>不同机器 WiFi 芯片不同,Debian 12&#x2F;13 默认 firmware 已经比较全。只要安装：<code>firmware-linux</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">sudo</span> apt install firmware-linux</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-3-CPU-microcode"><a href="#1-2-3-CPU-microcode" class="headerlink" title="1.2.3 CPU microcode"></a>1.2.3 CPU microcode</h4><p>不同 CPU：Intel,AMD; 只要安装 <code>intel-microcode</code> <code>amd64-microcode</code>，就没有问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">sudo</span> apt install intel-microcode amd64-microcode</span><br></pre></td></tr></table></figure>
+</div>
+
+<h2 id="二、-LVM"><a href="#二、-LVM" class="headerlink" title="二、 LVM"></a>二、 LVM</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<p>LVM(Logical Volume Manager,逻辑卷)，它解决一个问题：<strong>传统分区无法动态调整大小</strong>,可通过 <code>lvextend -L +20G /dev/vg/root</code> 命令从 VG 中保留的空闲空间（free space）来分配新的空间，</p>
+<ul>
+<li>不是从其他 LV（如 home 或 docker）自动拿空间</li>
+<li>如果未来 free 空间用完了，但还想扩容，可以：<ul>
+<li>添加新磁盘 → 创建 PV → 扩展 VG → 继续分配 LV。</li>
+<li>或者缩小其他 LV（<strong>不推荐,需备份！且 ext4 缩小前要先 umount 并检查</strong>）</li>
+</ul>
+</li>
+</ul>
+<p>LVM 抽象层：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">disk</span><br><span class="line">  ↓</span><br><span class="line">PV (physical volume)</span><br><span class="line">  ↓</span><br><span class="line">VG (volume group)</span><br><span class="line">  ↓</span><br><span class="line">LV (logical volume)</span><br><span class="line"> ↓</span><br><span class="line">filesystem</span><br><span class="line">   ↓</span><br><span class="line">ext4 / xfs / btrfs</span><br></pre></td></tr></table></figure>
+
+<p>结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SSD</span><br><span class="line"> └─ PV</span><br><span class="line">     └─ VG</span><br><span class="line">         ├─ root</span><br><span class="line">         ├─ home</span><br><span class="line">         └─ docker</span><br></pre></td></tr></table></figure>
+
+<p>所以，LVM 和 ext4 可以同时使用。且使用 USB SSD 时，ext4 更稳</p>
+<p>Btrfs 在 USB SSD 上 有坑：</p>
+<ul>
+<li>snapshot IO 放大</li>
+<li>metadata 压力大</div></li>
+</ul>
+<h2 id="三、live-和-netinst-的区别"><a href="#三、live-和-netinst-的区别" class="headerlink" title="三、live 和 netinst 的区别"></a>三、live 和 netinst 的区别</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<p><code>debian-live-13.3.0-amd64-gnome.iso</code> 和 <code>netinst</code>,是完全不同的构建方式,不是简单的 <code>netinst</code> + 多软件包</p>
+<h3 id="3-1-debian-live-13-3-0-amd64-gnome-iso"><a href="#3-1-debian-live-13-3-0-amd64-gnome-iso" class="headerlink" title="3.1 debian-live-13.3.0-amd64-gnome.iso"></a>3.1 <code>debian-live-13.3.0-amd64-gnome.iso</code></h3><ul>
+<li>完整系统已经打包，驱动更全</li>
+<li>可以直接运行</li>
+<li>安装只是复制系统，安装速度快</li>
+<li>启动流程：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ISO</span><br><span class="line"> ↓</span><br><span class="line">Live system</span><br><span class="line"> ↓</span><br><span class="line">GNOME desktop</span><br><span class="line"> ↓</span><br><span class="line">Calamares installer</span><br></pre></td></tr></table></figure></li>
+<li>Live ISO 实际结构是 <code>squashfs</code>,例如：<code>filesystem.squashfs</code>,里面已经是完整 <code>rootfs</code>, 包含 <code>/bin</code>、<code>/usr</code>、<code>/lib</code>、<code>/home</code><ul>
+<li>启动时：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">squashfs</span><br><span class="line"> ↓</span><br><span class="line">overlayfs</span><br><span class="line"> ↓</span><br><span class="line">live system</span><br></pre></td></tr></table></figure></li>
+<li>安装时：<code>unsquashfs → copy to disk</code></li>
+</ul>
+</li>
+<li>使用工具 <code>live-build</code>、<code>live-boot</code>、<code>live-config</code> 构建，这些工具是 Debian Live 项目的一部分</li>
+</ul>
+<h3 id="3-2-debian-13-3-0-amd64-netinst-iso"><a href="#3-2-debian-13-3-0-amd64-netinst-iso" class="headerlink" title="3.2 debian-13.3.0-amd64-netinst.iso"></a>3.2 <code>debian-13.3.0-amd64-netinst.iso</code></h3><ul>
+<li><p>只有 基础系统</p>
+</li>
+<li><p>安装时 联网下载</p>
+</li>
+<li><p>使用 Debian Installer (d-i)</p>
+</li>
+<li><p>启动流程：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ISO</span><br><span class="line"> ↓</span><br><span class="line">Debian Installer</span><br><span class="line"> ↓</span><br><span class="line">分区</span><br><span class="line"> ↓</span><br><span class="line">联网下载软件</span><br><span class="line"> ↓</span><br><span class="line">安装系统</span><br></pre></td></tr></table></figure></li>
+</ul>
+</div>
+
+<h2 id="四、安装"><a href="#四、安装" class="headerlink" title="四、安装"></a>四、安装</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<h3 id="4-1-分区"><a href="#4-1-分区" class="headerlink" title="4.1 分区"></a>4.1 分区</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<h4 id="4-1-1-操作细节"><a href="#4-1-1-操作细节" class="headerlink" title="4.1.1 操作细节"></a>4.1.1 操作细节</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SSD</span><br><span class="line"> ├─ EFI     UEFI 启动,必须 FAT32，EFI 只识别：FAT32</span><br><span class="line"> |          300MB – 512MB，太小会装不下多个系统</span><br><span class="line"> |          fstab 必须写 UUID，UUID 不会变。不同电脑磁盘顺序不同，同一台电脑添加/删除硬盘顺序也可能变</span><br><span class="line"> |          USB SSD 必须单独分区(平常双系统，可以不用单独分区)</span><br><span class="line"> |          USB SSD 强烈建议 fallback，否则很多电脑找不到启动项</span><br><span class="line"> ├─ /boot   2GB,内核。老系统，必须单独分区,ext4; 新版12/13直接放入 / 目录就好</span><br><span class="line"> └─ LVM(剩余)</span><br><span class="line">      ├─ root</span><br><span class="line">      ├─ home</span><br><span class="line">      ├─ data</span><br><span class="line">      └─ swap</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在 <code>对磁盘进行分区</code> 界面，先对物理硬盘建立 <code>EFI</code> 和 <code>LVM</code></li>
+<li>进入 “配置逻辑卷管理器”，先 “创建<code>卷组</code>“,<ul>
+<li>才有 “创建逻辑<code>卷</code>“、”删除<code>卷组</code>“、”扩展<code>卷组</code>“ 和 <code>完成</code> 等选项</li>
+</ul>
+</li>
+<li>创建了 逻辑<code>卷</code>，才有 “删除<code>逻辑卷</code>“ 选项</li>
+<li>配置完 逻辑<code>卷组</code> 和 逻辑<code>卷</code> 后，回到 <code>对磁盘进行分区</code> 页面，会显示配置的所有 逻辑<code>卷</code><ul>
+<li>在这里要 <strong>设置 <code>分区格式</code> 和 <code>挂载点</code></strong></li>
+</ul>
+</li>
+<li><strong>特别的</strong>, 如果想重建 <code>LVM</code>,需要在选择 <code>配置逻辑卷管理器</code> 后弹出的下面的对话框<blockquote>
+<p>一旦逻辑卷管理器设置完成,就不允许再对包含逻辑卷的磁盘上的分区进行额外的改动。因此,在进行下一步操作之前,请您确认是否真的满意这些磁盘上当前的分区方案。<br> 保留现有的分区布局并配置 LVM 吗?&#96;</p>
+</blockquote>
+<ul>
+<li>选择 “是”，以进入逻辑卷管理器，然后<strong>先删除所有的 “逻辑<code>卷</code>“,再删除 “逻辑<code>卷组</code>“</strong> 才能对整个 <code>LVM</code> 重新分配</li>
+<li>选择 “否” 的话，会返回，从而无法更改。</li>
+</ul>
+</li>
+<li>Linux 以前： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">内核 → /boot</span><br><span class="line">root → LVM</span><br></pre></td></tr></table></figure>
+ 但有些情况下，安装器检测到 <code>/</code> 可启动，就直接把 <code>/boot</code> 放 <code>/</code><br> 于是独立 <code>/boot</code> 分区被忽略<ul>
+<li>如果系统已经正常启动，<code>/boot</code> 在 <code>/</code>，完全没问题。<br>很多现代 Linux 甚至没有独立 <code>/boot</code>，独立 <code>/boot</code> 并不是必须，只要 <code>/boot/efi</code> 存在即可<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EFI        → /boot/efi</span><br><span class="line">root       → /</span><br><span class="line">            └─ /boot</span><br></pre></td></tr></table></figure>
+没有独立的 <code>/boot</code> 分区，结构更简单，不容易出错</li>
+<li>也可以手动启用独立 <code>/boot</code></div></li>
+</ul>
+</li>
+</ol>
+<h3 id="4-2-安装系统"><a href="#4-2-安装系统" class="headerlink" title="4.2 安装系统"></a>4.2 安装系统</h3><ol>
+<li>在安装完基本系统后，会提示 “不使用网络镜像站点，继续安装吗?”<ul>
+<li>选择 “否” 以选择镜像站点，<strong>并且最好设置 <code>HTTP代理信息</code></strong></li>
+<li>否则，在安装的时候，<strong>会从 Debian 官网</strong>，而不是镜像站点，<strong>下载安全相关的组件，会很慢</strong>。</li>
+</ul>
+</li>
+<li>最后 “软件选择” 里，只选择 <code>SSH Server</code> 和 <code>标准系统工具</code>，不要选择 <code>GNOME</code> 等桌面环境</li>
+<li>等安装好基本系统后，重启<ul>
+<li>如果重启后进入系统进终端，屏幕一直高速闪烁(Debian 在某些 4K 显示器上常见的问题)<br> 内核 KMS（Kernel Mode Setting） 在 early boot 阶段选择了一个显卡&#x2F;显示器不稳定的模式，结果 tty 控制台不断重绘 → 看起来像高速闪烁<ol>
+<li>先确认是否是 KMS 问题（最常见）,在 GRUB 菜单：<ol>
+<li>选中 Debian</li>
+<li>按 e</li>
+<li>找到这一行：<code>linux /boot/vmlinuz-...</code></li>
+<li>在最后加：<code>nomodeset</code>, 变成：<code>linux ... nomodeset</code></li>
+<li><code>Ctrl + X</code>&#x2F;<code>F10</code> 启动</li>
+</ol>
+</li>
+<li>在 GRUB 固定分辨率<ol>
+<li><p>启动界面<br> 在 GRUB 菜单按 <code>c</code> 进入命令模式, 输入命令 <code>videoinfo</code> 会列出 Grub 支持的各种分辨率, 一般不要选      <code>3840x2160</code>, 选 <code>1920x1080</code> 最稳定。</p>
+</li>
+<li><p>进入终端系统后，配置 <code>sudo vi /etc/default/grub</code>, 然后执行 <code>sudo update-grub</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GRUB 菜单分辨率</span></span><br><span class="line">GRUB_GFXMODE=1920x1080</span><br><span class="line"><span class="comment"># 内核继承该分辨率</span></span><br><span class="line">GRUB_GFXPAYLOAD_LINUX=keep</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li>如果闪烁仍然存在，可能是 framebuffer 问题<br> 可以尝试：<code>GRUB_GFXPAYLOAD_LINUX=text</code>，让 Linux 直接使用 <code>80x25 text mode</code></li>
+<li>显卡问题<ol>
+<li>确认显卡型号<br> <code>lspci | grep VGA</code></li>
+<li>Intel&#x2F;AMD，可以限制 KMS 分辨率<ul>
+<li><p>编辑 <code>sudo vi etc/default/grub</code>，</p>
+<ul>
+<li><code>GRUB_CMDLINE_LINUX_DEFAULT=&quot;video=1920x1080&quot;</code><ul>
+<li><code>GRUB_CMDLINE_LINUX_DEFAULT</code> 定义了在正常启动（非恢复模式）时传递给 Linux 内核的默认参数</li>
+<li>参数还可以为:<ul>
+<li><code>quiet</code>: 减少启动过程中显示的详细日志信息，使系统启动过程更“安静”（即屏幕上输出的内容更少），通常只显示一个启动画面或简单的进度提示，而不是滚动的内核和系统服务日志</li>
+<li><code>splash</code>：配合图形启动画面（如 Plymouth）使用</li>
+<li><code>nomodeset</code>：禁用内核模式设置，常用于解决显卡驱动问题</li>
+<li><code>acpi=off</code>、<code>noapic</code> 等：用于解决硬件兼容性问题</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>然后更新 <code>sudo update-grub</code></p>
+</li>
+</ul>
+</li>
+<li>NVIDIA<ul>
+<li>Grub 的 <code>linux ...</code> 行追加 <code>nomodeset</code>，先启动。</li>
+<li>等进入系统后，安装 NVIDIA 驱动</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-3-配置"><a href="#4-3-配置" class="headerlink" title="4.3 配置"></a>4.3 配置</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<h4 id="4-3-1-GUI"><a href="#4-3-1-GUI" class="headerlink" title="4.3.1 GUI"></a>4.3.1 GUI</h4><p>task-gnome-desktop &#x3D; Debian完整桌面<br>gnome &#x3D; GNOME官方桌面<br>gnome-core &#x3D; 最小 GNOME 桌面，只是没有应用软件</p>
+<p>GDM 是 GNOME 的登录管理器，作用：图形登录界面、用户选择、启动GNOME session<br>如果不用 gdm3，你会看到 tty 登录，GNOME 桌面就不会自动启动。<br>gnome-core 已经包含 gdm3，通常不需要手动安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 只安装“纯 GNOME 桌面”，不带应用</span></span><br><span class="line"><span class="comment">#     1. 先安装最小系统，最干净、最接近原生 GNOME 的 Debian 方案</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install gnome-core gdm3 -y</span><br><span class="line"><span class="comment">#     2. 补充一些常用组件</span></span><br><span class="line"><span class="comment">#         a. gnome-tweaks，GNOME 高级设置工具。</span></span><br><span class="line"><span class="comment">#           因为 GNOME 默认设置界面非常简化，很多功能被隐藏。gnome-tweaks 可以开启这些高级选项</span></span><br><span class="line"><span class="comment">#           界面调整、窗口行为、GNOME Shell 扩展管理、启动程序、字体</span></span><br><span class="line"><span class="comment">#         b. network-manager-gnome  GNOME 网络图形界面</span></span><br><span class="line"><span class="comment">#           WiFi 管理、有线网络、VPN、移动网络</span></span><br><span class="line"><span class="comment">#            gnome-core，系统虽然有网络服务，但只能用命令，没有图形控制工具</span></span><br><span class="line"><span class="comment">#         c. gnome-shell-extension-manager GNOME 扩展管理工具</span></span><br><span class="line"><span class="comment">#            GNOME 的很多功能是通过 Shell Extension 实现的:Dock、App indicator、CPU 监控</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install \</span><br><span class="line">gnome-tweaks \</span><br><span class="line">gnome-shell-extension-manager \</span><br><span class="line">network-manager-gnome \</span><br><span class="line">file-roller \</span><br><span class="line">gnome-system-monitor -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装过程中&quot;选择软件&quot;，如果选了 &quot;GNOME&quot;,2G+，实际执行 task-gnome-desktop</span></span><br><span class="line"><span class="comment"># Debian 官方完整桌面体验</span></span><br><span class="line"><span class="comment"># 包含 gnome、gnome-core 和 gnome-desktop 三个大包，以及很多应用（Firefox、LibreOffice 等软件）</span></span><br><span class="line"><span class="comment"># 等价于下面的 2 个命令</span></span><br><span class="line">~$ <span class="built_in">sudo</span> tasksel install gnome-desktop -y</span><br><span class="line">~$ <span class="built_in">sudo</span> apt install task-gnome-desktop -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># GNOME 官方元包 1.5GB</span></span><br><span class="line"><span class="comment"># gnome-shell，gnome-core，gnome-apps</span></span><br><span class="line"><span class="comment"># 会安装：GNOME桌面，GNOME应用软件</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install gnome -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你已经安装了 task-gnome-desktop，可以删除应用</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt remove \</span><br><span class="line">evolution \</span><br><span class="line">libreoffice* \</span><br><span class="line">cheese \</span><br><span class="line">totem \</span><br><span class="line">rhythmbox -y</span><br><span class="line"></span><br><span class="line">~$ <span class="built_in">sudo</span> apt autoremove -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># GUI/Terminal 切换脚本</span></span><br><span class="line">~$ <span class="built_in">mkdir</span> ~/my-tools</span><br><span class="line">~$ vi ~/my-tools/set-gui.sh</span><br><span class="line">~$ <span class="built_in">chmod</span> 554 set-gui.sh</span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">ln</span> -s set-gui.sh /usr/local/bin/set-gui</span><br></pre></td></tr></table></figure>
+
+<p><code>set-gui.sh</code> 内容</p>
+<figure class="highlight bash"><figcaption><span>set-gui.sh</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">on)</span><br><span class="line">    <span class="built_in">sudo</span> systemctl set-default graphical.target</span><br><span class="line">    <span class="comment"># isolate 闭 GUI或启动 GUI，不需要 reboot</span></span><br><span class="line">    <span class="built_in">sudo</span> systemctl isolate graphical.target</span><br><span class="line">    ;;</span><br><span class="line">off)</span><br><span class="line">    <span class="built_in">sudo</span> systemctl set-default multi-user.target</span><br><span class="line">    <span class="built_in">sudo</span> systemctl isolate multi-user.target</span><br><span class="line">    ;;</span><br><span class="line">status)</span><br><span class="line">    systemctl get-default</span><br><span class="line">    ;;</span><br><span class="line">*)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Usage: set-gui on|off|status&quot;</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-2-USB-SSD启动【必做】"><a href="#4-3-2-USB-SSD启动【必做】" class="headerlink" title="4.3.2 USB SSD启动【必做】"></a>4.3.2 USB SSD启动【必做】</h4><p>因为 <code>USB SSD</code> 要在多台电脑启动，<strong>必须确认:</strong></p>
+<ul>
+<li><code>EFI</code>、<code>BOOT</code>、<code>ROOT</code> 和 <code>HOME</code> 等分区都来自<strong>同一个 <code>USB SSD</code></strong>,不要混到内置硬盘。<strong>尤其注意 <code>EFI</code> 分区</strong></li>
+<li><strong>尤其注意：</strong> <code>Grub</code> 必须安装在 <code>USB SSD</code> 的 <code>EFI</code> 分区。因为如果是在现有 Windows 系统的硬件上安装的 Debian，<code>Grub</code> 默认会安装到 Windows 的 <code>EFI</code>分区</li>
+<li><strong>否则换电脑可能启动不了</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一、检查挂载位置</span></span><br><span class="line"><span class="comment">#   1. 检查 LVM 是否正常激活</span></span><br><span class="line"><span class="comment">#   2. 所有分区是否在同一个 USB SSD</span></span><br><span class="line">~$ lsblk</span><br><span class="line"><span class="comment"># 二、如果不确定，使用 fdisk, EFI 分区会显示：EFI System</span></span><br><span class="line">~$ <span class="built_in">sudo</span> fdisk -l</span><br><span class="line"><span class="comment"># 三、确认哪个 EFI 被挂载</span></span><br><span class="line"><span class="comment">#     1. 使用 findmnt</span></span><br><span class="line">~$ findmnt /boot/efi</span><br><span class="line"><span class="comment">#     2. 使用 df</span></span><br><span class="line">~$ <span class="built_in">df</span> -h</span><br><span class="line"><span class="comment"># 四、准备 Debian 的 EFI 分区</span></span><br><span class="line"><span class="comment">#   1. 格式化，EFI 必须是：FAT32。</span></span><br><span class="line"><span class="comment">#      假设 Debian EFI 是：/dev/sdd1，如果还没格式化</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mkfs.vfat -F32 /dev/sdd1</span><br><span class="line"><span class="comment"># 五、挂载 Debian EFI</span></span><br><span class="line"><span class="comment">#   1. 先创建挂载点（如果没有）</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /boot/efi</span><br><span class="line"><span class="comment">#   2. 临时挂载：</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount /dev/sdd1 /boot/efi</span><br><span class="line"><span class="comment">#   3. 验证, 应该是空目录</span></span><br><span class="line">~$ <span class="built_in">ls</span> /boot/efi</span><br><span class="line"><span class="comment"># 六、修改 fstab，永久挂载</span></span><br><span class="line"><span class="comment">#     UUID=1234-ABCD  /boot/efi  vfat  umask=0077  0  1</span></span><br><span class="line">~$ <span class="built_in">sudo</span> vi /etc/fstab</span><br><span class="line"><span class="comment"># 七、测试</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount -a</span><br><span class="line"><span class="comment"># 八、重新安装 GRUB 到 Debian EFI</span></span><br><span class="line"><span class="comment">#     这一步会创建：/boot/efi/EFI/debian/</span></span><br><span class="line"><span class="comment">#     里面会有：grubx64.efi, shimx64.efi</span></span><br><span class="line">~$ <span class="built_in">sudo</span> grub-install \</span><br><span class="line">  --target=x86_64-efi \</span><br><span class="line">  --efi-directory=/boot/efi \</span><br><span class="line">  --bootloader-id=debian \</span><br><span class="line">  --recheck</span><br><span class="line">~$ <span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="comment"># 九、检查 UEFI 启动项</span></span><br><span class="line"><span class="comment">#     应该看到类似 Boot0001* debian，并且路径是 EFI/debian/grubx64.efi</span></span><br><span class="line"><span class="comment">#     确保是 USB SSD 的 EFI 分区</span></span><br><span class="line">~$ efibootmgr</span><br><span class="line">Boot0001* debian        HD(1,GPT,ed6e9a14-5d62-4994-8a51-33434ebbc1a9,0x800,0x1e8000)/File(\EFI\debian\shimx64.efi)</span><br><span class="line"><span class="comment"># 如果 Debian 不是第一启动项，可以调整</span></span><br><span class="line">~$ <span class="built_in">sudo</span> efibootmgr -o 0003</span><br><span class="line"><span class="comment"># 十、创建 UEFI fallback 【关键】</span></span><br><span class="line"><span class="comment">#     任何电脑都会尝试：EFI/BOOT/BOOTX64.EFI</span></span><br><span class="line"><span class="comment">#     所以移动硬盘也能启动</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /boot/efi/EFI/BOOT</span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cp</span> /boot/efi/EFI/debian/grubx64.efi \</span><br><span class="line">        /boot/efi/EFI/BOOT/BOOTX64.EFI</span><br><span class="line"><span class="comment">## 十一、确认 Grub</span></span><br><span class="line"><span class="comment"># LVM</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cat</span> /boot/grub/grub.cfg | grep lvmid</span><br><span class="line"><span class="comment"># 非 LVM</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cat</span> /boot/grub/grub.cfg | grep uuid</span><br><span class="line"><span class="comment"># 十二、确认系统启动正确, 显示 root=/dev/mapper/debian--frank-root 或者类似 root=UUID=xxxx</span></span><br><span class="line">~$ <span class="built_in">cat</span> /proc/cmdline</span><br><span class="line">BOOT_IMAGE=/boot/vmlinuz-6.12.73+deb13-amd64 root=/dev/mapper/debian--frank-root ro quiet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 十三、清理 Windows EFI 里的 Debian（可选）</span></span><br><span class="line"><span class="comment">#     1. 先挂载查看 Windows EFI</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount /dev/sda1 /mnt</span><br><span class="line">~$ <span class="built_in">ls</span> /mnt/EFI</span><br><span class="line"><span class="comment">#     2. 如果有：EFI/debian</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">rm</span> -r /mnt/EFI/debian</span><br><span class="line"><span class="comment">#     3. 卸载</span></span><br><span class="line">~$ <span class="built_in">sudo</span> umount /mnt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 十四、Debian EFI 分区最终正确结构应该是</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install tree -y</span><br><span class="line">~$ <span class="built_in">sudo</span> tree /boot/efi/</span><br><span class="line">/boot/efi/</span><br><span class="line">└── EFI</span><br><span class="line">    ├── BOOT</span><br><span class="line">    │   └── BOOTX64.EFI</span><br><span class="line">    └── debian</span><br><span class="line">        ├── BOOTX64.CSV</span><br><span class="line">        ├── fbx64.efi</span><br><span class="line">        ├── grub.cfg</span><br><span class="line">        ├── grubx64.efi</span><br><span class="line">        ├── mmx64.efi</span><br><span class="line">        └── shimx64.efi</span><br><span class="line"></span><br><span class="line">4 directories, 7 files</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-3-独立-boot【可选】"><a href="#4-3-3-独立-boot【可选】" class="headerlink" title="4.3.3 独立 /boot【可选】"></a>4.3.3 独立 <code>/boot</code>【可选】</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sdd2 为分区的时候留给独立 /boot 的</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount /dev/sdd2 /mnt</span><br><span class="line"><span class="comment"># 复制 boot 内容</span></span><br><span class="line"><span class="comment"># -a 很重要，它会保留：权限、时间、符号链接</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cp</span> -a /boot/* /mnt/</span><br><span class="line"><span class="comment"># /boot/. , 能复制隐藏文件</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cp</span> -a /boot/. /mnt/</span><br><span class="line"><span class="comment"># 修改 fstab, 添加 UUID=xxxxx /boot ext4 defaults 0 2</span></span><br><span class="line">~$ <span class="built_in">sudo</span> vi /etc/fstab</span><br><span class="line"><span class="comment"># 挂载</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount -a</span><br><span class="line"><span class="comment"># 检查</span></span><br><span class="line">~$ findmnt /boot</span><br><span class="line"><span class="comment"># 重新安装 grub</span></span><br><span class="line">~$ <span class="built_in">sudo</span> grub-install</span><br><span class="line">~$ <span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="comment"># 验证 /boot 内容</span></span><br><span class="line">~$ <span class="built_in">ls</span> /boot</span><br><span class="line">vmlinuz-6.x  initrd.img-6.x   grub  config-6.x  System.map</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-4-硬件兼容"><a href="#4-3-4-硬件兼容" class="headerlink" title="4.3.4 硬件兼容"></a>4.3.4 硬件兼容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 firmware</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install firmware-linux firmware-linux-nonfree</span><br><span class="line"><span class="comment"># 安装 CPU microcode, Intel / AMD CPU 都能适配</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install intel-microcode amd64-microcode</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-5-initramfs-优化（关键）"><a href="#4-3-5-initramfs-优化（关键）" class="headerlink" title="4.3.5 initramfs 优化（关键）"></a>4.3.5 initramfs 优化（关键）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确认 MODULES=most , 打包更多硬件驱动</span></span><br><span class="line">~$ <span class="built_in">sudo</span> vi /etc/initramfs-tools/initramfs.conf</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">~$ <span class="built_in">sudo</span> update-initramfs -u -k all</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-6-GRUB-优化"><a href="#4-3-6-GRUB-优化" class="headerlink" title="4.3.6 GRUB 优化"></a>4.3.6 GRUB 优化</h4><p>编辑 <code>sudo vi /etc/default/grub</code>, 然后更新 <code>update-grub</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRUB_TIMEOUT=3</span><br><span class="line">GRUB_DISABLE_OS_PROBER=true</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-7-USB-SSD-性能优化"><a href="#4-3-7-USB-SSD-性能优化" class="headerlink" title="4.3.7 USB SSD 性能优化"></a>4.3.7 USB SSD 性能优化</h4><h5 id="1-操作"><a href="#1-操作" class="headerlink" title="1. 操作"></a>1. 操作</h5><p>对于 <code>USB SSD</code> 用于桌面&#x2F;开发&#x2F;测试服务器的最终挂载挂载选项 <code>defaults,discard,lazytime,commit=60</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">sudo</span> vi /etc/fstab</span><br><span class="line"><span class="comment"># 按 /etc/fstab 重新挂载所有文件系统</span></span><br><span class="line"><span class="comment"># 如果有错误会直接报 wrong fs type、bad option、unknown filesystem等错误信息</span></span><br><span class="line"><span class="comment"># 如果 没有任何输出，通常说明：fstab 语法正确</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount -a</span><br><span class="line"><span class="comment"># 检查 fstab 语法和设备存在性</span></span><br><span class="line">~$ <span class="built_in">sudo</span> findmnt --verify</span><br><span class="line">~$ <span class="built_in">sudo</span> findmnt --verify --verbose</span><br><span class="line"><span class="comment"># 查看当前挂载</span></span><br><span class="line">~$ findmnt</span><br><span class="line">~$ lsblk -f</span><br><span class="line"><span class="comment"># 验证配置正确后，应用</span></span><br><span class="line">~$ <span class="built_in">sudo</span> systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<p>特别的</p>
+<ol>
+<li>设备名在不同电脑上 可能完全不同。<code>USB SSD</code> 要保证无论 <code>/dev/sdX</code> 怎么变化都能正确挂载。<br> 在 <code>/etc/fstab</code> 中<ol>
+<li><code>LVM</code> 通常设备名 <code>/dev/debian-vg/home</code> 已经比较稳定,因为 <code>LVM</code> 名称不会变,可以不使用 <code>UUID</code></li>
+<li>如果分区不是 <code>LVM</code> 的，必须使用 <code>UUID</code></li>
+</ol>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取 UUID, 文件系统唯一标识。</span></span><br><span class="line">~$ lsblk -f</span><br><span class="line"><span class="comment"># 获取 blkid</span></span><br><span class="line">~$ <span class="built_in">sudo</span> blkid /dev/debian-vg/root</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-Linux-文件有三个时间"><a href="#2-Linux-文件有三个时间" class="headerlink" title="2. Linux 文件有三个时间"></a>2. Linux 文件有三个时间</h5><ul>
+<li><code>atime</code>  <code>access time</code>   读取时间</li>
+<li><code>mtime</code>  <code>modify time</code>   修改时间</li>
+<li><code>ctime</code>  <code>change time</code>   元数据变化</li>
+</ul>
+<p>Linux 2.6.30 以前默认行为 <code>atime</code>， 每次读取都会更新，即 <code>读文件 → 产生写操作</code>，导致增加 SSD 写入</p>
+<ul>
+<li><code>noatime</code> 就是完全关闭 <code>atime</code>, <code>读文件 → 不写磁盘</code> 这样写入最少</li>
+<li>但是一些软件可能依赖 <code>atime</code>，例如：<code>mutt</code>、<code>tmpwatch</code>、某些 backup 工具等(现在很少见)</li>
+<li>对于 <code>/boot</code>、<code>/boot/efi</code> 分区，读取极少，不需要开启 <code>noatime</code></li>
+<li>对于其他数据分区(不包括 <code>swap</code>)，都应该加 <code>noatime</code></li>
+</ul>
+<p>Linux 2.6.30 以后[包含 2.6.30]默认 <code>relatime</code>。</p>
+<ul>
+<li>只有当 <code>atime &lt; mtime</code> 或 <code>超过 24 小时</code> 才更新 <code>atime</code>。效果是99% 减少写入,兼容大多数软件</li>
+</ul>
+<p>最合理的是 <code>lazytime</code>, Linux kernel 4.x 以后支持，适用于 ext4、ext2、ext3、XFS 等<br><code>lazytime</code> 的作用 <code>atime</code>&#x2F;<code>mtime</code>&#x2F;<code>ctime</code> 先写内存(应用程序可见),延迟刷盘(最长可达 24 小时，或在 inode 被回收、fsync、系统 sync 时才写入),显著减少 SSD 写入,提升性能和寿命，尤其对频繁读取的小文件场景（如桌面环境）有益</p>
+<p>对于 USB SSD</p>
+<ul>
+<li>启用 <code>trim</code><ul>
+<li>使用 <code>ext4</code> 加 <code>discard</code>,启用在线 TRIM(online discard)<ul>
+<li>当文件被删除或块被释放时，文件系统立即通知 SSD 控制器：“这些 LBA（逻辑块地址）不再使用，可以内部擦除”</li>
+<li>依赖于 SSD 支持 ATA TRIM 命令（几乎所有现代 SSD 都支持）</li>
+<li>保持 SSD 长期性能稳定（避免写入放大）；无需手动执行 TRIM。</li>
+</ul>
+</li>
+<li>或者 每周自动 TRIM <code>sudo systemctl enable fstrim.timer</code></li>
+</ul>
+</li>
+<li>设置 <code>commit=60</code>, ext4 每 60 秒 flush journal，减少写入次数<ul>
+<li>生产数据库&#x2F;关键服务，<code>commit=60</code> 风险过高，建议 <code>commit=5</code> 或默认</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-关于-TRIM"><a href="#3-关于-TRIM" class="headerlink" title="3 关于 TRIM"></a>3 关于 TRIM</h5><p>TRIM 是一种 ATA&#x2F;NVMe 命令，允许操作系统告诉 SSD：“这些数据块已经删除，你可以内部回收它们”。</p>
+<ul>
+<li>SSD 的写入机制要求先擦除再写入，而擦除只能按“块”进行；</li>
+<li>如果不 TRIM，SSD 不知道哪些块是“已删除”的，会保留旧数据，导致写入放大（Write Amplification）和性能下降；</li>
+<li>TRIM 让 SSD 提前清理无效页，保持高性能和长寿命</li>
+</ul>
+<p><code>discard</code> vs <code>fstrim.timer</code> 区别与选择</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th><code>discard</code>（挂载选项）</th>
+<th><code>fstrim.timer</code>（定期 TRIM）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>触发方式</td>
+<td>实时：文件删除时立即发送 TRIM</td>
+<td>批量：每天（默认）运行一次 <code>fstrim</code> 命令</td>
+</tr>
+<tr>
+<td>粒度</td>
+<td>精细（每个释放的块都通知）</td>
+<td>粗略（扫描整个文件系统，批量 TRIM 未用块）</td>
+</tr>
+<tr>
+<td>性能影响</td>
+<td>可能有微小延迟（但现代 SSD 几乎无感）</td>
+<td>集中在某一时段，可能短暂占用 I&#x2F;O</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>对加密文件系统（如 LUKS）需谨慎（可能泄露使用模式）</td>
+<td>更安全（可控制何时 TRIM）</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>桌面、通用服务器（推荐现代系统使用）</td>
+<td>服务器、加密卷、老旧 SSD</td>
+</tr>
+</tbody></table>
+<ul>
+<li>现代 SSD + 非加密文件系统 → 推荐使用 discard，简单高效。</li>
+<li>LUKS 加密卷 → 避免 discard（除非你明确启用 –allow-discards），改用 fstrim.timer。</li>
+<li>老旧 SSD 或不确定兼容性 → 使用 fstrim.timer 更稳妥。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查当前挂载选项</span></span><br><span class="line">~$ mount |grep /dev/mapper</span><br><span class="line"><span class="comment"># 查看 DISC-GRAN 和 DISC-MAX，非 0 表示支持</span></span><br><span class="line">~$ lsblk --discard</span><br><span class="line"><span class="comment"># 手动测试 TRIM（安全）</span></span><br><span class="line">~$ <span class="built_in">sudo</span> fstrim -v /home</span><br><span class="line"><span class="comment"># 启用定时 TRIM（如果不用 discard）</span></span><br><span class="line">~$ <span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> --now fstrim.timer</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-8-关于-snapshot"><a href="#4-3-8-关于-snapshot" class="headerlink" title="4.3.8 关于 snapshot"></a>4.3.8 关于 snapshot</h4><p>LVM 本身就支持 snapshot，所以 完全可以实现 apt 升级前自动快照 + 回滚<br>不过体验不会像 Btrfs 那么优雅(Btrfs 可以在线回滚)</p>
+<p>snapshot 的原理</p>
+<p>LVM snapshot 是：<code>COW (copy-on-write)</code><br>流程：<code>snapshot 创建</code> -&gt; <code>root 写入变化</code> -&gt; <code>旧数据复制到 snapshot</code><br>snapshot 只存变化数据</p>
+<p>如果系统炸了先进入 rescue 模式 &#x2F; live USB 进行回滚操作, 然后重启<br>APT 支持 hook，所以也能自动 snapshot</p>
+<p>LVM</p>
+<ul>
+<li>snapshot 空间耗尽会失效</li>
+<li>snapshot 多了会变慢</li>
+<li>rollback 需要 reboot</li>
+</ul>
+<p>Btrfs 可以</p>
+<ul>
+<li>瞬间 snapshot</li>
+<li>无限 snapshot</li>
+<li>秒级 rollback</li>
+<li>几乎无性能损失</div></li>
+</ul>
+</div>
+
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2026/03/09/Hyper-V%E5%88%A0%E9%99%A4%E9%94%99%E8%AF%AF%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Hyper-V删除错误的虚拟机</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2026/03/07/Windows%E5%BC%80%E5%8F%91Java%E6%97%B6%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%B1%E7%A0%81/">
+        <span>Windows开发Java时的各种乱码</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Linux-%E9%80%82%E9%85%8D%E5%A4%9A%E5%8F%B0%E6%9C%BA%E5%99%A8%E7%9A%84%E7%A1%AC%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">一、Linux 适配多台机器的硬件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Linux-%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Linux 驱动模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 可能出现问题的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-GPU"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 GPU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-WiFi"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 WiFi</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-CPU-microcode"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 CPU microcode</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-LVM"><span class="toc-number">2.</span> <span class="toc-text">二、 LVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81live-%E5%92%8C-netinst-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">三、live 和 netinst 的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-debian-live-13-3-0-amd64-gnome-iso"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 debian-live-13.3.0-amd64-gnome.iso</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-debian-13-3-0-amd64-netinst-iso"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 debian-13.3.0-amd64-netinst.iso</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">四、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%88%86%E5%8C%BA"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-%E6%93%8D%E4%BD%9C%E7%BB%86%E8%8A%82"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.1.1 操作细节</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 安装系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%85%8D%E7%BD%AE"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-GUI"><span class="toc-number">4.3.1.</span> <span class="toc-text">4.3.1 GUI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-USB-SSD%E5%90%AF%E5%8A%A8%E3%80%90%E5%BF%85%E5%81%9A%E3%80%91"><span class="toc-number">4.3.2.</span> <span class="toc-text">4.3.2 USB SSD启动【必做】</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-%E7%8B%AC%E7%AB%8B-boot%E3%80%90%E5%8F%AF%E9%80%89%E3%80%91"><span class="toc-number">4.3.3.</span> <span class="toc-text">4.3.3 独立 &#x2F;boot【可选】</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-%E7%A1%AC%E4%BB%B6%E5%85%BC%E5%AE%B9"><span class="toc-number">4.3.4.</span> <span class="toc-text">4.3.4 硬件兼容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-5-initramfs-%E4%BC%98%E5%8C%96%EF%BC%88%E5%85%B3%E9%94%AE%EF%BC%89"><span class="toc-number">4.3.5.</span> <span class="toc-text">4.3.5 initramfs 优化（关键）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-6-GRUB-%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.6.</span> <span class="toc-text">4.3.6 GRUB 优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-7-USB-SSD-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.7.</span> <span class="toc-text">4.3.7 USB SSD 性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%93%8D%E4%BD%9C"><span class="toc-number">4.3.7.1.</span> <span class="toc-text">1. 操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Linux-%E6%96%87%E4%BB%B6%E6%9C%89%E4%B8%89%E4%B8%AA%E6%97%B6%E9%97%B4"><span class="toc-number">4.3.7.2.</span> <span class="toc-text">2. Linux 文件有三个时间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%85%B3%E4%BA%8E-TRIM"><span class="toc-number">4.3.7.3.</span> <span class="toc-text">3 关于 TRIM</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-8-%E5%85%B3%E4%BA%8E-snapshot"><span class="toc-number">4.3.8.</span> <span class="toc-text">4.3.8 关于 snapshot</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2026 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >
