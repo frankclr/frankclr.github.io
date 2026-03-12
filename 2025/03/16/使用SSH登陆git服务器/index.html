@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2026-03-10
+      Edited on:&nbsp;2026-03-12
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -317,7 +317,7 @@
 <li><p><code>Host</code>一般也设置为网站域名，如<code>github.com</code>,这样在git操作的时候，能与官方给的 <code>ssh</code>地址(如<code>git@github.com:username/repo.git</code>)保持一致，方便。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git@github.com:username/repo.git</span><br></pre></td></tr></table></figure>
 <p>测试</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh <span class="literal">-T</span> git@github.com</span><br><span class="line"><span class="comment"># 1. 查看详细日志</span></span><br><span class="line">ssh <span class="literal">-v</span> git@github.com</span><br></pre></td></tr></table></figure></li>
 <li><p>也可以自定义设置，如设置为<code>github</code>或者<code>1.github.com</code>,但这个时候，官方给的<code>ssh</code>地址，需要调整为</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git@github:username/repo.git</span><br><span class="line">git@1.github.com:username/repo.git</span><br></pre></td></tr></table></figure>
 <p>使用<code>ssh -T</code>验证的时候，也要使用<code>Host</code>里设置<code>github</code>进行验证。</p>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            GNOME 桌面常用设置 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/">GNOME 桌面常用设置</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2026-03-11
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2026-03-12
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=GNOME 桌面常用设置&url=https://frankclr.github.io/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/&pic=https://frankclr.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=GNOME 桌面常用设置&url=https://frankclr.github.io/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankclr.github.io/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankclr.github.io/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankclr.github.io/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/&title=GNOME 桌面常用设置" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=GNOME 桌面常用设置&summary=&pics=https://frankclr.github.io/null&url=https://frankclr.github.io/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankclr.github.io/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/&text=GNOME 桌面常用设置" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Linux/ >Linux</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="桌面语言优化"><a href="#桌面语言优化" class="headerlink" title="桌面语言优化"></a>桌面语言优化</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<p>因为系统如果设置了 中文 语言(zh_CN.UTF-8)</p>
+<ul>
+<li>会导致个人 <code>~</code> 下的目录是中文名的，这对于终端操作不友好</li>
+<li>会导致软件信息是中文的，可能使用英语更好命令操作<ul>
+<li>比如 <code>apt list | grep installed</code> 操作失败，因为提示信息是 <code>已安装</code>，而切换输入法比较麻烦</li>
+</ul>
+</li>
+</ul>
+<p>Linux 下程序的语言由环境变量 <code>LANG</code>、<code>LANGUAGE</code>、<code>LC_ALL</code> 等控制。可以只为特定命令设置英文环境，不影响其他部分。</p>
+<ul>
+<li><code>LANG=zh_CN.UTF-8</code> → 全局中文（包括终端命令输出）</li>
+<li><code>LANG=C</code> → 所有 <code>locale</code> 类别回退到 C（即英文 + 默认行为）</li>
+<li><code>LC_MESSAGES=C</code> → 仅“程序消息”用 POSIX 英文</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有语言相关的环境变量</span></span><br><span class="line">locale</span><br><span class="line"></span><br><span class="line"><span class="comment"># 前缀方式（推荐，简单）</span></span><br><span class="line">LC_MESSAGES=C apt list --installed</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重命名 ~ 目录下的文件夹为 英文名称</span></span><br><span class="line">LANG=C xdg-user-dirs-update --force</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑 ~ 目录下默认文件夹的配置文件 </span></span><br><span class="line"><span class="comment"># 注释掉不需要的路径</span></span><br><span class="line">vi ~/.config/user-dirs.dirs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局配置文件</span></span><br><span class="line"><span class="built_in">sudo</span> vi /etc/xdg/user-dirs.defaults</span><br><span class="line"></span><br><span class="line"><span class="comment"># 英文版 apt, 需要添加到 ~/.bashrc</span></span><br><span class="line">apt-<span class="function"><span class="title">en</span></span>() &#123;</span><br><span class="line">    LC_MESSAGES=C apt <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<h2 id="建立自己的工具目录"><a href="#建立自己的工具目录" class="headerlink" title="建立自己的工具目录"></a>建立自己的工具目录</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/.local/bin</span><br><span class="line"><span class="built_in">chmod</span> 700 ~/.local/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. Bash 支持 $&#x27;...&#x27; 语法，其中的转义序列（如 \n）会被解释</span></span><br><span class="line"><span class="built_in">echo</span> $<span class="string">&#x27;\n# 加载自定义命令目录\nexport PATH=&quot;$HOME/.local/bin:$PATH&quot;&#x27;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="comment"># 2. 用 printf（更标准、可移植）</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&#x27;\n# 加载自定义命令目录\nexport PATH=&quot;$HOME/.local/bin:$PATH&quot;\n&#x27;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="comment"># 3. 直接写多行</span></span><br><span class="line"><span class="built_in">cat</span> &gt;&gt; ~/.bashrc &lt;&lt; <span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载自定义命令目录</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$HOME</span>/.local/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<p>把自己的工具脚本放到这里，方便使用，也不影响 <code>bash</code> 加载速度</p>
+</div>
+
+<h2 id="创建快捷方式"><a href="#创建快捷方式" class="headerlink" title="创建快捷方式"></a>创建快捷方式</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<h3 id="应用程序"><a href="#应用程序" class="headerlink" title="应用程序"></a>应用程序</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 gnome-shell-extension-desktop-icons-ng</span></span><br><span class="line"><span class="comment"># wayland 可能需要重启系统</span></span><br><span class="line"><span class="built_in">sudo</span> apt install gnome-shell-extension-desktop-icons-ng</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用 </span></span><br><span class="line">gnome-extensions <span class="built_in">enable</span> ding@rastersoft.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认启用</span></span><br><span class="line">gnome-extensions list --enabled | grep ding</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认桌面真实路径</span></span><br><span class="line">$(xdg-user-dir DESKTOP)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制 .desktop 文件到桌面</span></span><br><span class="line"><span class="built_in">cp</span> /usr/share/applications/firefox.desktop <span class="string">&quot;<span class="subst">$(xdg-user-dir DESKTOP)</span>/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最后，一定要右键 <code>.desktop</code> 文件 -&gt; <code>允许执行</code>，手动“信任”</li>
+<li><code>.desktop</code> 文件本身不需要可执行(<code>rwx</code> 的 <code>x</code>)</li>
+<li><code>.desktop</code> 文件 可以从 <code>/etc/xdg/autostart/</code> 或 <code>/usr/share/applications/</code>（已安装应用的 <code>.desktop</code> 文件）复制</li>
+<li>即使启用了 DING，从 <code>/usr/share/applications/</code> 拷贝过来的 <code>.desktop</code> 文件默认是“未信任”的，出于安全原因不会显示为可执行图标（可能显示为<code>文本文件</code>或<code>根本不显示</code>）</li>
+<li>要注意 <code>语言</code> 设置导致的 <code>桌面</code> 真实路径差异, <code>$(xdg-user-dir DESKTOP)</code> 确认</li>
+</ul>
+<p>对于 <code>.desktop</code> 文件可能需要增加权限或属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /usr/share/applications/code.desktop ~/Desktop/</span><br><span class="line"></span><br><span class="line"><span class="comment"># chmod +x ~/Desktop/code.desktop</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于 GNOME，还需要设置元数据（关键！）</span></span><br><span class="line">gio <span class="built_in">set</span> ~/Desktop/code.desktop <span class="string">&quot;metadata::trusted&quot;</span> <span class="built_in">yes</span></span><br><span class="line">gio info ~/Desktop/code.desktop | grep trusted</span><br></pre></td></tr></table></figure>
+</div>
+
+<h3 id="脚本的桌面图标"><a href="#脚本的桌面图标" class="headerlink" title="脚本的桌面图标"></a>脚本的桌面图标</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>拷贝一个现有的 <code>.desktop</code> 文件，替换掉 <code>Exec</code> 的路径就好，但要注意 <code>Exec</code> 指向的脚本 <code>myscript.sh</code> 可能需要赋予可执行权限<br><code>chmod +x /home/yourname/bin/myscript.sh</code></p>
+</div>
+</div>
+
+<h2 id="自动执行"><a href="#自动执行" class="headerlink" title="自动执行"></a>自动执行</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<h3 id="进入-GNOME-执行"><a href="#进入-GNOME-执行" class="headerlink" title="进入 GNOME 执行"></a>进入 GNOME 执行</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>GNOME 仍然支持通过 <code>~/.config/autostart/</code> 目录中的 <code>.desktop</code> 文件实现开机自启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ~/.config/autostart</span><br><span class="line"><span class="built_in">cp</span> /usr/share/applications/firefox.desktop ~/.config/autostart/</span><br></pre></td></tr></table></figure>
+</div>
+
+<h3 id="第三方工具"><a href="#第三方工具" class="headerlink" title="第三方工具"></a>第三方工具</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>第三方工具如 gnome-tweaks（优化工具） 也集成了部分启动项管理功能<br><code>gnome-tweaks &amp; -&gt; 开机启动程序 -&gt; 添加应用</code></p>
+</div>
+
+<h3 id="使用-systemd-–user"><a href="#使用-systemd-–user" class="headerlink" title="使用 systemd –user"></a>使用 systemd –user</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>Linux 现代发行版普遍使用 <code>systemd</code>，你可以为当前用户创建 <code>用户级 systemd</code> 服务，实现更精细的控制<br>这类服务也会在用户登录时自动启动（需确保 <code>systemd --user</code> 实例随会话启动，现代 GNOME 默认支持）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建用户服务目录（如果不存在）</span></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.config/systemd/user</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编写一个服务文件，例如 ~/.config/systemd/user/myapp.service</span></span><br><span class="line"><span class="comment"># 然后启用它</span></span><br><span class="line">systemctl --user <span class="built_in">enable</span> myapp.service</span><br><span class="line">systemctl --user start myapp.service</span><br></pre></td></tr></table></figure>
+
+<a href="/2025/08/18/Debian-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BF%90%E8%A1%8C%E6%96%B9%E5%BC%8F/" title="Debian 后台服务的运行方式">Debian-后台服务的运行方式</a>
+</div>
+</div>
+
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<h3 id="dpkg-命令"><a href="#dpkg-命令" class="headerlink" title="dpkg 命令"></a>dpkg 命令</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>对于 Debian, 有大量的 <code>.deb</code> 软件包，推荐使用 <code>apt install ./xxx.deb</code><br>它会：</p>
+<ul>
+<li>将 <code>.deb</code> 复制到 <code>/var/cache/apt/archives/</code></li>
+<li>自动计算并安装缺失依赖（从配置的仓库）</li>
+<li>调用 <code>dpkg</code> 完成实际安装</li>
+<li>避免“依赖地狱”，操作原子性更强（失败时回滚更安全）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推荐做法（自动处理依赖）</span></span><br><span class="line"><span class="built_in">sudo</span> apt install ./keepass2_2.50.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等效但繁琐的 dpkg 流程（不推荐）</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -i keepass2_2.50.deb  <span class="comment"># 可能因依赖失败</span></span><br><span class="line"><span class="built_in">sudo</span> apt install -f             <span class="comment"># 手动修复依赖</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询已安装包</span></span><br><span class="line">dpkg -l | grep -i 关键词</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出该包安装的所有文件</span></span><br><span class="line">dpkg -L packagename</span><br><span class="line">dpkg -c file.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找可执行文件</span></span><br><span class="line">dpkg -L myapp | grep -E <span class="string">&#x27;/bin/|/sbin/|/opt/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 有些 .deb 包可能只是提供库、配置或数据文件，并不包含用户直接运行的命令</span></span><br><span class="line"><span class="comment"># 查看包的描述信息</span></span><br><span class="line">apt show myapp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看其依赖和用途</span></span><br><span class="line">dpkg -s myapp</span><br><span class="line"></span><br><span class="line"><span class="comment"># 图形界面应用（.desktop 文件），可执行文件可能不会直接出现在终端命令中</span></span><br><span class="line"><span class="comment"># 查看 .desktop 文件中的 Exec= 字段，就知道实际调用的是哪个程序</span></span><br><span class="line">dpkg -L myapp | grep <span class="string">&#x27;\.desktop$&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新配置已安装包	</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg-reconfigure tzdata</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line"><span class="comment"># 1. 确认包名</span></span><br><span class="line">dpkg -l | grep -i keepass</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 优先用 apt 安全卸载（自动处理依赖）</span></span><br><span class="line"><span class="built_in">sudo</span> apt purge keepass2      <span class="comment"># 彻底清理</span></span><br><span class="line"><span class="built_in">sudo</span> apt autoremove          <span class="comment"># 清理残留依赖</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 仅当 apt 失效时用 dpkg（如包状态异常）</span></span><br><span class="line"><span class="comment"># 彻底清除配置文件	</span></span><br><span class="line"><span class="comment"># apt purge 功能类似，但底层仍调用 dpkg</span></span><br><span class="line"><span class="built_in">sudo</span> dpkg -P keepass2        <span class="comment"># 彻底删除</span></span><br><span class="line"><span class="built_in">sudo</span> apt --fix-broken install <span class="comment"># 修复可能的依赖问题</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局软件仓库视角</span></span><br><span class="line"><span class="comment"># 列出的是：在软件包元数据中声明了“依赖（Depends）”或“推荐（Recommends）”等关系的包</span></span><br><span class="line">apt rdepends netcat-traditional</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前系统视角</span></span><br><span class="line"><span class="comment"># 模拟卸载过程，不会真正删除，但可以知道</span></span><br><span class="line"><span class="comment">#   是否有其他包依赖它</span></span><br><span class="line"><span class="comment">#   卸载是否会连带移除其他软件</span></span><br><span class="line"><span class="comment"># 如果我现在卸载 netcat-traditional，会不会导致其他已安装的包被连带删除？</span></span><br><span class="line">apt remove --dry-run netcat-traditional</span><br></pre></td></tr></table></figure>
+</div>
+
+<h3 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># KeePassXC（C++ 编写、跨平台、活跃开发）是更推荐的选择</span></span><br><span class="line"><span class="comment"># KeePass2 基于 Mono/.NET，Debian 中维护较慢</span></span><br><span class="line"><span class="built_in">sudo</span> apt install keepassxc </span><br><span class="line"></span><br><span class="line"><span class="comment"># MPV 视频播放器</span></span><br><span class="line"><span class="built_in">sudo</span> apt install mpv</span><br><span class="line"></span><br><span class="line"><span class="comment"># ntfs-3g</span></span><br><span class="line"><span class="built_in">sudo</span> apt install ntfs-3g</span><br><span class="line"><span class="built_in">sudo</span> mount -t ntfs-3g /dev/sdX /mnt/ntfs_drive</span><br><span class="line"><span class="comment"># locale=zh_CN.utf8：确保中文文件名正常显示</span></span><br><span class="line"><span class="comment"># umask=0：赋予所有用户完全权限（生产环境建议umask=022）</span></span><br><span class="line"><span class="built_in">sudo</span> mount -t ntfs-3g -o locale=zh_CN.utf8,<span class="built_in">umask</span>=0 /dev/sda1 /mnt/ntfs_drive</span><br><span class="line"><span class="built_in">sudo</span> umount /mnt/ntfs_drive</span><br><span class="line"></span><br><span class="line"><span class="comment"># Zed 编辑器</span></span><br><span class="line"><span class="comment"># Install the latest stable version (default)</span></span><br><span class="line">curl -f https://zed.dev/install.sh | sh</span><br><span class="line"><span class="comment"># Install a specific version</span></span><br><span class="line">curl -f https://zed.dev/install.sh | ZED_VERSION=0.216.0 sh</span><br><span class="line">zed --uninstall</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Rust</span></span><br><span class="line">curl --proto <span class="string">&#x27;=https&#x27;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">rustup self uninstall</span><br></pre></td></tr></table></figure>
+
+
+
+</div>
+</div>
+
+<ul>
+<li><a href="/2024/07/30/Debian%E4%BD%BF%E7%94%A8/" title="Debian使用">Debian使用</a></li>
+<li><a href="/2024/07/30/Docker%E4%BD%BF%E7%94%A8/" title="Docker使用">Docker使用</a></li>
+<li><a href="/2025/02/20/WSL%E4%BD%BF%E7%94%A8/" title="WSL使用">WSL使用</a></li>
+</ul>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Debian 13 Gnome 中文处理</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2026/03/09/Hyper-V%E5%88%A0%E9%99%A4%E9%94%99%E8%AF%AF%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+        <span>Hyper-V删除错误的虚拟机</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%8C%E9%9D%A2%E8%AF%AD%E8%A8%80%E4%BC%98%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">桌面语言优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E5%85%B7%E7%9B%AE%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">建立自己的工具目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">创建快捷方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.1.</span> <span class="toc-text">应用程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E7%9A%84%E6%A1%8C%E9%9D%A2%E5%9B%BE%E6%A0%87"><span class="toc-number">3.2.</span> <span class="toc-text">脚本的桌面图标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">自动执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5-GNOME-%E6%89%A7%E8%A1%8C"><span class="toc-number">4.1.</span> <span class="toc-text">进入 GNOME 执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B7%A5%E5%85%B7"><span class="toc-number">4.2.</span> <span class="toc-text">第三方工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-systemd-%E2%80%93user"><span class="toc-number">4.3.</span> <span class="toc-text">使用 systemd –user</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dpkg-%E5%91%BD%E4%BB%A4"><span class="toc-number">5.1.</span> <span class="toc-text">dpkg 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text">常用软件</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2026 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

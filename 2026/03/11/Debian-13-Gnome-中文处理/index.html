@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Debian 13 Gnome 中文处理 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/">Debian 13 Gnome 中文处理</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2026-03-11
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2026-03-12
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Debian 13 Gnome 中文处理&url=https://frankclr.github.io/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/&pic=https://frankclr.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Debian 13 Gnome 中文处理&url=https://frankclr.github.io/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankclr.github.io/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankclr.github.io/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankclr.github.io/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/&title=Debian 13 Gnome 中文处理" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=Debian 13 Gnome 中文处理&summary=&pics=https://frankclr.github.io/null&url=https://frankclr.github.io/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankclr.github.io/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/&text=Debian 13 Gnome 中文处理" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Linux/ >Linux</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="字体（最重要）"><a href="#字体（最重要）" class="headerlink" title="字体（最重要）"></a>字体（最重要）</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<ol>
+<li><p>方案</p>
+<ul>
+<li>推荐 <code>Noto Sans CJK(思源黑体) + 微软字体</code><ul>
+<li>Linux UI → Noto</li>
+<li>Office &#x2F; Web → 微软字体兼容最好</li>
+</ul>
+</li>
+<li>Source Han Sans，Deepin 默认使用<ul>
+<li>Noto Sans CJK &#x3D; Source Han Sans，只是发行渠道不同</li>
+</ul>
+</li>
+<li>不要用文泉驿。WenQuanYi Micro Hei 已经很多年没人维护，字形也比较旧<table>
+<thead>
+<tr>
+<th>字体</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Noto Sans CJK</td>
+<td>Google维护，Linux默认，完整CJK</td>
+<td>字体文件巨大</td>
+</tr>
+<tr>
+<td>Source Han Sans</td>
+<td>Adobe+Google开发，质量顶级</td>
+<td>同样巨大</td>
+</tr>
+<tr>
+<td>微软字体（微软雅黑等）</td>
+<td>Windows一致</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p>安装 Noto 字体,会得到：Noto Sans CJK,Noto Serif CJK 和 emoji<br> <code>sudo apt install fonts-noto-cjk fonts-noto-color-emoji</code></p>
+</li>
+<li><p>安装等宽字体<br> JetBrains Mono 开发体验较好<br> <code>sudo apt install fonts-jetbrains-mono</code></p>
+</li>
+<li><p>Nerd Font（终端图标）【非必需】<br> JetBrainsMono Nerd Font，一个字体补丁项目，给编程字体加入 <code>Powerline 图标</code>、<code>Devicons</code>、<code>Nerd icons</code>，JetBrains Mono(普通字体) 缺少、 等字符<br> 用于lazygit、starship、eza、neovim、tmux<br> <a target="_blank" rel="noopener" href="https://github.com/ryanoasis/nerd-fonts.git">nerd-fonts</a>，从 Release 页面下载 <code>JetBrainsMono.zip</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> temp</span><br><span class="line"><span class="built_in">cd</span> temp</span><br><span class="line">unzip ../JetBrainsMono.zip</span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.local/share/fonts/nerd</span><br><span class="line"><span class="built_in">mv</span> *.ttf ~/.local/share/fonts/nerd/</span><br><span class="line">fc-cache -fv</span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">fc-list | grep <span class="string">&quot;JetBrainsMono Nerd&quot;</span></span><br></pre></td></tr></table></figure>
+<p> 建议</p>
+<ul>
+<li>IDE -&gt; JetBrains Mono</li>
+<li>Terminal -&gt; JetBrainsMono Nerd Font</li>
+</ul>
+</li>
+<li><p>安装微软字体</p>
+<ol>
+<li>把下面的字体从 <code>C:\Windows\Fonts</code> 复制到 Linux 的 <code>~/.local/share/fonts/</code> 目录下<ul>
+<li><code>msyh.ttc</code> 微软雅黑</li>
+<li><code>msyhbd.ttc</code> 微软雅黑粗体</li>
+<li><code>simfang.ttf</code> 仿宋</li>
+<li><code>simsun.ttc</code> 宋体</li>
+<li><code>simhei.ttf</code> 黑体</li>
+</ul>
+</li>
+<li>Microsoft 字体会被用到<ul>
+<li>很多 Word&#x2F;WPS 文档指定 <code>微软雅黑</code>,Linux 就会 fallback <code>Microsoft YaHei</code></li>
+<li>网页 CSS 指定</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Cascadia 字体</p>
+<ul>
+<li>Cascadia 微软开发的编程字体，Windows Terminal 默认字体，字符清晰,hinting 优秀,连字支持</li>
+<li>相比 JetBrains Mono:<ul>
+<li>0&#x2F;O 区分没那么明显</li>
+<li>宽度更宽</li>
+<li>hinting 非常好</li>
+</ul>
+</li>
+<li>在 Linux terminal 也很好<br><code>sudo apt install fonts-cascadia-code</code></li>
+</ul>
+</li>
+<li><p>刷新缓存 <code>fc-cache -fv</code></p>
+</li>
+<li><p>Linux 中文环境常见坑</p>
+<ul>
+<li>中文方块 缺 <code>fonts-noto-cjk</code></li>
+<li>代码中文错位 缺 <code>fontconfig fallback</code></div></li>
+</ul>
+</li>
+</ol>
+<h2 id="字体渲染"><a href="#字体渲染" class="headerlink" title="字体渲染"></a>字体渲染</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<p>Linux 字体好不好看，其实取决于 <code>fontconfig</code></p>
+<ol>
+<li>安装 <code>fontconfig</code> 和 <code>GNOME Tweaks</code><br> <code>sudo apt install fontconfig-config gnome-tweaks</code></li>
+<li>打开 <code>gnome-tweaks</code><ol>
+<li><code>字体</code> -&gt; <code>偏好字体</code><ul>
+<li>Interface(界面文本) -&gt; Noto Sans CJK SC</li>
+<li>Document(文档文本) -&gt; Noto Serif CJK SC</li>
+<li>Monospace(等宽文本) -&gt; JetBrains Mono</li>
+</ul>
+</li>
+<li>设置 <code>字体</code> -&gt; <code>渲染</code>（<code>Font Rendering</code>）<ul>
+<li>Hinting: Slight（微调：轻微）<ul>
+<li>作用：字体文件内含“微调指令”（hints），指导渲染引擎如何将矢量字形适配到像素 网格。</li>
+<li>Slight 含义：仅做最小必要调整（如轻微移动字形对齐像素），优先保留字体原始设 计美感，避免过度变形。</li>
+<li>效果：小字号时比“无微调”更清晰，但比“Full&#x2F;中等”更柔和自然。现代高分辨率屏幕 （Retina&#x2F;2K&#x2F;4K）推荐此选项，避免“Full”导致的生硬感。</li>
+<li>对比：<ul>
+<li>None：完全按数学轮廓渲染，低分辨率下易模糊；</li>
+<li>Full：强对齐像素网格，文字锐利但可能失真（Windows 传统风格）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Antialiasing: Subpixel（抗锯齿：子像素）<ul>
+<li>作用：平滑字体边缘锯齿。</li>
+<li>Subpixel 含义：利用 LCD 屏幕每个像素由红&#x2F;绿&#x2F;蓝子像素水平排列的特性，将子像素 作为独立单元渲染，水平方向有效分辨率提升约 3 倍。</li>
+<li>效果：文字边缘更锐利、细节更清晰（尤其在浅色背景深色字时），是 Windows ClearType、FreeType LCD 渲染的核心技术。</li>
+<li>注意：<ul>
+<li>依赖标准 RGB 水平排列的 LCD 屏；若屏幕为 OLED&#x2F;Pentile&#x2F;垂直排列（如部分手 机），可能产生彩色 fringe（边缘彩边），此时应改用 Grayscale（灰度抗锯齿）； 深色背景+浅色文字时彩边可能更明显，部分系统会自动优化。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p> Slight Hinting + Subpixel AA 是现代 Linux 桌面（如 Ubuntu）的推荐默认配置，在清晰度、设计保真度、屏幕兼容性间取得良好平衡。这和 Windows 的 ClearType 比较接近<br> 若文字边缘出现彩色毛边，可尝试切换 Antialiasing 为 Grayscale；若觉得字体“发虚”，可微调 Hinting 级别（但高分辨率下通常无需改）<br> 适用场景：</p>
+<ul>
+<li>普通 LCD 显示器 + 中高分辨率 → 此组合效果最佳；</li>
+<li>高 DPI 屏（如 MacBook Retina）：微调影响变小，Slight 仍优于 Full；</li>
+<li>非标准屏幕&#x2F;旋转屏：尝试关闭 Subpixel，改用 Grayscale。 </div></li>
+</ul>
+</li>
+</ol>
+<h2 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<ol>
+<li><p>Linux 中文输入法</p>
+<table>
+<thead>
+<tr>
+<th>输入法</th>
+<th>推荐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Fcitx 5</td>
+<td>强烈推荐</td>
+</tr>
+<tr>
+<td>IBus</td>
+<td>GNOME默认,体验一般</td>
+</tr>
+<tr>
+<td>Sogou</td>
+<td>停止更新。早期版本基于 Fcitx 4,兼容层存在，但不干净，GTK &#x2F; Wayland 兼容差</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>安装 Fcitx5<br> <code>sudo apt install fcitx5 fcitx5-chinese-addons fcitx5-configtool</code><br> fcitx5 输入法框架<br> fcitx5-chinese-addons 拼音<br> fcitx5-configtool GUI配置</p>
+</li>
+<li><p>设置输入法环境变量<br> 输入法变量必须在 GUI session 启动前就存在。否则，GTK 程序&#x2F;QT 程序&#x2F;Electron 程序会 fallback 到 XIM, 导致错误</p>
+<ol>
+<li><code>mkdir ~/.config/environment.d &amp;&amp; vi ~/.config/environment.d/im.conf</code> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GTK_IM_MODULE=fcitx</span><br><span class="line">QT_IM_MODULE=fcitx</span><br><span class="line">XMODIFIERS=@im=fcitx</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>systemctl --user show-environment | grep IM</code> 验证，需要 <code>重新登录</code></li>
+<li>是 <code>systemd user session</code> 的环境变量,GNOME &#x2F; Wayland GUI 程序都会继承。</li>
+<li>2020+， 推荐</li>
+</ul>
+</li>
+<li><code>vi ~/.profile</code>，需要重新登录 【<strong>弃用 2005</strong>】 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GTK_IM_MODULE=fcitx</span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=fcitx</span><br><span class="line"><span class="built_in">export</span> XMODIFIERS=@im=fcitx</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>~/.profile</code> 属于 shell login 脚本。触发条件是 login shell 启动<ul>
+<li>流程: <code>login -&gt; shell -&gt; ~/.profile</code></li>
+<li>Wayland session 有时不会加载 <code>~/.profile</code>，所以变量可能不会传给 GUI 程序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>vi ~&#x2F;.pam_environment 添加配置，需要重新登陆【<strong>逐渐弃用 2012</strong>】 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GTK_IM_MODULE DEFAULT=fcitx</span><br><span class="line">QT_IM_MODULE DEFAULT=fcitx</span><br><span class="line">XMODIFIERS DEFAULT=@im=fcitx</span><br><span class="line">INPUT_METHOD DEFAULT=fcitx</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>~/.pam_environment</code>，属于 PAM（认证系统），是 PAM 层环境变量，触发条件是 PAM 登录阶段<ul>
+<li>流程: <code>login / gdm / ssh -&gt; PAM -&gt; ~/.pam_environment -&gt; session 启动</code></li>
+<li>GNOME Wayland 还有一个变量 <code>INPUT_METHOD</code>，容易漏掉</li>
+<li>在 GNOME 环境下，所有程序都会继承</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>配置拼音<br> 使用 <code>im-config -n fcitx5</code> 配置 <code>~/.xinputrc</code>。否则，会与 GNOME 默认输入法 IBus 冲突，要把它禁掉，需要重启<br> 打开 <code>fcitx5-configtool</code>，拼音引擎使用 <code>Pinyin</code>，而不是 <code>CloudPinyin</code>。<code>CloudPinyin</code> 反而会增加延迟</p>
+</li>
+<li><p>安装 <code>kimpanel</code> 扩展<br> 没有 <a target="_blank" rel="noopener" href="https://extensions.gnome.org/extension/261/kimpanel/">kimpanel</a> 扩展，输入法的提示词不跟随输入焦点</p>
+</li>
+<li><p>在 <code>Nvidia + GNOME + Wayland</code> 的情况下，通过 <code>gnome-tweaks</code> 或其他方式设置为登陆启动</p>
+</li>
+<li><p>异常排查</p>
+<ol>
+<li><code>fcitx5-diagnose</code> 确认 fcitx5 是否正常运行<br> 重点看是否有下面三行 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GTK_IM_MODULE=fcitx</span><br><span class="line">QT_IM_MODULE=fcitx</span><br><span class="line">XMODIFIERS=@im=fcitx</span><br></pre></td></tr></table></figure></li>
+<li>GNOME Wayland 必装组件<br> fcitx5-frontend-gtk4 是 GNOME 42+ 必需。<br> 否则，很多 GTK4 程序(gnome-terminal,nautilus,settings)都会错位。<br> 在 Debian 13 里必须安装, <code>sudo apt install fcitx5-frontend-gtk4</code><br> 更全的是 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install fcitx5-frontend-all</span><br><span class="line"><span class="comment"># fcitx5-frontend-all = fcitx5-frontend-gtk3/gtk4/qt5/qt6</span></span><br><span class="line"><span class="comment"># 或者下面的命令</span></span><br><span class="line"><span class="built_in">sudo</span> apt install \</span><br><span class="line">fcitx5-frontend-gtk3 \</span><br><span class="line">fcitx5-frontend-gtk4 \</span><br><span class="line">fcitx5-frontend-qt5 \</span><br><span class="line">fcitx5-frontend-qt6</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</div>
+
+<h2 id="字体-fallback"><a href="#字体-fallback" class="headerlink" title="字体 fallback"></a>字体 fallback</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<p>Linux 中文体验差，很大原因是：<code>monospace + 中文</code> 会出现宽度不一致，字体 fallback 顺序乱。<br>可以优化 <code>fontconfig</code>，使用 <code>JetBrains Mono + Noto fallback</code> 解决</p>
+<p>最终字体组合</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>字体</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UI</td>
+<td>Noto Sans CJK</td>
+</tr>
+<tr>
+<td>网页</td>
+<td>Noto Sans</td>
+</tr>
+<tr>
+<td>IDE</td>
+<td>JetBrains Mono</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td>JetBrainsMono Nerd Font</td>
+</tr>
+<tr>
+<td>中文</td>
+<td>fallback	Noto Sans CJK</td>
+</tr>
+<tr>
+<td>Windows兼容</td>
+<td>Microsoft YaHei</td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>创建配置 <code>vi ~/.config/fontconfig/fonts.conf</code></p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">fontconfig</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;fonts.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fontconfig</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- UI sans-serif --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">family</span>&gt;</span>sans-serif<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prefer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>Noto Sans CJK SC<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>Microsoft YaHei<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>Noto Color Emoji<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">prefer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">alias</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- serif --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">family</span>&gt;</span>serif<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prefer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>Noto Serif CJK SC<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>SimSun<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">prefer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">alias</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- monospace --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">family</span>&gt;</span>monospace<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">prefer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>JetBrainsMono Nerd Font Mono<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>JetBrains Mono<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>Noto Sans CJK SC<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">family</span>&gt;</span>Noto Color Emoji<span class="tag">&lt;/<span class="name">family</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">prefer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">alias</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">fontconfig</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 不要把 Windows 字体放在 fallback 前面, 更推荐 <code>Noto → Microsoft → Emoji</code></p>
+<ol>
+<li>Noto CJK 字形更标准</li>
+<li>Linux UI 默认针对 Noto 调整过</li>
+<li>Microsoft 字体 hinting 在 Linux 不一定最佳<ol>
+<li>hinting 不匹配 Linux<br>   Windows 使用 ClearType, Linux 使用 FreeType。所以有时会出现微软雅黑在 Linux 偏粗</li>
+<li>字形差异<br>   例如：Noto Sans CJK 在 Linux UI 上，字重更均匀</li>
+<li>emoji fallback<br>   如果 Microsoft 字体排前面，有时会 emoji fallback 错误</li>
+</ol>
+</li>
+<li>Web &#x2F; Office 仍然可以 fallback 到 Microsoft 字体</li>
+</ol>
+</li>
+<li><p>创建配置 <code>mkdir ~/.config/fontconfig/conf.d &amp;&amp; vi ~/.config/fontconfig/conf.d/10-hinting.conf</code>, 字体更接近 macOS,中文更圆润</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&#x27;1.0&#x27;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">fontconfig</span> <span class="keyword">SYSTEM</span> <span class="string">&#x27;fonts.dtd&#x27;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fontconfig</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">match</span> <span class="attr">target</span>=<span class="string">&quot;font&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">&quot;hintstyle&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;assign&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">const</span>&gt;</span>hintslight<span class="tag">&lt;/<span class="name">const</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">edit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fontconfig</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>刷新 <code>fc-cache -fv</code></p>
+</li>
+<li><p>禁用 <code>bitmap</code> 字体,否则中文会发虚。<br> <code>sudo dpkg-reconfigure fontconfig-config</code><br> 前面的提示默认，最后一项 <code>Enable bitmapped fonts by default?</code> 选择 <code>NO</code></p>
+</li>
+<li><p>Chrome 字体<br> <code>设置 -&gt; 外观 -&gt; 自定义字体</code></p>
+<ul>
+<li>Standard(标准字体): Noto Sans CJK SC</li>
+<li>Serif字体: Noto Serif CJK SC</li>
+<li>Sans-serif字体: Noto Sans CJK SC</li>
+<li>Monospace(宽度固定的字体): JetBrains Mono</li>
+</ul>
+</li>
+<li><p>终端字体<br> <code>打开终端 -&gt; 菜单 -&gt; 配置文件首选项</code> -&gt; <code>未命名</code>【可以重命名为 <code>personal</code> ,且设置为默认】 -&gt; <code>文本</code> -&gt; <code>自定义字体</code></p>
+<ul>
+<li>选择 <code>JetBrainsMono Nerd Font Mono 13</code></li>
+<li>如果没有安装 <code>JetBrainsMono Nerd Font Mono</code>，选 <code>JetBrains Mono 13</code></li>
+<li>验证 <code>echo &quot;    &quot;</code></li>
+</ul>
+</li>
+<li><p>VSCode<br> 编辑用户配置文件</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;editor.fontFamily&quot;: &quot;&#x27;JetBrainsMono Nerd Font Mono&#x27;,&#x27;JetBrains Mono&#x27;,monospace&quot;,</span><br><span class="line">  &quot;editor.fontLigatures&quot;: true,</span><br><span class="line">  &quot;terminal.integrated.fontFamily&quot;: &quot;&#x27;JetBrainsMono Nerd Font Mono&#x27;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</div>
+
+<h2 id="增强词库"><a href="#增强词库" class="headerlink" title="增强词库"></a>增强词库</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<p>默认词库比较小，可以加大词库</p>
+<p>从 <a target="_blank" rel="noopener" href="https://github.com/felixonmars/fcitx5-pinyin-zhwiki.git">fcitx5-pinyin-zhwiki</a> 下载 <code>zhwiki-20251223.dict</code> 和 <code>web-slang-20251223.dict</code>(网络词汇,可以不装)<br>复制到 <code>~/.local/share/fcitx5/pinyin/dictionaries/</code><br>重启 <code>fcitx5 fcitx5 -r</code></p>
+</div>
+
+<h2 id="Fcitx5-UI优化"><a href="#Fcitx5-UI优化" class="headerlink" title="Fcitx5 UI优化"></a>Fcitx5 UI优化</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/tonyfettes/fcitx5-nord.git</span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.local/share/fcitx5/themes</span><br><span class="line"><span class="built_in">mv</span> fcitx5-nord/Nord ~/.local/share/fcitx5/themes/</span><br></pre></td></tr></table></figure>
+<p>然后在配置里选择 <code>Nord</code>，效果类似 macOS 输入法 UI</p>
+</div>
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2026/03/11/GNOME-%E6%A1%8C%E9%9D%A2%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/">
+        <span>GNOME 桌面常用设置</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2026/03/11/Debian-13-Gnome-%E4%B8%AD%E6%96%87%E5%A4%84%E7%90%86/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%EF%BC%88%E6%9C%80%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">字体（最重要）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E6%B8%B2%E6%9F%93"><span class="toc-number">2.</span> <span class="toc-text">字体渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">输入法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E4%BD%93-fallback"><span class="toc-number">4.</span> <span class="toc-text">字体 fallback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA%E8%AF%8D%E5%BA%93"><span class="toc-number">5.</span> <span class="toc-text">增强词库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fcitx5-UI%E4%BC%98%E5%8C%96"><span class="toc-number">6.</span> <span class="toc-text">Fcitx5 UI优化</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2026 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >

@@ -234,7 +234,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      Edited on:&nbsp;2026-03-09
+      Edited on:&nbsp;2026-03-12
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -291,10 +291,6 @@
   <div class="post-tags">
     
       <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/Debian/ >Debian</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
         <a rel="tag" href = /tags/Linux/ >Linux</a>
       </i>
     
@@ -302,7 +298,7 @@
 
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <h2 id="一、Linux-适配多台机器的硬件"><a href="#一、Linux-适配多台机器的硬件" class="headerlink" title="一、Linux 适配多台机器的硬件"></a>一、Linux 适配多台机器的硬件</h2><h3 id="1-1-Linux-驱动模型"><a href="#1-1-Linux-驱动模型" class="headerlink" title="1.1 Linux 驱动模型"></a>1.1 Linux 驱动模型</h3><div style="margin-left: 30px;  width: fit-content;">
+    <h2 id="Linux-适配多台机器的硬件"><a href="#Linux-适配多台机器的硬件" class="headerlink" title="Linux 适配多台机器的硬件"></a>Linux 适配多台机器的硬件</h2><h3 id="Linux-驱动模型"><a href="#Linux-驱动模型" class="headerlink" title="Linux 驱动模型"></a>Linux 驱动模型</h3><div style="margin-left: 30px;  width: fit-content;">
 
 <p>Linux kernel 的驱动是 模块化（module） 的。</p>
 <p>系统启动流程：</p>
@@ -315,12 +311,12 @@
 <li>服务器镜像可以在各种硬件上跑</li>
 <li>portable dev disk</div></li>
 </ul>
-<h3 id="1-2-可能出现问题的地方"><a href="#1-2-可能出现问题的地方" class="headerlink" title="1.2 可能出现问题的地方"></a>1.2 可能出现问题的地方</h3><div style="margin-left: 30px;  width: fit-content;">
+<h3 id="可能出现问题的地方"><a href="#可能出现问题的地方" class="headerlink" title="可能出现问题的地方"></a>可能出现问题的地方</h3><div style="margin-left: 30px;  width: fit-content;">
 
 <p>只有三个常见风险：</p>
-<h4 id="1-2-1-GPU"><a href="#1-2-1-GPU" class="headerlink" title="1.2.1 GPU"></a>1.2.1 GPU</h4><p>桌面环境会受 GPU 影响,但服务器机器 没有 GUI 就没问题</p>
-<div style="margin-left: 30px;  width: fit-content;">
+<h4 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h4><div style="margin-left: 30px;  width: fit-content;">
 
+<p>桌面环境会受 GPU 影响,但服务器机器 没有 GUI 就没问题</p>
 <table>
 <thead>
 <tr>
@@ -343,16 +339,24 @@
 </tbody></table>
 </div>
 
-<h4 id="1-2-2-WiFi"><a href="#1-2-2-WiFi" class="headerlink" title="1.2.2 WiFi"></a>1.2.2 WiFi</h4><p>不同机器 WiFi 芯片不同,Debian 12&#x2F;13 默认 firmware 已经比较全。只要安装：<code>firmware-linux</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">sudo</span> apt install firmware-linux</span><br></pre></td></tr></table></figure>
+<h4 id="WiFi"><a href="#WiFi" class="headerlink" title="WiFi"></a>WiFi</h4><div style="margin-left: 30px;  width: fit-content;">
 
-<h4 id="1-2-3-CPU-microcode"><a href="#1-2-3-CPU-microcode" class="headerlink" title="1.2.3 CPU microcode"></a>1.2.3 CPU microcode</h4><p>不同 CPU：Intel,AMD; 只要安装 <code>intel-microcode</code> <code>amd64-microcode</code>，就没有问题</p>
+<p>不同机器 WiFi 芯片不同,Debian 12&#x2F;13 默认 firmware 已经比较全。只要安装：<code>firmware-linux</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">sudo</span> apt install firmware-linux</span><br></pre></td></tr></table></figure>
+</div>
+
+
+<h4 id="CPU-microcode"><a href="#CPU-microcode" class="headerlink" title="CPU microcode"></a>CPU microcode</h4><div style="margin-left: 30px;  width: fit-content;">
+
+<p>不同 CPU：Intel,AMD; 只要安装 <code>intel-microcode</code> <code>amd64-microcode</code>，就没有问题</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">sudo</span> apt install intel-microcode amd64-microcode</span><br></pre></td></tr></table></figure>
 </div>
 
-<h2 id="二、-LVM"><a href="#二、-LVM" class="headerlink" title="二、 LVM"></a>二、 LVM</h2><div style="margin-left: 30px;  width: fit-content;">
+</div>
 
-<p>LVM(Logical Volume Manager,逻辑卷)，它解决一个问题：<strong>传统分区无法动态调整大小</strong>,可通过 <code>lvextend -L +20G /dev/vg/root</code> 命令从 VG 中保留的空闲空间（free space）来分配新的空间，</p>
+<h2 id="LVM"><a href="#LVM" class="headerlink" title="LVM"></a>LVM</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<p>LVM(Logical Volume Manager,逻辑卷)，它解决一个问题：<strong>传统分区无法动态调整大小</strong>,可通过 <code>lvextend -L +20G /dev/vg/root</code> 命令从 VG 中保留的空闲空间（free space）来分配新的空间</p>
 <ul>
 <li>不是从其他 LV（如 home 或 docker）自动拿空间</li>
 <li>如果未来 free 空间用完了，但还想扩容，可以：<ul>
@@ -373,10 +377,10 @@
 <li>snapshot IO 放大</li>
 <li>metadata 压力大</div></li>
 </ul>
-<h2 id="三、live-和-netinst-的区别"><a href="#三、live-和-netinst-的区别" class="headerlink" title="三、live 和 netinst 的区别"></a>三、live 和 netinst 的区别</h2><div style="margin-left: 30px;  width: fit-content;">
+<h2 id="live-和-netinst-的区别"><a href="#live-和-netinst-的区别" class="headerlink" title="live 和 netinst 的区别"></a>live 和 netinst 的区别</h2><div style="margin-left: 30px;  width: fit-content;">
 
 <p><code>debian-live-13.3.0-amd64-gnome.iso</code> 和 <code>netinst</code>,是完全不同的构建方式,不是简单的 <code>netinst</code> + 多软件包</p>
-<h3 id="3-1-debian-live-13-3-0-amd64-gnome-iso"><a href="#3-1-debian-live-13-3-0-amd64-gnome-iso" class="headerlink" title="3.1 debian-live-13.3.0-amd64-gnome.iso"></a>3.1 <code>debian-live-13.3.0-amd64-gnome.iso</code></h3><ul>
+<h3 id="debian-live-13-3-0-amd64-gnome-iso"><a href="#debian-live-13-3-0-amd64-gnome-iso" class="headerlink" title="debian-live-13.3.0-amd64-gnome.iso"></a><code>debian-live-13.3.0-amd64-gnome.iso</code></h3><ul>
 <li>完整系统已经打包，驱动更全</li>
 <li>可以直接运行</li>
 <li>安装只是复制系统，安装速度快</li>
@@ -388,7 +392,7 @@
 </li>
 <li>使用工具 <code>live-build</code>、<code>live-boot</code>、<code>live-config</code> 构建，这些工具是 Debian Live 项目的一部分</li>
 </ul>
-<h3 id="3-2-debian-13-3-0-amd64-netinst-iso"><a href="#3-2-debian-13-3-0-amd64-netinst-iso" class="headerlink" title="3.2 debian-13.3.0-amd64-netinst.iso"></a>3.2 <code>debian-13.3.0-amd64-netinst.iso</code></h3><ul>
+<h3 id="debian-13-3-0-amd64-netinst-iso"><a href="#debian-13-3-0-amd64-netinst-iso" class="headerlink" title="debian-13.3.0-amd64-netinst.iso"></a><code>debian-13.3.0-amd64-netinst.iso</code></h3><ul>
 <li><p>只有 基础系统</p>
 </li>
 <li><p>安装时 联网下载</p>
@@ -400,11 +404,11 @@
 </ul>
 </div>
 
-<h2 id="四、安装"><a href="#四、安装" class="headerlink" title="四、安装"></a>四、安装</h2><div style="margin-left: 30px;  width: fit-content;">
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div style="margin-left: 30px;  width: fit-content;">
 
-<h3 id="4-1-分区"><a href="#4-1-分区" class="headerlink" title="4.1 分区"></a>4.1 分区</h3><div style="margin-left: 30px;  width: fit-content;">
+<h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><div style="margin-left: 30px;  width: fit-content;">
 
-<h4 id="4-1-1-操作细节"><a href="#4-1-1-操作细节" class="headerlink" title="4.1.1 操作细节"></a>4.1.1 操作细节</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SSD</span><br><span class="line"> ├─ EFI     UEFI 启动,必须 FAT32，EFI 只识别：FAT32</span><br><span class="line"> |          300MB – 512MB，太小会装不下多个系统</span><br><span class="line"> |          fstab 必须写 UUID，UUID 不会变。不同电脑磁盘顺序不同，同一台电脑添加/删除硬盘顺序也可能变</span><br><span class="line"> |          USB SSD 必须单独分区(平常双系统，可以不用单独分区)</span><br><span class="line"> |          USB SSD 强烈建议 fallback，否则很多电脑找不到启动项</span><br><span class="line"> ├─ /boot   2GB,内核。老系统，必须单独分区,ext4; 新版12/13直接放入 / 目录就好</span><br><span class="line"> └─ LVM(剩余)</span><br><span class="line">      ├─ root</span><br><span class="line">      ├─ home</span><br><span class="line">      ├─ data</span><br><span class="line">      └─ swap</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SSD</span><br><span class="line"> ├─ EFI     UEFI 启动,必须 FAT32，EFI 只识别：FAT32</span><br><span class="line"> |          300MB – 512MB，太小会装不下多个系统</span><br><span class="line"> |          fstab 必须写 UUID，UUID 不会变。不同电脑磁盘顺序不同，同一台电脑添加/删除硬盘顺序也可能变</span><br><span class="line"> |          USB SSD 必须单独分区(平常双系统，可以不用单独分区)</span><br><span class="line"> |          USB SSD 强烈建议 fallback，否则很多电脑找不到启动项</span><br><span class="line"> ├─ /boot   2GB,内核。老系统，必须单独分区,ext4; 新版12/13直接放入 / 目录就好</span><br><span class="line"> └─ LVM(剩余)</span><br><span class="line">      ├─ root</span><br><span class="line">      ├─ home</span><br><span class="line">      ├─ data</span><br><span class="line">      └─ swap</span><br></pre></td></tr></table></figure>
 <ol>
 <li>在 <code>对磁盘进行分区</code> 界面，先对物理硬盘建立 <code>EFI</code> 和 <code>LVM</code></li>
 <li>进入 “配置逻辑卷管理器”，先 “创建<code>卷组</code>“,<ul>
@@ -432,7 +436,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="4-2-安装系统"><a href="#4-2-安装系统" class="headerlink" title="4.2 安装系统"></a>4.2 安装系统</h3><ol>
+<h3 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h3><ol>
 <li>在安装完基本系统后，会提示 “不使用网络镜像站点，继续安装吗?”<ul>
 <li>选择 “否” 以选择镜像站点，<strong>并且最好设置 <code>HTTP代理信息</code></strong></li>
 <li>否则，在安装的时候，<strong>会从 Debian 官网</strong>，而不是镜像站点，<strong>下载安全相关的组件，会很慢</strong>。</li>
@@ -491,33 +495,59 @@
 </ul>
 </li>
 </ol>
-<h3 id="4-3-配置"><a href="#4-3-配置" class="headerlink" title="4.3 配置"></a>4.3 配置</h3><div style="margin-left: 30px;  width: fit-content;">
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><div style="margin-left: 30px;  width: fit-content;">
 
-<h4 id="4-3-1-GUI"><a href="#4-3-1-GUI" class="headerlink" title="4.3.1 GUI"></a>4.3.1 GUI</h4><p>task-gnome-desktop &#x3D; Debian完整桌面<br>gnome &#x3D; GNOME官方桌面<br>gnome-core &#x3D; 最小 GNOME 桌面，只是没有应用软件</p>
+<h3 id="GUI-终端-切换脚本"><a href="#GUI-终端-切换脚本" class="headerlink" title="GUI&#x2F;终端 切换脚本"></a>GUI&#x2F;终端 切换脚本</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>task-gnome-desktop &#x3D; Debian完整桌面<br>gnome &#x3D; GNOME官方桌面<br>gnome-core &#x3D; 最小 GNOME 桌面，只是没有应用软件</p>
 <p>GDM 是 GNOME 的登录管理器，作用：图形登录界面、用户选择、启动GNOME session<br>如果不用 gdm3，你会看到 tty 登录，GNOME 桌面就不会自动启动。<br>gnome-core 已经包含 gdm3，通常不需要手动安装</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 只安装“纯 GNOME 桌面”，不带应用</span></span><br><span class="line"><span class="comment">#     1. 先安装最小系统，最干净、最接近原生 GNOME 的 Debian 方案</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install gnome-core gdm3 -y</span><br><span class="line"><span class="comment">#     2. 补充一些常用组件</span></span><br><span class="line"><span class="comment">#         a. gnome-tweaks，GNOME 高级设置工具。</span></span><br><span class="line"><span class="comment">#           因为 GNOME 默认设置界面非常简化，很多功能被隐藏。gnome-tweaks 可以开启这些高级选项</span></span><br><span class="line"><span class="comment">#           界面调整、窗口行为、GNOME Shell 扩展管理、启动程序、字体</span></span><br><span class="line"><span class="comment">#         b. network-manager-gnome  GNOME 网络图形界面</span></span><br><span class="line"><span class="comment">#           WiFi 管理、有线网络、VPN、移动网络</span></span><br><span class="line"><span class="comment">#            gnome-core，系统虽然有网络服务，但只能用命令，没有图形控制工具</span></span><br><span class="line"><span class="comment">#         c. gnome-shell-extension-manager GNOME 扩展管理工具</span></span><br><span class="line"><span class="comment">#            GNOME 的很多功能是通过 Shell Extension 实现的:Dock、App indicator、CPU 监控</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install \</span><br><span class="line">gnome-tweaks \</span><br><span class="line">gnome-shell-extension-manager \</span><br><span class="line">network-manager-gnome \</span><br><span class="line">file-roller \</span><br><span class="line">gnome-system-monitor -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装过程中&quot;选择软件&quot;，如果选了 &quot;GNOME&quot;,2G+，实际执行 task-gnome-desktop</span></span><br><span class="line"><span class="comment"># Debian 官方完整桌面体验</span></span><br><span class="line"><span class="comment"># 包含 gnome、gnome-core 和 gnome-desktop 三个大包，以及很多应用（Firefox、LibreOffice 等软件）</span></span><br><span class="line"><span class="comment"># 等价于下面的 2 个命令</span></span><br><span class="line">~$ <span class="built_in">sudo</span> tasksel install gnome-desktop -y</span><br><span class="line">~$ <span class="built_in">sudo</span> apt install task-gnome-desktop -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># GNOME 官方元包 1.5GB</span></span><br><span class="line"><span class="comment"># gnome-shell，gnome-core，gnome-apps</span></span><br><span class="line"><span class="comment"># 会安装：GNOME桌面，GNOME应用软件</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install gnome -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你已经安装了 task-gnome-desktop，可以删除应用</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt remove \</span><br><span class="line">evolution \</span><br><span class="line">libreoffice* \</span><br><span class="line">cheese \</span><br><span class="line">totem \</span><br><span class="line">rhythmbox -y</span><br><span class="line"></span><br><span class="line">~$ <span class="built_in">sudo</span> apt autoremove -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># GUI/Terminal 切换脚本</span></span><br><span class="line">~$ <span class="built_in">mkdir</span> ~/my-tools</span><br><span class="line">~$ vi ~/my-tools/set-gui.sh</span><br><span class="line">~$ <span class="built_in">chmod</span> 554 set-gui.sh</span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">ln</span> -s set-gui.sh /usr/local/bin/set-gui</span><br></pre></td></tr></table></figure>
 
 <p><code>set-gui.sh</code> 内容</p>
 <figure class="highlight bash"><figcaption><span>set-gui.sh</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">on)</span><br><span class="line">    <span class="built_in">sudo</span> systemctl set-default graphical.target</span><br><span class="line">    <span class="comment"># isolate 闭 GUI或启动 GUI，不需要 reboot</span></span><br><span class="line">    <span class="built_in">sudo</span> systemctl isolate graphical.target</span><br><span class="line">    ;;</span><br><span class="line">off)</span><br><span class="line">    <span class="built_in">sudo</span> systemctl set-default multi-user.target</span><br><span class="line">    <span class="built_in">sudo</span> systemctl isolate multi-user.target</span><br><span class="line">    ;;</span><br><span class="line">status)</span><br><span class="line">    systemctl get-default</span><br><span class="line">    ;;</span><br><span class="line">*)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Usage: set-gui on|off|status&quot;</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+</div>
 
-<h4 id="4-3-2-USB-SSD启动【必做】"><a href="#4-3-2-USB-SSD启动【必做】" class="headerlink" title="4.3.2 USB SSD启动【必做】"></a>4.3.2 USB SSD启动【必做】</h4><p>因为 <code>USB SSD</code> 要在多台电脑启动，<strong>必须确认:</strong></p>
+
+<h3 id="USB-SSD启动【必做】"><a href="#USB-SSD启动【必做】" class="headerlink" title="USB SSD启动【必做】"></a>USB SSD启动【必做】</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>因为 <code>USB SSD</code> 要在多台电脑启动，<strong>必须确认:</strong></p>
 <ul>
 <li><code>EFI</code>、<code>BOOT</code>、<code>ROOT</code> 和 <code>HOME</code> 等分区都来自<strong>同一个 <code>USB SSD</code></strong>,不要混到内置硬盘。<strong>尤其注意 <code>EFI</code> 分区</strong></li>
 <li><strong>尤其注意：</strong> <code>Grub</code> 必须安装在 <code>USB SSD</code> 的 <code>EFI</code> 分区。因为如果是在现有 Windows 系统的硬件上安装的 Debian，<code>Grub</code> 默认会安装到 Windows 的 <code>EFI</code>分区</li>
 <li><strong>否则换电脑可能启动不了</strong></li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一、检查挂载位置</span></span><br><span class="line"><span class="comment">#   1. 检查 LVM 是否正常激活</span></span><br><span class="line"><span class="comment">#   2. 所有分区是否在同一个 USB SSD</span></span><br><span class="line">~$ lsblk</span><br><span class="line"><span class="comment"># 二、如果不确定，使用 fdisk, EFI 分区会显示：EFI System</span></span><br><span class="line">~$ <span class="built_in">sudo</span> fdisk -l</span><br><span class="line"><span class="comment"># 三、确认哪个 EFI 被挂载</span></span><br><span class="line"><span class="comment">#     1. 使用 findmnt</span></span><br><span class="line">~$ findmnt /boot/efi</span><br><span class="line"><span class="comment">#     2. 使用 df</span></span><br><span class="line">~$ <span class="built_in">df</span> -h</span><br><span class="line"><span class="comment"># 四、准备 Debian 的 EFI 分区</span></span><br><span class="line"><span class="comment">#   1. 格式化，EFI 必须是：FAT32。</span></span><br><span class="line"><span class="comment">#      假设 Debian EFI 是：/dev/sdd1，如果还没格式化</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mkfs.vfat -F32 /dev/sdd1</span><br><span class="line"><span class="comment"># 五、挂载 Debian EFI</span></span><br><span class="line"><span class="comment">#   1. 先创建挂载点（如果没有）</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /boot/efi</span><br><span class="line"><span class="comment">#   2. 临时挂载：</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount /dev/sdd1 /boot/efi</span><br><span class="line"><span class="comment">#   3. 验证, 应该是空目录</span></span><br><span class="line">~$ <span class="built_in">ls</span> /boot/efi</span><br><span class="line"><span class="comment"># 六、修改 fstab，永久挂载</span></span><br><span class="line"><span class="comment">#     UUID=1234-ABCD  /boot/efi  vfat  umask=0077  0  1</span></span><br><span class="line">~$ <span class="built_in">sudo</span> vi /etc/fstab</span><br><span class="line"><span class="comment"># 七、测试</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount -a</span><br><span class="line"><span class="comment"># 八、重新安装 GRUB 到 Debian EFI</span></span><br><span class="line"><span class="comment">#     这一步会创建：/boot/efi/EFI/debian/</span></span><br><span class="line"><span class="comment">#     里面会有：grubx64.efi, shimx64.efi</span></span><br><span class="line">~$ <span class="built_in">sudo</span> grub-install \</span><br><span class="line">  --target=x86_64-efi \</span><br><span class="line">  --efi-directory=/boot/efi \</span><br><span class="line">  --bootloader-id=debian \</span><br><span class="line">  --recheck</span><br><span class="line">~$ <span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="comment"># 九、检查 UEFI 启动项</span></span><br><span class="line"><span class="comment">#     应该看到类似 Boot0001* debian，并且路径是 EFI/debian/grubx64.efi</span></span><br><span class="line"><span class="comment">#     确保是 USB SSD 的 EFI 分区</span></span><br><span class="line">~$ efibootmgr</span><br><span class="line">Boot0001* debian        HD(1,GPT,ed6e9a14-5d62-4994-8a51-33434ebbc1a9,0x800,0x1e8000)/File(\EFI\debian\shimx64.efi)</span><br><span class="line"><span class="comment"># 如果 Debian 不是第一启动项，可以调整</span></span><br><span class="line">~$ <span class="built_in">sudo</span> efibootmgr -o 0003</span><br><span class="line"><span class="comment"># 十、创建 UEFI fallback 【关键】</span></span><br><span class="line"><span class="comment">#     任何电脑都会尝试：EFI/BOOT/BOOTX64.EFI</span></span><br><span class="line"><span class="comment">#     所以移动硬盘也能启动</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /boot/efi/EFI/BOOT</span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cp</span> /boot/efi/EFI/debian/grubx64.efi \</span><br><span class="line">        /boot/efi/EFI/BOOT/BOOTX64.EFI</span><br><span class="line"><span class="comment">## 十一、确认 Grub</span></span><br><span class="line"><span class="comment"># LVM</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cat</span> /boot/grub/grub.cfg | grep lvmid</span><br><span class="line"><span class="comment"># 非 LVM</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cat</span> /boot/grub/grub.cfg | grep uuid</span><br><span class="line"><span class="comment"># 十二、确认系统启动正确, 显示 root=/dev/mapper/debian--frank-root 或者类似 root=UUID=xxxx</span></span><br><span class="line">~$ <span class="built_in">cat</span> /proc/cmdline</span><br><span class="line">BOOT_IMAGE=/boot/vmlinuz-6.12.73+deb13-amd64 root=/dev/mapper/debian--frank-root ro quiet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 十三、清理 Windows EFI 里的 Debian（可选）</span></span><br><span class="line"><span class="comment">#     1. 先挂载查看 Windows EFI</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount /dev/sda1 /mnt</span><br><span class="line">~$ <span class="built_in">ls</span> /mnt/EFI</span><br><span class="line"><span class="comment">#     2. 如果有：EFI/debian</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">rm</span> -r /mnt/EFI/debian</span><br><span class="line"><span class="comment">#     3. 卸载</span></span><br><span class="line">~$ <span class="built_in">sudo</span> umount /mnt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 十四、Debian EFI 分区最终正确结构应该是</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install tree -y</span><br><span class="line">~$ <span class="built_in">sudo</span> tree /boot/efi/</span><br><span class="line">/boot/efi/</span><br><span class="line">└── EFI</span><br><span class="line">    ├── BOOT</span><br><span class="line">    │   └── BOOTX64.EFI</span><br><span class="line">    └── debian</span><br><span class="line">        ├── BOOTX64.CSV</span><br><span class="line">        ├── fbx64.efi</span><br><span class="line">        ├── grub.cfg</span><br><span class="line">        ├── grubx64.efi</span><br><span class="line">        ├── mmx64.efi</span><br><span class="line">        └── shimx64.efi</span><br><span class="line"></span><br><span class="line">4 directories, 7 files</span><br></pre></td></tr></table></figure>
+</div>
 
-<h4 id="4-3-3-独立-boot【可选】"><a href="#4-3-3-独立-boot【可选】" class="headerlink" title="4.3.3 独立 /boot【可选】"></a>4.3.3 独立 <code>/boot</code>【可选】</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sdd2 为分区的时候留给独立 /boot 的</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount /dev/sdd2 /mnt</span><br><span class="line"><span class="comment"># 复制 boot 内容</span></span><br><span class="line"><span class="comment"># -a 很重要，它会保留：权限、时间、符号链接</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cp</span> -a /boot/* /mnt/</span><br><span class="line"><span class="comment"># /boot/. , 能复制隐藏文件</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cp</span> -a /boot/. /mnt/</span><br><span class="line"><span class="comment"># 修改 fstab, 添加 UUID=xxxxx /boot ext4 defaults 0 2</span></span><br><span class="line">~$ <span class="built_in">sudo</span> vi /etc/fstab</span><br><span class="line"><span class="comment"># 挂载</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount -a</span><br><span class="line"><span class="comment"># 检查</span></span><br><span class="line">~$ findmnt /boot</span><br><span class="line"><span class="comment"># 重新安装 grub</span></span><br><span class="line">~$ <span class="built_in">sudo</span> grub-install</span><br><span class="line">~$ <span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="comment"># 验证 /boot 内容</span></span><br><span class="line">~$ <span class="built_in">ls</span> /boot</span><br><span class="line">vmlinuz-6.x  initrd.img-6.x   grub  config-6.x  System.map</span><br></pre></td></tr></table></figure>
 
-<h4 id="4-3-4-硬件兼容"><a href="#4-3-4-硬件兼容" class="headerlink" title="4.3.4 硬件兼容"></a>4.3.4 硬件兼容</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 firmware</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install firmware-linux firmware-linux-nonfree</span><br><span class="line"><span class="comment"># 安装 CPU microcode, Intel / AMD CPU 都能适配</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install intel-microcode amd64-microcode</span><br></pre></td></tr></table></figure>
+<h3 id="独立-boot【可选】"><a href="#独立-boot【可选】" class="headerlink" title="独立 /boot【可选】"></a>独立 <code>/boot</code>【可选】</h3><div style="margin-left: 30px;  width: fit-content;">
 
-<h4 id="4-3-5-initramfs-优化（关键）"><a href="#4-3-5-initramfs-优化（关键）" class="headerlink" title="4.3.5 initramfs 优化（关键）"></a>4.3.5 initramfs 优化（关键）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确认 MODULES=most , 打包更多硬件驱动</span></span><br><span class="line">~$ <span class="built_in">sudo</span> vi /etc/initramfs-tools/initramfs.conf</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">~$ <span class="built_in">sudo</span> update-initramfs -u -k all</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sdd2 为分区的时候留给独立 /boot 的</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount /dev/sdd2 /mnt</span><br><span class="line"><span class="comment"># 复制 boot 内容</span></span><br><span class="line"><span class="comment"># -a 很重要，它会保留：权限、时间、符号链接</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cp</span> -a /boot/* /mnt/</span><br><span class="line"><span class="comment"># /boot/. , 能复制隐藏文件</span></span><br><span class="line">~$ <span class="built_in">sudo</span> <span class="built_in">cp</span> -a /boot/. /mnt/</span><br><span class="line"><span class="comment"># 修改 fstab, 添加 UUID=xxxxx /boot ext4 defaults 0 2</span></span><br><span class="line">~$ <span class="built_in">sudo</span> vi /etc/fstab</span><br><span class="line"><span class="comment"># 挂载</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount -a</span><br><span class="line"><span class="comment"># 检查</span></span><br><span class="line">~$ findmnt /boot</span><br><span class="line"><span class="comment"># 重新安装 grub</span></span><br><span class="line">~$ <span class="built_in">sudo</span> grub-install</span><br><span class="line">~$ <span class="built_in">sudo</span> update-grub</span><br><span class="line"><span class="comment"># 验证 /boot 内容</span></span><br><span class="line">~$ <span class="built_in">ls</span> /boot</span><br><span class="line">vmlinuz-6.x  initrd.img-6.x   grub  config-6.x  System.map</span><br></pre></td></tr></table></figure>
+</div>
 
-<h4 id="4-3-6-GRUB-优化"><a href="#4-3-6-GRUB-优化" class="headerlink" title="4.3.6 GRUB 优化"></a>4.3.6 GRUB 优化</h4><p>编辑 <code>sudo vi /etc/default/grub</code>, 然后更新 <code>update-grub</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRUB_TIMEOUT=3</span><br><span class="line">GRUB_DISABLE_OS_PROBER=true</span><br></pre></td></tr></table></figure>
+<h3 id="硬件兼容"><a href="#硬件兼容" class="headerlink" title="硬件兼容"></a>硬件兼容</h3><div style="margin-left: 30px;  width: fit-content;">
 
-<h4 id="4-3-7-USB-SSD-性能优化"><a href="#4-3-7-USB-SSD-性能优化" class="headerlink" title="4.3.7 USB SSD 性能优化"></a>4.3.7 USB SSD 性能优化</h4><h5 id="1-操作"><a href="#1-操作" class="headerlink" title="1. 操作"></a>1. 操作</h5><p>对于 <code>USB SSD</code> 用于桌面&#x2F;开发&#x2F;测试服务器的最终挂载挂载选项 <code>defaults,discard,lazytime,commit=60</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 firmware</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install firmware-linux firmware-linux-nonfree</span><br><span class="line"><span class="comment"># 安装 CPU microcode, Intel / AMD CPU 都能适配</span></span><br><span class="line">~$ <span class="built_in">sudo</span> apt install intel-microcode amd64-microcode</span><br></pre></td></tr></table></figure>
+</div>
+
+
+<h3 id="initramfs-优化（关键）"><a href="#initramfs-优化（关键）" class="headerlink" title="initramfs 优化（关键）"></a>initramfs 优化（关键）</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确认 MODULES=most , 打包更多硬件驱动</span></span><br><span class="line">~$ <span class="built_in">sudo</span> vi /etc/initramfs-tools/initramfs.conf</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">~$ <span class="built_in">sudo</span> update-initramfs -u -k all</span><br></pre></td></tr></table></figure>
+</div>
+
+
+<h3 id="GRUB-优化"><a href="#GRUB-优化" class="headerlink" title="GRUB 优化"></a>GRUB 优化</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<p>编辑 <code>sudo vi /etc/default/grub</code>, 然后更新 <code>update-grub</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRUB_TIMEOUT=3</span><br><span class="line">GRUB_DISABLE_OS_PROBER=true</span><br><span class="line">GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet usbcore.autosuspend=-1&quot;</span><br></pre></td></tr></table></figure>
+</div>
+
+<h3 id="USB-SSD-性能优化"><a href="#USB-SSD-性能优化" class="headerlink" title="USB SSD 性能优化"></a>USB SSD 性能优化</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><div style="margin-left: 30px;  width: fit-content;">
+
+<p>对于 <code>USB SSD</code> 用于桌面&#x2F;开发&#x2F;测试服务器的最终挂载挂载选项 <code>defaults,discard,lazytime,commit=60</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">~$ <span class="built_in">sudo</span> vi /etc/fstab</span><br><span class="line"><span class="comment"># 按 /etc/fstab 重新挂载所有文件系统</span></span><br><span class="line"><span class="comment"># 如果有错误会直接报 wrong fs type、bad option、unknown filesystem等错误信息</span></span><br><span class="line"><span class="comment"># 如果 没有任何输出，通常说明：fstab 语法正确</span></span><br><span class="line">~$ <span class="built_in">sudo</span> mount -a</span><br><span class="line"><span class="comment"># 检查 fstab 语法和设备存在性</span></span><br><span class="line">~$ <span class="built_in">sudo</span> findmnt --verify</span><br><span class="line">~$ <span class="built_in">sudo</span> findmnt --verify --verbose</span><br><span class="line"><span class="comment"># 查看当前挂载</span></span><br><span class="line">~$ findmnt</span><br><span class="line">~$ lsblk -f</span><br><span class="line"><span class="comment"># 验证配置正确后，应用</span></span><br><span class="line">~$ <span class="built_in">sudo</span> systemctl daemon-reload</span><br></pre></td></tr></table></figure>
 
 <p>特别的</p>
@@ -529,8 +559,11 @@
 </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取 UUID, 文件系统唯一标识。</span></span><br><span class="line">~$ lsblk -f</span><br><span class="line"><span class="comment"># 获取 blkid</span></span><br><span class="line">~$ <span class="built_in">sudo</span> blkid /dev/debian-vg/root</span><br></pre></td></tr></table></figure>
+</div>
 
-<h5 id="2-Linux-文件有三个时间"><a href="#2-Linux-文件有三个时间" class="headerlink" title="2. Linux 文件有三个时间"></a>2. Linux 文件有三个时间</h5><ul>
+<h4 id="Linux-文件有三个时间"><a href="#Linux-文件有三个时间" class="headerlink" title="Linux 文件有三个时间"></a>Linux 文件有三个时间</h4><div style="margin-left: 30px;  width: fit-content;">
+
+<ul>
 <li><code>atime</code>  <code>access time</code>   读取时间</li>
 <li><code>mtime</code>  <code>modify time</code>   修改时间</li>
 <li><code>ctime</code>  <code>change time</code>   元数据变化</li>
@@ -560,11 +593,13 @@
 </ul>
 </li>
 <li>设置 <code>commit=60</code>, ext4 每 60 秒 flush journal，减少写入次数<ul>
-<li>生产数据库&#x2F;关键服务，<code>commit=60</code> 风险过高，建议 <code>commit=5</code> 或默认</li>
+<li>生产数据库&#x2F;关键服务，<code>commit=60</code> 风险过高，建议 <code>commit=5</code> 或默认</div></li>
 </ul>
 </li>
 </ul>
-<h5 id="3-关于-TRIM"><a href="#3-关于-TRIM" class="headerlink" title="3 关于 TRIM"></a>3 关于 TRIM</h5><p>TRIM 是一种 ATA&#x2F;NVMe 命令，允许操作系统告诉 SSD：“这些数据块已经删除，你可以内部回收它们”。</p>
+<h4 id="关于-TRIM"><a href="#关于-TRIM" class="headerlink" title="关于 TRIM"></a>关于 TRIM</h4><div style="margin-left: 30px;  width: fit-content;">
+
+<p>TRIM 是一种 ATA&#x2F;NVMe 命令，允许操作系统告诉 SSD：“这些数据块已经删除，你可以内部回收它们”。</p>
 <ul>
 <li>SSD 的写入机制要求先擦除再写入，而擦除只能按“块”进行；</li>
 <li>如果不 TRIM，SSD 不知道哪些块是“已删除”的，会保留旧数据，导致写入放大（Write Amplification）和性能下降；</li>
@@ -611,8 +646,13 @@
 <li>老旧 SSD 或不确定兼容性 → 使用 fstrim.timer 更稳妥。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查当前挂载选项</span></span><br><span class="line">~$ mount |grep /dev/mapper</span><br><span class="line"><span class="comment"># 查看 DISC-GRAN 和 DISC-MAX，非 0 表示支持</span></span><br><span class="line">~$ lsblk --discard</span><br><span class="line"><span class="comment"># 手动测试 TRIM（安全）</span></span><br><span class="line">~$ <span class="built_in">sudo</span> fstrim -v /home</span><br><span class="line"><span class="comment"># 启用定时 TRIM（如果不用 discard）</span></span><br><span class="line">~$ <span class="built_in">sudo</span> systemctl <span class="built_in">enable</span> --now fstrim.timer</span><br></pre></td></tr></table></figure>
+</div>
 
-<h4 id="4-3-8-关于-snapshot"><a href="#4-3-8-关于-snapshot" class="headerlink" title="4.3.8 关于 snapshot"></a>4.3.8 关于 snapshot</h4><p>LVM 本身就支持 snapshot，所以 完全可以实现 apt 升级前自动快照 + 回滚<br>不过体验不会像 Btrfs 那么优雅(Btrfs 可以在线回滚)</p>
+
+
+<h4 id="关于-snapshot"><a href="#关于-snapshot" class="headerlink" title="关于 snapshot"></a>关于 snapshot</h4><div style="margin-left: 30px;  width: fit-content;">
+
+<p>LVM 本身就支持 snapshot，所以 完全可以实现 apt 升级前自动快照 + 回滚<br>不过体验不会像 Btrfs 那么优雅(Btrfs 可以在线回滚)</p>
 <p>snapshot 的原理</p>
 <p>LVM snapshot 是：<code>COW (copy-on-write)</code><br>流程：<code>snapshot 创建</code> -&gt; <code>root 写入变化</code> -&gt; <code>旧数据复制到 snapshot</code><br>snapshot 只存变化数据</p>
 <p>如果系统炸了先进入 rescue 模式 &#x2F; live USB 进行回滚操作, 然后重启<br>APT 支持 hook，所以也能自动 snapshot</p>
@@ -631,6 +671,159 @@
 </ul>
 </div>
 
+</div>
+
+</div>
+
+<h2 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<h3 id="显卡"><a href="#显卡" class="headerlink" title="显卡"></a>显卡</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<ol>
+<li><p>确认 <code>apt</code> 仓库地址包含 <code>contrib</code>、 <code>non-free</code> 和 <code>non-free-firmware</code></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vi /etc/apt/sources.list</span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># firmware-amd-graphics                 AMD GPU</span></span><br><span class="line"><span class="comment"># firmware-iwlwifi                      Intel WiFi</span></span><br><span class="line"><span class="built_in">sudo</span> apt install firmware-amd-graphics firmware-iwlwifi</span><br><span class="line"></span><br><span class="line"><span class="comment"># nvidia-driver firmware-misc-nonfree   NVIDIA GPU</span></span><br><span class="line"><span class="comment"># firmware-misc-nonfree 包含 GPU 固件，对某些 NVIDIA 卡是必需的</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">apt install dkms build-essential linux-headers-$(<span class="built_in">uname</span> -r)</span><br><span class="line">apt purge nvidia*</span><br><span class="line"><span class="comment"># 安装过程中应该看到类似输出：</span></span><br><span class="line"><span class="comment">#   Building for 6.12.73+deb13-amd64</span></span><br><span class="line"><span class="comment">#   Building initial module for 6.12.73+deb13-amd64</span></span><br><span class="line"><span class="comment">#   DKMS: build completed.</span></span><br><span class="line"><span class="comment"># 然后会生成：</span></span><br><span class="line"><span class="comment">#   /lib/modules/6.12.73+deb13-amd64/updates/dkms/nvidia.ko</span></span><br><span class="line">apt install nvidia-driver firmware-misc-nonfree</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认 nvidia 模块编译了</span></span><br><span class="line"><span class="built_in">ls</span> /lib/modules/$(<span class="built_in">uname</span> -r)/updates/dkms</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不报错</span></span><br><span class="line"><span class="built_in">sudo</span> modprobe nvidia</span><br><span class="line"><span class="comment"># 确认 nvidia 模块加载正常</span></span><br><span class="line">lsmod | grep nvidia</span><br><span class="line"><span class="built_in">sudo</span> dmesg | grep -i nvidia</span><br><span class="line"><span class="built_in">ls</span> /dev/nvidia*</span><br><span class="line"><span class="comment"># 显示显卡信息</span></span><br><span class="line">nvidia-smi</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认 Secure Boot</span></span><br><span class="line">mokutil --sb-state</span><br><span class="line"><span class="built_in">sudo</span> systemctl status systemd-modules-load</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> vi  /etc/modprobe.d/nvidia-wayland.conf </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑<code>sudo vi  /etc/modprobe.d/nvidia-wayland.conf </code></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">options nvidia NVreg_PreserveVideoMemoryAllocations=1</span><br><span class="line">options nvidia-drm modeset=1</span><br><span class="line">options nvidia-drm fbdev=1</span><br></pre></td></tr></table></figure></li>
+<li><p>开启百分比缩放(fractional scaling,分数尺度)<br> <code>gsettings set org.gnome.mutter experimental-features &quot;[&#39;scale-monitor-framebuffer&#39;]&quot;</code><br>  175% 的缩放 因为 GNOME 的实现方式 是先 200% 渲染，再 downscale。在 <code>NVIDIA + Wayland</code> 会有两个问题</p>
+<ul>
+<li>GPU 占用明显上升</li>
+<li>部分应用模糊</li>
+</ul>
+</li>
+<li><p>异常排查</p>
+<ol>
+<li>确认 nvidia kernel module 正常</li>
+<li>确认 &#x2F;dev&#x2F;nvidia0 存在</li>
+<li>nvidia-smi 正常</li>
+<li>再看 gdm &#x2F; wayland</li>
+</ol>
+<ul>
+<li><strong>如果对应的 <code>linux-headers-xxxx-amd64</code> 不存在，DKMS 就无法编译模块</strong></li>
+<li>升级过 kernel，或者用 backports， 这更容易导致 headers 没同步安装</li>
+<li>USB SSD 启动系统 可能遇到：Secure Boot<ul>
+<li>如果 Secure Boot 开启，nvidia module 会被 kernel 拒绝加载<br>表现就是：<blockquote>
+<p>modprobe nvidia<br>  Operation not permitted</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>backports, 就是把新版本软件移植回稳定版<ul>
+<li>Debian Project 的稳定版原则是：系统发布后 软件版本基本冻结，只修 安全和严重 bug<br>但很多软件（例如 GPU 驱动、Mesa、Kernel）更新太快，所以提供 backports 仓库，形成 <code>stable + 新版本软件</code></li>
+<li>backports kernel 常见坑：<ul>
+<li>linux-image 升级了，linux-headers 没跟着升级，DKMS 编译失败</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://wiki.debian.org/NvidiaGraphicsDrivers">NvidiaGraphicsDrivers</a> </p>
+<ul>
+<li><code>Debian 13 &quot;Trixie&quot;</code></li>
+<li><code>Post-installation steps for Trixie</code> </li>
+<li><code>Troubleshooting</code></li>
+<li><code>Wayland configuration</code></div></li>
+</ul>
+<h3 id="声卡"><a href="#声卡" class="headerlink" title="声卡"></a>声卡</h3><div style="margin-left: 30px;  width: fit-content;">
+
+<h4 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h4><div style="margin-left: 30px;  width: fit-content;">
+
+<p>Linux 音频系统有多层音量控制，即使 GNOME 音量拉到 100%，底层可能仍被限制。<br>Debian 13 已经默认集成了声卡驱动，但音量较小，可以使用 <code>alsa-utils</code> 进行调整</p>
+<ul>
+<li><p>ALSA（Advanced Linux Sound Architecture）：底层驱动（snd_hda_intel）</p>
+</li>
+<li><p>PipeWire（Debian 13 GNOME 默认已切换到 PipeWire）</p>
+</li>
+<li><p>GNOME 控制中心 + pavucontrol：用于音量控制和设备管理</p>
+</li>
+<li><p>GNOME 默认不允许超过 100% 音量（防止爆音），但有些硬件需要 &gt;100% 才能达到合理响度</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查内核是否识别声卡</span></span><br><span class="line">lspci -v | grep -i audio</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 ALSA 识别的 codec</span></span><br><span class="line"><span class="built_in">cat</span> /proc/asound/card*/codec#*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试声音输出</span></span><br><span class="line">speaker-test -t wav -c 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认 PipeWire 运行</span></span><br><span class="line">systemctl --user status pipewire pipewire-pulse</span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="built_in">sudo</span> apt install alsa-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行终端混音器</span></span><br><span class="line"><span class="comment"># 按 F6 选择正确的声卡（通常是 HDA Intel PCH）</span></span><br><span class="line"><span class="comment"># 检查以下通道是否被静音（显示 MM 表示静音，OO 表示开启）</span></span><br><span class="line"><span class="comment"># 只是临时修改内核 ALSA 驱动的运行时状态，更改不会自动持久化到磁盘</span></span><br><span class="line">alsamixer</span><br><span class="line"></span><br><span class="line"><span class="comment"># ALSA 默认不会自动保存 alsamixer 设置</span></span><br><span class="line"><span class="comment"># 将当前音量状态写入 /var/lib/alsa/asound.state，系统启动时会自动恢复。</span></span><br><span class="line"><span class="built_in">sudo</span> alsactl store</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 /var/lib/alsa/asound.state 是否存在</span></span><br><span class="line"><span class="built_in">ls</span> -l /var/lib/alsa/asound.state</span><br><span class="line"></span><br><span class="line"><span class="comment"># 手动触发一次恢复（模拟开机行为）</span></span><br><span class="line"><span class="built_in">sudo</span> alsactl restore</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确认哪个通道真正生效</span></span><br><span class="line"><span class="comment"># 下面的输出说明 Speaker 和 Headphone 是独立的硬件放大器通道，必须正确启用</span></span><br><span class="line">$ <span class="built_in">cat</span> /proc/asound/card0/codec#0 | grep -A 20 <span class="string">&quot;Node&quot;</span></span><br><span class="line">Node 0x0c [Audio Output] wcaps 0x41d: Stereo Amp-Out</span><br><span class="line">  Control: name=<span class="string">&quot;Speaker Playback Volume&quot;</span>, index=0, device=0</span><br><span class="line">  ...</span><br><span class="line">Node 0x0d [Audio Output] wcaps 0x41d: Stereo Amp-Out</span><br><span class="line">  Control: name=<span class="string">&quot;Headphone Playback Volume&quot;</span>, index=0, device=0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li><code>alsa-store</code> 服务移除原因<ul>
+<li>现代 Linux 音频栈以 PipeWire &#x2F; PulseAudio 为核心，ALSA 被视为底层硬件接口。</li>
+<li>ALSA 的“保存&#x2F;恢复”机制被认为过时且与上层服务冲突。</li>
+<li>Debian 官方倾向于让 桌面环境（如 GNOME）或音频服务管理音量状态，而非依赖 asound.state</li>
+</ul>
+</li>
+<li><code>alsa-restore</code> 在 Debian 13 中是“按需触发”的，不是靠 <code>systemctl enable</code>， <code>alsa-restore</code> 服务默认也无法 <code>enable</code></div></li>
+</ol>
+<h4 id="通道说明与推荐设置（以后置音频口输出为例）"><a href="#通道说明与推荐设置（以后置音频口输出为例）" class="headerlink" title="通道说明与推荐设置（以后置音频口输出为例）"></a>通道说明与推荐设置（以后置音频口输出为例）</h4><div style="margin-left: 30px;  width: fit-content;">
+
+<h5 id="通道说明"><a href="#通道说明" class="headerlink" title="通道说明"></a>通道说明</h5><table>
+<thead>
+<tr>
+<th>通道名</th>
+<th>作用说明</th>
+<th>推荐设置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Master</td>
+<td>主音量总控，影响所有模拟输出</td>
+<td>拉到 90%~100%（避免爆音可留一点余量）</td>
+</tr>
+<tr>
+<td>Headphone</td>
+<td>控制耳机输出（包括前置面板）</td>
+<td>如果你插的是后置接口，此项可设低或静音；<br>若插前置耳机孔，则需拉高（80%+）并取消静音</td>
+</tr>
+<tr>
+<td>Speaker</td>
+<td>控制内置扬声器或后置主声道输出</td>
+<td>必须取消静音（按 M），拉到 90%~100%（这是后置喇叭的关键通道！）</td>
+</tr>
+<tr>
+<td>PCM</td>
+<td>数字音频流增益（影响播放软件输出）</td>
+<td>建议 90%~100%，过高可能导致失真</td>
+</tr>
+<tr>
+<td>Front</td>
+<td>前置左右声道（即使你没接前置，也可能用于主输出）</td>
+<td>取消静音，拉到 90%~100%（ALC897&#x2F;1200 常将主输出映射至此）</td>
+</tr>
+</tbody></table>
+<ul>
+<li>在 ALC897&#x2F;1200 上，“Speaker” 和 “Front” 往往共同控制后置绿色音频口。</li>
+<li>如果只调 Master 而 Speaker&#x2F;Front 被静音或音量很低，声音就会非常小！</li>
+</ul>
+<h5 id="典型场景配置建议"><a href="#典型场景配置建议" class="headerlink" title="典型场景配置建议"></a>典型场景配置建议</h5><ol>
+<li><p>使用 后置绿色音频口 接有源音箱</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Master     : ▁▁▁▁▁▁▁▁▁▁ 95%</span><br><span class="line">Headphone  : ▁▁▁▁▁▁▁▁▁▁ 0% (或静音 MM)</span><br><span class="line">Speaker    : ▁▁▁▁▁▁▁▁▁▁ 100% (OO, 取消静音!)</span><br><span class="line">PCM        : ▁▁▁▁▁▁▁▁▁▁ 95%</span><br><span class="line">Front      : ▁▁▁▁▁▁▁▁▁▁ 100% (OO)</span><br></pre></td></tr></table></figure></li>
+<li><p>使用 前置耳机孔</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Master     : 95%</span><br><span class="line">Headphone  : 100% (OO)</span><br><span class="line">Speaker    : 可保持 100%（部分主板会自动切换）</span><br><span class="line">Front      : 100%</span><br><span class="line">PCM        : 95%</span><br></pre></td></tr></table></figure>
+<p> 插拔耳机时，系统应自动切换路由。若无反应，可能需在 BIOS 中启用 “Front Panel Detection”。</p>
+</li>
+<li><p>常见错误设置</p>
+</li>
+</ol>
+<ul>
+<li>Speaker 或 Front 被静音（显示 MM） → 声音极小或无声</li>
+<li>只调高 Master，其他通道很低 → 实际输出受限</li>
+<li>PCM 设为 0% → 所有播放软件无声（但系统提示音可能仍响）</li>
+<li>音频输出模式不匹配（如误设为“环绕声”）<ul>
+<li>如果你只接了 2.0 喇叭或耳机，但系统设为 5.1 输出，会导致声道分散、声音变小。</div></li>
+</ul>
+</li>
+</ul>
+<h4 id="设置采样率、位深"><a href="#设置采样率、位深" class="headerlink" title="设置采样率、位深"></a>设置采样率、位深</h4><div style="margin-left: 30px;  width: fit-content;">
+
+<ol>
+<li><p>设置所有应用（包括 Firefox、Spotify）都以 <code>96kHz/24bit</code> 运行（如果应用支持）。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ~/.config/pipewire/pipewire.conf.d/</span><br><span class="line"><span class="built_in">cp</span> /usr/share/pipewire/pipewire.conf ~/.config/pipewire/</span><br><span class="line">vi ~/.config/pipewire/pipewire.conf</span><br><span class="line"><span class="comment"># 保存后重启 PipeWir</span></span><br><span class="line">systemctl --user restart pipewire pipewire-pulse</span><br></pre></td></tr></table></figure>
+
+<p> <code>~/.config/pipewire/pipewire.conf</code></p>
+ <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">context.properties</span> = &#123;</span><br><span class="line">    <span class="comment"># 默认采样率（可设 44100, 48000, 96000, 192000）</span></span><br><span class="line">    <span class="attr">default.clock.rate</span> = <span class="number">96000</span></span><br><span class="line">    <span class="attr">default.clock.allowed-rates</span> = [ <span class="number">44100</span> <span class="number">48000</span> <span class="number">88200</span> <span class="number">96000</span> <span class="number">176400</span> <span class="number">192000</span> ]</span><br><span class="line">    <span class="attr">default.audio.format</span> = <span class="string">&quot;S24_32_LE&quot;</span>   <span class="comment"># 24bit in 32bit container</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>确认当前实际采样率</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看 PipeWire 当前运行参数</span></span><br><span class="line">pw-top</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或查看 ALSA 底层（需播放音频时运行）</span></span><br><span class="line"><span class="built_in">cat</span> /proc/asound/card0/pcm0p/sub0/hw_params</span><br></pre></td></tr></table></figure></li>
+</ol>
+</div>
+</div>
+</div>
 
   </div>
   <!--文末结束语-->
@@ -665,7 +858,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/2026/03/09/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%AE%89%E8%A3%85-Debian-13/" id="toc-header" class="mdui-ripple">Table of Contents</a>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Linux-%E9%80%82%E9%85%8D%E5%A4%9A%E5%8F%B0%E6%9C%BA%E5%99%A8%E7%9A%84%E7%A1%AC%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">一、Linux 适配多台机器的硬件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Linux-%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Linux 驱动模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 可能出现问题的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-GPU"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 GPU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2-WiFi"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 WiFi</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-CPU-microcode"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 CPU microcode</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-LVM"><span class="toc-number">2.</span> <span class="toc-text">二、 LVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81live-%E5%92%8C-netinst-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">三、live 和 netinst 的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-debian-live-13-3-0-amd64-gnome-iso"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 debian-live-13.3.0-amd64-gnome.iso</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-debian-13-3-0-amd64-netinst-iso"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 debian-13.3.0-amd64-netinst.iso</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">四、安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%88%86%E5%8C%BA"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 分区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-%E6%93%8D%E4%BD%9C%E7%BB%86%E8%8A%82"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.1.1 操作细节</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 安装系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E9%85%8D%E7%BD%AE"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-1-GUI"><span class="toc-number">4.3.1.</span> <span class="toc-text">4.3.1 GUI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-USB-SSD%E5%90%AF%E5%8A%A8%E3%80%90%E5%BF%85%E5%81%9A%E3%80%91"><span class="toc-number">4.3.2.</span> <span class="toc-text">4.3.2 USB SSD启动【必做】</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-3-%E7%8B%AC%E7%AB%8B-boot%E3%80%90%E5%8F%AF%E9%80%89%E3%80%91"><span class="toc-number">4.3.3.</span> <span class="toc-text">4.3.3 独立 &#x2F;boot【可选】</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-4-%E7%A1%AC%E4%BB%B6%E5%85%BC%E5%AE%B9"><span class="toc-number">4.3.4.</span> <span class="toc-text">4.3.4 硬件兼容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-5-initramfs-%E4%BC%98%E5%8C%96%EF%BC%88%E5%85%B3%E9%94%AE%EF%BC%89"><span class="toc-number">4.3.5.</span> <span class="toc-text">4.3.5 initramfs 优化（关键）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-6-GRUB-%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.6.</span> <span class="toc-text">4.3.6 GRUB 优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-7-USB-SSD-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.7.</span> <span class="toc-text">4.3.7 USB SSD 性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%93%8D%E4%BD%9C"><span class="toc-number">4.3.7.1.</span> <span class="toc-text">1. 操作</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Linux-%E6%96%87%E4%BB%B6%E6%9C%89%E4%B8%89%E4%B8%AA%E6%97%B6%E9%97%B4"><span class="toc-number">4.3.7.2.</span> <span class="toc-text">2. Linux 文件有三个时间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%85%B3%E4%BA%8E-TRIM"><span class="toc-number">4.3.7.3.</span> <span class="toc-text">3 关于 TRIM</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-8-%E5%85%B3%E4%BA%8E-snapshot"><span class="toc-number">4.3.8.</span> <span class="toc-text">4.3.8 关于 snapshot</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-%E9%80%82%E9%85%8D%E5%A4%9A%E5%8F%B0%E6%9C%BA%E5%99%A8%E7%9A%84%E7%A1%AC%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">Linux 适配多台机器的硬件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">Linux 驱动模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">1.2.</span> <span class="toc-text">可能出现问题的地方</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GPU"><span class="toc-number">1.2.1.</span> <span class="toc-text">GPU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WiFi"><span class="toc-number">1.2.2.</span> <span class="toc-text">WiFi</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CPU-microcode"><span class="toc-number">1.2.3.</span> <span class="toc-text">CPU microcode</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LVM"><span class="toc-number">2.</span> <span class="toc-text">LVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#live-%E5%92%8C-netinst-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">live 和 netinst 的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#debian-live-13-3-0-amd64-gnome-iso"><span class="toc-number">3.1.</span> <span class="toc-text">debian-live-13.3.0-amd64-gnome.iso</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#debian-13-3-0-amd64-netinst-iso"><span class="toc-number">3.2.</span> <span class="toc-text">debian-13.3.0-amd64-netinst.iso</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%8C%BA"><span class="toc-number">4.1.</span> <span class="toc-text">分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.2.</span> <span class="toc-text">安装系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GUI-%E7%BB%88%E7%AB%AF-%E5%88%87%E6%8D%A2%E8%84%9A%E6%9C%AC"><span class="toc-number">5.1.</span> <span class="toc-text">GUI&#x2F;终端 切换脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#USB-SSD%E5%90%AF%E5%8A%A8%E3%80%90%E5%BF%85%E5%81%9A%E3%80%91"><span class="toc-number">5.2.</span> <span class="toc-text">USB SSD启动【必做】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8B%AC%E7%AB%8B-boot%E3%80%90%E5%8F%AF%E9%80%89%E3%80%91"><span class="toc-number">5.3.</span> <span class="toc-text">独立 &#x2F;boot【可选】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E5%85%BC%E5%AE%B9"><span class="toc-number">5.4.</span> <span class="toc-text">硬件兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#initramfs-%E4%BC%98%E5%8C%96%EF%BC%88%E5%85%B3%E9%94%AE%EF%BC%89"><span class="toc-number">5.5.</span> <span class="toc-text">initramfs 优化（关键）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GRUB-%E4%BC%98%E5%8C%96"><span class="toc-number">5.6.</span> <span class="toc-text">GRUB 优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#USB-SSD-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">5.7.</span> <span class="toc-text">USB SSD 性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C"><span class="toc-number">5.7.1.</span> <span class="toc-text">操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-%E6%96%87%E4%BB%B6%E6%9C%89%E4%B8%89%E4%B8%AA%E6%97%B6%E9%97%B4"><span class="toc-number">5.7.2.</span> <span class="toc-text">Linux 文件有三个时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-TRIM"><span class="toc-number">5.7.3.</span> <span class="toc-text">关于 TRIM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-snapshot"><span class="toc-number">5.7.4.</span> <span class="toc-text">关于 snapshot</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%B1%E5%8A%A8"><span class="toc-number">6.</span> <span class="toc-text">驱动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E5%8D%A1"><span class="toc-number">6.1.</span> <span class="toc-text">显卡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E5%8D%A1"><span class="toc-number">6.2.</span> <span class="toc-text">声卡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">6.2.1.</span> <span class="toc-text">基本配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E9%81%93%E8%AF%B4%E6%98%8E%E4%B8%8E%E6%8E%A8%E8%8D%90%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BB%A5%E5%90%8E%E7%BD%AE%E9%9F%B3%E9%A2%91%E5%8F%A3%E8%BE%93%E5%87%BA%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-number">6.2.2.</span> <span class="toc-text">通道说明与推荐设置（以后置音频口输出为例）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%9A%E9%81%93%E8%AF%B4%E6%98%8E"><span class="toc-number">6.2.2.1.</span> <span class="toc-text">通道说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B8%E5%9E%8B%E5%9C%BA%E6%99%AF%E9%85%8D%E7%BD%AE%E5%BB%BA%E8%AE%AE"><span class="toc-number">6.2.2.2.</span> <span class="toc-text">典型场景配置建议</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E9%87%87%E6%A0%B7%E7%8E%87%E3%80%81%E4%BD%8D%E6%B7%B1"><span class="toc-number">6.2.3.</span> <span class="toc-text">设置采样率、位深</span></a></li></ol></li></ol></li></ol>
       </li>
     </ul>
   </div>
