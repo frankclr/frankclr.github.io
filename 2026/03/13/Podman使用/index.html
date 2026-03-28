@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Podman使用 | Frank&#39;s Blog
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Frank&#39;s Blog</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">仅仅记录自己的学习笔记，见证自己的学习轨迹！</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">Overview</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">About</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Home</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Tags</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Categories</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Archives</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">About</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">Night Mode</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">Frank</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">Links</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2026/03/13/Podman%E4%BD%BF%E7%94%A8/">Podman使用</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      Posted on:&nbsp;2026-03-13
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      Edited on:&nbsp;2026-03-29
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      In:&nbsp;<a class="category-link" href="/categories/Podman/">Podman</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        Views:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Podman使用&url=https://frankclr.github.io/2026/03/13/Podman%E4%BD%BF%E7%94%A8/&pic=https://frankclr.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Podman使用&url=https://frankclr.github.io/2026/03/13/Podman%E4%BD%BF%E7%94%A8/&via=Frank" target="_blank" class="mdui-ripple">Share to Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://frankclr.github.io/2026/03/13/Podman%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://frankclr.github.io/2026/03/13/Podman%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://frankclr.github.io/2026/03/13/Podman%E4%BD%BF%E7%94%A8/&title=Podman使用" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Frank&#39;s Blog&title=Podman使用&summary=&pics=https://frankclr.github.io/null&url=https://frankclr.github.io/2026/03/13/Podman%E4%BD%BF%E7%94%A8/" target="_blank" class="mdui-ripple">Share to QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://frankclr.github.io/2026/03/13/Podman%E4%BD%BF%E7%94%A8/&text=Podman使用" target="_blank" class="mdui-ripple">Share to Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/Podman/ >Podman</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install podman</span><br><span class="line"><span class="comment"># 用户级 ~/.config/containers/registries.conf</span></span><br><span class="line"><span class="built_in">sudo</span> vi  /etc/containers/registries.conf</span><br><span class="line"></span><br><span class="line">podman info | grep -A50 registries</span><br><span class="line">podman run docker.io/hello-world</span><br><span class="line">podman --log-level=debug pull nginx</span><br><span class="line"></span><br><span class="line">podman network <span class="built_in">ls</span></span><br><span class="line">podman network inspect podman</span><br><span class="line">podman inspect &lt;container&gt; | grep -i ip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line"><span class="comment"># 1. 运行一个 nginx 容器，映射端口 8080</span></span><br><span class="line">podman run -d --name my-nginx -p 8080:80 nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 查看容器状态</span></span><br><span class="line">podman ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 测试访问</span></span><br><span class="line">curl localhost:8080</span><br><span class="line"><span class="comment"># 如果能返回 Nginx 的 HTML，就说明一切正常！</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 清理</span></span><br><span class="line">podman stop my-nginx</span><br><span class="line">podman <span class="built_in">rm</span> my-nginx</span><br></pre></td></tr></table></figure>
+
+<p><code>/etc/containers/registries.conf</code></p>
+<figure class="highlight toml"><figcaption><span>registries.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker</span></span><br><span class="line"><span class="comment"># podman 镜像名要写全：nginx → docker.io/library/nginx:latest</span></span><br><span class="line"><span class="comment"># 默认拉取位置, 可以像使用 Docker 一样，用 nginx 这样的短名称拉取镜像</span></span><br><span class="line"><span class="attr">unqualified-search-registries</span> = [<span class="string">&quot;docker.io&quot;</span>]</span><br><span class="line"><span class="section">[[registry]]</span></span><br><span class="line"><span class="attr">prefix</span> = <span class="string">&quot;docker.io&quot;</span></span><br><span class="line"><span class="attr">location</span> = <span class="string">&quot;docker.io&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;mirror.ccs.tencentyun.com&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;docker.m.daocloud.io&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;docker.1ms.run&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;docker.1panel.live&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;proxy.vvvv.ee&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;dockerproxy.net&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;dockerproxy.link&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;docker.m.daocloud.io&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;registry.cyou&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># k8s</span></span><br><span class="line"><span class="section">[[registry]]</span></span><br><span class="line"><span class="attr">prefix</span> = <span class="string">&quot;gcr.io&quot;</span></span><br><span class="line"><span class="attr">location</span> = <span class="string">&quot;gcr.io&quot;</span></span><br><span class="line">  <span class="section">[[registry.mirror]]</span></span><br><span class="line">  <span class="attr">location</span> = <span class="string">&quot;docker.m.daocloud.io&quot;</span></span><br></pre></td></tr></table></figure>
+</div>
+
+
+
+<h2 id="运行-mongo-测试"><a href="#运行-mongo-测试" class="headerlink" title="运行 mongo 测试"></a>运行 mongo 测试</h2><ol>
+<li>如果你在运行 mongo-express 时没有通过环境变量指定登录账号，它会使用默认值：<ul>
+<li>用户名：admin</li>
+<li>密码：pass</li>
+</ul>
+</li>
+<li>Rootless 模式下只能绑定大于 1024 的端口，8081 符合要求</li>
+<li><code>http://ip:8081</code> 访问</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个 Pod（共享网络命名空间），【两个容器可以通过 localhost 互相访问】坑</span></span><br><span class="line">podman pod create --name mongo-pod -p 8081:8081</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 MongoDB 容器并加入 Pod</span></span><br><span class="line"><span class="comment"># --pod mongo-pod 将容器加入 Pod</span></span><br><span class="line"><span class="comment"># 通过环境变量设置 MongoDB 的 root 用户名和密码，供 mongo-express 使用</span></span><br><span class="line"><span class="comment"># 登录时就需要使用 myuser / mypass</span></span><br><span class="line">podman run -d --pod mongo-pod --name mongo \</span><br><span class="line">  -e MONGO_INITDB_ROOT_USERNAME=admin \</span><br><span class="line">  -e MONGO_INITDB_ROOT_PASSWORD=secret \</span><br><span class="line">  -e ME_CONFIG_BASICAUTH_USERNAME=myuser \</span><br><span class="line">  -e ME_CONFIG_BASICAUTH_PASSWORD=mypass \</span><br><span class="line">  docker.io/library/mongo:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保 MongoDB 监听 IPv4 和 IPv6</span></span><br><span class="line"><span class="comment"># 在运行 MongoDB 容器时添加  --ipv6 --bind_ip_all，或通过配置文件设置</span></span><br><span class="line">podman run -d --pod mongo-pod --name mongo \</span><br><span class="line">  -e MONGO_INITDB_ROOT_USERNAME=admin \</span><br><span class="line">  -e MONGO_INITDB_ROOT_PASSWORD=secret \</span><br><span class="line">  -e ME_CONFIG_BASICAUTH_USERNAME=myuser \</span><br><span class="line">  -e ME_CONFIG_BASICAUTH_PASSWORD=mypass \</span><br><span class="line">  docker.io/library/mongo:latest  --ipv6 --bind_ip_all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 mongo-express 容器并加入 Pod</span></span><br><span class="line"><span class="comment"># -e ME_CONFIG_MONGODB_SERVER=127.0.0.1 避免 IPv6 优先解析的问题</span></span><br><span class="line">podman run -d --pod mongo-pod --name mongo-express \</span><br><span class="line">  -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \</span><br><span class="line">  -e ME_CONFIG_MONGODB_ADMINPASSWORD=secret \</span><br><span class="line">  -e ME_CONFIG_MONGODB_SERVER=127.0.0.1 \</span><br><span class="line">  -e ME_CONFIG_BASICAUTH_USERNAME=myuser \</span><br><span class="line">  -e ME_CONFIG_BASICAUTH_PASSWORD=mypass \</span><br><span class="line">  -v mongo-data:/data/db \</span><br><span class="line">  docker.io/library/mongo-express:latest</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">podman pod ps</span><br><span class="line">podman logs mongo</span><br><span class="line">podman logs mongo-express</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果希望 Pod 随系统启动自动运行，可以生成 systemd 单元文件</span></span><br><span class="line"><span class="comment"># 使用 Podman 的 podman generate 创建 systemd 服务</span></span><br><span class="line">podman generate systemd --new --name mongo-pod &gt; ~/.config/systemd/user/container-mongo-pod.service</span><br><span class="line">systemctl --user daemon-reload</span><br><span class="line">systemctl --user <span class="built_in">enable</span> --now container-mongo-pod.service</span><br><span class="line"></span><br><span class="line">podman pod stop mongo-pod</span><br><span class="line">podman pod <span class="built_in">rm</span> mongo-pod</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在宿主机上使用 nsenter 查看 容器的监听IP和端口</span></span><br><span class="line"><span class="comment"># 获取容器 PID</span></span><br><span class="line">pid=$(podman inspect mongo -f <span class="string">&#x27;&#123;&#123;.State.Pid&#125;&#125;&#x27;</span>)</span><br><span class="line"><span class="comment"># 使用 nsenter 执行 ss</span></span><br><span class="line"><span class="built_in">sudo</span> nsenter -t <span class="variable">$pid</span> -n ss -tlnp</span><br></pre></td></tr></table></figure>
+
+<h2 id="容器内的-localhost-解析优先级问题"><a href="#容器内的-localhost-解析优先级问题" class="headerlink" title="容器内的 localhost 解析优先级问题"></a>容器内的 localhost 解析优先级问题</h2><div style="margin-left: 30px;  width: fit-content;">
+
+<p>容器内的 localhost 解析优先级问题，在 Podman（尤其是 rootless 模式）中表现得更明显。</p>
+<h3 id="localhost-在容器内如何解析？"><a href="#localhost-在容器内如何解析？" class="headerlink" title="localhost 在容器内如何解析？"></a>localhost 在容器内如何解析？</h3><p>在 Linux 容器中，<code>localhost</code> 的解析由 <code>/etc/hosts</code> 文件和 <code>glibc</code> 的解析器配置共同决定。默认情况下，<code>/etc/hosts</code> 中通常包含：</p>
+<pre><code><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1       localhost</span><br><span class="line">::1             localhost ip6-localhost ip6-loopback</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>因此，localhost 会同时解析到 IPv4 地址 127.0.0.1 和 IPv6 地址 ::1。<br>关键点：glibc 的解析器（getaddrinfo）会按 &#x2F;etc&#x2F;nsswitch.conf 中定义的顺序查询主机名，通常先查 &#x2F;etc&#x2F;hosts，再查 DNS。当 localhost 既有 IPv4 又有 IPv6 记录时，解析器会返回两个地址，且默认优先返回 IPv6 地址（如果系统开启了 IPv6 支持）。</p>
+<h3 id="为什么在-Podman-中更容易出现这个问题？"><a href="#为什么在-Podman-中更容易出现这个问题？" class="headerlink" title="为什么在 Podman 中更容易出现这个问题？"></a>为什么在 Podman 中更容易出现这个问题？</h3><p>Podman rootless 模式的网络隔离<br>Podman 默认以 rootless 模式运行，容器网络通过 slirp4netns 实现。在这种模式下，容器内的 localhost 实际上是容器自身的环回接口，与宿主机无关。但是，由于 rootless 模式的限制，IPv6 环回可能在容器内不可用或配置不完整，导致 ::1 连接失败。</p>
+<p>Pod 共享网络栈的特殊性<br>虽然两个容器在同一个 Pod 中共享网络命名空间，但容器内的 &#x2F;etc&#x2F;hosts 仍是各自独立的。如果某个容器（如 mongo-express）的 &#x2F;etc&#x2F;hosts 中 localhost 同时有 IPv4 和 IPv6 条目，它仍会尝试 IPv6 优先，而 MongoDB 可能没有在 IPv6 上监听。</p>
+<p>MongoDB 镜像的默认行为<br>MongoDB 官方镜像默认监听 0.0.0.0（所有 IPv4 地址），但不会自动监听 IPv6 的 ::。除非显式使用 –bind_ip_all 或配置 bindIp: ::,0.0.0.0，否则它只接受 IPv4 连接。</p>
+</div>
+
+
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2026/03/13/mpv-%E9%85%8D%E7%BD%AE/">
+        <span>mpv 配置</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2026/03/13/Podman%E4%BD%BF%E7%94%A8/" id="toc-header" class="mdui-ripple">Table of Contents</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-mongo-%E6%B5%8B%E8%AF%95"><span class="toc-number">2.</span> <span class="toc-text">运行 mongo 测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%86%85%E7%9A%84-localhost-%E8%A7%A3%E6%9E%90%E4%BC%98%E5%85%88%E7%BA%A7%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">容器内的 localhost 解析优先级问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#localhost-%E5%9C%A8%E5%AE%B9%E5%99%A8%E5%86%85%E5%A6%82%E4%BD%95%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="toc-number">3.1.</span> <span class="toc-text">localhost 在容器内如何解析？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8-Podman-%E4%B8%AD%E6%9B%B4%E5%AE%B9%E6%98%93%E5%87%BA%E7%8E%B0%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">3.2.</span> <span class="toc-text">为什么在 Podman 中更容易出现这个问题？</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <span>
+        &copy; 2024 - 2026 
+        
+        Frank
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>Total Visitors <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>Total Views <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >
